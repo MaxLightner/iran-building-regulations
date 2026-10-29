@@ -24,7 +24,9 @@ jobs:
           persist-credentials: true
       - name: Download PDF files from official inbr.ir links only
         run: python3 scripts/download_official_pdfs.py
-      - name: Commit verified downloaded PDFs and factual report
+      - name: Try unverified secondary reference PDFs for private comparison
+        run: python3 scripts/download_reference_mirrors.py
+      - name: Commit downloaded PDFs and factual reports
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -32,7 +34,7 @@ jobs:
           if compgen -G "sources/pdfs/*.pdf" > /dev/null; then
             git add -f -- sources/pdfs/*.pdf
           fi
-          git add -- sources/manifest.json sources/pdf-download-report.json
+          git add -- sources/manifest.json sources/pdf-download-report.json sources/reference-mirror-report.json
           if ! git diff --staged --quiet; then
             git commit -m "Archive reachable official PDFs and report download failures [skip ci]"
             git push origin HEAD:main
