@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "chapters": [
+    {
+      "number": 1,
+      "id": "m01",
+      "title": "تعاریف",
+      "edition": "1392",
+      "match": "تعریف",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-1",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 2,
+      "id": "m02",
+      "title": "نظامات اداری",
+      "edition": "1384",
+      "match": "نظامات اداری",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-2",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 3,
+      "id": "m03",
+      "title": "حفاظت ساختمان‌ها در مقابل حریق",
+      "edition": "1395",
+      "match": "حریق",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-3",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 4,
+      "id": "m04",
+      "title": "الزامات عمومی ساختمان",
+      "edition": "1396",
+      "match": "الزامات عمومی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-4",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-general-building-requirements"
+      ]
+    },
+    {
+      "number": 5,
+      "id": "m05",
+      "title": "مصالح و فرآورده‌های ساختمانی",
+      "edition": "1396",
+      "match": "مصالح",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-5",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 6,
+      "id": "m06",
+      "title": "بارهای وارد بر ساختمان",
+      "edition": "1398",
+      "match": "بارهای وارد",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-6",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 7,
+      "id": "m07",
+      "title": "ژئوتکنیک و مهندسی پی",
+      "edition": "1400",
+      "match": "پی و پی سازی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-7",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-foundations"
+      ]
+    },
+    {
+      "number": 8,
+      "id": "m08",
+      "title": "طرح و اجرای ساختمان‌های با مصالح بنایی",
+      "edition": "1398",
+      "match": "مصالح بنایی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-8",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-masonry-buildings"
+      ]
+    },
+    {
+      "number": 9,
+      "id": "m09",
+      "title": "طرح و اجرای ساختمان‌های بتن‌آرمه",
+      "edition": "1399",
+      "match": "بتن آرمه",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-9",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-design-and-construction-of-concret"
+      ]
+    },
+    {
+      "number": 10,
+      "id": "m10",
+      "title": "طرح و اجرای ساختمان‌های فولادی",
+      "edition": "1401",
+      "match": "فولادی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-10",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-design-and-construction-of-steel-s"
+      ]
+    },
+    {
+      "number": 11,
+      "id": "m11",
+      "title": "طرح و اجرای صنعتی ساختمان‌ها",
+      "edition": "1400",
+      "match": "صنعتی ساختمان",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-11",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 12,
+      "id": "m12",
+      "title": "ایمنی و حفاظت کار در حین اجرا",
+      "edition": "1403",
+      "match": "ایمنی و حفاظت کار",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-12",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 13,
+      "id": "m13",
+      "title": "طرح و اجرای تأسیسات برقی ساختمان‌ها",
+      "edition": "1395",
+      "match": "تاسیسات برقی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-13",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-electrical-installations"
+      ]
+    },
+    {
+      "number": 14,
+      "id": "m14",
+      "title": "تأسیسات مکانیکی",
+      "edition": "1396",
+      "match": "تاسیسات مکانیکی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-14",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 15,
+      "id": "m15",
+      "title": "آسانسورها و پلکان برقی",
+      "edition": "1392",
+      "match": "آسانسور",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-15",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-elevators-and-escalators"
+      ]
+    },
+    {
+      "number": 16,
+      "id": "m16",
+      "title": "تأسیسات بهداشتی",
+      "edition": "1396",
+      "match": "تاسیسات بهداشتی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-16",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 17,
+      "id": "m17",
+      "title": "سامانه گاز طبیعی در ساختمان",
+      "edition": "1403",
+      "match": "گاز طبیعی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-17",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-natural-gas-piping"
+      ]
+    },
+    {
+      "number": 18,
+      "id": "m18",
+      "title": "عایق‌بندی و تنظیم صدا",
+      "edition": "1396",
+      "match": "تنظیم صدا",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-18",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 19,
+      "id": "m19",
+      "title": "مدیریت انرژی در ساختمان",
+      "edition": "1404",
+      "match": "انرژی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-19",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-energy-conservation"
+      ]
+    },
+    {
+      "number": 20,
+      "id": "m20",
+      "title": "علائم و تابلوها",
+      "edition": "1396",
+      "match": "علائم و تابلو",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-20",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 21,
+      "id": "m21",
+      "title": "پدافند غیرعامل",
+      "edition": "1395",
+      "match": "پدافند",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-21",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-passive-defense"
+      ]
+    },
+    {
+      "number": 22,
+      "id": "m22",
+      "title": "مراقبت و نگهداری از ساختمان‌ها",
+      "edition": "1392",
+      "match": "مراقبت و نگهداری",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-22",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    },
+    {
+      "number": 23,
+      "id": "m23",
+      "title": "الزامات ترافیکی ساختمان‌ها",
+      "edition": "1401",
+      "match": "ترافیکی",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-23",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": [
+        "https://mihansazan.app/posts/nbci-traffic-requirements-of-buildings"
+      ]
+    },
+    {
+      "number": 24,
+      "id": "m24",
+      "title": "انطباق شهری ساختمان",
+      "edition": "1404",
+      "match": "انطباق شهری",
+      "technobetar": "https://technobetar.ir/code/nbri/mabhas-24",
+      "archweb_index": "https://archweb.ir/2024/09/26/دانلود-مباحث-مقررات-ملی-ساختمان/",
+      "text_sources": []
+    }
+  ]
+}
