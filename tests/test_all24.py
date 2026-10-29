@@ -26,8 +26,12 @@ class All24Test(unittest.TestCase):
             docid=f"m{chapter:02d}"
             with self.subTest(chapter=chapter):
                 quality=read(ROOT/f"data/analysis/{docid}-quality.json")
-                self.assertEqual(quality["extracted_pages"],quality["total_pages"])
-                self.assertEqual(self.draft_docs[docid]["pages"],quality["total_pages"])
+                total=quality.get("total_pages",quality.get("pdf_pages"))
+                extracted=quality.get("extracted_pages",quality.get("ocr_pages"))
+                self.assertIsNotNone(total)
+                self.assertIsNotNone(extracted)
+                self.assertEqual(extracted,total)
+                self.assertEqual(self.draft_docs[docid]["pages"],total)
                 self.assertGreater(self.draft_docs[docid]["nonempty_pages"],0)
                 self.assertGreater(self.knowledge_docs[docid]["records"],0)
 
