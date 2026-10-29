@@ -42,3 +42,8 @@ label{display:block;font-weight:600;font-size:14px}.fields label{display:flex;fl
 .search-group button.secondary{margin-top:10px}
 .full-text{white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:700px){.search-filters{display:block}.search-filters label{display:block;margin-bottom:11px}}
+
+.search-group{background:var(--white);border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:0 14px 14px}
+.search-group>summary{padding:12px 4px;cursor:pointer;font-weight:700;min-height:46px}
+.search-group:not([open]){padding-bottom:0}
+.search-group>button.secondary{margin-bottom:8px}
