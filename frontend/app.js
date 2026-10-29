@@ -429,6 +429,13 @@ function topicIdByLabel(label){
   for(const [id,t] of Object.entries(state.ontology.topics||{}))if(t.label===label)return id;
   return null;
 }
+const PRIMARY_TOPIC_DOCUMENTS={
+  admin:['m01','m02'],fire:['m03'],occupancy:['m04'],security:['m04-security-1403'],
+  materials:['m05'],loads:['m06'],geotech:['m07'],masonry_industrial:['m08','m11'],
+  concrete_steel:['m09','m10'],worksite:['m12'],electrical:['m13'],mechanical:['m14'],
+  elevator:['m15'],plumbing_gas:['m16','m17'],acoustics:['m18'],energy:['m19'],
+  signage:['m20'],passive_defense:['m21'],maintenance:['m22'],traffic:['m23'],general:['m24']
+};
 const queryTopicCache=new Map();
 function resolveQueryTopics(query){
   const q=fold(query);
@@ -546,7 +553,8 @@ function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   const related=[...resolved.related].some(id=>record.topics.includes(id));
   const termHits=terms.filter(t=>title.includes(t)||summary.includes(t)||topics.includes(t)||text.includes(t));
   if(terms.length && termHits.length===0 && !direct && !related)return null;
-  let score=(direct?35:0)+(related?7:0)+(selectedTopicId?20:0);
+  const primary=[...resolved.direct].some(id=>(PRIMARY_TOPIC_DOCUMENTS[id]||[]).includes(record.document_id));
+  let score=(direct?35:0)+(primary?18:0)+(related?7:0)+(selectedTopicId?20:0);
   for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(summary.includes(t)?6:0)+(text.includes(t)?3:0);
   score+=searchQualityAdjustment(record);
   score+=projectScore;
