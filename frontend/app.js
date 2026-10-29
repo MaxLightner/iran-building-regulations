@@ -429,8 +429,11 @@ function topicIdByLabel(label){
   for(const [id,t] of Object.entries(state.ontology.topics||{}))if(t.label===label)return id;
   return null;
 }
+const queryTopicCache=new Map();
 function resolveQueryTopics(query){
-  const q=fold(query), direct=new Set();
+  const q=fold(query);
+  if(queryTopicCache.has(q))return queryTopicCache.get(q);
+  const direct=new Set();
   if(!q||!state.ontology)return {direct,related:new Set()};
   for(const [id,t] of Object.entries(state.ontology.topics||{})){
     const terms=[t.label,...(t.aliases||[])].map(fold);
@@ -438,7 +441,7 @@ function resolveQueryTopics(query){
   }
   const related=new Set();
   for(const id of direct)for(const r of state.ontology.topics[id]?.related||[])if(!direct.has(r))related.add(r);
-  return {direct,related};
+  const resolved={direct,related};queryTopicCache.set(q,resolved);return resolved;
 }
 async function knowledgeDocument(d){
   if(state.knowledgeCache.has(d.id))return state.knowledgeCache.get(d.id);
@@ -525,14 +528,13 @@ function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   if(selectedTopicId && !record.topics.includes(selectedTopicId))return null;
   const title=fold(record.title),summary=fold(record.summary),
     topics=fold((record.topic_labels||[]).join(' ')),
-    facts=fold((record.facts||[]).map(x=>x.value+' '+x.unit+' '+x.context).join(' ')),
-    conditions=fold((record.conditions||[]).join(' ')), text=record.search_text||fold(record.text);
+    text=record.search_text||fold(record.text);
   const direct=[...resolved.direct].some(id=>record.topics.includes(id));
   const related=[...resolved.related].some(id=>record.topics.includes(id));
-  const termHits=terms.filter(t=>title.includes(t)||summary.includes(t)||topics.includes(t)||facts.includes(t)||conditions.includes(t)||text.includes(t));
+  const termHits=terms.filter(t=>title.includes(t)||summary.includes(t)||topics.includes(t)||text.includes(t));
   if(terms.length && termHits.length===0 && !direct && !related)return null;
   let score=(direct?35:0)+(related?7:0)+(selectedTopicId?20:0);
-  for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(facts.includes(t)?10:0)+(conditions.includes(t)?8:0)+(summary.includes(t)?6:0)+(text.includes(t)?2:0);
+  for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(summary.includes(t)?6:0)+(text.includes(t)?3:0);
   score+=searchQualityAdjustment(record);
   score+=projectScore;
   return score;
