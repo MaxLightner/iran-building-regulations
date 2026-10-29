@@ -77,7 +77,7 @@ def produce_one(args):
     raw = run.stdout.decode("utf-8", "replace")
     if len(raw.strip()) < 55:
         # Some pages are blank or graphical. Try alternate segmentation once.
-        alt = subprocess.run(cmd[:7] + ["6"] + cmd[8:], input=png,
+        alt = subprocess.run(cmd[:6] + ["6"] + cmd[7:], input=png,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                              timeout=140, env=env)
         if alt.returncode == 0:
