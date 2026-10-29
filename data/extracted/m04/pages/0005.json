@@ -1,0 +1,35 @@
+{
+  "pdf_page": 5,
+  "source_sha256": "fca8ab6b7e6190951ee8c503fce4c2c93a57067546154f116e84d84577304a43",
+  "method": "tesseract_fas_eng_psm3_216dpi_with_psm6_fallback",
+  "width": 612.0,
+  "height": 664.0,
+  "image_count": 1,
+  "ocr_text": "۶ 137 3۳۳۲2۳۲۲ a a SS ese Ss    777۳7 Se   SUNS\n\n3 ‏ی‎ SS OS EA gg\n۲        se     ‏ود‎ A ere\n\n    ۰ ایا و ‎eames | 5 (Seale‏رف\n\nister =       of ‏ی هه وس‎ |      2 Re eee al\n۳25۲۱      5۳ ‏ی ای رو با ۱ هقرت عم‎ ee     iS: ate TR\nieee >        Bete eRe ON Cae oe ee       $i ied Une\n‏ار‎       te reget) eS nc > pig A er      eta esp  1\n\n2       Battal oes ‏او از‎ ea | op     16 en   Al ae\n] ie ‏وس وس و        وس‎ capi» Th neg naps a NE aed ‏انقضای     ور‎ ley\n‏ار‎ ee ‏ی  ری‎ ENS i ‏ابلاغ خواهد بود‎ aes 3\n‏تا‎ ile     ‏ت۱9‎ pases eae ‏بد‎ BALL 2. ‏این ابلاغ استفاده از هر کدام از ده‎ ۳\n‏وی‎ Sh!         ۱۳۳ pee oan 2 cat  “s 2    ‏و‎\n‎۳ ‏و‎ 2 eee Ae +. | eae\nbor tir  :       ah        oy ae    ;       a0   ‏راد‎ SY\nra ie        ۰  »   =   ۳ RS  ۳  a     =r ae US aan\nBisse pe        = ‏اد مج کی رل ارچ سر‎      i 1 Se ‏رازگ‎\n\noe",
+  "ocr_lines": [
+    "۶ 137 3۳۳۲2۳۲۲ a a SS ese Ss 777۳7 Se SUNS",
+    "3 ی SS OS EA gg",
+    "۲ se ود A ere",
+    "۰ ایا و eames | 5 (Sealeرف",
+    "ister = of ی هه وس | 2 Re eee al",
+    "۳25۲۱ 5۳ ی ای رو با ۱ هقرت عم ee iS: ate TR",
+    "ieee > Bete eRe ON Cae oe ee $i ied Une",
+    "ار te reget) eS nc > pig A er eta esp 1",
+    "2 Battal oes او از ea | op 16 en Al ae",
+    "] ie وس وس و وس capi» Th neg naps a NE aed انقضای ور ley",
+    "ار ee ی ری ENS i ابلاغ خواهد بود aes 3",
+    "تا ile ت۱9 pases eae بد BALL 2. این ابلاغ استفاده از هر کدام از ده ۳",
+    "وی Sh! ۱۳۳ pee oan 2 cat “s 2 و",
+    "۳ و 2 eee Ae +. | eae",
+    "bor tir : ah oy ae ; a0 راد SY",
+    "ra ie ۰ » = ۳ RS ۳ a =r ae US aan",
+    "Bisse pe = اد مج کی رل ارچ سر i 1 Se رازگ",
+    "oe"
+  ],
+  "char_count": 834,
+  "line_count": 18,
+  "quality_flags": [
+    "possible_latin_noise"
+  ],
+  "review_status": "pending_manual_visual_comparison"
+}
