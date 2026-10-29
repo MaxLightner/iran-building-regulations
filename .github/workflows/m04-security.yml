@@ -2,7 +2,7 @@ name: Archive and parse m04 security appendix 1403
 on:
   push:
     branches: [main]
-    paths: [".github/workflows/m04-security.yml"]
+    paths: [".github/workflows/m04-security.yml", "scripts/extract_m04_security.py"]
   workflow_dispatch:
 permissions:
   contents: write
@@ -36,3 +36,5 @@ jobs:
             git add data/extracted/m04-security-1403/pages data/records/m04-security-1403.json data/analysis/m04-security-quality.json
           fi
           git diff --cached --quiet || (git commit -m 'Record chapter 4 appendix extraction diagnostics [skip ci]' && git push)
+      - name: Ensure appendix extraction succeeded
+        run: test -s data/analysis/m04-security-quality.json
