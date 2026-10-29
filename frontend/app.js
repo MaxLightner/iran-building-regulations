@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const state = { catalog: [], approved: [], demo: [], mode: 'knowledge', project: null, draft: null, cache: new Map(), knowledge: null, ontology: null, knowledgeCache: new Map(), topicFilter: '', requestToken: 0 };
+const state = { catalog: [], approved: [], demo: [], mode: 'knowledge', project: null, draft: null, cache: new Map(), knowledge: null, ontology: null, knowledgeCache: new Map(), applicability: null, applicabilityCache: new Map(), topicFilter: '', requestToken: 0 };
 const el = (tag, value, className) => {
   const node = document.createElement(tag);
   if (value !== undefined && value !== null) node.textContent = String(value);
@@ -175,18 +175,20 @@ function initializeForm(options) {
 }
 async function init(){
   try{
-    const [catalog,approved,demo,options,draft,knowledge,ontology]=await Promise.all([
+    const [catalog,approved,demo,options,draft,knowledge,ontology,applicability]=await Promise.all([
       load('catalog'),load('records'),load('demo'),
       fetch(new URL('./options.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('گزینه‌های فرم دریافت نشد');return r.json();}),
       fetch(new URL('./data/draft/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس متنی PDF دریافت نشد');return r.json();}),
       fetch(new URL('./data/knowledge/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس دانش دریافت نشد');return r.json();}),
-      fetch(new URL('./data/knowledge/ontology.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('واژگان موضوعی دریافت نشد');return r.json();})
+      fetch(new URL('./data/knowledge/ontology.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('واژگان موضوعی دریافت نشد');return r.json();}),
+      fetch(new URL('./data/applicability/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس ارتباط پروژه دریافت نشد');return r.json();})
     ]);
     if(catalog.status!=='unverified_catalog_only'||approved.status!=='approved_only'||demo.status!=='demonstration_not_regulations')
       throw Error('ساختار مجموعه داده نامعتبر است');
     if(draft.status !== 'unverified_pdf_transcription') throw Error('ایندکس OCR نامعتبر است');
     if(knowledge.status !== 'unverified_structured_knowledge') throw Error('ایندکس دانش نامعتبر است');
-    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;state.draft=draft;state.knowledge=knowledge;state.ontology=ontology;
+    if(applicability.status !== 'project_relevance_signals_not_legal_applicability') throw Error('ایندکس ارتباط پروژه نامعتبر است');
+    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;state.draft=draft;state.knowledge=knowledge;state.ontology=ontology;state.applicability=applicability;
     $('approved-stat').textContent=knowledge.records;
     const selected=$('chapter-filter');
     for(const chapter of draft.documents)selected.append(new Option(chapter.title,chapter.id));
@@ -332,6 +334,89 @@ async function renderDraftSearch(){
   }
 }
 
+
+
+const PROJECT_TOPIC_WEIGHTS={
+  'بتن‌آرمه':{concrete_steel:22,loads:14,geotech:12,materials:7},
+  'فولادی':{concrete_steel:22,loads:14,geotech:12,fire:5},
+  'بنایی':{masonry_industrial:24,loads:12,geotech:9,materials:8},
+  'سایر / نامشخص':{loads:5,geotech:5},
+  'مسکونی':{occupancy:15,stairs:12,fire:12,parking:9,light:8,energy:7},
+  'اداری':{occupancy:14,fire:13,stairs:10,parking:9,elevator:7,energy:7},
+  'تجاری':{occupancy:14,fire:16,parking:12,stairs:10,signage:8,elevator:7},
+  'آموزشی':{occupancy:14,fire:17,stairs:12,signage:7,light:7},
+  'درمانی':{occupancy:14,fire:18,stairs:12,elevator:11,installations:10,electrical:8},
+  'صنعتی':{occupancy:10,fire:15,worksite:8,electrical:9,mechanical:9,materials:8},
+  'مختلط':{occupancy:18,fire:15,stairs:10,parking:10},
+  'مطالعات اولیه':{admin:12,geotech:10,general:8},
+  'طراحی':{dimensions:12,fire:10,loads:10,occupancy:9,installations:8},
+  'اجرا':{worksite:18,materials:12,concrete_steel:8,masonry_industrial:8,admin:5},
+  'بهره‌برداری':{maintenance:20,fire:9,elevator:8,installations:8,energy:7}
+};
+function projectTopicBias(topicId,project=state.project){
+  if(!project)return 0;
+  let score=0;
+  for(const key of [project.structure,project.use,project.stage]){
+    const table=PROJECT_TOPIC_WEIGHTS[key];if(table)score+=table[topicId]||0;
+  }
+  if(project.basements>0){
+    if(topicId==='geotech')score+=12;
+    if(topicId==='parking')score+=8;
+    if(topicId==='fire')score+=5;
+  }
+  if(project.floors>=5){
+    if(topicId==='elevator')score+=9;
+    if(topicId==='stairs')score+=7;
+    if(topicId==='fire')score+=8;
+  }
+  if(project.area>=3000){
+    if(topicId==='fire')score+=5;
+    if(topicId==='parking')score+=5;
+    if(topicId==='installations')score+=4;
+  }
+  return score;
+}
+function conditionMatches(condition,project){
+  if(!project||!condition)return null;
+  const actual=Number(project[condition.field]);
+  if(!Number.isFinite(actual))return null;
+  const v=Number(condition.value);
+  if(condition.operator==='gt')return actual>v;
+  if(condition.operator==='gte')return actual>=v;
+  if(condition.operator==='lt')return actual<v;
+  if(condition.operator==='lte')return actual<=v;
+  if(condition.operator==='eq')return actual===v;
+  return null;
+}
+function projectFit(rule,record,project=state.project){
+  if(!project||!rule)return {score:0,level:'general',reasons:[]};
+  let score=0;const reasons=[];
+  for(const tid of record.topics||[])score+=projectTopicBias(tid,project);
+  const m=rule.mentions||{};
+  if(m.uses?.includes(project.use)){score+=20;reasons.push('کاربری '+project.use+' در متن این ضابطه دیده شده');}
+  else if(m.uses?.length)score-=2;
+  if(m.structures?.includes(project.structure)){score+=20;reasons.push('نوع سازه '+project.structure+' با متن ضابطه همخوان است');}
+  else if(m.structures?.length)score-=2;
+  if(m.stages?.includes(project.stage)){score+=12;reasons.push('برای مرحله «'+project.stage+'» مرتبط تشخیص داده شده');}
+  if(m.basement&&project.basements>0){score+=10;reasons.push('ضابطه به زیرزمین مرتبط است');}
+  if(m.parking&&project.basements>0){score+=4;}
+  for(const c of rule.numeric_conditions||[]){
+    const match=conditionMatches(c,project);
+    if(match===true){score+=10;reasons.push('شرط عددی استخراج‌شده با مشخصات پروژه همخوان است: '+c.evidence);}
+    else if(match===false)score-=2;
+  }
+  const level=score>=34?'high':score>=16?'medium':'general';
+  return {score,level,reasons:reasons.slice(0,4)};
+}
+async function applicabilityDocument(docId){
+  if(state.applicabilityCache.has(docId))return state.applicabilityCache.get(docId);
+  const response=await fetch(new URL('./data/applicability/'+docId+'.json',document.baseURI));
+  if(!response.ok)throw Error('سیگنال‌های پروژه '+docId+' دریافت نشد');
+  const result=await response.json();
+  if(result.status!=='project_relevance_signals_not_legal_applicability')throw Error('وضعیت سیگنال پروژه نامعتبر است');
+  const map=new Map(result.records.map(r=>[r.id,r]));
+  state.applicabilityCache.set(docId,map);return map;
+}
 
 const KNOWLEDGE_STATUS='ساختاریافته از متن PDF؛ اعتبار نسخه‌ها هنوز تأیید رسمی نشده است.';
 function topicIdByLabel(label){
