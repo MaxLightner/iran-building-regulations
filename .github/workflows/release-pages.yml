@@ -1,0 +1,58 @@
+name: Release MVP to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/release-pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-release
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild all static indexes
+        run: |
+          python3 scripts/build_static.py
+          python3 scripts/build_draft_index.py
+          python3 scripts/build_knowledge.py
+          python3 scripts/build_applicability.py
+      - name: Run MVP release test suite
+        run: |
+          python3 -m unittest discover -s tests -p 'test_static.py' -v
+          python3 -m unittest discover -s tests -p 'test_draft_index.py' -v
+          python3 -m unittest discover -s tests -p 'test_knowledge.py' -v
+          python3 -m unittest discover -s tests -p 'test_applicability.py' -v
+          python3 -m unittest discover -s tests -p 'test_all24.py' -v
+          node --check frontend/app.js
+          node tests/draft-search.test.cjs
+          node tests/knowledge-search.test.cjs
+          node tests/project-fit.test.cjs
+          node tests/search-benchmark.test.cjs
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
