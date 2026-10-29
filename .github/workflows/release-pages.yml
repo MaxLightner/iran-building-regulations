@@ -1,4 +1,5 @@
 name: Release MVP to GitHub Pages
+# M04 rule preview is included in the published frontend artifact.
 
 on:
   workflow_dispatch:
