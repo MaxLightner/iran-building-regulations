@@ -1,0 +1,47 @@
+name: Build and publish phase-1 static site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pages.yml"
+      - "frontend/**"
+      - "data/**"
+      - "sources/manifest.json"
+      - "scripts/build_static.py"
+      - "tests/test_static.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate public-safe static data
+        run: python3 scripts/build_static.py
+      - name: Run pipeline tests and check JS syntax
+        run: |
+          python3 -m unittest discover -s tests -p 'test_static.py' -v
+          node --check frontend/app.js
+      - name: Upload only the public frontend (no private PDFs)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
