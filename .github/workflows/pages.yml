@@ -11,6 +11,7 @@ on:
       - "scripts/build_draft_index.py"
       - "tests/test_static.py"
       - "tests/test_draft_index.py"
+      - "tests/draft-search.test.cjs"
   workflow_dispatch:
 
 permissions:
@@ -30,5 +31,6 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_static.py' -v
           python3 -m unittest discover -s tests -p 'test_draft_index.py' -v
           node --check frontend/app.js
+          node tests/draft-search.test.cjs
       - name: Confirm publication is deferred
         run: echo "No upload to GitHub Pages and no deployment until the final phase."
