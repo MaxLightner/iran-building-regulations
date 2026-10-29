@@ -6,6 +6,11 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/phase4-project-engine.yml"
+      - "scripts/build_applicability.py"
+      - "frontend/app.js"
+      - "frontend/index.html"
+      - "tests/test_applicability.py"
+      - "tests/project-fit.test.cjs"
 
 permissions:
   contents: write
