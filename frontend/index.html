@@ -18,7 +18,7 @@
     <a href="#search-panel">جست‌وجو</a>
     <a href="#catalog">مباحث</a>
   </nav>
-  <span class="phase-label">آزمایشی · فاز ۱</span>
+  <span class="phase-label">آزمایشی · پردازش ۳-۱</span>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="page-title">
@@ -31,8 +31,8 @@
     <aside class="hero-aside" aria-label="وضعیت داده‌ها">
       <p class="eyebrow">وضعیت اطلاعات</p>
       <div class="stat"><strong id="catalog-stat">—</strong><span>مبحث شناسایی‌شده</span></div>
-      <div class="stat"><strong id="approved-stat">—</strong><span>رکورد تأییدشده قابل جست‌وجو</span></div>
-      <p class="warning-small">۲۴ PDF اولیه موجودند اما نسخه‌ها و محتوای آن‌ها هنوز اعتبارسنجی نشده است. این سایت فعلاً مرجع تصمیم مهندسی نیست.</p>
+      <div class="stat"><strong id="approved-stat">—</strong><span>صفحه PDF قابل جست‌وجو (متن اولیه)</span></div>
+      <p class="warning-small">جست‌وجوی متن خام PDF آماده می‌شود؛ OCR و نسخه‌های فعلی تطبیق نشده‌اند. برای عددها و الزامات، صفحه اصلی PDF را بررسی کنید.</p>
     </aside>
   </section>
 
@@ -81,7 +81,7 @@
     <div class="section-head"><div><p class="eyebrow">۲ / مرور موضوعات</p><h2 id="topics-title">موضوعات مقررات</h2></div><span class="count" id="topics-count">—</span></div>
     <div class="mode-row">
       <label for="mode">مجموعه داده</label>
-      <select id="mode"><option value="approved">داده‌های تأییدشده</option><option value="demo">نمایش آزمایشی رابط (متن ساختگی)</option></select>
+      <select id="mode"><option value="draft" selected>متن کامل PDFها (استخراج اولیه)</option><option value="approved">بندهای تأیید نهایی‌شده</option><option value="demo">نمایش ساختگی رابط</option></select>
     </div>
     <p id="mode-note" class="caution">در حال بارگذاری داده‌ها…</p>
     <div id="topics" class="topic-list" aria-live="polite"></div>
@@ -91,9 +91,9 @@
     <div class="section-head"><div><p class="eyebrow">۳ / پیدا کردن بند</p><h2 id="search-title">جست‌وجو در متن و تگ‌ها</h2></div><span class="count">بدون هوش مصنوعی</span></div>
     <form id="search">
       <label for="query">موضوع، عبارت، شماره بند یا کلیدواژه</label>
-      <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً راه‌پله، رمپ، حریق" required><button type="submit">جست‌وجو</button></div>
+      <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً راه‌پله، رمپ، حریق"><button type="submit">جست‌وجو</button></div><div class="search-filters"><label>مبحث<select id="chapter-filter"><option value="">همه مباحث موجود</option></select></label><label>موضوع<select id="topic-filter"><option value="">همه موضوعات</option></select></label></div>
     </form>
-    <p class="helper">جست‌وجوی فارسی به‌صورت آفلاین در ایندکس ثابت مرورگر انجام می‌شود؛ هیچ پرسشی برای AI ارسال نمی‌شود.</p>
+    <p class="helper">جست‌وجوی فارسی در فایل‌های JSON آماده‌شده انجام می‌شود؛ هر نتیجه به صفحه PDF وصل است. داده‌های OCR اولیه‌اند و ممکن است خطا داشته باشند.</p>
     <div id="search-results" aria-live="polite"></div>
   </section>
 
