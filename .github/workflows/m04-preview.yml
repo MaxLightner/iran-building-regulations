@@ -6,6 +6,12 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/m04-preview.yml"
+      - "scripts/build_m04_preview.py"
+      - "tests/test_m04_preview.py"
+      - "tests/m04-preview.test.cjs"
+      - "frontend/m04-preview/index.html"
+      - "frontend/m04-preview/app.js"
+      - "frontend/m04-preview/styles.css"
 
 permissions:
   contents: write
