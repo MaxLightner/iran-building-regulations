@@ -1,0 +1,38 @@
+name: Full Persian OCR and structured extraction m04
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/extract-m04.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extraction-m04-main
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Persian OCR and PDF renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-fas tesseract-ocr-eng
+          python3 -m pip install 'pymupdf>=1.24,<1.28'
+      - name: Process every scanned page
+        run: python3 -u scripts/extract_m04.py
+      - name: Verify full coverage and blocked publication
+        run: |
+          python3 -m unittest discover -s tests -p 'test_m04.py' -v
+          python3 scripts/build_static.py
+      - name: Commit OCR source evidence and pending-review records
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/extracted/m04/pages data/records/m04.json data/analysis/m04-quality.json
+          git diff --cached --quiet || (git commit -m 'OCR all 128 pages of m04 and index provisional sections [skip ci]' && git push)
