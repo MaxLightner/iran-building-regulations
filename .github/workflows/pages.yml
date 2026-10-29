@@ -8,7 +8,9 @@ on:
       - "frontend/**"
       - "data/**"
       - "scripts/build_static.py"
+      - "scripts/build_draft_index.py"
       - "tests/test_static.py"
+      - "tests/test_draft_index.py"
   workflow_dispatch:
 
 permissions:
@@ -21,9 +23,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build index from approved records only
         run: python3 scripts/build_static.py
+      - name: Build source-linked draft PDF page index
+        run: python3 scripts/build_draft_index.py
       - name: Verify static site and JavaScript syntax
         run: |
           python3 -m unittest discover -s tests -p 'test_static.py' -v
+          python3 -m unittest discover -s tests -p 'test_draft_index.py' -v
           node --check frontend/app.js
       - name: Confirm publication is deferred
         run: echo "No upload to GitHub Pages and no deployment until the final phase."
