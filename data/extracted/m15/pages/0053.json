@@ -1,9 +1,0 @@
-{
-  "pdf_page": 53,
-  "source_sha256": "e27e1d74e6ded86ecfe6399b524b612d2cf6fdd2da4c6a36df7d94a3ed6ea477",
-  "method": "tesseract_fas_eng_166dpi_psm3",
-  "ocr_text": "۳-۵ پلکان برقی و پیاده رو منحرک\n\n_V ۷۸\n\n۲۲-۲-۱۵ abl\n\n۰ 7 a) ۵ ‏رابطه‎\n\nکه در آن:\n\n‎C,‏ = تعداد افراد جابه‌جا شده در ساعت\n\n‎=T‏ عمق پله (متر)\n\n‎=(P/h)‏ نفر در ساعت\n\n‏در صورتی که عرض ‎ab‏ ۰/۶ متر (۱ نفر روی هر پله) باشد: ‎K=1‏\n\n‏در صورتی که عرض پله ۰/۸ متر (۱/۵ نفر روی هر پله) باشد: 5 >\n‎K=2‏\n\n‏در صورتی که عرض پله ۱ متر (۲ نفر روی هر پله) باشد:\n\n‎fr",
-  "char_count": 349,
-  "quality_flags": [],
-  "review_status": "unverified_source_transcription"
-}
