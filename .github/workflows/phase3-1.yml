@@ -1,0 +1,55 @@
+name: Phase 3-1 full PDF page extraction and searchable index
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/phase3-1.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase3-1-main
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Persian OCR and PDF parser
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr tesseract-ocr-fas tesseract-ocr-eng
+          python3 -m pip install 'pymupdf>=1.24,<1.28'
+      - name: Extract full PDF pages from chapters 3, 5 and 15
+        run: python3 -u scripts/extract_batch_pages.py --chapters 3 5 15
+      - name: Build production-shaped search shards without publication
+        run: |
+          python3 scripts/build_static.py
+          python3 scripts/build_draft_index.py
+      - name: Verify page coverage and search readiness
+        run: |
+          python3 -m unittest discover -s tests -p 'test_draft_index.py' -v
+          python3 -m unittest discover -s tests -p 'test_static.py' -v
+          node --check frontend/app.js
+      - name: Commit all page extracts, quality reports and browser indexes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/extracted/m03/pages data/extracted/m05/pages data/extracted/m15/pages
+          git add data/analysis/m03-quality.json data/analysis/m05-quality.json data/analysis/m15-quality.json
+          git add frontend/data/draft/
+          if ! git diff --staged --quiet; then
+            git commit -m "Phase 3-1: index every page of chapters 3, 5, 15 [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Confirm no GitHub Pages deployment
+        run: echo "No deployment in phase 3-1; publication remains deferred."
