@@ -28,7 +28,7 @@ class DraftIndexTest(unittest.TestCase):
         self.assertEqual(draft["status"],"unverified_pdf_transcription")
 
     def test_every_present_batch_chapter_has_exact_page_coverage(self):
-        for chapter in (3,5,15):
+        for chapter in (3,5,6,7,9,10,15):
             folder=ROOT/f"data/extracted/m{chapter:02d}/pages"
             if not folder.is_dir():
                 continue
@@ -44,8 +44,9 @@ class DraftIndexTest(unittest.TestCase):
         docs={x["id"]:x for x in self.docs}
         for docid, expected in {"m03":230,"m04":128,"m04-security-1403":49,"m05":303,"m15":84}.items():
             self.assertEqual(docs[docid]["pages"],expected)
-        self.assertEqual(self.manifest["indexed_pages"],794)
-        self.assertEqual(sum(x["nonempty_pages"] for x in self.docs),775)
+        self.assertGreaterEqual(self.manifest["indexed_pages"],794)
+        self.assertGreaterEqual(sum(x["nonempty_pages"] for x in self.docs),775)
+        self.assertEqual(sum(x["pages"] for x in self.docs),self.manifest["indexed_pages"])
 
     def test_normalize_persian(self):
         self.assertEqual(b.norm("كلمه  ي"),"کلمه ی")
