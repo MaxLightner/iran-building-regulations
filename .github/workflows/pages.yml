@@ -9,9 +9,12 @@ on:
       - "data/**"
       - "scripts/build_static.py"
       - "scripts/build_draft_index.py"
+      - "scripts/build_knowledge.py"
       - "tests/test_static.py"
       - "tests/test_draft_index.py"
       - "tests/draft-search.test.cjs"
+      - "tests/test_knowledge.py"
+      - "tests/knowledge-search.test.cjs"
   workflow_dispatch:
 
 permissions:
@@ -26,11 +29,15 @@ jobs:
         run: python3 scripts/build_static.py
       - name: Build source-linked draft PDF page index
         run: python3 scripts/build_draft_index.py
+      - name: Build structured regulation knowledge
+        run: python3 scripts/build_knowledge.py
       - name: Verify static site and JavaScript syntax
         run: |
           python3 -m unittest discover -s tests -p 'test_static.py' -v
           python3 -m unittest discover -s tests -p 'test_draft_index.py' -v
+          python3 -m unittest discover -s tests -p 'test_knowledge.py' -v
           node --check frontend/app.js
           node tests/draft-search.test.cjs
+          node tests/knowledge-search.test.cjs
       - name: Confirm publication is deferred
         run: echo "No upload to GitHub Pages and no deployment until the final phase."
