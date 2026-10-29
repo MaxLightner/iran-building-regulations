@@ -40,6 +40,13 @@ class DraftIndexTest(unittest.TestCase):
             self.assertEqual([p["pdf_page"] for p in indexed["pages"]],
                              list(range(1,len(indexed["pages"])+1)))
 
+    def test_phase_3_1_has_full_chapter_coverage(self):
+        docs={x["id"]:x for x in self.docs}
+        for docid, expected in {"m03":230,"m04":128,"m04-security-1403":49,"m05":303,"m15":84}.items():
+            self.assertEqual(docs[docid]["pages"],expected)
+        self.assertEqual(self.manifest["indexed_pages"],794)
+        self.assertEqual(sum(x["nonempty_pages"] for x in self.docs),775)
+
     def test_normalize_persian(self):
         self.assertEqual(b.norm("كلمه  ي"),"کلمه ی")
         self.assertEqual(b.norm("راه‌پله"),"راه پله")
