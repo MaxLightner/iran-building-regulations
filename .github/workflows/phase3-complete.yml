@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   extract:
-    name: Extract batch \${{ matrix.name }}
+    name: Extract batch ${{ matrix.name }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     strategy:
@@ -42,19 +42,19 @@ jobs:
           python3 -m pip install 'pymupdf>=1.24,<1.28'
       - name: Extract every page in this batch
         shell: bash
-        run: python3 -u scripts/extract_batch_pages.py --chapters \${{ matrix.chapters }}
+        run: python3 -u scripts/extract_batch_pages.py --chapters ${{ matrix.chapters }}
       - name: Package only this batch outputs
         shell: bash
         run: |
           mkdir -p batch-out/data/extracted batch-out/data/analysis
-          for n in \${{ matrix.chapters }}; do
+          for n in ${{ matrix.chapters }}; do
             id=$(printf "m%02d" "$n")
             cp -a "data/extracted/$id" "batch-out/data/extracted/$id"
             cp "data/analysis/$id-quality.json" "batch-out/data/analysis/$id-quality.json"
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: phase3-\${{ matrix.name }}
+          name: phase3-${{ matrix.name }}
           path: batch-out/
           if-no-files-found: error
           compression-level: 6
