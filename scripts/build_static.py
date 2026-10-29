@@ -19,7 +19,7 @@ SCHEMA = "1.0"
 
 def normalize(value):
     value = unicodedata.normalize("NFKC", str(value or ""))
-    value = value.translate(str.maketrans("يكىۀ‌", "یکیهه "))
+    value = value.translate(str.maketrans("يكىۀ‌", "یکیه "))
     value = re.sub(r"[\u064b-\u065f\u0670]", "", value)
     return " ".join(value.casefold().split())
 
