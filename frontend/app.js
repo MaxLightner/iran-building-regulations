@@ -164,11 +164,11 @@ function initializeForm(options) {
     setStep(3);renderTopics();$('results').scrollIntoView({behavior:'smooth'});
   });
   $('mode').addEventListener('change',event=>{
-    state.mode=event.target.value;state.topicFilter='';$('topic-filter').value='';renderTopics();
+    ++state.requestToken;state.mode=event.target.value;state.topicFilter='';$('topic-filter').value='';renderTopics();
     if($('query').value.trim())renderSearch();else setEmpty($('search-results'),'عبارت یا موضوع جست‌وجو را انتخاب کنید.');
   });
   $('search').addEventListener('submit',renderSearch);
-  $('chapter-filter').addEventListener('change',()=>{renderDraftTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();});
+  $('chapter-filter').addEventListener('change',()=>{if(state.mode==='draft'){renderDraftTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();}});
   $('topic-filter').addEventListener('change',()=>{state.topicFilter=$('topic-filter').value;if(state.mode==='draft')renderSearch();});
 }
 async function init(){
