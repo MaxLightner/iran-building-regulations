@@ -318,8 +318,14 @@ def build():
     coverage={"chapters_total":24,"chapters_ready":sum(x["status"]=="ready" for x in catalog),
               "records_total":sum(x["record_count"] for x in catalog),
               "chapters":catalog}
+    index=[]
+    for r in all_records:
+        item={k:r.get(k) for k in ["id","chapter","locator","title","kind","answer","normative","numbers","cross_refs","source_url","page"]}
+        if item.get("answer") and len(item["answer"])>1200:item["answer"]=item["answer"][:1200]+"…"
+        index.append(item)
     (OUT/"catalog.json").write_text(json.dumps(catalog,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     (OUT/"coverage.json").write_text(json.dumps(coverage,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+    (OUT/"search-index.json").write_text(json.dumps(index,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     print("READY",coverage["chapters_ready"],"/24","RECORDS",coverage["records_total"],flush=True)
     if coverage["chapters_ready"]<18:
         print("Too few chapters passed the text-quality gate",file=sys.stderr)
