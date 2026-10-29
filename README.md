@@ -1,78 +1,98 @@
 # موتور مقررات ملی ساختمان ایران
 
-پروژه مستقل `iran-building-regulations`، فاز ۱ (رابط جست‌وجوی استاتیک). کمچه در آینده فقط از API استفاده می‌کند. این نسخه هیچ بند مقرراتی، مقدار مهندسی یا تشخیص کاربردپذیری ساختگی ندارد.
+MVP مستقل برای جست‌وجو و اولویت‌بندی مقررات ملی ساختمان بر اساس مشخصات پروژه.
 
-## اجرای فوری بدون نصب وابستگی
+**نسخه آنلاین:** https://maxlightner.github.io/iran-building-regulations/
 
-در پوشه ریشه پروژه، با Python 3.11 یا جدیدتر:
+## وضعیت فعلی
 
-```powershell
-python -m backend.server
+- ۲۴ مبحث اصلی + پیوست حفاظتی انتظامی مبحث ۴
+- ۴۹۰۴ صفحه PDF ایندکس‌شده
+- ۱۵۰۱۷ رکورد دانش ساختاریافته
+- ۲۶۶۲ فاکتور عددی استخراج‌شده
+- ۱۵۶۲۵ شرط/قید متنی
+- موتور پروژه بر اساس کاربری، سازه، زیربنا، طبقات، زیرزمین و مرحله پروژه
+- جست‌وجوی فارسی روی Knowledge Index، نه صرفاً PDF
+- PDF و شماره صفحه به‌عنوان provenance هر نتیجه حفظ می‌شوند
+- بدون مدل زبانی در زمان اجرا و بدون ثبت‌نام
+- Benchmark نهایی: **۲۰/۲۰ موضوع** و **۱۴/۱۴ مبحث هدف** در محدوده نتایج مورد انتظار
+
+## جریان محصول
+
+```
+مشخصات پروژه
+    ↓
+موضوعات اولویت‌دار
+    ↓
+جست‌وجوی دانش ساختاریافته
+    ↓
+بند / خلاصه / اعداد / شروط / دلیل ارتباط با پروژه
+    ↓
+مبحث + صفحه PDF + منبع
 ```
 
-رابط فارسی: http://127.0.0.1:8765 — سلامت: `/health` — قرارداد API: `/openapi.json`.
-در محیط فعلی به‌جای alias خراب WindowsApps از Python موجود استفاده کنید:
+مشخصات پروژه برای **رتبه‌بندی و توضیح ارتباط** استفاده می‌شوند. تشخیص نامطمئن باعث حذف قطعی یک بند نمی‌شود.
 
-```powershell
-& 'C:/Users/Mayram/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -m backend.server
+## داده و اعتبار
+
+PDFهای فعلی آرشیو مرجع پروژه‌اند و متن آن‌ها به‌صورت خودکار استخراج و ساختاربندی شده است. این MVP هنوز ادعا نمی‌کند که هر PDF آخرین ویرایش لازم‌الاجرا یا از نظر حقوقی/علمی تأیید نهایی شده است.
+
+OCR و استخراج ساختار نیز می‌توانند خطا داشته باشند؛ به همین دلیل مبحث و صفحه منبع برای کنترل نهایی کنار نتیجه باقی می‌ماند.
+
+## معماری داده
+
+```
+PDF
+ → page extraction
+ → clause-like records
+ → topics / ontology
+ → numeric facts
+ → conditions
+ → cross-topic relations
+ → project relevance signals
+ → search ranking
+ → static web app
 ```
 
-در ترمینال دوم:
+فایل‌های اصلی:
 
-```powershell
-python scripts/smoke.py
-python -m unittest discover -s tests -v
-```
+- `frontend/data/knowledge/` — دانش ساختاریافته
+- `frontend/data/applicability/` — سیگنال‌های ارتباط با پروژه
+- `frontend/data/draft/` — متن صفحه‌ای خام برای debug/provenance
+- `scripts/build_knowledge.py`
+- `scripts/build_applicability.py`
+- `benchmarks/search-cases.json`
+- `tests/search-benchmark.test.cjs`
 
-سرور صرفاً محلی و توسعه‌ای است. توقف: Ctrl+C. فایل .env خودکار خوانده نمی‌شود؛ متغیرهای `.env.example` را در محیط فرایند تنظیم کنید. پوشه frontend را جدا با file:// باز نکنید؛ به API همان سرور نیاز دارد.
+## به‌روزرسانی یک مبحث
 
-## اتصال PostgreSQL
+Workflow دستی **Rebuild one regulation chapter** یک مبحث ۱ تا ۲۴ را دوباره استخراج می‌کند، سپس کل Knowledge Index و project relevance index را بازسازی و benchmark را اجرا می‌کند.
 
-PostgreSQL 16+ و درایور psycopg لازم‌اند. هیچ نرم‌افزار یا وابستگی در این تحویل نصب نشده است. پس از تأیید نصب از سوی مالک محیط:
+راهنما: `docs/updating-regulations.md`
 
-```powershell
-python -m venv .venv
-.venv/Scripts/python -m pip install -r backend/requirements.txt
-$env:DATABASE_URL='postgresql://regulations:YOUR_PASSWORD@localhost:5432/regulations'
-.venv/Scripts/python scripts/database.py migrate
-.venv/Scripts/python scripts/database.py import-catalog
-.venv/Scripts/python -m backend.server
-```
+## کنترل کیفیت و انتشار
 
-پایگاه و کاربر PostgreSQL را از قبل در محیط توسعه بسازید؛ این دستورات سرویس پایگاه داده نصب نمی‌کنند. migrationها تراکنشی، قفل‌شده و دارای کنترل checksum هستند. import-catalog فقط metadata شناسایی و pending وارد می‌کند. اجرای دوباره آن رکورد موجود را بازنویسی نمی‌کند؛ تغییر نسخه و وضعیت با بازبینی در فاز بعد مدیریت می‌شود.
+انتشار GitHub Pages فقط بعد از موفقیت این مراحل انجام می‌شود:
 
-بدون DATABASE_URL فهرست manifest با برچسب catalog_only دیده می‌شود؛ topics و search خالی‌اند. با اتصال خراب پاسخ 503 برمی‌گردد. PostgreSQL در این محیط موجود نبود و migration روی سرور واقعی اجرا نشده است.
+1. ساخت مجدد همه ایندکس‌ها
+2. تست پوشش ۲۴ مبحث
+3. تست provenance و ساختار دانش
+4. تست موتور پروژه
+5. تست JavaScript
+6. benchmark چندموضوعی جست‌وجو
+7. deploy به GitHub Pages
 
-## بررسی منابع رسمی
+اجرای انتشار موفق MVP:
 
-```powershell
-python scripts/check_sources.py
-# Download only after setting a private directory OUTSIDE the repository:
-$env:SOURCE_CACHE_DIR='C:/path/to/private/regulations-pdfs'
-python scripts/check_sources.py --download --asset m2-pdf
-# Optional: persist a selected JSONL run into source_checks after catalog import:
-python scripts/database.py import-checks --checks-file sources/checks/RUN_ID.jsonl
-```
+https://github.com/MaxLightner/iran-building-regulations/actions/runs/40914547950
 
-فهرست URLهای رسمی در sources/manifest.json است. اجرای check_sources با خطای شبکه exit code=1 می‌دهد، خطا را ثبت می‌کند و هش موفق قبلی را پاک نمی‌کند. فایل جدید با نام هش نگهداری می‌شود؛ هیچ وضعیت اعتبار یا محتوای عملیاتی خودکار تغییر نمی‌کند. در کنار PDFها صفحات فهرست نیز بررسی می‌شوند؛ تغییر هش HTML فقط نیاز بررسی را نشان می‌دهد. تشخیص اضافه‌شدن لینک تازه و تحلیل معنایی هنوز TODO هستند.
+## مستندات مراحل
 
-## ساختار
+- `docs/phase3-complete.md` — تکمیل دانش ۲۴ مبحث
+- `docs/phase4-complete.md` — موتور پروژه
+- `docs/knowledge-layer.md` — ساختار Knowledge Index
+- `docs/updating-regulations.md` — pipeline به‌روزرسانی
 
-```text
-frontend/          رابط فارسی RTL بدون build
-backend/           API نسخه‌دار + adapter PostgreSQL
-db/migrations/     ساختار و تاریخچه داده
-scripts/           اجرا، migration، import، بررسی منابع و smoke
-sources/manifest.json  فهرست شناسایی و وضعیت دریافت؛ بدون متن مقررات
-docs/              قرارداد API، تصمیم‌ها، مجوز و TODO استخراج
-tests/             بررسی اعتبارسنجی، صداقت حالت خالی و هش
-```
+## خارج از MVP فعلی
 
-## وضعیت تحویل
-
-اسکلت محلی قابل اجرا است. مخزن خصوصی GitHub در https://github.com/MaxLightner/iran-building-regulations ایجاد شده است. دمو عمومی deploy نشده است. مجوز کد هنوز تعیین نشده است. اکنون ۲۴ PDF مرجع اولیه و **تأییدنشده** (از پایگاه ثانویه qsce.ir) در مخزن خصوصی داخل `sources/pdfs/reference-m01.pdf` تا `reference-m24.pdf` قرار دارد. این نسخه‌ها برای استفاده به‌عنوان ضابطه جاری تا زمان تطبیق با سند رسمی، شناسنامه و اصلاحیه‌ها معتبرسازی نشده‌اند. گزارش دریافت در `sources/reference-mirror-report.json` است. لینک‌های PDF رسمی inbr.ir در اجرای خودکار همچنان HTTP 403 برگردانده‌اند. گزارش تفصیلی در docs/delivery-report.md، طرح توسعه در docs/extraction-workflow.md و سیاست مجوز در docs/licensing.md است.
-
-
-## آرشیو PDF مرجع اولیه (۱۴۰۵/۰۸/۰۷)
-
-۲۴ فایل PDF از آرشیو ثانویه qsce.ir فقط در همین مخزن **خصوصی** ذخیره شده‌اند. وجود فایل، هش SHA-256 و حجم آن در `sources/reference-mirror-report.json` ثبت شده است. فایل‌ها به‌عنوان نسخه رسمی جاری **تأیید نشده‌اند** و برای تصمیم‌گیری مهندسی یا نمایش به‌عنوان حکم معتبر در API مجاز نیستند. قبل از انتشار عمومی یا استفاده تجاری حقوق نشر و مجوز استفاده بررسی شود. فایل‌های اصلی از inbr.ir در اجرای اخیر قابل دریافت نبودند (HTTP 403).
+API برای کمچه، حساب کاربری، ذخیره پروژه، LLM/Voice، نسخه Pro و اعتبارسنجی رسمی آخرین ویرایش مقررات در این نسخه پیاده‌سازی نشده‌اند.
