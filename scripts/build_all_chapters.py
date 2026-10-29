@@ -30,7 +30,8 @@ session=requests.Session();session.headers.update(HEADERS)
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",str(s or "")).translate(DIGITS)
     s=s.replace("ي","ی").replace("ك","ک").replace("ى","ی").replace("\u200c"," ")
-    s=re.sub(r"[\u064b-\u065f\u0670\u200e\u200f]","",s)
+    # Remove Arabic diacritics and all bidi embedding/isolate controls commonly embedded in Persian PDFs.
+    s=re.sub(r"[\u064b-\u065f\u0670\u200e\u200f\u202a-\u202e\u2066-\u2069]","",s)
     s=re.sub(r"\s+"," ",s)
     return s.strip()
 
