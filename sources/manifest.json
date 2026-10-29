@@ -354,6 +354,18 @@
       "notification_date_text": "1399/11/01",
       "notification_date_calendar": "solar_hijri",
       "notes": "تاریخ و شماره از چکیده دسته رسمی؛ صفحه کامل قابل دریافت نبود. تاریخ اجرا استنباط نشده است."
+    },
+    {
+      "id": "m4-security-1403",
+      "mabhas_number": 4,
+      "title": "پیوست ضوابط حفاظتی ـ انتظامی ساختمان‌ها (ابلاغ ۱۴۰۳)",
+      "kind": "supplement",
+      "related_document_id": "m4",
+      "official_page_url": "https://inbr.ir/دانلود-مبحث-چهارم/",
+      "discovery_source_url": "https://www.tasnimnews.ir/fa/news/1404/01/23/3289633/",
+      "verification_status": "pending",
+      "validity_status": "unconfirmed",
+      "notes": "پیوست مرتبط و مستقل؛ کپی دریافتی از آینه شخص ثالث، انتشار و دامنه اجرا باید با ابلاغ رسمی تطبیق داده شود."
     }
   ],
   "assets": [
@@ -2150,6 +2162,23 @@
         "result": "failed",
         "error": "HTTP 403"
       }
+    },
+    {
+      "id": "m4-security-1403-pdf",
+      "document_id": "m4-security-1403",
+      "kind": "pdf",
+      "url": "https://niazit-ceiling.com/wp-content/uploads/2026/08/iran-building-code-04-security-protection-mandatory-addendum-1403.pdf",
+      "label": "کپی پیوست ضوابط حفاظتی انتظامی ۱۴۰۳ (نسخه نیازمند تطبیق)",
+      "sha256": "434b4c56efe59be00d8afcaec7efbe677caa0b38ad54cb3a4b915e809ad4af81",
+      "download_status": "stored_repo_unverified",
+      "source_type": "third_party_mirror",
+      "file_path": "sources/pdfs/m04-security-1403.pdf",
+      "edition_year_text": "۱۴۰۳ (روی سند و گزارش‌های ابلاغ؛ نیازمند بازبینی)",
+      "publication_date": null,
+      "effective_date": null,
+      "validity_status": "unconfirmed",
+      "verification_status": "pending",
+      "redistribution_status": "unknown"
     }
   ]
 }
