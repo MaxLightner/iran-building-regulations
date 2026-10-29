@@ -1,35 +1,8 @@
 {
-  "generated_at": "2026-10-29T13:50:17.111097+00:00",
+  "generated_at": "2026-10-29T13:50:45.506791+00:00",
   "warning": "OCR and derived topic/condition/number hints are not verified or official.",
   "status": "review_pending",
   "items": [
-    {
-      "id": "m04-1396-ocr-00002",
-      "document_id": "m04",
-      "locator_ocr": "۵-۲-۱-۴",
-      "pdf_page": 18,
-      "title_ocr": "بکارگیری و ترویج ارزش‌های ایرانی - اسلامی در طراحی و ساختبنا",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 7,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "possible_table_or_figure_reference",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "زندگی بر ab ارزش‌های ایرانی- اسلامی, بناها باید با تمهیدات لازم در راستای پاسداری ازایسن",
-        "- \"درونگرایی \" که به مفهوم حفظ حریم‌های خصوصی و عمومی است و بیش از اصول دیگرتأثیرات",
-        "ساختمان, با توجه به انتظارات اقشار استفاده‌کننده به نحوی که از یک سو با حداقلنیازهای"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
     {
       "id": "m04-1396-ocr-00029",
       "document_id": "m04",
@@ -50,19 +23,19 @@
       "numeric_candidates_preview": [
         "۷",
         "۶",
-        "d",
-        "d",
-        "d",
+        "1",
         "۳",
-        "d",
         "۳",
         "۲۰",
         "۴",
-        "d",
         "۵",
-        "d",
-        "d",
-        "d"
+        "۶",
+        "۷",
+        "۸",
+        "4",
+        "۰",
+        "۱",
+        "۱۳"
       ],
       "conditional_lines_preview": [
         "plas ۱-۶-۱-۴ زمین‌ها و ساختمان‌های خالی باید در شرایط سالم. ایمن و بهداشتینگهداری",
@@ -95,7 +68,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
+        "3",
+        "1",
         "۲",
         "۵",
         "۰/۱",
@@ -105,7 +79,7 @@
         "۲۴",
         "۳",
         "۲۴",
-        "d"
+        "2"
       ],
       "conditional_lines_preview": [
         "نسبی کمتر از ۰/۱ مگاپاسکال, الیاف قابل سوختن, سیالاتسرمازای",
@@ -142,31 +116,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00094",
-      "document_id": "m04",
-      "locator_ocr": "۱-۴-۴-۴",
-      "pdf_page": 50,
-      "title_ocr": "ساختمان باید طوری طراحی و اجرا شود که JS مقیاس, مصالح. رنگ و تاسیساتو",
-      "topic_heuristic": "نورگیری و تهویه",
-      "risk_score": 7,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "possible_table_or_figure_reference",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۱-۴-۴-۴ ساختمان باید طوری طراحی و اجرا شود که JS مقیاس, مصالح. رنگ و تاسیساتو"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00106",
       "document_id": "m04",
       "locator_ocr": "۱-۵-۴-۴",
@@ -186,7 +135,6 @@
       "numeric_candidates_preview": [
         "۰/۸۰",
         "۳/۵۰",
-        "d",
         "۰/۸۰",
         "۳/۵۰",
         "۰/۹۰",
@@ -307,6 +255,8 @@
       "numeric_candidates_preview": [
         "۰/۷۰",
         "۱/۱۰",
+        "1",
+        "5",
         "۳"
       ],
       "conditional_lines_preview": [
@@ -370,9 +320,8 @@
         "۶",
         "۴",
         "۳۵",
-        "۸",
-        "۳",
-        "d",
+        "۸6",
+        "۳65",
         "۷",
         "۴"
       ],
@@ -402,45 +351,15 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۸",
-        "۱۲",
+        "۸2۱۲",
         "۹",
-        "۴",
-        "d"
+        "۴"
       ],
       "conditional_lines_preview": [
         "۲۰-۱-۱-۷-۴ در ساختمان‌های مسکونی» در صورتی که سطوح ساخته نشدة زمین (فضایباز)",
         "۸2۱۲-۹-۴ منظور نشده باشد. باید به صورت فضای باز عمومی متشکل از کاربردهاییهمچون"
       ],
       "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00472",
-      "document_id": "m04",
-      "locator_ocr": "۱۷-۴-۷-۴",
-      "pdf_page": 105,
-      "title_ocr": "در فضاهای درمانی مقررات مبحث بیستم و علایم و تبلوهایایمنی باید کالرعایت",
-      "topic_heuristic": "راه خروج و حریق",
-      "risk_score": 7,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "possible_table_or_figure_reference",
-        "cross_reference_needs_verification",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۱۷-۴-۷-۴ در فضاهای درمانی مقررات مبحث بیستم و علایم و تبلوهایایمنی باید کالرعایت"
-      ],
-      "cross_reference_candidates": [
-        "مبحث بیستم"
-      ],
       "status": "pending_manual_review"
     },
     {
@@ -461,21 +380,21 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲",
-        "d",
+        "9",
+        "1",
+        "2",
         "۱",
         "۲",
-        "d",
         "۱",
         "۲",
-        "d",
-        "d",
         "۳",
-        "d",
         "۱",
         "۳",
-        "۲"
+        "۲",
+        "۲",
+        "۳",
+        "۱"
       ],
       "conditional_lines_preview": [
         "اطلاع از بروز اشکال در هر مورد. باید به متصرفین ساختمان اطلاع رسانی و در جهت رفع نقص",
@@ -515,14 +434,14 @@
         "۵",
         "۲",
         "۲",
-        "۴",
         "۱",
         "۲",
-        "۳",
         "۵",
         "۶",
         "۱٩",
-        "۲۰"
+        "۲۰",
+        "۱",
+        "۴"
       ],
       "conditional_lines_preview": [
         "‎als‏ ساختمان های آپارتمانی تا حداکثر ‎۱٩‏ واحد",
@@ -575,8 +494,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۳۰",
-        "d"
+        "۳۰"
       ],
       "conditional_lines_preview": [
         "پ-۴-۱۰-۸-۶ در صورتی که این تصرف ها مشتمل بر حداقل سه ساختمان آپارتمانی با بیش",
@@ -663,28 +581,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00498",
-      "document_id": "m04",
-      "locator_ocr": "۵-۲۱-۴-۷-۴",
-      "pdf_page": 108,
-      "title_ocr": "استفاده از ede هشدار دهنده و تابلو های حفاظتی در قسمت های مورد نیازو",
-      "topic_heuristic": "حفاظ و جان‌پناه",
-      "risk_score": 6,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "possible_table_or_figure_reference",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00606",
       "document_id": "m04",
       "locator_ocr": "۱۵-۹-۴",
@@ -726,28 +622,6 @@
       "numeric_candidates_preview": [
         "۲",
         "۲"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0008",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۲-۱-۲",
-      "pdf_page": 20,
-      "title_ocr": "تصرف های حرفه‌ای /اداری(ح-ح)",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 6,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "possible_table_or_figure_reference",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -828,34 +702,27 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00001",
+      "id": "m04-1396-ocr-00002",
       "document_id": "m04",
-      "locator_ocr": "۴-۲-۱-۴",
-      "pdf_page": 17,
-      "title_ocr": "حفظ انرژی و cule, معیارهای ساختمان‌های سبز وپایدار",
-      "topic_heuristic": "نورگیری و تهویه",
+      "locator_ocr": "۵-۲-۱-۴",
+      "pdf_page": 18,
+      "title_ocr": "بکارگیری و ترویج ارزش‌های ایرانی - اسلامی در طراحی و ساختبنا",
+      "topic_heuristic": "پوشش و مصالح",
       "risk_score": 5,
       "flags": [
-        "numbers_need_page_comparison",
         "conditional_rule_needs_parsing",
         "possible_ocr_latin_noise",
-        "cross_reference_needs_verification",
+        "possible_table_or_figure_reference",
         "summary_not_written",
         "applicability_not_verified"
       ],
-      "numeric_candidates_preview": [
-        "d",
-        "d"
-      ],
+      "numeric_candidates_preview": [],
       "conditional_lines_preview": [
-        "مبحث معین iS ce رعایت معیارهای ساختمان‌های سبز و پایدار به قرار زیر الزامیاست.",
-        "خوب انرژی است. یعنی هندسه ساختمان به گونه‌ای باشد که سطوح خارجی حداقل مقدارممکنه",
-        "باشد و حجم clas داخلی ساختمان حداکثر مقدار ممکنهباشد."
+        "زندگی بر ab ارزش‌های ایرانی- اسلامی, بناها باید با تمهیدات لازم در راستای پاسداری ازایسن",
+        "- \"درونگرایی \" که به مفهوم حفظ حریم‌های خصوصی و عمومی است و بیش از اصول دیگرتأثیرات",
+        "ساختمان, با توجه به انتظارات اقشار استفاده‌کننده به نحوی که از یک سو با حداقلنیازهای"
       ],
-      "cross_reference_candidates": [
-        "مبحث نوزدهم",
-        "مبحث معین"
-      ],
+      "cross_reference_candidates": [],
       "status": "pending_manual_review"
     },
     {
@@ -875,8 +742,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۳۴",
-        "d"
+        "۳۴"
       ],
       "conditional_lines_preview": [
         "کشور الزامیاست.",
@@ -885,33 +751,6 @@
       ],
       "cross_reference_candidates": [
         "مبحث تعیینمی‌کند"
-      ],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00007",
-      "document_id": "m04",
-      "locator_ocr": "۵-۳-۱-۴",
-      "pdf_page": 21,
-      "title_ocr": "این مبحث دربرگیرندة ضوابط مربوط به ساختمان‌ها و تجهیزات در محدودة مالکیتو",
-      "topic_heuristic": "دسترسی و معلولیت",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "cross_reference_needs_verification",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "oS > علاوه بر ضوابط مندرج در این مقررات باید آخرین ویرایش ضوابط و مقررات شهرسازیو"
-      ],
-      "cross_reference_candidates": [
-        "مبحث دربرگیرندة"
       ],
       "status": "pending_manual_review"
     },
@@ -958,10 +797,9 @@
       ],
       "numeric_candidates_preview": [
         "۱",
-        "۹",
+        "1۹",
         "۲",
-        "۲",
-        "d"
+        "6"
       ],
       "conditional_lines_preview": [
         "تصرف‌های مسکونی/ اقامتی که متصرفان عمدتاً به طور موقت (کمتر از یک (ole در آن اقامتدارند."
@@ -985,10 +823,10 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "1",
         "۶",
         "۵",
-        "۳",
-        "۱۸"
+        "۳"
       ],
       "conditional_lines_preview": [
         "هر بنا یا بخشی از یک بنا که در آن اشخاص به تعداد حداقل ۶ نفر به منظورهای آموزشیدر",
@@ -1039,7 +877,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲",
         "۵",
         "۴",
         "۲",
@@ -1072,7 +909,6 @@
         "۴",
         "۲۴",
         "۲۴",
-        "۲",
         "۲۴",
         "۳"
       ],
@@ -1103,9 +939,7 @@
       ],
       "numeric_candidates_preview": [
         "۵۰",
-        "۵۰",
-        "۷۰",
-        "d"
+        "۵۰"
       ],
       "conditional_lines_preview": [
         "اگر از ساختمان یا بخشی از ol برای اهداف تجمعی برای افراد به تصداد کمتر از ۵۰ نفراستفاده",
@@ -1157,8 +991,10 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "3",
         "۲۳",
-        "۰/۱"
+        "۰/۱",
+        "4"
       ],
       "conditional_lines_preview": [
         "الف-انبار و نگهداری بیش از ۲۳ متر مکعب از یکی از مود استیلن» هیدروژن, گازهای طبیعیقابل"
@@ -1248,7 +1084,6 @@
         "۰۱",
         "۲",
         "۳",
-        "dd",
         "۵/۸۰",
         "۴/۹۰",
         "۱",
@@ -1258,7 +1093,8 @@
         "۰",
         "۴",
         "۵",
-        "۱۲/۲۰"
+        "۱۲/۲۰",
+        "۱۱/۳۰"
       ],
       "conditional_lines_preview": [
         "حداکثر ارتفاع مجاز گروه‌های ساختمانی بر حسب تعداد طبقات log] از نظر ایین مبحثمطابق",
@@ -1285,10 +1121,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱",
-        "d",
-        "۳۲",
-        "d"
+        "۳۲"
       ],
       "conditional_lines_preview": [
         "نباید در احتساب تعداد طبقات مجاز ساختمان منظورشوند:",
@@ -1347,7 +1180,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱۰",
         "۲",
         "۴۴"
@@ -1377,6 +1209,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "45299",
         "۸",
         "۵",
         "۴",
@@ -1390,27 +1223,23 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00092",
+      "id": "m04-1396-ocr-00094",
       "document_id": "m04",
-      "locator_ocr": "۴-۳-۴-۴",
+      "locator_ocr": "۱-۴-۴-۴",
       "pdf_page": 50,
-      "title_ocr": "تغییر یک Lad یا واحد تصرف به Lad یا واحد تصرفی با کارکرد دیگر تنهادرصورت",
-      "topic_heuristic": "کاربری و تصرف",
+      "title_ocr": "ساختمان باید طوری طراحی و اجرا شود که JS مقیاس, مصالح. رنگ و تاسیساتو",
+      "topic_heuristic": "نورگیری و تهویه",
       "risk_score": 5,
       "flags": [
-        "numbers_need_page_comparison",
         "conditional_rule_needs_parsing",
         "possible_ocr_latin_noise",
+        "possible_table_or_figure_reference",
         "summary_not_written",
         "applicability_not_verified"
       ],
-      "numeric_candidates_preview": [
-        "d",
-        "d",
-        "d"
-      ],
+      "numeric_candidates_preview": [],
       "conditional_lines_preview": [
-        "اینگونه موارد. رعایت مقررات مربوط به تصرف‌های با خطر بیشتر الزامی خواهدبود."
+        "۱-۴-۴-۴ ساختمان باید طوری طراحی و اجرا شود که JS مقیاس, مصالح. رنگ و تاسیساتو"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -1485,8 +1314,7 @@
       ],
       "numeric_candidates_preview": [
         "۰/۹۰",
-        "۱/۵۰",
-        "d"
+        "۱/۵۰"
       ],
       "conditional_lines_preview": [
         "plas ۸-۴-۴-۴ سطوح شیشه‌ای با عرض بیش از ۰/۹۰ متر و مساحت بیش از ۱/۵۰ مترمربعکه",
@@ -1682,7 +1510,6 @@
       "numeric_candidates_preview": [
         "۲/۱۰",
         "۵۰",
-        "d",
         "۲/۰۵",
         "۵۰"
       ],
@@ -1893,8 +1720,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۳۰۰",
-        "d"
+        "۳۰۰"
       ],
       "conditional_lines_preview": [
         "۴-۵-۱-۵-۴ در مسیرهای دسترس و خروج shel درها باید طوری طراحی. ساخته. نصبو",
@@ -1919,8 +1745,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱/۲۰",
-        "d"
+        "۱/۲۰"
       ],
       "conditional_lines_preview": [
         "مسافرخانه و مانند آنها مجاز است. مشروط بر آنکه کلون در ارتفاع حداکثر ۱/۲۰ متری از کفpled"
@@ -2164,7 +1989,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۰/۹۰"
       ],
       "conditional_lines_preview": [
@@ -2279,10 +2103,8 @@
         "۴",
         "۰/۱۵",
         "۱/۸۵",
-        "۸",
         "۱/۸۰",
-        "۰/۷۵",
-        "d"
+        "۰/۷۵"
       ],
       "conditional_lines_preview": [
         "۲-۱۱-۱-۵-۴ در شرایط زیر نصب Ae دستگرد منطبق با الزامات قسمت ۹-۹-۴ الزامیست.مگر",
@@ -2310,7 +2132,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱۳"
       ],
       "conditional_lines_preview": [
@@ -2335,7 +2156,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۵",
         "۲",
         "۵",
@@ -2363,7 +2183,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲/۴۰",
         "۰",
         "۲/۰۵"
@@ -2402,55 +2221,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00198",
-      "document_id": "m04",
-      "locator_ocr": "۵-۲-۲-۵-۴",
-      "pdf_page": 67,
-      "title_ocr": "در صورت تعبیة میان‌طبقه در clad اقامتی به عنوان بخشی از آن adحداقل",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d",
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۵-۲-۲-۵-۴ در صورت تعبیة میان‌طبقه در clad اقامتی به عنوان بخشی از آن adحداقل"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00200",
-      "document_id": "m04",
-      "locator_ocr": "۱-۳-۲-۵-۴",
-      "pdf_page": 67,
-      "title_ocr": "هر clad اقامت. باید حداقل دارای یک یا چند در و پنجر؛ شیشه‌ای باشد کهلازم",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۱-۳-۲-۵-۴ هر clad اقامت. باید حداقل دارای یک یا چند در و پنجر؛ شیشه‌ای باشد کهلازم"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00201",
       "document_id": "m04",
       "locator_ocr": "۲-۳-۲-۵-۴",
@@ -2468,8 +2238,6 @@
       "numeric_candidates_preview": [
         "۶",
         "۴",
-        "d",
-        "d",
         "۴/۵۰"
       ],
       "conditional_lines_preview": [
@@ -2496,10 +2264,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲/۱۰",
-        "۴/۵۰",
-        "d"
+        "۴/۵۰"
       ],
       "conditional_lines_preview": [
         "درارتفاع زیر ۲/۱۰ متر قرار گرفته باشد. سطح الزامی شیشة شفاف یک ششم سطح کف است.مگر",
@@ -2530,8 +2296,7 @@
         "۵",
         "۴",
         "۶",
-        "۴",
-        "d"
+        "۴"
       ],
       "conditional_lines_preview": [
         "۴-۳-۲-۵-۴ درصورتی که پنجره رو به یک ایوان باز شود. ایوان باید دارای شرایط زیرباشد:",
@@ -2560,7 +2325,9 @@
         "۷",
         "۷",
         "۵",
-        "۷"
+        "۷",
+        "3",
+        "3"
       ],
       "conditional_lines_preview": [
         "۵-۳-۲-۵-۴ تمام فضاهای اقامت. باید مطابق با مندرجات مباحث چهاردهم و نوزدهممقررات",
@@ -2665,7 +2432,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۵۰",
         "۷",
         "۹",
         "۴"
@@ -2721,7 +2487,7 @@
       ],
       "numeric_candidates_preview": [
         "۰/۸",
-        "۲/۰۵",
+        "۰۵",
         "۰/۸"
       ],
       "conditional_lines_preview": [
@@ -2747,11 +2513,9 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۷",
         "۳",
-        "۳۷۴",
-        "d"
+        "۳۷۴"
       ],
       "conditional_lines_preview": [
         "حداکثر ۷ متراست."
@@ -2775,8 +2539,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰",
-        "d"
+        "۰"
       ],
       "conditional_lines_preview": [
         "۱-۳-۵-۴ فضاهایی که هم برای Cull و هم صرف غذا مورد استفاده قرار می‌گیرند. بایدحداقل"
@@ -2852,7 +2615,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲/۰۵"
       ],
       "conditional_lines_preview": [
@@ -2903,8 +2665,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۸۰",
-        "d"
+        "۸۰"
       ],
       "conditional_lines_preview": [
         "۱-۵-۴-۵-۴ اتاق‌های pare به فضاهای اشتغال. درصورتی که حداقل ۸۰ درصد دیوار مشترکآن",
@@ -2929,38 +2690,11 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۸۰",
-        "d",
-        "d"
+        "۸۰"
       ],
       "conditional_lines_preview": [
         "۲-۵-۴-۵-۴ در حالتی که کمتر از ۸۰ درصد دیوار مشترک clad الحاق‌شده به فضای اصلیباز",
         "باشد, باید هر دو فضا از ورودی مستقل نیز برخوردار باشند مگر در مواقعی که فضای دارایورودی؛"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00246",
-      "document_id": "m04",
-      "locator_ocr": "۷-۱-۵-۵-۴",
-      "pdf_page": 72,
-      "title_ocr": "دسترسی به یک فضای اشتغال Ly اقاست نباید از فضای آشپزخانه باشد.ولی",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۷-۱-۵-۵-۴ دسترسی به یک فضای اشتغال Ly اقاست نباید از فضای آشپزخانه باشد.ولی",
-        "دسترسی ay آشپزخانه در واحدهای تصرف که حداکثر دارای دو فضای مستقل اقامت Lyاشتغال"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -2981,42 +2715,16 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۵/۵۰",
         "۱/۸۰",
-        "۲/۷۵",
-        "۰",
-        "d"
+        "۷۵",
+        "۰"
       ],
       "conditional_lines_preview": [
         "۲-۵-۵-۴ اندازه‌هایالزامی",
         "می‌شود. اما در هر صورت حداقل سطح deg! شامل سطوح زیر قفسه‌ها. ۵/۵۰ مترمربع وحداقل",
         "ابعاد آشپزخانه مابین دیوارهای اصلی ۱/۸۰ متر است. در هر آشپزخانه سطحی برابر حداقل۲/۷۵",
         "در سرتاسر آشپزخانه دیواری ub فضای کار آزاد و عاری از اشیاء و لوازم ثابت به عرضحداقل"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00248",
-      "document_id": "m04",
-      "locator_ocr": "۲-۵-۵-۴",
-      "pdf_page": 73,
-      "title_ocr": "نورگیری وتهویه",
-      "topic_heuristic": "نورگیری و تهویه",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "بودن استفاده از آن‌ها در تصرف موردنظر, الزامیاست."
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -3039,8 +2747,7 @@
       ],
       "numeric_candidates_preview": [
         "۶",
-        "۷",
-        "۸"
+        "۷"
       ],
       "conditional_lines_preview": [
         "۴-۳-۵-۵-۴ سیستم تخلیه هوای آشپزخانه در ساختمان‌های گروه‌های ۶ ۷ و۸ باید درتمام",
@@ -3118,7 +2825,6 @@
       ],
       "numeric_candidates_preview": [
         "۱/۱۰",
-        "d",
         "۱/۵۰"
       ],
       "conditional_lines_preview": [
@@ -3144,7 +2850,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱/۵۰",
         "۱/۷۰"
       ],
@@ -3421,8 +3126,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "۲۰",
         "۴/۵"
       ],
       "conditional_lines_preview": [
@@ -3629,13 +3332,13 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۵/۰۰",
+        "۰۰",
         "۲/۵۰",
         "۶/۰۰",
         "۲/۵۰",
         "۵/۰۰",
         "۴/۵۰",
-        "۳/۵۰",
+        "۵۰",
         "۳/۵۰",
         "۵",
         "۰/۲۵",
@@ -3692,8 +3395,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۷",
-        "d"
+        "۷"
       ],
       "conditional_lines_preview": [
         "۸-۲-۱۰-۵-۴ حداکثر شیب در شیبراه‌های مسقف در توقفگاه های کوچک خصوصیحداکثر",
@@ -3718,6 +3420,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "3",
         "۵",
         "۰",
         "۲"
@@ -3725,6 +3428,30 @@
       "conditional_lines_preview": [
         "متوسط نباید کمتر از ۵ متر و در توقفگاه‌های متوسط خصوصی نباید کمتر از ۰ مترباشد.",
         "حداقل عرض ورودی و شیب‌راه برای توقفگاه‌های کوچک ۲ متراست."
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00349",
+      "document_id": "m04",
+      "locator_ocr": "۲-۳-۱۰-۵-۴",
+      "pdf_page": 85,
+      "title_ocr": "توقفگاه‌های بزرگ 3 متوسط wh حداقل دو راه خروج افراد پیاده مطابقمبحثک",
+      "topic_heuristic": "راه خروج و حریق",
+      "risk_score": 5,
+      "flags": [
+        "numbers_need_page_comparison",
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [
+        "3"
+      ],
+      "conditional_lines_preview": [
+        "۲-۳-۱۰-۵-۴ توقفگاه‌های بزرگ 3 متوسط wh حداقل دو راه خروج افراد پیاده مطابقمبحثک"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -3745,7 +3472,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲۰",
         "۴۲",
         "۱۰",
         "۵۴",
@@ -3778,7 +3504,6 @@
         "۹",
         "۵",
         "۴",
-        "d",
         "۶",
         "۱۰",
         "۵۴"
@@ -3806,62 +3531,12 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "d",
         "۷۳"
       ],
       "conditional_lines_preview": [
         "پیدا نمی‌کنند. پیش‌بینی نشده باشد. برروی سطح در باید شیارهایی جهت ورود و خروج هواتعبیه",
         "عنوان clad اقامت یا اشتغال افراد. باید مقررات مربوط به همان نوع فضاها در خصوصاندازه‌ها,",
         "ارتفاع. تهویه و نورگیری الزامی و ont رعایتشود."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00373",
-      "document_id": "m04",
-      "locator_ocr": "۱۲-۵-۴",
-      "pdf_page": 88,
-      "title_ocr": "فضاهای نصبتأسیسات",
-      "topic_heuristic": "تأسیسات و تجهیزات",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "فضاهای اشتغال نیز باید رعایتشود."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00379",
-      "document_id": "m04",
-      "locator_ocr": "۴-۲-۱۲-۵-۴",
-      "pdf_page": 89,
-      "title_ocr": "در طراحی glad موتورخانه باید امکان ورود و خروج دستگاه‌های سنگیندر",
-      "topic_heuristic": "راه خروج و حریق",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۴-۲-۱۲-۵-۴ در طراحی glad موتورخانه باید امکان ورود و خروج دستگاه‌های سنگیندر"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -3945,8 +3620,7 @@
         "۰۶",
         "۷",
         "۸",
-        "۱۰",
-        "d"
+        "۱۰"
       ],
       "conditional_lines_preview": [
         "۴-۱-۱۳-۵-۴ در ساختمان‌های گروه‌های ۰۶ ۷ و ۸ با بیش از ۱۰ واحد تصرف پیش‌بینیحداقل",
@@ -3988,30 +3662,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00403",
-      "document_id": "m04",
-      "locator_ocr": "۳-۳-۱۳-۵-۴",
-      "pdf_page": 92,
-      "title_ocr": "در صورت استقرار محل بازی در فضای بسته و سرپوشیده. اندازه‌هاء ارتفاع,تهویه",
-      "topic_heuristic": "نورگیری و تهویه",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "و نورگیری و ورودی و خروجی Lad باید بر پایة جمعیت پیش‌بینی شده برای آن؛ بامقررات"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00404",
       "document_id": "m04",
       "locator_ocr": "۴-۳-۱۳-۵-۴",
@@ -4027,7 +3677,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲۰"
       ],
       "conditional_lines_preview": [
@@ -4053,7 +3702,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۶",
         "۴"
       ],
@@ -4107,9 +3755,6 @@
       "numeric_candidates_preview": [
         "۱/۴۰",
         "۲",
-        "d",
-        "d",
-        "d",
         "۲",
         "۲/۸۰",
         "۱/۶۰",
@@ -4148,10 +3793,7 @@
         "۵",
         "۲",
         "۵",
-        "۴",
-        "d",
-        "d",
-        "۷۵"
+        "۴"
       ],
       "conditional_lines_preview": [
         "آ- دسترسی ay اتاق‌های مستقل اقامت در تصرف مسکونی نباید مستقیماً از ییک اتاق دیگریا",
@@ -4207,8 +3849,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰/۷۰",
-        "d"
+        "۰/۷۰"
       ],
       "conditional_lines_preview": [
         "معلول مطابق ضوابط مربوط الزامی نباشد یا سطوح دارای اختلاف سطح ۰/۷۰ متر و کمترءنیازی",
@@ -4283,8 +3924,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱/۸۰",
-        "d",
+        "۸۰",
         "۲/۱۵"
       ],
       "conditional_lines_preview": [
@@ -4312,7 +3952,6 @@
       ],
       "numeric_candidates_preview": [
         "۷۵",
-        "d",
         "۷"
       ],
       "conditional_lines_preview": [
@@ -4338,35 +3977,10 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۸"
       ],
       "conditional_lines_preview": [
         "و ۸ باید با کنترل مرکزی یا کلید برق روشنایی آشپزخانه و یا کلید مستقل شروع به کار کند ودر"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00434",
-      "document_id": "m04",
-      "locator_ocr": "۱۷-۱-۱-۷-۴",
-      "pdf_page": 100,
-      "title_ocr": "به منظور استفاده کم توانان جسمی و حرکتی در هر تصرف مسکونی با زیربنای۷۵",
-      "topic_heuristic": "تأسیسات و تجهیزات",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "۷۵"
-      ],
-      "conditional_lines_preview": [
-        "مترمربع و بیشتر, wh فضای کافی و تأسیسات آب و فاضلاب لازم برای نصب حداقل یککاسة"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -4387,11 +4001,9 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱/۰۰",
         "۱/۲۰",
         "۱/۵۰",
-        "d",
         "۰/۱۵"
       ],
       "conditional_lines_preview": [
@@ -4420,37 +4032,11 @@
       "numeric_candidates_preview": [
         "۸۰",
         "۲/۲۰",
-        "۲/۰۵"
+        "۰۵"
       ],
       "conditional_lines_preview": [
         "۱۹-۱-۱-۷-۴ ارتفاع حداقل فضاهای بهداشتی در تصرف‌های اقامتی در ۸۰ درصد از سطحالزامی",
         "wh حداقل ۲/۲۰ متر باشد و اگر سقف شیب‌دار بود. ارتفاع کوتاهترین قسمت آن نباید از۲/۰۵"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00439",
-      "document_id": "m04",
-      "locator_ocr": "۲۲-۱-۱-۷-۴",
-      "pdf_page": 101,
-      "title_ocr": "در plas آپارتمان‌ها و واحدهای تصرف مسکونی؛ در صورت PE مجاورت ودسترسی",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d",
-        "d",
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "مستقیم واحد به did jl clad حداقل یک فضای نیمه‌باز اختصاصی منطبق با مقرراتقسمت"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -4522,12 +4108,9 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱/۴۰",
         "۲",
-        "۰/۸۰",
-        "d",
-        "d"
+        "۰/۸۰"
       ],
       "conditional_lines_preview": [
         "۱-۲-۱-۷-۴ پس از در ورودی اتاق‌هاء سوئیت‌ها یا آپارتمان‌هاء باید فضای ورودی مناسب داخلیبا",
@@ -4562,32 +4145,6 @@
       ],
       "conditional_lines_preview": [
         "۲-۲-۱-۷-۴ دسترسی ay اتاق‌های مستقل اقامت نباید مستقیماً از یک اتاق دیگر باشد. مگر آنکه"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00449",
-      "document_id": "m04",
-      "locator_ocr": "۳-۲-۱-۷-۴",
-      "pdf_page": 102,
-      "title_ocr": "در صورت وجود دو یا چند اتاق مستقل در سوئیت یا آپارتمان؛ بدون فضایبهداشتی",
-      "topic_heuristic": "فضای بهداشتی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "اختصاصی برای هریک, دسترسی به تنها فضای بهداشتی آن سوئیت یا آپارتمان نباید فقط ازیک",
-        "bl باشد. در حالتی که حداکثر دو اتأق اقامت مستقل در سوئیت یا آپارتمان وجود داشته باشدو",
-        "قرار داد. در هر حالت نباید دید مستقیم از هیچ abl یا clad اصلی به داخل فضاهای بهداشتیبر"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -4633,8 +4190,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۳۸۶",
-        "۲۰",
         "۳/۰۰"
       ],
       "conditional_lines_preview": [
@@ -4748,6 +4303,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "3",
         "٩",
         "۳",
         "۷",
@@ -4765,6 +4321,31 @@
         "ممکن است تأثیر منفی بر کنترل عفونت بگذارده نباید استفادهشود."
       ],
       "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00472",
+      "document_id": "m04",
+      "locator_ocr": "۱۷-۴-۷-۴",
+      "pdf_page": 105,
+      "title_ocr": "در فضاهای درمانی مقررات مبحث بیستم و علایم و تبلوهایایمنی باید کالرعایت",
+      "topic_heuristic": "راه خروج و حریق",
+      "risk_score": 5,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "possible_table_or_figure_reference",
+        "cross_reference_needs_verification",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۱۷-۴-۷-۴ در فضاهای درمانی مقررات مبحث بیستم و علایم و تبلوهایایمنی باید کالرعایت"
+      ],
+      "cross_reference_candidates": [
+        "مبحث بیستم"
+      ],
       "status": "pending_manual_review"
     },
     {
@@ -4829,7 +4410,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۲۰",
         "۳/۰۰"
       ],
@@ -4883,7 +4463,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۴",
         "۴",
         "۴"
@@ -4977,160 +4556,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00523",
-      "document_id": "m04",
-      "locator_ocr": "۳-۳-۹-۴",
-      "pdf_page": 114,
-      "title_ocr": "استفاده از نازک کاری و پوشش‌های لازم در تمام دیوارها و سطوح قابل دسترسدر",
-      "topic_heuristic": "کاربری و تصرف",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "ایمن‌تر و بهداشتی الزامیاست."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00525",
-      "document_id": "m04",
-      "locator_ocr": "۱-۴-۹-۴",
-      "pdf_page": 114,
-      "title_ocr": "نصب سقف کاذب نباید ارتفاع Lad را به کمتر از مقدار مجاز آن کاهش دهد. ارتفاعفضاء",
-      "topic_heuristic": "ابعاد و ارتفاع",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۱-۴-۹-۴ نصب سقف کاذب نباید ارتفاع Lad را به کمتر از مقدار مجاز آن کاهش دهد. ارتفاعفضاء"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00528",
-      "document_id": "m04",
-      "locator_ocr": "۴-۴-۹-۴",
-      "pdf_page": 115,
-      "title_ocr": "دیوارهای جداکنندة فضاها باید تا بالای سقف کاذب و زیر سقف سازه‌ای امتدادداشته",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۴-۴-۹-۴ دیوارهای جداکنندة فضاها باید تا بالای سقف کاذب و زیر سقف سازه‌ای امتدادداشته"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00529",
-      "document_id": "m04",
-      "locator_ocr": "۵-۴-۹-۴",
-      "pdf_page": 115,
-      "title_ocr": "از clad بالای سقف GIS نباید برای انبارکردن لوازم وتجهیزات استفاده شودمگر",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d",
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۵-۴-۹-۴ از clad بالای سقف GIS نباید برای انبارکردن لوازم وتجهیزات استفاده شودمگر"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00532",
-      "document_id": "m04",
-      "locator_ocr": "۸-۴-۹-۴",
-      "pdf_page": 115,
-      "title_ocr": "فضای بالای سقف کاذب نباید به فضای بیرون ساختمان یا به فضاهای نیمه باز ویا",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "cross_reference_needs_verification",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d",
-        "d",
-        "d",
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۸-۴-۹-۴ فضای بالای سقف کاذب نباید به فضای بیرون ساختمان یا به فضاهای نیمه باز ویا",
-        "مطابق مبحث نوزدهم مقررات Le ساختمان باید از اتلاف حرارت clad طبقات بالا وپایین",
-        "ت- نباید در این حالت فضای بالای سقف GIS به هیچ‌یک از فضاهای داخلی ساختمان هیچگونه",
-        "صورت نیاز به dou jo بازدید یا دسترس, دریچه مذکور باید با تمهیدات مناسب درزبندیشود."
-      ],
-      "cross_reference_candidates": [
-        "مبحث نوزدهم"
-      ],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00538",
-      "document_id": "m04",
-      "locator_ocr": "۳-۵-۹-۴",
-      "pdf_page": 116,
-      "title_ocr": "تعداد کفشوی و لوله قائم ol باران در بام‌های اصلی ساختمان در انطباق با مبحث۱۶",
-      "topic_heuristic": "محوطه و حیاط",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "۱۶"
-      ],
-      "conditional_lines_preview": [
-        "مقررات be ساختمان نباید از دو عدد کمترباشد."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00542",
       "document_id": "m04",
       "locator_ocr": "۱-۶-۹-۴",
@@ -5171,7 +4596,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۱",
         "۵",
         "۰/۲۰",
@@ -5259,12 +4683,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "d",
         "۰/۷۰",
-        "d",
-        "d",
-        "۱/۱۰",
+        "۱۰",
         "۱/۱۰"
       ],
       "conditional_lines_preview": [
@@ -5291,9 +4711,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "۱/۱۰",
-        "۰/۹۰"
+        "۱۰",
+        "۹۰"
       ],
       "conditional_lines_preview": [
         "۱-۱-۹-۹-۴ ارتفاع دست‌اندازها یا جان‌پناه‌ها از سطح Lad یا بام در دسترس, باید حداقل۱/۱۰",
@@ -5342,7 +4761,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۰/۹۰"
       ],
       "conditional_lines_preview": [
@@ -5460,33 +4878,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00571",
-      "document_id": "m04",
-      "locator_ocr": "۲-۱۰-۹-۴",
-      "pdf_page": 121,
-      "title_ocr": "در تمام فضاهای داخلی بناء هرجا که شیر برداشت آب تعبیه شود. کف Lad بایدعایق",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "cross_reference_needs_verification",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "۲-۱۰-۹-۴ در تمام فضاهای داخلی بناء هرجا که شیر برداشت آب تعبیه شود. کف Lad بایدعایق"
-      ],
-      "cross_reference_candidates": [
-        "مبحث شانزدهم"
-      ],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00575",
       "document_id": "m04",
       "locator_ocr": "۲-۱۱-۹-۴",
@@ -5502,7 +4893,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۷",
         "۱۲"
       ],
@@ -5534,7 +4924,6 @@
         "۹۴",
         "۶",
         "۸",
-        "d",
         "۶۲۱۳",
         "۱"
       ],
@@ -5593,12 +4982,10 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۹",
         "۴",
         "۸",
-        "۱۲",
-        "d"
+        "۱۲"
       ],
       "conditional_lines_preview": [
         "۷-۱۲-۹-۴ در طراحی و اجرای ساختمان‌ها. در انطباق با مبحث سوم مقررات. باید تدابیرلحاظ",
@@ -5719,10 +5106,9 @@
       "numeric_candidates_preview": [
         "۴",
         "۶",
-        "d",
         "۴",
         "۶",
-        "\\",
+        "49",
         "۷",
         "۳/۰۰",
         "۱/۵۰"
@@ -5753,7 +5139,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۶",
         "۷",
         "٩۹",
         "۱۲",
@@ -5821,8 +5206,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰/۳",
-        "۳"
+        "۰/۳"
       ],
       "conditional_lines_preview": [
         "مجزای روی دو دیوار موازی, که اندازه بزرگترین ضلع آن بیش از ۰/۳ متر باشد؛ نباید کمتر از۳"
@@ -5897,8 +5281,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۴",
-        "۱۴",
+        "۴2۱۴",
         "۹",
         "۴"
       ],
@@ -5926,7 +5309,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۳",
         "۱۶",
         "۹۴"
@@ -5980,61 +5362,11 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "۱۳"
+        "۱۳",
+        "9"
       ],
       "conditional_lines_preview": [
         "به تولید محصولات صنعتی» معدنی» کشاورزیء دامپروری و شیلات ایجاد شده است به شرطی که"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0012",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۶-۱-۳",
-      "pdf_page": 22,
-      "title_ocr": "تصرف‌های مخاطره آمیز(ح-خ)",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d",
-        "dd",
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "هر بنا یا بخشی از یک بنء اگر برای مقاصدی مورد استفاده قرار گیرد که با مواد و محصولات"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0019",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ- ۲-۱-۴",
-      "pdf_page": 28,
-      "title_ocr": "تیربرق, درخت. تابلوی تبلیغاتی» پایه اسامی کوچه و خیابان, تاسیسات برق و مخابرات»",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "تبصره - در صورت محدودیت ‎clad‏ شهری و عدم تامین موقعیت مناسب. باید تمهیدات لازم از"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -6157,35 +5489,11 @@
       ],
       "numeric_candidates_preview": [
         "۰/۲۵",
-        "۰/۲۵"
+        "۲۵"
       ],
       "conditional_lines_preview": [
         "پ- ۶-۵- ۲ پنجره‌های سالن» دریچه‌های تهویه. کولر و ‎ple‏ منافذ در صورتی که از ابعاد ۰/۲۵",
         "در۰/۲۵ متر بزرگتر باشد» باید دارای حفاظ ایمن و مناسب باشند."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0092",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۵- ۱-۸",
-      "pdf_page": 34,
-      "title_ocr": "پنجره» بازشوها و سایر منافذ زیرزمین که به ‎jl clad‏ دسترسی دارنده باید دارای حفاظ",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "پ-۵- ۱-۸ پنجره» بازشوها و سایر منافذ زیرزمین که به ‎jl clad‏ دسترسی دارنده باید دارای حفاظ"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -6207,8 +5515,7 @@
       ],
       "numeric_candidates_preview": [
         "۵",
-        "۲",
-        "d"
+        "۲"
       ],
       "conditional_lines_preview": [
         "نوع تصرف باید به نحوی در طبقات همکف ‎b‏ اول جانمایی شود که ورودی و خروج‌های ساختمان",
@@ -6238,7 +5545,7 @@
         "۴",
         "۱",
         "۶",
-        "۲"
+        "7۲"
       ],
       "conditional_lines_preview": [
         "می شود پیش بینی و احداث اتاق نگهبانی برای کنترل ورود و خروج افراد و خودروها الزامی است.",
@@ -6529,7 +5836,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲",
         "۱",
         "۶"
       ],
@@ -6581,7 +5887,6 @@
       ],
       "numeric_candidates_preview": [
         "۱",
-        "۴",
         "۶",
         "۲",
         "۲",
@@ -6590,7 +5895,6 @@
         "۳۶",
         "۱",
         "۲",
-        "۴",
         "۰",
         "۱"
       ],
@@ -6622,54 +5926,6 @@
       ],
       "conditional_lines_preview": [
         "‎LLY‏ از نوع ضد سرقت تجهیزشده با لایه‌های مقاوم ساز حداقل ۳۰۰ میکرون باشد. استفاده از"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0173",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۱۲-۶-۶",
-      "pdf_page": 44,
-      "title_ocr": "‎pled‏ ورودی و خروجی مجتمع های تجاری و اداری و بازارهای قدیمی و سنتی باید",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "پ-۱۲-۶-۶ ‎pled‏ ورودی و خروجی مجتمع های تجاری و اداری و بازارهای قدیمی و سنتی باید"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0174",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۱۳-۶-۶",
-      "pdf_page": 44,
-      "title_ocr": "در مجتمع و بازارهای قدیمی و سنتی با تصرف‌های مختلف رعایت مقررات",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "اختصاصی برای هر تصرف الزامی است و در صورت وجود فضاهای مشترک برای بیش از یک تصرف"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -6750,30 +6006,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-security-1403-ocr-0190",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ- ۲-۱-۷-۶",
-      "pdf_page": 45,
-      "title_ocr": "مخازن نگهداری سوخت و ایستگاه تقویت فشار گاز ‎(CNG)‏ باید دارای ‎ble‏",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 5,
-      "flags": [
-        "numbers_need_page_comparison",
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [
-        "پ- ۲-۱-۷-۶ مخازن نگهداری سوخت و ایستگاه تقویت فشار گاز ‎(CNG)‏ باید دارای ‎ble‏"
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-security-1403-ocr-0192",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ-۵-۱-۷-۶",
@@ -6814,7 +6046,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۰/۱۲"
       ],
       "conditional_lines_preview": [
@@ -6960,6 +6191,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00020",
+      "document_id": "m04",
+      "locator_ocr": "۱-۶-۱-۴",
+      "pdf_page": 22,
+      "title_ocr": "استفاده از مصالح 3 فرآورده‌ها و روش‌های ساختمان در صورتی مجاز است که علاوهبر",
+      "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 4,
+      "flags": [
+        "numbers_need_page_comparison",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [
+        "3"
+      ],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00024",
       "document_id": "m04",
       "locator_ocr": "۵-۶-۱-۴",
@@ -7012,8 +6264,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲",
-        "d"
+        "۲"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7035,8 +6286,6 @@
       ],
       "numeric_candidates_preview": [
         "۵",
-        "d",
-        "d",
         "۳۳"
       ],
       "conditional_lines_preview": [],
@@ -7102,29 +6351,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲",
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00075",
-      "document_id": "m04",
-      "locator_ocr": "۱-۵-۱-۴-۴",
-      "pdf_page": 47,
-      "title_ocr": "در صورت استفاده از زیرزمین به عنوان clad اقامت یا اشتغال در انطباق باالزامات",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
+        "۲"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7195,48 +6422,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00099",
-      "document_id": "m04",
-      "locator_ocr": "۶-۴-۴-۴",
-      "pdf_page": 51,
-      "title_ocr": "استفاده از نماهای شیشه‌ای پیوسته در ساختمان‌های مسکونی مشرف dy معابرممنوع",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00137",
-      "document_id": "m04",
-      "locator_ocr": "۲-۲-۱-۵-۴",
-      "pdf_page": 58,
-      "title_ocr": "در clad ورودی ساختمان Ub امکان ایستادن چند نفر وجود داشته و دارایسطح",
-      "topic_heuristic": "ابعاد و ارتفاع",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00140",
       "document_id": "m04",
       "locator_ocr": "۵-۲-۱-۵-۴",
@@ -7274,8 +6459,7 @@
       ],
       "numeric_candidates_preview": [
         "۶",
-        "۷",
-        "۸"
+        "۷"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [
@@ -7298,49 +6482,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰/۹۰"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00333",
-      "document_id": "m04",
-      "locator_ocr": "۵-۱-۱۰-۵-۴",
-      "pdf_page": 83,
-      "title_ocr": "هرگونه pod یا تعویض قطعات اصلی خودرو در محل توقفگاه‌ها ممنوعاست",
-      "topic_heuristic": "پارکینگ و رمپ",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00352",
-      "document_id": "m04",
-      "locator_ocr": "۷-۳-۱۰-۵-۴",
-      "pdf_page": 85,
-      "title_ocr": "هنگامی که طبقات دیگر ساختمان به وسیله پله‌ها از توقفگاه خودرو قابلدسترس",
-      "topic_heuristic": "پارکینگ و رمپ",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
+        "۹۰"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7386,51 +6528,7 @@
       ],
       "numeric_candidates_preview": [
         "۶",
-        "۷",
-        "۸",
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00365",
-      "document_id": "m04",
-      "locator_ocr": "۱-۷-۱۰-۵-۴",
-      "pdf_page": 87,
-      "title_ocr": "امکان دسترسی به آب لوله کشی در pled توقفگاه‌ها ضروریاست",
-      "topic_heuristic": "تأسیسات و تجهیزات",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00375",
-      "document_id": "m04",
-      "locator_ocr": "۲-۱۲-۵-۴",
-      "pdf_page": 88,
-      "title_ocr": "موتورخانه",
-      "topic_heuristic": "سایر مقررات",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
+        "۷"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7451,10 +6549,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۶",
         "۷",
-        "۸",
         "۷۴"
       ],
       "conditional_lines_preview": [],
@@ -7479,27 +6575,6 @@
         "۲",
         "۱",
         "۱۲۵۴"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00388",
-      "document_id": "m04",
-      "locator_ocr": "۳-۱-۱۳-۵-۴",
-      "pdf_page": 90,
-      "title_ocr": "سرایداری تابع مقررات فضاهای تصرف‌های مسکونیاست",
-      "topic_heuristic": "ضوابط مسکونی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7544,50 +6619,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰۳",
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00451",
-      "document_id": "m04",
-      "locator_ocr": "۲-۷-۴",
-      "pdf_page": 103,
-      "title_ocr": "تصرف‌های > glad |اداری",
-      "topic_heuristic": "کاربری و تصرف",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00452",
-      "document_id": "m04",
-      "locator_ocr": "۱-۲-۷-۴",
-      "pdf_page": 103,
-      "title_ocr": "در طراحی ساختمان‌های اداری cule, ضوابط و سرانه‌های تعیین شده در نشریةSled",
-      "topic_heuristic": "کاربری و تصرف",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
+        "۰۳"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -7639,22 +6671,20 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00504",
+      "id": "m04-1396-ocr-00498",
       "document_id": "m04",
-      "locator_ocr": "۵-۵-۷-۴",
-      "pdf_page": 109,
-      "title_ocr": "در طراحی و ساخت مساجد Hb به رعایت صحیح جهت ald در استقرار محرابنماز",
-      "topic_heuristic": "پوشش و مصالح",
+      "locator_ocr": "۵-۲۱-۴-۷-۴",
+      "pdf_page": 108,
+      "title_ocr": "استفاده از ede هشدار دهنده و تابلو های حفاظتی در قسمت های مورد نیازو",
+      "topic_heuristic": "حفاظ و جان‌پناه",
       "risk_score": 4,
       "flags": [
-        "numbers_need_page_comparison",
         "possible_ocr_latin_noise",
+        "possible_table_or_figure_reference",
         "summary_not_written",
         "applicability_not_verified"
       ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
+      "numeric_candidates_preview": [],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -7675,8 +6705,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "۰",
         "۲۸۰"
       ],
       "conditional_lines_preview": [],
@@ -7791,7 +6819,6 @@
         "۵",
         "۱۱",
         "۹۴",
-        "۴",
         "۵",
         "۲"
       ],
@@ -7860,12 +6887,28 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
-        "d",
         "۱۳",
-        "d",
-        "d"
+        "2"
       ],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0008",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۲-۱-۲",
+      "pdf_page": 20,
+      "title_ocr": "تصرف های حرفه‌ای /اداری(ح-ح)",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 4,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "possible_table_or_figure_reference",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -8103,8 +7146,10 @@
       "numeric_candidates_preview": [
         "۲",
         "۱",
+        "2",
         "۲",
-        "۵"
+        "۵",
+        "1"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -8125,48 +7170,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0102",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ- ۲-۱-۶",
-      "pdf_page": 36,
-      "title_ocr": "مخازن يا محل نگهداری و بایگانی اسناد و مدارک» ‎GUI‏ و سالن‌های مرتبط با امور",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-security-1403-ocr-0105",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۱-۲-۶",
-      "pdf_page": 37,
-      "title_ocr": "دوربین مداربسته در تمام فضاها از ‎ble og ply ad‏ محل پذیرش و صندوق دریافت",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -8239,7 +7242,6 @@
       ],
       "numeric_candidates_preview": [
         "۲",
-        "۰۳",
         "۴",
         "۸",
         "۹",
@@ -8289,8 +7291,7 @@
       ],
       "numeric_candidates_preview": [
         "۵",
-        "۱",
-        "d"
+        "۱"
       ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
@@ -8522,27 +7523,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-security-1403-ocr-0194",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۲-۷-۶",
-      "pdf_page": 46,
-      "title_ocr": "با توجه به تنوع و پیچیدگی‌های ‎Gold‏ محصولات مخاطره آمیزه ضروری است برای",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 4,
-      "flags": [
-        "numbers_need_page_comparison",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [
-        "d"
-      ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-security-1403-ocr-0196",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ- ۱-۸-۶",
@@ -8579,7 +7559,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "d",
         "۵",
         "۱",
         "۵",
@@ -8630,24 +7609,54 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-security-1403-ocr-0228",
-      "document_id": "m04-security-1403",
-      "locator_ocr": "پ-۱-۱۳-۸-۶",
-      "pdf_page": 49,
-      "title_ocr": "دوربین مداربسته در ‎pled‏ فضاها از قبیل راهرو (با پوشش کامل به در واحدهای",
-      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
-      "risk_score": 4,
+      "id": "m04-1396-ocr-00001",
+      "document_id": "m04",
+      "locator_ocr": "۴-۲-۱-۴",
+      "pdf_page": 17,
+      "title_ocr": "حفظ انرژی و cule, معیارهای ساختمان‌های سبز وپایدار",
+      "topic_heuristic": "نورگیری و تهویه",
+      "risk_score": 3,
       "flags": [
-        "numbers_need_page_comparison",
+        "conditional_rule_needs_parsing",
         "possible_ocr_latin_noise",
+        "cross_reference_needs_verification",
         "summary_not_written",
         "applicability_not_verified"
       ],
-      "numeric_candidates_preview": [
-        "d"
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "مبحث معین iS ce رعایت معیارهای ساختمان‌های سبز و پایدار به قرار زیر الزامیاست.",
+        "خوب انرژی است. یعنی هندسه ساختمان به گونه‌ای باشد که سطوح خارجی حداقل مقدارممکنه",
+        "باشد و حجم clas داخلی ساختمان حداکثر مقدار ممکنهباشد."
       ],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
+      "cross_reference_candidates": [
+        "مبحث نوزدهم",
+        "مبحث معین"
+      ],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00007",
+      "document_id": "m04",
+      "locator_ocr": "۵-۳-۱-۴",
+      "pdf_page": 21,
+      "title_ocr": "این مبحث دربرگیرندة ضوابط مربوط به ساختمان‌ها و تجهیزات در محدودة مالکیتو",
+      "topic_heuristic": "دسترسی و معلولیت",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "cross_reference_needs_verification",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "oS > علاوه بر ضوابط مندرج در این مقررات باید آخرین ویرایش ضوابط و مقررات شهرسازیو"
+      ],
+      "cross_reference_candidates": [
+        "مبحث دربرگیرندة"
+      ],
       "status": "pending_manual_review"
     },
     {
@@ -9055,6 +8064,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00092",
+      "document_id": "m04",
+      "locator_ocr": "۴-۳-۴-۴",
+      "pdf_page": 50,
+      "title_ocr": "تغییر یک Lad یا واحد تصرف به Lad یا واحد تصرفی با کارکرد دیگر تنهادرصورت",
+      "topic_heuristic": "کاربری و تصرف",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "اینگونه موارد. رعایت مقررات مربوط به تصرف‌های با خطر بیشتر الزامی خواهدبود."
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00093",
       "document_id": "m04",
       "locator_ocr": "۴-۴-۴",
@@ -9177,7 +8207,6 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰۱۲",
         "۹",
         "۴"
       ],
@@ -9648,6 +8677,48 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00198",
+      "document_id": "m04",
+      "locator_ocr": "۵-۲-۲-۵-۴",
+      "pdf_page": 67,
+      "title_ocr": "در صورت تعبیة میان‌طبقه در clad اقامتی به عنوان بخشی از آن adحداقل",
+      "topic_heuristic": "ضوابط مسکونی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۵-۲-۲-۵-۴ در صورت تعبیة میان‌طبقه در clad اقامتی به عنوان بخشی از آن adحداقل"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00200",
+      "document_id": "m04",
+      "locator_ocr": "۱-۳-۲-۵-۴",
+      "pdf_page": 67,
+      "title_ocr": "هر clad اقامت. باید حداقل دارای یک یا چند در و پنجر؛ شیشه‌ای باشد کهلازم",
+      "topic_heuristic": "ضوابط مسکونی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۱-۳-۲-۵-۴ هر clad اقامت. باید حداقل دارای یک یا چند در و پنجر؛ شیشه‌ای باشد کهلازم"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00212",
       "document_id": "m04",
       "locator_ocr": "۷-۲-۵-۴",
@@ -9889,6 +8960,49 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "نباید از مقادیر مشخص شده در این مقررات کمتر باشد. حداقل اندازه‌های سطح کف و ابعادCra!"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00246",
+      "document_id": "m04",
+      "locator_ocr": "۷-۱-۵-۵-۴",
+      "pdf_page": 72,
+      "title_ocr": "دسترسی به یک فضای اشتغال Ly اقاست نباید از فضای آشپزخانه باشد.ولی",
+      "topic_heuristic": "ضوابط مسکونی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۷-۱-۵-۵-۴ دسترسی به یک فضای اشتغال Ly اقاست نباید از فضای آشپزخانه باشد.ولی",
+        "دسترسی ay آشپزخانه در واحدهای تصرف که حداکثر دارای دو فضای مستقل اقامت Lyاشتغال"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00248",
+      "document_id": "m04",
+      "locator_ocr": "۲-۵-۵-۴",
+      "pdf_page": 73,
+      "title_ocr": "نورگیری وتهویه",
+      "topic_heuristic": "نورگیری و تهویه",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "بودن استفاده از آن‌ها در تصرف موردنظر, الزامیاست."
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -10345,6 +9459,29 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00323",
+      "document_id": "m04",
+      "locator_ocr": "۶-۳-۹-۵-۴",
+      "pdf_page": 82,
+      "title_ocr": "در این محفظة آفتابگیر نباید تاسیسات گرمایشی یا سرمایشی که از انواعسوخت",
+      "topic_heuristic": "نورگیری و تهویه",
+      "risk_score": 3,
+      "flags": [
+        "numbers_need_page_comparison",
+        "conditional_rule_needs_parsing",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [
+        "856"
+      ],
+      "conditional_lines_preview": [
+        "۶-۳-۹-۵-۴ در این محفظة آفتابگیر نباید تاسیسات گرمایشی یا سرمایشی که از انواعسوخت"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00330",
       "document_id": "m04",
       "locator_ocr": "۲-۱-۱۰-۵-۴",
@@ -10454,7 +9591,8 @@
       ],
       "numeric_candidates_preview": [
         "۵/۰۰",
-        "۶۹"
+        "۶۹",
+        "1"
       ],
       "conditional_lines_preview": [
         "۲-۲-۱۰-۵-۴ شعاع درونی مسیر چرخش خودرو در توقفگاه‌ها نباید کمتر از ۵/۰۰ متر درنظر"
@@ -10506,7 +9644,7 @@
         "۱۶",
         "۲۰",
         "۸۱۷",
-        "۱۰"
+        "1۱۰"
       ],
       "conditional_lines_preview": [
         "۶-۲-۱۰-۵-۴ در توقفگاه های عمومی. شیبراه‌های مسقف با طول بیشتر از ۲۰ مشرء باحداکثر",
@@ -10531,6 +9669,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "0",
         "۷۰",
         "۲",
         "۱۰",
@@ -10538,27 +9677,6 @@
       ],
       "conditional_lines_preview": [
         "٩-۲-۱۰-۵-۴ ایجاد ورودی و خروجی مجزا در توقفگاه‌های بزرگ عمومی الزامیاست."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00349",
-      "document_id": "m04",
-      "locator_ocr": "۲-۳-۱۰-۵-۴",
-      "pdf_page": 85,
-      "title_ocr": "توقفگاه‌های بزرگ 3 متوسط wh حداقل دو راه خروج افراد پیاده مطابقمبحثک",
-      "topic_heuristic": "راه خروج و حریق",
-      "risk_score": 3,
-      "flags": [
-        "conditional_rule_needs_parsing",
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [],
-      "conditional_lines_preview": [
-        "۲-۳-۱۰-۵-۴ توقفگاه‌های بزرگ 3 متوسط wh حداقل دو راه خروج افراد پیاده مطابقمبحثک"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -10607,7 +9725,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱۳"
+        "۱۳9"
       ],
       "conditional_lines_preview": [
         "۳-۶-۱۰-۵-۴ کف شیب‌راه‌ها در توقفگاه‌ها باید از مصالح غیر لغزنده برای عبور خودروپوشیده"
@@ -10734,6 +9852,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00373",
+      "document_id": "m04",
+      "locator_ocr": "۱۲-۵-۴",
+      "pdf_page": 88,
+      "title_ocr": "فضاهای نصبتأسیسات",
+      "topic_heuristic": "تأسیسات و تجهیزات",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "فضاهای اشتغال نیز باید رعایتشود."
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00374",
       "document_id": "m04",
       "locator_ocr": "۱-۱۲-۵-۴",
@@ -10784,6 +9923,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00379",
+      "document_id": "m04",
+      "locator_ocr": "۴-۲-۱۲-۵-۴",
+      "pdf_page": 89,
+      "title_ocr": "در طراحی glad موتورخانه باید امکان ورود و خروج دستگاه‌های سنگیندر",
+      "topic_heuristic": "راه خروج و حریق",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۴-۲-۱۲-۵-۴ در طراحی glad موتورخانه باید امکان ورود و خروج دستگاه‌های سنگیندر"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00394",
       "document_id": "m04",
       "locator_ocr": "۳-۲-۱۲-۵-۴",
@@ -10798,7 +9958,8 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱/۲۰"
+        "۱/۲۰",
+        "4"
       ],
       "conditional_lines_preview": [
         "۳-۲-۱۲-۵-۴ در دور تا دور تمام استخرهاء باید مسیر حرکتی بدون مانع و غیرلغزنده باعرض",
@@ -10871,6 +10032,27 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "۱-۳-۱۳-۵-۴ محل بازی کودکان در ساختمان‌ها یا محوطة آن‌ها باید در مکانی قرارگیرد کهاز"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00403",
+      "document_id": "m04",
+      "locator_ocr": "۳-۳-۱۳-۵-۴",
+      "pdf_page": 92,
+      "title_ocr": "در صورت استقرار محل بازی در فضای بسته و سرپوشیده. اندازه‌هاء ارتفاع,تهویه",
+      "topic_heuristic": "نورگیری و تهویه",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "و نورگیری و ورودی و خروجی Lad باید بر پایة جمعیت پیش‌بینی شده برای آن؛ بامقررات"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -11029,7 +10211,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۰/۹۰"
+        "۹۰"
       ],
       "conditional_lines_preview": [
         "۶-۱-۱-۷-۴ حداقل پهنای الزامی راهروهای مستقیم و پله‌های داخلی تصرف‌های مسکونی۰/۹۰"
@@ -11146,6 +10328,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00434",
+      "document_id": "m04",
+      "locator_ocr": "۱۷-۱-۱-۷-۴",
+      "pdf_page": 100,
+      "title_ocr": "به منظور استفاده کم توانان جسمی و حرکتی در هر تصرف مسکونی با زیربنای۷۵",
+      "topic_heuristic": "تأسیسات و تجهیزات",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "مترمربع و بیشتر, wh فضای کافی و تأسیسات آب و فاضلاب لازم برای نصب حداقل یککاسة"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00438",
       "document_id": "m04",
       "locator_ocr": "۲۱-۱-۱-۷-۴",
@@ -11175,6 +10378,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00439",
+      "document_id": "m04",
+      "locator_ocr": "۲۲-۱-۱-۷-۴",
+      "pdf_page": 101,
+      "title_ocr": "در plas آپارتمان‌ها و واحدهای تصرف مسکونی؛ در صورت PE مجاورت ودسترسی",
+      "topic_heuristic": "ضوابط مسکونی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "مستقیم واحد به did jl clad حداقل یک فضای نیمه‌باز اختصاصی منطبق با مقرراتقسمت"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00446",
       "document_id": "m04",
       "locator_ocr": "۲-۱-۷-۴",
@@ -11191,6 +10415,29 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "شده توسط سازمان میراث فرهنگی. صنایع دستی و گردشگری باید مقررات زیر نیز رعایتشود:"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00449",
+      "document_id": "m04",
+      "locator_ocr": "۳-۲-۱-۷-۴",
+      "pdf_page": 102,
+      "title_ocr": "در صورت وجود دو یا چند اتاق مستقل در سوئیت یا آپارتمان؛ بدون فضایبهداشتی",
+      "topic_heuristic": "فضای بهداشتی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "اختصاصی برای هریک, دسترسی به تنها فضای بهداشتی آن سوئیت یا آپارتمان نباید فقط ازیک",
+        "bl باشد. در حالتی که حداکثر دو اتأق اقامت مستقل در سوئیت یا آپارتمان وجود داشته باشدو",
+        "قرار داد. در هر حالت نباید دید مستقیم از هیچ abl یا clad اصلی به داخل فضاهای بهداشتیبر"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -11647,6 +10894,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "4",
         "۹",
         "۴"
       ],
@@ -11681,6 +10929,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00523",
+      "document_id": "m04",
+      "locator_ocr": "۳-۳-۹-۴",
+      "pdf_page": 114,
+      "title_ocr": "استفاده از نازک کاری و پوشش‌های لازم در تمام دیوارها و سطوح قابل دسترسدر",
+      "topic_heuristic": "کاربری و تصرف",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "ایمن‌تر و بهداشتی الزامیاست."
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00524",
       "document_id": "m04",
       "locator_ocr": "۴-۹-۴",
@@ -11697,6 +10966,27 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "Lo سقف کاذب احداث می‌شود. باید علاوه بر رعایت pls مقررات و نکات فنی الزامی, بامقررات"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00525",
+      "document_id": "m04",
+      "locator_ocr": "۱-۴-۹-۴",
+      "pdf_page": 114,
+      "title_ocr": "نصب سقف کاذب نباید ارتفاع Lad را به کمتر از مقدار مجاز آن کاهش دهد. ارتفاعفضاء",
+      "topic_heuristic": "ابعاد و ارتفاع",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۱-۴-۹-۴ نصب سقف کاذب نباید ارتفاع Lad را به کمتر از مقدار مجاز آن کاهش دهد. ارتفاعفضاء"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -11744,6 +11034,48 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00528",
+      "document_id": "m04",
+      "locator_ocr": "۴-۴-۹-۴",
+      "pdf_page": 115,
+      "title_ocr": "دیوارهای جداکنندة فضاها باید تا بالای سقف کاذب و زیر سقف سازه‌ای امتدادداشته",
+      "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۴-۴-۹-۴ دیوارهای جداکنندة فضاها باید تا بالای سقف کاذب و زیر سقف سازه‌ای امتدادداشته"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00529",
+      "document_id": "m04",
+      "locator_ocr": "۵-۴-۹-۴",
+      "pdf_page": 115,
+      "title_ocr": "از clad بالای سقف GIS نباید برای انبارکردن لوازم وتجهیزات استفاده شودمگر",
+      "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۵-۴-۹-۴ از clad بالای سقف GIS نباید برای انبارکردن لوازم وتجهیزات استفاده شودمگر"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00531",
       "document_id": "m04",
       "locator_ocr": "۷-۴-۹-۴",
@@ -11762,6 +11094,33 @@
         "در برابر آتش محافظت شود. این پوشش در صورت تعبیه سقف کاذب نیز باید در زیر سقفاصلی"
       ],
       "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00532",
+      "document_id": "m04",
+      "locator_ocr": "۸-۴-۹-۴",
+      "pdf_page": 115,
+      "title_ocr": "فضای بالای سقف کاذب نباید به فضای بیرون ساختمان یا به فضاهای نیمه باز ویا",
+      "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "cross_reference_needs_verification",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۸-۴-۹-۴ فضای بالای سقف کاذب نباید به فضای بیرون ساختمان یا به فضاهای نیمه باز ویا",
+        "مطابق مبحث نوزدهم مقررات Le ساختمان باید از اتلاف حرارت clad طبقات بالا وپایین",
+        "ت- نباید در این حالت فضای بالای سقف GIS به هیچ‌یک از فضاهای داخلی ساختمان هیچگونه",
+        "صورت نیاز به dou jo بازدید یا دسترس, دریچه مذکور باید با تمهیدات مناسب درزبندیشود."
+      ],
+      "cross_reference_candidates": [
+        "مبحث نوزدهم"
+      ],
       "status": "pending_manual_review"
     },
     {
@@ -11848,6 +11207,27 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "۲-۵-۹-۴ بام‌های مسطح باید دارای شیب‌بندی مناسب حداقل ZY و کفشوی متصل به لولهکشی"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00538",
+      "document_id": "m04",
+      "locator_ocr": "۳-۵-۹-۴",
+      "pdf_page": 116,
+      "title_ocr": "تعداد کفشوی و لوله قائم ol باران در بام‌های اصلی ساختمان در انطباق با مبحث۱۶",
+      "topic_heuristic": "محوطه و حیاط",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "مقررات be ساختمان نباید از دو عدد کمترباشد."
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -11941,6 +11321,30 @@
         "۲-۲-۹-۹-۴ سطحی از میله دستگرد که با دست گرفته می‌شود باید پیوسته و یکنواخت باشدو"
       ],
       "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00571",
+      "document_id": "m04",
+      "locator_ocr": "۲-۱۰-۹-۴",
+      "pdf_page": 121,
+      "title_ocr": "در تمام فضاهای داخلی بناء هرجا که شیر برداشت آب تعبیه شود. کف Lad بایدعایق",
+      "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "cross_reference_needs_verification",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "۲-۱۰-۹-۴ در تمام فضاهای داخلی بناء هرجا که شیر برداشت آب تعبیه شود. کف Lad بایدعایق"
+      ],
+      "cross_reference_candidates": [
+        "مبحث شانزدهم"
+      ],
       "status": "pending_manual_review"
     },
     {
@@ -12094,6 +11498,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "1",
         "۱۳",
         "۹۴"
       ],
@@ -12168,6 +11573,48 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "۲-۱۴-۹-۴ در تمام ساختمان‌های مشمول این مقررات مسیر لوله‌ها در ساختمان باید به نحویدر"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0012",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۶-۱-۳",
+      "pdf_page": 22,
+      "title_ocr": "تصرف‌های مخاطره آمیز(ح-خ)",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "هر بنا یا بخشی از یک بنء اگر برای مقاصدی مورد استفاده قرار گیرد که با مواد و محصولات"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0019",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ- ۲-۱-۴",
+      "pdf_page": 28,
+      "title_ocr": "تیربرق, درخت. تابلوی تبلیغاتی» پایه اسامی کوچه و خیابان, تاسیسات برق و مخابرات»",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "تبصره - در صورت محدودیت ‎clad‏ شهری و عدم تامین موقعیت مناسب. باید تمهیدات لازم از"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -12252,8 +11699,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۲",
-        "۳"
+        "۲2۳"
       ],
       "conditional_lines_preview": [
         "پ- ۵- 2۱ ۲2۳ در و پنجره بالکن باید دارای قفل ایمن باشد."
@@ -12395,6 +11841,27 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-security-1403-ocr-0092",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۵- ۱-۸",
+      "pdf_page": 34,
+      "title_ocr": "پنجره» بازشوها و سایر منافذ زیرزمین که به ‎jl clad‏ دسترسی دارنده باید دارای حفاظ",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "پ-۵- ۱-۸ پنجره» بازشوها و سایر منافذ زیرزمین که به ‎jl clad‏ دسترسی دارنده باید دارای حفاظ"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-security-1403-ocr-0103",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ- ۲-۱-۶",
@@ -12431,7 +11898,6 @@
       ],
       "numeric_candidates_preview": [
         "۱",
-        "۲",
         "۲",
         "۴",
         "۷",
@@ -12622,15 +12088,15 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
-        "۱",
-        "۱",
+        "۱2۱",
         "۱",
         "۶",
         "۲۱",
         "۱۶",
         "۱",
         "۲",
-        "۱۰"
+        "۱۰",
+        "9"
       ],
       "conditional_lines_preview": [
         "۲ در صورتی که منفرداً یا مشترکاً بیش از ۱۰ واحد تصرف باشند» الزامی است.",
@@ -12655,7 +12121,7 @@
       ],
       "numeric_candidates_preview": [
         "۰/۲۵",
-        "۰/۲۵"
+        "۲۵"
       ],
       "conditional_lines_preview": [
         "پ-۲-۱-۴-۶ در صورتی که بر روی دیوارهای مجاور معبر عمومی و يا خصوصی ابعاد دریچه-",
@@ -12880,7 +12346,6 @@
         "۶",
         "۱",
         "۱",
-        "۱",
         "۶"
       ],
       "conditional_lines_preview": [
@@ -13016,6 +12481,48 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-security-1403-ocr-0173",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۱۲-۶-۶",
+      "pdf_page": 44,
+      "title_ocr": "‎pled‏ ورودی و خروجی مجتمع های تجاری و اداری و بازارهای قدیمی و سنتی باید",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "پ-۱۲-۶-۶ ‎pled‏ ورودی و خروجی مجتمع های تجاری و اداری و بازارهای قدیمی و سنتی باید"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0174",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۱۳-۶-۶",
+      "pdf_page": 44,
+      "title_ocr": "در مجتمع و بازارهای قدیمی و سنتی با تصرف‌های مختلف رعایت مقررات",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "اختصاصی برای هر تصرف الزامی است و در صورت وجود فضاهای مشترک برای بیش از یک تصرف"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-security-1403-ocr-0177",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ-۱۶-۶-۶",
@@ -13076,6 +12583,27 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "الزامی است:"
+      ],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0190",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ- ۲-۱-۷-۶",
+      "pdf_page": 45,
+      "title_ocr": "مخازن نگهداری سوخت و ایستگاه تقویت فشار گاز ‎(CNG)‏ باید دارای ‎ble‏",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 3,
+      "flags": [
+        "conditional_rule_needs_parsing",
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [
+        "پ- ۲-۱-۷-۶ مخازن نگهداری سوخت و ایستگاه تقویت فشار گاز ‎(CNG)‏ باید دارای ‎ble‏"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -13392,24 +12920,6 @@
       "status": "pending_manual_review"
     },
     {
-      "id": "m04-1396-ocr-00020",
-      "document_id": "m04",
-      "locator_ocr": "۱-۶-۱-۴",
-      "pdf_page": 22,
-      "title_ocr": "استفاده از مصالح 3 فرآورده‌ها و روش‌های ساختمان در صورتی مجاز است که علاوهبر",
-      "topic_heuristic": "پوشش و مصالح",
-      "risk_score": 2,
-      "flags": [
-        "possible_ocr_latin_noise",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
       "id": "m04-1396-ocr-00031",
       "document_id": "m04",
       "locator_ocr": "۲-۳-۴",
@@ -13582,6 +13092,24 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00075",
+      "document_id": "m04",
+      "locator_ocr": "۱-۵-۱-۴-۴",
+      "pdf_page": 47,
+      "title_ocr": "در صورت استفاده از زیرزمین به عنوان clad اقامت یا اشتغال در انطباق باالزامات",
+      "topic_heuristic": "ضوابط مسکونی",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00081",
       "document_id": "m04",
       "locator_ocr": "۴-۲-۴-۴",
@@ -13642,6 +13170,24 @@
       "pdf_page": 50,
       "title_ocr": "طراحی و اجرای ساختمان‌ها wh به صورتی باشد که حجم و نما و سار جزئیاتنمایان",
       "topic_heuristic": "پوشش و مصالح",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00099",
+      "document_id": "m04",
+      "locator_ocr": "۶-۴-۴-۴",
+      "pdf_page": 51,
+      "title_ocr": "استفاده از نماهای شیشه‌ای پیوسته در ساختمان‌های مسکونی مشرف dy معابرممنوع",
+      "topic_heuristic": "ضوابط مسکونی",
       "risk_score": 2,
       "flags": [
         "possible_ocr_latin_noise",
@@ -13765,6 +13311,24 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00137",
+      "document_id": "m04",
+      "locator_ocr": "۲-۲-۱-۵-۴",
+      "pdf_page": 58,
+      "title_ocr": "در clad ورودی ساختمان Ub امکان ایستادن چند نفر وجود داشته و دارایسطح",
+      "topic_heuristic": "ابعاد و ارتفاع",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00175",
       "document_id": "m04",
       "locator_ocr": "۳-۱۰-۱-۵-۴",
@@ -13861,6 +13425,7 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [
+        "3",
         "۶"
       ],
       "conditional_lines_preview": [],
@@ -13978,6 +13543,42 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00333",
+      "document_id": "m04",
+      "locator_ocr": "۵-۱-۱۰-۵-۴",
+      "pdf_page": 83,
+      "title_ocr": "هرگونه pod یا تعویض قطعات اصلی خودرو در محل توقفگاه‌ها ممنوعاست",
+      "topic_heuristic": "پارکینگ و رمپ",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00352",
+      "document_id": "m04",
+      "locator_ocr": "۷-۳-۱۰-۵-۴",
+      "pdf_page": 85,
+      "title_ocr": "هنگامی که طبقات دیگر ساختمان به وسیله پله‌ها از توقفگاه خودرو قابلدسترس",
+      "topic_heuristic": "پارکینگ و رمپ",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00361",
       "document_id": "m04",
       "locator_ocr": "۲-۶-۱۰-۵-۴",
@@ -13996,11 +13597,47 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00365",
+      "document_id": "m04",
+      "locator_ocr": "۱-۷-۱۰-۵-۴",
+      "pdf_page": 87,
+      "title_ocr": "امکان دسترسی به آب لوله کشی در pled توقفگاه‌ها ضروریاست",
+      "topic_heuristic": "تأسیسات و تجهیزات",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00369",
       "document_id": "m04",
       "locator_ocr": "۱-۵-۴",
       "pdf_page": 87,
       "title_ocr": "بند شناسایی‌شده توسط OCR",
+      "topic_heuristic": "سایر مقررات",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00375",
+      "document_id": "m04",
+      "locator_ocr": "۲-۱۲-۵-۴",
+      "pdf_page": 88,
+      "title_ocr": "موتورخانه",
       "topic_heuristic": "سایر مقررات",
       "risk_score": 2,
       "flags": [
@@ -14041,6 +13678,24 @@
       "pdf_page": 90,
       "title_ocr": "مشاعات و فضاهای خدماتیعمومی",
       "topic_heuristic": "سایر مقررات",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00388",
+      "document_id": "m04",
+      "locator_ocr": "۳-۱-۱۳-۵-۴",
+      "pdf_page": 90,
+      "title_ocr": "سرایداری تابع مقررات فضاهای تصرف‌های مسکونیاست",
+      "topic_heuristic": "ضوابط مسکونی",
       "risk_score": 2,
       "flags": [
         "possible_ocr_latin_noise",
@@ -14148,6 +13803,42 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-1396-ocr-00451",
+      "document_id": "m04",
+      "locator_ocr": "۲-۷-۴",
+      "pdf_page": 103,
+      "title_ocr": "تصرف‌های > glad |اداری",
+      "topic_heuristic": "کاربری و تصرف",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00452",
+      "document_id": "m04",
+      "locator_ocr": "۱-۲-۷-۴",
+      "pdf_page": 103,
+      "title_ocr": "در طراحی ساختمان‌های اداری cule, ضوابط و سرانه‌های تعیین شده در نشریةSled",
+      "topic_heuristic": "کاربری و تصرف",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-1396-ocr-00453",
       "document_id": "m04",
       "locator_ocr": "۲-۲-۷-۴",
@@ -14199,6 +13890,26 @@
         "applicability_not_verified"
       ],
       "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00474",
+      "document_id": "m04",
+      "locator_ocr": "۱۹-۴-۷-۴",
+      "pdf_page": 105,
+      "title_ocr": "به منظور رعایت الزامات بهداشتی توجه به موارد زیر ضروریاست",
+      "topic_heuristic": "فضای بهداشتی",
+      "risk_score": 2,
+      "flags": [
+        "numbers_need_page_comparison",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [
+        "4"
+      ],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -14318,6 +14029,24 @@
       "pdf_page": 109,
       "title_ocr": "در GG pai تجمعی. مانند سینماها و سالن‌های اجتماعات: پلکان‌های راهروییکه",
       "topic_heuristic": "پله و راه‌پله",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-1396-ocr-00504",
+      "document_id": "m04",
+      "locator_ocr": "۵-۵-۷-۴",
+      "pdf_page": 109,
+      "title_ocr": "در طراحی و ساخت مساجد Hb به رعایت صحیح جهت ald در استقرار محرابنماز",
+      "topic_heuristic": "پوشش و مصالح",
       "risk_score": 2,
       "flags": [
         "possible_ocr_latin_noise",
@@ -14915,6 +14644,42 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-security-1403-ocr-0102",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ- ۲-۱-۶",
+      "pdf_page": 36,
+      "title_ocr": "مخازن يا محل نگهداری و بایگانی اسناد و مدارک» ‎GUI‏ و سالن‌های مرتبط با امور",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0105",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۱-۲-۶",
+      "pdf_page": 37,
+      "title_ocr": "دوربین مداربسته در تمام فضاها از ‎ble og ply ad‏ محل پذیرش و صندوق دریافت",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-security-1403-ocr-0111",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ-۶- ۶-۲",
@@ -15109,6 +14874,24 @@
       "status": "pending_manual_review"
     },
     {
+      "id": "m04-security-1403-ocr-0194",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۲-۷-۶",
+      "pdf_page": 46,
+      "title_ocr": "با توجه به تنوع و پیچیدگی‌های ‎Gold‏ محصولات مخاطره آمیزه ضروری است برای",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
       "id": "m04-security-1403-ocr-0200",
       "document_id": "m04-security-1403",
       "locator_ocr": "پ- ۴-۱-۸-۶",
@@ -15161,6 +14944,24 @@
         "۵",
         "۹"
       ],
+      "conditional_lines_preview": [],
+      "cross_reference_candidates": [],
+      "status": "pending_manual_review"
+    },
+    {
+      "id": "m04-security-1403-ocr-0228",
+      "document_id": "m04-security-1403",
+      "locator_ocr": "پ-۱-۱۳-۸-۶",
+      "pdf_page": 49,
+      "title_ocr": "دوربین مداربسته در ‎pled‏ فضاها از قبیل راهرو (با پوشش کامل به در واحدهای",
+      "topic_heuristic": "ضوابط حفاظتی و انتظامی",
+      "risk_score": 2,
+      "flags": [
+        "possible_ocr_latin_noise",
+        "summary_not_written",
+        "applicability_not_verified"
+      ],
+      "numeric_candidates_preview": [],
       "conditional_lines_preview": [],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -15688,26 +15489,6 @@
       "numeric_candidates_preview": [],
       "conditional_lines_preview": [
         "۵-۲-۹-۵-۴ پنجرة فضاهای بهداشتی و آشپزخانه نباید به آن محفظة آفتاب‌گیر بازشود."
-      ],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00323",
-      "document_id": "m04",
-      "locator_ocr": "۶-۳-۹-۵-۴",
-      "pdf_page": 82,
-      "title_ocr": "در این محفظة آفتابگیر نباید تاسیسات گرمایشی یا سرمایشی که از انواعسوخت",
-      "topic_heuristic": "نورگیری و تهویه",
-      "risk_score": 1,
-      "flags": [
-        "conditional_rule_needs_parsing",
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [],
-      "conditional_lines_preview": [
-        "۶-۳-۹-۵-۴ در این محفظة آفتابگیر نباید تاسیسات گرمایشی یا سرمایشی که از انواعسوخت"
       ],
       "cross_reference_candidates": [],
       "status": "pending_manual_review"
@@ -18163,23 +17944,6 @@
       "pdf_page": 105,
       "title_ocr": "ترتیب قرار گرفتن فضاهای خصوصی و عمومی با دقت صورت پذیرد تا بیماراحساس",
       "topic_heuristic": "سایر مقررات",
-      "risk_score": 0,
-      "flags": [
-        "summary_not_written",
-        "applicability_not_verified"
-      ],
-      "numeric_candidates_preview": [],
-      "conditional_lines_preview": [],
-      "cross_reference_candidates": [],
-      "status": "pending_manual_review"
-    },
-    {
-      "id": "m04-1396-ocr-00474",
-      "document_id": "m04",
-      "locator_ocr": "۱۹-۴-۷-۴",
-      "pdf_page": 105,
-      "title_ocr": "به منظور رعایت الزامات بهداشتی توجه به موارد زیر ضروریاست",
-      "topic_heuristic": "فضای بهداشتی",
       "risk_score": 0,
       "flags": [
         "summary_not_written",
