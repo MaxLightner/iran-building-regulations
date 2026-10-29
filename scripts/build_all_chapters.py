@@ -276,8 +276,9 @@ def pdf_records(chapter,data,source_url):
         for raw in pt.splitlines():
             line=norm(raw)
             if len(line)<2:continue
-            m=REF_RE.search(line)
-            if m and looks_like_locator(chapter,m.group("ref")):
+            matches=[m for m in REF_RE.finditer(line) if looks_like_locator(chapter,m.group("ref"))]
+            m=matches[0] if matches else None
+            if m:
                 flush();order+=1
                 before=norm(line[:m.start()]).strip(" -–—:؛")
                 after=norm(line[m.end():]).strip(" -–—:؛")
@@ -293,7 +294,18 @@ def pdf_records(chapter,data,source_url):
         # Don't let one malformed clause swallow pages.
         if current and sum(len(x) for x in current["_parts"])>1800:flush()
     flush()
-    return dedupe(out),{"pages":len(pages),"chars":total,"persian_ratio":round(ratio,3),"accepted":True}
+    records=dedupe(out)
+    if not records:
+        samples=[]
+        for page_i,pt in enumerate(pages,1):
+            for raw in pt.splitlines():
+                line=norm(raw)
+                if "-" in line and any(ch.isdigit() for ch in line):
+                    samples.append({"page":page_i,"line":line[:220]})
+                    if len(samples)>=12:break
+            if len(samples)>=12:break
+        return records,{"pages":len(pages),"chars":total,"persian_ratio":round(ratio,3),"accepted":True,"locator_samples":samples}
+    return records,{"pages":len(pages),"chars":total,"persian_ratio":round(ratio,3),"accepted":True}
 
 def crossrefs(chapter,text,locator=None):
     refs=[];seen=set()
