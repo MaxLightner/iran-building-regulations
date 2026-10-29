@@ -486,8 +486,22 @@ async function renderKnowledgeTopics(){
   if(!rows.length)setEmpty(target,'برای این مبحث هنوز موضوع ساختاریافته‌ای وجود ندارد.');
 }
 
+
+function recordSearchFields(record){
+  if(record._searchFields)return record._searchFields;
+  const fields={
+    title:fold(record.title),
+    summary:fold(record.summary),
+    topics:fold((record.topic_labels||[]).join(' ')),
+    text:record.search_text||fold(record.text),
+    body:fold(record.text)
+  };
+  try{Object.defineProperty(record,'_searchFields',{value:fields,enumerable:false});}
+  catch(_e){record._searchFields=fields;}
+  return fields;
+}
 function searchQualityAdjustment(record){
-  const title=fold(record.title),text=fold(record.text);
+  const fields=recordSearchFields(record),title=fields.title,text=fields.body;
   let score=0;
   if(record.locator)score+=3;
   if(record.facts?.length)score+=Math.min(4,record.facts.length);
@@ -501,7 +515,7 @@ function searchQualityAdjustment(record){
 function dedupeRanked(matches,limit=28){
   const seen=new Set(),out=[];
   for(const item of matches){
-    const key=fold(item.r.text);
+    const key=recordSearchFields(item.r).body;
     if(key.length<28)continue;
     if(seen.has(key))continue;
     seen.add(key);out.push(item);
@@ -526,9 +540,8 @@ function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   const terms=fold(query).split(' ').filter(Boolean);
   const resolved=resolveQueryTopics(query);
   if(selectedTopicId && !record.topics.includes(selectedTopicId))return null;
-  const title=fold(record.title),summary=fold(record.summary),
-    topics=fold((record.topic_labels||[]).join(' ')),
-    text=record.search_text||fold(record.text);
+  const fields=recordSearchFields(record),
+    title=fields.title,summary=fields.summary,topics=fields.topics,text=fields.text;
   const direct=[...resolved.direct].some(id=>record.topics.includes(id));
   const related=[...resolved.related].some(id=>record.topics.includes(id));
   const termHits=terms.filter(t=>title.includes(t)||summary.includes(t)||topics.includes(t)||text.includes(t));
