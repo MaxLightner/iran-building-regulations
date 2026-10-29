@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: phase3-complete-main
+  group: phase3-complete-v2-main
   cancel-in-progress: true
 
 jobs:
