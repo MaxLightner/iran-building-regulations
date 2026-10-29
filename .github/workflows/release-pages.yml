@@ -6,6 +6,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/release-pages.yml"
+      - "frontend/**"
+      - "scripts/**"
+      - "tests/**"
+      - "benchmarks/**"
 
 permissions:
   contents: read
