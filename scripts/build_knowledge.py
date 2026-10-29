@@ -36,9 +36,28 @@ ONTOLOGY={
  "geotech":{"label":"ژئوتکنیک و پی","aliases":["ژئوتکنیک","خاک","گودبرداری","پی سازی","پی‌سازی","پی","شمع","نشست","ظرفیت باربری"],"related":["loads","concrete_steel","materials"]},
  "concrete_steel":{"label":"بتن و فولاد","aliases":["بتن آرمه","بتن‌آرمه","میلگرد","آرماتور","فولاد","جوش","پیچ","اتصال فولادی","اتصالات فولادی"],"related":["loads","geotech","materials","fire"]},
  "security":{"label":"حفاظت و امنیت","aliases":["حفاظتی","انتظامی","امنیت","سرقت","دوربین","کنترل دسترسی"],"related":["occupancy","installations","yard"]},
+ "admin":{"label":"تعاریف و نظامات","aliases":["تعریف","اصطلاح","دامنه کاربرد","پروانه","مجری","ناظر","طراح","مسئولیت","مدارک"],"related":["occupancy","maintenance","worksite"]},
+ "masonry_industrial":{"label":"بنایی و صنعتی‌سازی","aliases":["مصالح بنایی","دیوار باربر","بنایی","بلوک","پیش ساخته","پیش‌ساخته","صنعتی سازی","صنعتی‌سازی"],"related":["materials","loads","concrete_steel","worksite"]},
+ "worksite":{"label":"ایمنی کارگاه","aliases":["ایمنی کارگاه","حین اجرا","کارگاه","داربست","حفاری","تخریب","سقوط","وسایل حفاظت فردی"],"related":["fire","geotech","admin","maintenance"]},
+ "electrical":{"label":"برق ساختمان","aliases":["تأسیسات برقی","تاسیسات برقی","تابلو برق","ارت","همبندی","کابل","مدار الکتریکی","برق ساختمان"],"related":["installations","fire","energy","elevator"]},
+ "mechanical":{"label":"مکانیک ساختمان","aliases":["تأسیسات مکانیکی","تاسیسات مکانیکی","گرمایش","سرمایش","تهویه مطبوع","موتورخانه","دیگ","چیلر"],"related":["installations","energy","fire","light"]},
+ "plumbing_gas":{"label":"آب، فاضلاب و گاز","aliases":["تأسیسات بهداشتی","تاسیسات بهداشتی","آب مصرفی","فاضلاب","آب باران","لوله کشی گاز","لوله‌کشی گاز","گاز طبیعی"],"related":["installations","mechanical","fire"]},
+ "acoustics":{"label":"صدا و آکوستیک","aliases":["صدا","آکوستیک","عایق صوتی","نوفه","انتقال صدا"],"related":["materials","occupancy"]},
+ "energy":{"label":"انرژی ساختمان","aliases":["انرژی","صرفه جویی","صرفه‌جویی","پوسته ساختمان","ضریب انتقال حرارت","عایق حرارتی"],"related":["materials","mechanical","electrical","light"]},
+ "signage":{"label":"علائم و تابلوها","aliases":["علائم","تابلو","نشانه","راهنما","علامت"],"related":["fire","occupancy","traffic"]},
+ "passive_defense":{"label":"پدافند غیرعامل","aliases":["پدافند غیرعامل","تهدید","تاب آوری","تاب‌آوری","حفاظت غیرعامل"],"related":["security","fire","occupancy","installations"]},
+ "maintenance":{"label":"نگهداری ساختمان","aliases":["مراقبت","نگهداری","بازرسی دوره ای","بازرسی دوره‌ای","تعمیرات","بهره برداری","بهره‌برداری"],"related":["admin","installations","elevator","fire"]},
+ "traffic":{"label":"ترافیک ساختمان","aliases":["ترافیک","دسترسی خودرو","ورودی خودرو","خروجی خودرو","حرکت خودرو","توقف خودرو"],"related":["parking","dimensions","signage","occupancy"]},
+ "general":{"label":"سایر و عمومی","aliases":["کلیات","الزامات عمومی","دامنه"],"related":["admin","occupancy"]},
 }
-DEFAULT_BY_DOC={"m03":"fire","m04":"occupancy","m04-security-1403":"security","m05":"materials",
-                "m06":"loads","m07":"geotech","m09":"concrete_steel","m10":"concrete_steel","m15":"elevator"}
+DEFAULT_BY_DOC={
+ "m01":"admin","m02":"admin","m03":"fire","m04":"occupancy","m04-security-1403":"security",
+ "m05":"materials","m06":"loads","m07":"geotech","m08":"masonry_industrial",
+ "m09":"concrete_steel","m10":"concrete_steel","m11":"masonry_industrial",
+ "m12":"worksite","m13":"electrical","m14":"mechanical","m15":"elevator",
+ "m16":"plumbing_gas","m17":"plumbing_gas","m18":"acoustics","m19":"energy",
+ "m20":"signage","m21":"passive_defense","m22":"maintenance","m23":"traffic","m24":"general"
+}
 
 DIGITS=str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩","01234567890123456789")
 LOCATOR=re.compile(r"(?<![\d./])(?:[\d۰-۹٠-٩]{1,3}\s*[-ـ–—]\s*){1,6}[\d۰-۹٠-٩]{1,3}(?!\d)")
