@@ -2,7 +2,7 @@ name: Audit m04 extraction and create review queue
 on:
   push:
     branches: [main]
-    paths: [".github/workflows/audit-m04.yml"]
+    paths: [".github/workflows/audit-m04.yml", "scripts/audit_m04.py"]
   workflow_dispatch:
 permissions:
   contents: write
