@@ -1,0 +1,11 @@
+{
+  "pdf_page": 10,
+  "source_sha256": "2a4f0d18fb14e8967f5e91195790e12a9b7ada7e1b9a0f613f00cdf81d8fc1af",
+  "method": "tesseract_fas_eng_166dpi_psm6",
+  "ocr_text": "٩",
+  "char_count": 1,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}

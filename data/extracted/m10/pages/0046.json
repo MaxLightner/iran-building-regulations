@@ -1,0 +1,11 @@
+{
+  "pdf_page": 46,
+  "source_sha256": "2a4f0d18fb14e8967f5e91195790e12a9b7ada7e1b9a0f613f00cdf81d8fc1af",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مبحث دهم\n\nحدول ۳-۱-۱۰*: نام و مشخصات سکانیکی انواع فولادهاي ساختمانی سطابق استاندارد انحمن آزماش\n\n7 نام و ردة فولاد\nمطابق استاندارد\n‎ASTM‏\n\nASTM A36\n\nASTM A572\nGrade 42\nGrade 50\nGrade 55\nGrade60\nGrade65\n\nASTM AS88\nGrade B\nGrade C\n\nASTM A709\nGrade 36\nGrades\nGrade 508\n\nASTM A913\nGrade 50\nGrade 60\nGrade 65\n\nASTM A992\n\n(mm)\n\n200 &\n\nبیشتر از 200\n\n‎oll‏ ضغاعت‌ها\n\n‏تحام ضخاعت‌ها\n\n‎plat‏ ضغاعت‌ها\n\n‏تحام ضغاعت‌ها\n\n‏تعام ضعاعت‌ها\n\n‏مصالح آمربکا ‎(ASTM)‏\n\n‎(MPa)\n\n‎250\n‎220\n\n‎290\n‎345\n‎380\n‎415\n‎450\n\n‎345\n\n‎550-400\n\n‎415\n‎450\n‎485\n‎520\n‎S50\n\n‎450\n‎520\n‎550\n\n‎450\n\n‎21\n\n‎24\n‎21\n‎20\n‎18\n‎17\n\n‎211\n‎21\n\n‎21\n‎211\n‎21\n\n‎21\n‎18\n‎17\n\n‎21\n\n‏در صورت استفاده از رده‌های فولاد ابن جدول برای شرابط لرزهای. تأمین کلية الزامات لرزه‌ای مصالح.\n\n‏مطابق بخش‌های ۲-۳-۱۰ ۷۰۲-۱۰ و ۹-۴-۱۰ ان مبحث ضروری است.\n\n‎lp oo‏ رده‌های فولاد اپن جدول. ننش تسلبم مشخصذ فولاد ‎(By)‏ بابد برابر حد پابین تنش تسلیم و\n\n‏تنش کششی ‎Ol‏ مشخصدذ فولاد ‎(Fu)‏ بابد پرابر حد یابین نذش کششی نهابی در نطر گرفته شود.",
+  "char_count": 962,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

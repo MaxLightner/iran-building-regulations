@@ -1,0 +1,11 @@
+{
+  "pdf_page": 156,
+  "source_sha256": "a81fb72f8d2e2e2f74925206656cd2d708c5f47a96ca7fc1a1b93b0318cfac21",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "۱۳۶۱۰ ‏مه ج‎ ۳ 2 ۰\nِ\nh ۱ h\n‏دیوار انتهابی‎ 4 7 of 5 7\n!\n۳ ۱ F,\nFat 5\n\nدیوار و تابلو بالاتر از سطح زمین\n\n۱/۳۶۱۰ 0\n\nkK\n۱۳۶ ۰ ۱0\nls ‏رح 1 1 دیوار‎ TT\n۱\n\nraft Fi\n\nدیوار و تابلو روی سطح زمین\n\nضریب نیروی ‎Ce‏ برای دیوار و تابلو بالاتر از سطح زمین\n\n۳ ۱\n۱/۲ | VO\n\n00 <-۱۰ (تکیه‌گاه انتهایی) /\n\nCG ۳/۰\n\nضریب نیروی ‎cle Ce‏ دیوار و تابلو روی سطح زمین\n\n۱۰ ۱\nVY ۱/۱\n\n>o\n\n/h ‏(تکیه‌گاه انتهایی)‎ ۰\nCr ۱/۳\n\nترکیب نیروی عمودی و نیروی مماسی روی دیوارها و تابلوها\n\nضریب نیروی\nمماسی ‎Ce‏\n‏۰۱۲\n‎ly‏\n\nضریب نیروی\nعمودی ‎Ch‏\n‎Ve‏\n‏م1\n\nحالت\n\n‎CC,qC,Cehly,‏ ۴,۶ مقدار نیروی عمودی بر واحدطول\n‎CC,qC,Cehl,,‏ ۳ مقدار نیروی مماس بر واحدطول\n\n‏شکل پ-۵-۴-۶ دیوارهاء صفحات خودایستا و تابلو اعلانات\n\n‎۱۳۲",
+  "char_count": 671,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

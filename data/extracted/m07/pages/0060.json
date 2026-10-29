@@ -1,0 +1,11 @@
+{
+  "pdf_page": 60,
+  "source_sha256": "f3034d9229526fe36d79c8cf5b623da6f67a0a686a3622f5b151e0e2fff8fe09",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مبحث هفتم سازه‌های نگهبان\n\n- کنترل سازه‌ای دیوار در برابر حمش و برش\n- کنترل نشست پی زیر دیوار\n\n۲-۳-۵-۷ حالت‌های حدی دیوارهای انعطاف‌پذیر مهار شده\n\nوت ۱ اون طراحی دیوارهای مهارشده از پشت باید حالت‌های ‎Ste‏ شکل ‎J xs (\\-0-V)‏ شود.\n\nشکل شماره (۵-۷-): حالت‌های حدی دیوارهای مهارشده\n\noY",
+  "char_count": 282,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

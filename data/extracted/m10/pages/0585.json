@@ -1,0 +1,11 @@
+{
+  "pdf_page": 585,
+  "source_sha256": "2a4f0d18fb14e8967f5e91195790e12a9b7ada7e1b9a0f613f00cdf81d8fc1af",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "‎FO‏ حفاظت در ‎ply‏ آتش\n\n‏جدول ۱۰پ ۳-۶: مشخصات فولاد در دماهای بالا\n\n‎Kp = ۲ TyP,\n\n‏* از مشخصات دمای متعارف محیط ‎clam!‏ شود,\n\n‏جدول ۱۰-ب۴-۶: مشخصات بتن در دماهای بالا\nدمای بتن 2۶046 وت 7\n\n‎od‏ معمولی\n\n‎0.036\n‎0.018\n\n‎ayy",
+  "char_count": 221,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

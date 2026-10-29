@@ -1,0 +1,11 @@
+{
+  "pdf_page": 585,
+  "source_sha256": "1d7ae949ff8e981963156b76827e5375ce3e7a7a410319b382a3fecf1dd2cc2c",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "پیوست ٩-پ۲‏ روش خرپایی (روش بست و بند)\n\nب) توزیع آرماتور کششی\n\nشکل ٩-پ‏ ۷-۳ نواحی بسط داده شده‌ی گره\n\n۹-پ ۶-۲ گره‌ها\n\n٩-پ‏ ۱-۶-۳ مقاومت ناحیه‌ی گره\n\nسپ ۱-۱-۶-۳ مقاومت فشاری اسمی ناحیه‌ی گره. ‎Fay‏ از رایطه‌ی زیر محاسبه می‌شود.\n‎Fan = feeAnz acted)‏\n\nدر ‎cel‏ رابطه ‎foe‏ بر اساس بندهای ٩-سپ۲-۱-۶-۳‏ و یا ‎VIP‏ و وول بر اساس بندهای\n٩4پ‏ ۴-۱-۶-۳ و یا ٩-پ‏ ۵-۱-۶-۳ محاسبه می‌شود.\n\n8-پ ۲-۱-۶-۲ مقاومت فشاری موثر بتن در وجه ناحیه‌ی گره. ‎fee‏ از رابطه‌ی زیر محاسبه\n\nfee = O.B5B Baie area)\n\nord",
+  "char_count": 488,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

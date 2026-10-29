@@ -1,0 +1,11 @@
+{
+  "pdf_page": 576,
+  "source_sha256": "1d7ae949ff8e981963156b76827e5375ce3e7a7a410319b382a3fecf1dd2cc2c",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "bar\n\nشکل ٩-پ‏ ۴-۳ مدل‌های خرپایی شامل اعضای فشاری و کششی که نشان‌گر میدا\nمیباشند.\n\n~~ اج گت\n\nap Ee\n\neZ.\n\ni\n\n‎gt‏ عضو فشاری قطری درجان ها\n\n‏ت- نیرتیخه با بازشو ‎Sait‏\n\n‎Spl ‏رای‎\n\n‏نید میدان تنش و عدل خریایی برای ‎got Se‏ یف\n\n‏پیوست ٩۹-پ۳‏\n\n‏روش خر\n\n‏پا\n\n‎cot!‏ (روش بست و بند)",
+  "char_count": 276,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

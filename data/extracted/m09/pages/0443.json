@@ -1,0 +1,11 @@
+{
+  "pdf_page": 443,
+  "source_sha256": "1d7ae949ff8e981963156b76827e5375ce3e7a7a410319b382a3fecf1dd2cc2c",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "۲۱-۹ جزئیات آرماتورگذاری\n\nنوع قلاب\n\nقلاب ۱۳۵\n\nقلاب ۱۸۰\n\nجدول ‎۲-۲۱-٩۹‏ قلاب استاندارد برای مهار میلگردهای عرضی\n\nقطر میلگرد\n\n(mm)\n\n\\F ‏تا‎ ۰\n\n۸ تا ۲۵\n\n۰ تا ۱۶\n\nتا ۲۵\n\n۰ تا ۱۶\n\n۸ تا ۲۵\n\nحداقل\nقطر\n\nداخلی\nحم\n\n(mm)\n\nAdy\n\n6d,\n\n4d,\n\n6d,\n\n4d,\n\n6dy\n\nطول\n\nمستفیم\n\nو60 و ۷۵\n\nهر کدام\nبزرگ‌تر\n\nو0 و ۶۸\n\nهر کدام\nبزرگ‌تر\n\nاست\n\n۳۳۳",
+  "char_count": 315,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

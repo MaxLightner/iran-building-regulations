@@ -1,0 +1,11 @@
+{
+  "pdf_page": 134,
+  "source_sha256": "a81fb72f8d2e2e2f74925206656cd2d708c5f47a96ca7fc1a1b93b0318cfac21",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مبحث ششم\n\nادامه جدول شماره پ ۱-۲-۶ جرم مخصوص مواد\n\nشرح\n۳- مایعات\n\nروغن دانه\n\nروغن موتور\nاسید سولفوریک\nاسید کلریدریک\nقیر ذغال سنگ\nشیر\n\nروغن نباتی\n\n۳- گازها ( دمای صفر درجه سانتیگراد و فشار یک اتمسفر)\nاکسید دو کرین\nانیدرید کربنیک\nگاز روشنانی\nهوای خشک\nهوای مرطوب\nاکسیژن\n\nازت\n\nهیدروژن\n\n۱۳۰\n\nجرم مخصوص (کیلوگرم بر مترمکعب)\n\n۱۱۰۰",
+  "char_count": 323,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}
