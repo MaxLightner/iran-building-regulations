@@ -1,4 +1,4 @@
-"""Phase 3-1: full-page, source-grounded PDF text extraction for chapters 3, 5, 15.
+"""Incremental full-page, source-grounded PDF extraction for available chapters.
 
 Each PDF page is independently preserved. OCR is used only where embedded text
 is unavailable or appears unusable; every page has source SHA and provenance.
@@ -18,11 +18,15 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-CHAPTERS = (3, 5, 15)
+CHAPTERS = (3, 5, 6, 7, 9, 10, 15)
 DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
 TOPICS = {
     3: "حریق و ایمنی",
     5: "مصالح و فرآورده‌های ساختمانی",
+    6: "بارهای وارد بر ساختمان",
+    7: "ژئوتکنیک و مهندسی پی",
+    9: "ساختمان‌های بتن‌آرمه",
+    10: "طرح و اجرای ساختمان‌های فولادی",
     15: "آسانسور و پله‌برقی",
 }
 MAX_WORKERS = 3
