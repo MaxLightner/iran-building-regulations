@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "status": "demonstration_not_regulations",
+  "items": [
+    {
+      "id": "demo-stairs",
+      "document_id": "demo",
+      "edition_id": "demo-only",
+      "section_id": null,
+      "kind": "clause",
+      "locator": "DEMO-01",
+      "title": "کنترل ضوابط راه‌پله",
+      "original_text": "متن آزمایشی برای بررسی نمایش بند و پیوندها. مقدار واقعی عرض راه‌پله باید بعداً از مقررات معتبر استخراج و تأیید شود.",
+      "summary": "نمایش نمونه مسیر جست‌وجو و استناد، بدون بیان عدد یا الزام واقعی.",
+      "topic": "راه‌پله و مسیر خروج",
+      "tags": [
+        "راه‌پله",
+        "پله",
+        "مسیر خروج"
+      ],
+      "aliases": [
+        "عرض پله",
+        "عرض راه پله"
+      ],
+      "key_factors": [
+        {
+          "label": "اندازه لازم",
+          "value": "از سند معتبر استخراج نشده",
+          "unit": null,
+          "evidence_locator": "DEMO-01"
+        }
+      ],
+      "applicability": {
+        "status": "not_evaluated",
+        "conditions": []
+      },
+      "references": [],
+      "source": {
+        "authority": "unverified",
+        "official_page_url": null,
+        "official_pdf_url": null,
+        "sha256": null,
+        "pdf_page": null,
+        "printed_page": null,
+        "publication_rights": "unverified"
+      },
+      "version": {
+        "edition_label": "نمونه نمایشی",
+        "published_date": null,
+        "effective_date": null,
+        "effective_evidence": null,
+        "status": "unconfirmed",
+        "last_checked": null
+      },
+      "review": {
+        "status": "demo",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "search_text": "کنترل ضوابط راه پله متن آزمایشی برای بررسی نمایش بند و پیوندها. مقدار واقعی عرض راه پله باید بعدا از مقررات معتبر استخراج و تأیید شود. نمایش نمونه مسیر جست وجو و استناد، بدون بیان عدد یا الزام واقعی. راه پله و مسیر خروج demo-01 راه پله پله مسیر خروج عرض پله عرض راه پله"
+    },
+    {
+      "id": "demo-parking",
+      "document_id": "demo",
+      "edition_id": "demo-only",
+      "section_id": null,
+      "kind": "note",
+      "locator": "DEMO-02",
+      "title": "بررسی رمپ و پارکینگ",
+      "original_text": "نمونه ساختگی برای نمایش جایگاه جداول و شروط پروژه؛ هیچ شیب یا اندازه مجاز از این متن نتیجه نمی‌شود.",
+      "summary": "پیش‌نمایش خلاصه، تگ و فاکتورهای کلیدی پارکینگ.",
+      "topic": "پارکینگ و رمپ",
+      "tags": [
+        "پارکینگ",
+        "رمپ",
+        "مانور خودرو"
+      ],
+      "aliases": [
+        "شیب رمپ",
+        "ابعاد پارکینگ"
+      ],
+      "key_factors": [],
+      "applicability": {
+        "status": "not_evaluated",
+        "conditions": []
+      },
+      "references": [],
+      "source": {
+        "authority": "unverified",
+        "official_page_url": null,
+        "official_pdf_url": null,
+        "sha256": null,
+        "pdf_page": null,
+        "printed_page": null,
+        "publication_rights": "unverified"
+      },
+      "version": {
+        "edition_label": "نمونه نمایشی",
+        "published_date": null,
+        "effective_date": null,
+        "effective_evidence": null,
+        "status": "unconfirmed",
+        "last_checked": null
+      },
+      "review": {
+        "status": "demo",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "search_text": "بررسی رمپ و پارکینگ نمونه ساختگی برای نمایش جایگاه جداول و شروط پروژه؛ هیچ شیب یا اندازه مجاز از این متن نتیجه نمی شود. پیش نمایش خلاصه، تگ و فاکتورهای کلیدی پارکینگ. پارکینگ و رمپ demo-02 پارکینگ رمپ مانور خودرو شیب رمپ ابعاد پارکینگ"
+    },
+    {
+      "id": "demo-fire",
+      "document_id": "demo",
+      "edition_id": "demo-only",
+      "section_id": null,
+      "kind": "clause",
+      "locator": "DEMO-03",
+      "title": "موضوعات ایمنی حریق",
+      "original_text": "متن نمونه برای کنترل گردش کار نمایش بند و عنوان؛ ضوابط واقعی ایمنی حریق در این نسخه هنوز تأیید نشده‌اند.",
+      "summary": "نمونه کارت حریق برای بررسی طراحی رابط.",
+      "topic": "ایمنی حریق",
+      "tags": [
+        "حریق",
+        "اعلام حریق",
+        "خروج اضطراری"
+      ],
+      "aliases": [
+        "آتش سوزی"
+      ],
+      "key_factors": [],
+      "applicability": {
+        "status": "not_evaluated",
+        "conditions": []
+      },
+      "references": [],
+      "source": {
+        "authority": "unverified",
+        "official_page_url": null,
+        "official_pdf_url": null,
+        "sha256": null,
+        "pdf_page": null,
+        "printed_page": null,
+        "publication_rights": "unverified"
+      },
+      "version": {
+        "edition_label": "نمونه نمایشی",
+        "published_date": null,
+        "effective_date": null,
+        "effective_evidence": null,
+        "status": "unconfirmed",
+        "last_checked": null
+      },
+      "review": {
+        "status": "demo",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "search_text": "موضوعات ایمنی حریق متن نمونه برای کنترل گردش کار نمایش بند و عنوان؛ ضوابط واقعی ایمنی حریق در این نسخه هنوز تأیید نشده اند. نمونه کارت حریق برای بررسی طراحی رابط. ایمنی حریق demo-03 حریق اعلام حریق خروج اضطراری آتش سوزی"
+    }
+  ]
+}
