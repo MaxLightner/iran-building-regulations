@@ -115,7 +115,7 @@ function renderCatalog() {
   const target=$('source-list');
   target.replaceChildren();
   $('catalog-stat').textContent=state.catalog.length;
-  $('approved-stat').textContent=state.approved.length;
+  $('approved-stat').textContent=state.knowledge ? state.knowledge.records : state.approved.length;
   $('catalog-count').textContent=state.catalog.length+' مبحث';
   for(const item of state.catalog) {
     const row=el('div',null,'catalog-item');
@@ -170,6 +170,11 @@ function initializeForm(options) {
     if($('query').value.trim())renderSearch();else setEmpty($('search-results'),'عبارت یا موضوع جست‌وجو را انتخاب کنید.');
   });
   $('search').addEventListener('submit',renderSearch);
+  document.querySelectorAll('[data-query]').forEach(button=>button.addEventListener('click',()=>{
+    $('query').value=button.dataset.query||button.textContent.trim();
+    $('topic-filter').value='';state.topicFilter='';
+    renderSearch();$('search-panel').scrollIntoView({behavior:'smooth'});
+  }));
   $('chapter-filter').addEventListener('change',()=>{if(state.mode==='knowledge'||state.mode==='draft'){renderTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();}});
   $('topic-filter').addEventListener('change',()=>{state.topicFilter=$('topic-filter').value;if(state.mode==='knowledge'||state.mode==='draft')renderSearch();});
 }
@@ -477,6 +482,43 @@ async function renderKnowledgeTopics(){
   }
   if(!rows.length)setEmpty(target,'برای این مبحث هنوز موضوع ساختاریافته‌ای وجود ندارد.');
 }
+
+function searchQualityAdjustment(record){
+  const title=fold(record.title),text=fold(record.text);
+  let score=0;
+  if(record.locator)score+=3;
+  if(record.facts?.length)score+=Math.min(4,record.facts.length);
+  if(record.conditions?.length)score+=2;
+  if(text.length<50)score-=14;
+  if(/^(فهرست|مقدمه|واژه نامه|واژه‌نامه|منابع|پیشگفتار)/.test(title))score-=16;
+  const flags=record.source?.quality_flags||[];
+  if(flags.length)score-=Math.min(8,flags.length*2);
+  return score;
+}
+function dedupeRanked(matches,limit=28){
+  const seen=new Set(),out=[];
+  for(const item of matches){
+    const key=fold(item.r.text);
+    if(key.length<28)continue;
+    if(seen.has(key))continue;
+    seen.add(key);out.push(item);
+    if(out.length>=limit)break;
+  }
+  return out;
+}
+function resultTitle(record){
+  const title=String(record.title||'').trim();
+  const folded=fold(title);
+  if(!title || folded.length<4 || /^(فهرست|مقدمه)$/.test(folded))
+    return (record.locator ? 'بند '+record.locator+' — ' : '')+(record.topic_labels?.[0]||'ضابطه ساختمان');
+  return title.length>150 ? title.slice(0,147)+'…' : title;
+}
+function resultSummary(record){
+  const summary=String(record.summary||'').trim();
+  if(summary && fold(summary)!==fold(record.title))return summary;
+  const text=' '.concat(record.text||'').trim().replace(/\s+/g,' ');
+  return text.length>360?text.slice(0,357)+'…':text;
+}
 function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   const terms=fold(query).split(' ').filter(Boolean);
   const resolved=resolveQueryTopics(query);
@@ -491,14 +533,14 @@ function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   if(terms.length && termHits.length===0 && !direct && !related)return null;
   let score=(direct?35:0)+(related?7:0)+(selectedTopicId?20:0);
   for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(facts.includes(t)?10:0)+(conditions.includes(t)?8:0)+(summary.includes(t)?6:0)+(text.includes(t)?2:0);
-  if(record.locator)score+=1;
+  score+=searchQualityAdjustment(record);
   score+=projectScore;
   return score;
 }
 function knowledgeResultCard(record,fit={score:0,level:'general',reasons:[]}){
   const card=el('article',null,'record'), top=el('div',null,'record-top');
-  top.append(el('span','دانش ساختاریافته','tag'),el('span',record.locator||('صفحه '+record.source.pdf_page),'muted'));
-  card.append(top,el('h3',record.title),el('p',record.summary||'','summary'));
+  top.append(el('span','از متن مقررات','tag'),el('span',record.locator||('صفحه '+record.source.pdf_page),'muted'));
+  card.append(top,el('h3',resultTitle(record)),el('p',resultSummary(record),'summary'));
   if(state.project){
     const box=el('div',null,'project-fit project-fit-'+fit.level);
     const labels={high:'مرتبط‌تر با پروژه',medium:'مرتبط با پروژه',general:'ارتباط عمومی / نیازمند بررسی'};
@@ -565,10 +607,10 @@ async function renderKnowledgeSearch(){
     const groups=[];
     for(const item of loaded){
       const doc=item.doc;
-      const matches=doc.records.map(r=>{
+      const matches=dedupeRanked(doc.records.map(r=>{
         const fit=projectFit(item.rules.get(r.id),r);
         return {r,fit,score:knowledgeScore(r,query,selectedTopicId,fit.score)};
-      }).filter(x=>x.score!==null).sort((a,b)=>b.score-a.score).slice(0,35);
+      }).filter(x=>x.score!==null).sort((a,b)=>b.score-a.score),28);
       if(matches.length)groups.push({doc,matches});
     }
     groups.sort((a,b)=>b.matches[0].score-a.matches[0].score);
