@@ -14,11 +14,25 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-fas tesseract-ocr-eng
       - run: python3 -m pip install 'pymupdf>=1.24,<1.28'
-      - run: python3 scripts/extract_m04_security.py
-      - name: Commit appendix source and extracted text (not Pages)
+      - name: Run and record appendix extraction
+        shell: bash
+        run: |
+          mkdir -p data/analysis
+          set +e
+          python3 -u scripts/extract_m04_security.py > data/analysis/m04-security-action.log 2>&1
+          result=$?
+          cat data/analysis/m04-security-action.log
+          echo "exit-code=$result" >> data/analysis/m04-security-action.log
+          exit 0
+      - name: Commit appendix file, extracted data or diagnostic
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f sources/pdfs/m04-security-1403.pdf
-          git add data/extracted/m04-security-1403/pages data/records/m04-security-1403.json data/analysis/m04-security-quality.json
-          git diff --cached --quiet || (git commit -m 'Archive chapter 4 security appendix and pending-review extraction [skip ci]' && git push)
+          if [ -s sources/pdfs/m04-security-1403.pdf ]; then
+            git add -f sources/pdfs/m04-security-1403.pdf
+          fi
+          git add data/analysis/m04-security-action.log
+          if [ -f data/analysis/m04-security-quality.json ]; then
+            git add data/extracted/m04-security-1403/pages data/records/m04-security-1403.json data/analysis/m04-security-quality.json
+          fi
+          git diff --cached --quiet || (git commit -m 'Record chapter 4 appendix extraction diagnostics [skip ci]' && git push)
