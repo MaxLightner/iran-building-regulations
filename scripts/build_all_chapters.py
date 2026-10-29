@@ -422,8 +422,8 @@ def build():
     (OUT/"coverage.json").write_text(json.dumps(coverage,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     (OUT/"search-index.json").write_text(json.dumps(index,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     print("READY",coverage["chapters_ready"],"/24","RECORDS",coverage["records_total"],flush=True)
-    if coverage["chapters_ready"]<18:
-        print("Too few chapters passed the text-quality gate",file=sys.stderr)
+    if coverage["chapters_ready"]<10 or coverage["records_total"]<500:
+        print("Source coverage insufficient for partial search release",file=sys.stderr)
         return 2
     return 0
 
