@@ -47,3 +47,11 @@ label{display:block;font-weight:600;font-size:14px}.fields label{display:flex;fl
 .search-group>summary{padding:12px 4px;cursor:pointer;font-weight:700;min-height:46px}
 .search-group:not([open]){padding-bottom:0}
 .search-group>button.secondary{margin-bottom:8px}
+
+/* Structured knowledge layer */
+.knowledge-topics{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}
+.knowledge-chip{display:inline-flex;align-items:center;background:var(--soft);color:var(--accent);border-radius:20px;padding:3px 9px;font-size:12px}
+.knowledge-conditions{margin:12px 0;padding:11px 14px;background:#f7fafb;border:1px solid var(--line);border-radius:9px}
+.knowledge-conditions>strong{font-size:13px}
+.knowledge-conditions ul{margin:7px 0 0;padding-inline-start:22px}
+.knowledge-conditions li{margin:4px 0;color:var(--muted);font-size:13px}
