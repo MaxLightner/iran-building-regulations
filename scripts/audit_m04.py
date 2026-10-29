@@ -41,7 +41,10 @@ def main():
             loc=r["source"]["pdf_page"]
             condition_lines=[line[:220] for line in text.splitlines() if COND.search(line)]
             crossreferences=[x.group() for x in CROSS.finditer(text)]
-            numeric=r.get("extraction",{}).get("numeric_candidates_unverified",[])
+            # Section locators contain digits by definition; exclude the OCR locator
+            # before detecting numerical values in the provision body.
+            body=text.replace(r.get("locator",""),"",1)
+            numeric=NUMERIC.findall(body)[:50]
             flags=[]
             if numeric: flags.append("numbers_need_page_comparison")
             if condition_lines: flags.append("conditional_rule_needs_parsing")
