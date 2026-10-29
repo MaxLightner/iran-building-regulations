@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const state = { catalog: [], approved: [], demo: [], mode: 'approved', project: null };
+const state = { catalog: [], approved: [], demo: [], mode: 'draft', project: null, draft: null, cache: new Map(), topicFilter: '', requestToken: 0 };
 const el = (tag, value, className) => {
   const node = document.createElement(tag);
   if (value !== undefined && value !== null) node.textContent = String(value);
@@ -65,6 +65,7 @@ function renderRecord(r) {
   return article;
 }
 function renderTopics() {
+  if (state.mode === 'draft') return renderDraftTopics();
   const grouped=new Map(), target=$('topics');
   for (const r of modeRecords()) {
     const key=r.topic||'سایر';
@@ -100,6 +101,7 @@ function rankedSearch(query) {
 }
 function renderSearch(event) {
   if(event) event.preventDefault();
+  if(state.mode === 'draft') return renderDraftSearch();
   const query=$('query').value.trim(), target=$('search-results');
   if(fold(query).length<2) return setEmpty(target,'حداقل دو نویسه وارد کنید.');
   const matches=rankedSearch(query);
@@ -162,20 +164,29 @@ function initializeForm(options) {
     setStep(3);renderTopics();$('results').scrollIntoView({behavior:'smooth'});
   });
   $('mode').addEventListener('change',event=>{
-    state.mode=event.target.value;renderTopics();
-    if($('query').value.trim())renderSearch();else $('search-results').replaceChildren();
+    state.mode=event.target.value;state.topicFilter='';$('topic-filter').value='';renderTopics();
+    if($('query').value.trim())renderSearch();else setEmpty($('search-results'),'عبارت یا موضوع جست‌وجو را انتخاب کنید.');
   });
   $('search').addEventListener('submit',renderSearch);
+  $('chapter-filter').addEventListener('change',()=>{renderDraftTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();});
+  $('topic-filter').addEventListener('change',()=>{state.topicFilter=$('topic-filter').value;if(state.mode==='draft')renderSearch();});
 }
 async function init(){
   try{
-    const [catalog,approved,demo,options]=await Promise.all([
+    const [catalog,approved,demo,options,draft]=await Promise.all([
       load('catalog'),load('records'),load('demo'),
-      fetch(new URL('./options.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('گزینه‌های فرم دریافت نشد');return r.json();})
+      fetch(new URL('./options.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('گزینه‌های فرم دریافت نشد');return r.json();}),
+      fetch(new URL('./data/draft/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس متنی PDF دریافت نشد');return r.json();})
     ]);
     if(catalog.status!=='unverified_catalog_only'||approved.status!=='approved_only'||demo.status!=='demonstration_not_regulations')
       throw Error('ساختار مجموعه داده نامعتبر است');
-    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;
+    if(draft.status !== 'unverified_pdf_transcription') throw Error('ایندکس OCR نامعتبر است');
+    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;state.draft=draft;
+    $('approved-stat').textContent=draft.indexed_pages;
+    const selected=$('chapter-filter');
+    for(const chapter of draft.documents)selected.append(new Option(chapter.title,chapter.id));
+    const allTopics=new Set();for(const chapter of draft.documents)for(const name of Object.keys(chapter.topics))allTopics.add(name);
+    for(const name of [...allTopics].sort((a,b)=>a.localeCompare(b,'fa')))$('topic-filter').append(new Option(name,name));
     initializeForm(options);renderCatalog();renderTopics();
     setEmpty($('search-results'),'یک عبارت برای جست‌وجو وارد کنید.');
   }catch(err){
@@ -185,4 +196,128 @@ async function init(){
     setEmpty($('search-results'),'داده‌ها دریافت نشدند.');
   }
 }
+
+const DRAFT_STATUS = 'استخراج اولیه از PDF؛ اعداد، جداول و نسخه باید با صفحه اصلی بررسی شوند.';
+function renderDraftTopics() {
+  const target=$('topics'), counts=new Map(), chapter=$('chapter-filter').value;
+  $('mode-note').className='caution';
+  $('mode-note').textContent=DRAFT_STATUS+' این فهرست موضوعات است، نه صدها بند جداگانه.';
+  if(!state.draft)return setEmpty(target,'ایندکس PDF در حال آماده‌سازی است.');
+  for(const d of state.draft.documents) {
+    if(chapter && d.id!==chapter)continue;
+    for(const [topic,pages] of Object.entries(d.topics))
+      counts.set(topic,(counts.get(topic)||0)+pages);
+  }
+  $('topics-count').textContent=counts.size+' موضوع';
+  target.replaceChildren();
+  for(const [topic,n] of [...counts].sort((a,b)=>b[1]-a[1])) {
+    const btn=el('button',null,'topic-button');
+    btn.type='button';
+    btn.append(el('strong',topic),el('span',n+' صفحه مرتبط','count'));
+    btn.addEventListener('click',()=>{
+      state.topicFilter=topic;$('topic-filter').value=topic;
+      $('search-panel').scrollIntoView({behavior:'smooth'});
+      renderDraftSearch();
+    });
+    target.append(btn);
+  }
+  if(!counts.size)setEmpty(target,'در این مجموعه موضوعی پیدا نشد.');
+}
+async function draftDocument(d) {
+  if(state.cache.has(d.id))return state.cache.get(d.id);
+  const url=new URL('./data/draft/'+d.id+'.json',document.baseURI);
+  const response=await fetch(url);
+  if(!response.ok)throw Error('ایندکس '+d.title+' دریافت نشد');
+  const result=await response.json();
+  if(result.status!=='unverified_pdf_transcription' || result.document_id!==d.id)
+    throw Error('وضعیت ایندکس '+d.id+' نامعتبر است');
+  state.cache.set(d.id,result);
+  return result;
+}
+function draftResultCard(match) {
+  const page=match.page, d=match.document;
+  const card=el('article',null,'record');
+  const top=el('div',null,'record-top');
+  top.append(el('span','متن PDF · تأییدنشده','tag tag-demo'),
+    el('span','صفحه PDF: '+page.pdf_page,'muted'));
+  card.append(top,el('h3',d.title+' — صفحه '+page.pdf_page));
+  const query=fold($('query').value);
+  const normalized=page.search_text||fold(page.text);
+  const firstTerm=query.split(' ').find(Boolean)||'';
+  const found=firstTerm ? normalized.indexOf(firstTerm) : -1;
+  const sampleStart=found>130?Math.max(0,found-110):0;
+  const sample=page.text.slice(sampleStart,sampleStart+380);
+  card.append(el('p',(sampleStart?'…':'')+sample+(page.text.length>sampleStart+380?'…':''),'summary'));
+  const actions=el('div',null,'source-links');
+  try {
+    const u=new URL(d.pdf_url);
+    if(u.hostname==='raw.githubusercontent.com' && u.pathname.startsWith('/MaxLightner/iran-building-regulations/main/sources/pdfs/')) {
+      u.hash='page='+page.pdf_page;
+      const a=el('a','مشاهده صفحه در PDF اصلی');
+      a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';
+      actions.append(a);
+    }
+  }catch(_e){}
+  card.append(actions);
+  const details=el('details',null,'record-details');
+  details.append(el('summary','نمایش متن کامل این صفحه'));
+  details.append(el('p',page.text||'در این صفحه متن قابل استخراج شناسایی نشد. PDF اصلی را مشاهده کنید.','full-text'));
+  details.append(el('p',DRAFT_STATUS,'caution'));
+  card.append(details);
+  return card;
+}
+function draftScores(pages,query,topic) {
+  const terms=fold(query).split(' ').filter(Boolean);
+  return pages.flatMap(page=>{
+    if(topic && !page.topics.includes(topic))return [];
+    const text=page.search_text||fold(page.text), extras=fold(page.topics.join(' '));
+    if(terms.length && !terms.every(t=>text.includes(t)||extras.includes(t)))return [];
+    let score=0;
+    for(const t of terms)score+=(text.includes(t)?2:0)+(extras.includes(t)?3:0);
+    if(topic)score+=2;
+    return [{page,score}];
+  }).sort((a,b)=>b.score-a.score || a.page.pdf_page-b.page.pdf_page);
+}
+async function renderDraftSearch(){
+  const token=++state.requestToken, target=$('search-results');
+  const query=$('query').value.trim(), topic=$('topic-filter').value, chapter=$('chapter-filter').value;
+  if(fold(query).length<2 && !topic)return setEmpty(target,'عبارت حداقل دو نویسه‌ای وارد کنید یا یک موضوع انتخاب کنید.');
+  if(!state.draft)return setEmpty(target,'فهرست داده‌های PDF بارگذاری نشده است.');
+  target.replaceChildren(el('p','در حال جست‌وجو در PDFها…','empty'));
+  try{
+    const docs=state.draft.documents.filter(d=>!chapter || d.id===chapter);
+    const loaded=await Promise.all(docs.map(d=>draftDocument(d)));
+    if(token!==state.requestToken)return;
+    const result=[];
+    for(const doc of loaded){
+      const metadata=docs.find(d=>d.id===doc.document_id);
+      const matches=draftScores(doc.pages,query,topic);
+      if(matches.length)result.push({document:doc,metadata,matches});
+    }
+    result.sort((a,b)=>b.matches[0].score-a.matches[0].score);
+    if(!result.length)return setEmpty(target,'نتیجه‌ای پیدا نشد. عبارت دیگری را امتحان کنید یا فیلترها را بردارید.');
+    target.replaceChildren(el('p',result.reduce((n,g)=>n+g.matches.length,0)+' صفحه مرتبط در '+result.length+' سند','result-count'));
+    for(const group of result){
+      const section=el('section',null,'search-group');
+      section.append(el('h3',group.document.title+' — '+group.matches.length+' صفحه'));
+      const list=el('div'), button=el('button','نمایش صفحات بیشتر','secondary');
+      button.type='button';
+      let shown=0;
+      const append=()=>{
+        for(const item of group.matches.slice(shown,shown+8))
+          list.append(draftResultCard({page:item.page,document:group.document}));
+        shown+=8;
+        button.hidden=shown>=group.matches.length;
+      };
+      append();
+      section.append(list,button);
+      button.addEventListener('click',append);
+      target.append(section);
+    }
+  }catch(err){
+    if(token!==state.requestToken)return;
+    setEmpty(target,'خطا در جست‌وجو: '+err.message);
+  }
+}
+
 init();
