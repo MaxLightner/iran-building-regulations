@@ -251,10 +251,12 @@ def pdf_records(chapter,data,source_url):
     with tempfile.NamedTemporaryFile(suffix=".pdf") as tf:
         tf.write(data);tf.flush()
         doc=fitz.open(tf.name)
-        pages=[norm(p.get_text("text")) for p in doc]
-    total=sum(len(x) for x in pages)
-    persian=sum("\u0600"<=c<="\u06ff" for x in pages for c in x)
-    letters=sum(c.isalpha() for x in pages for c in x)
+        # Preserve line breaks; clause locators are line-oriented in searchable PDFs.
+        pages=[p.get_text("text") or "" for p in doc]
+    normalized_pages=[norm(x) for x in pages]
+    total=sum(len(x) for x in normalized_pages)
+    persian=sum("\u0600"<=c<="\u06ff" for x in normalized_pages for c in x)
+    letters=sum(c.isalpha() for x in normalized_pages for c in x)
     ratio=persian/max(1,letters)
     if total<5000 or ratio<0.45:
         return [],{"pages":len(pages),"chars":total,"persian_ratio":round(ratio,3),"accepted":False}
