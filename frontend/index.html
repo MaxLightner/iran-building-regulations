@@ -1,1 +1,50 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>مقررات ملی ساختمان — بازسازی منبع</title><style>body{font-family:Tahoma,Arial,sans-serif;background:#f5f6f7;color:#17202a;margin:0}main{max-width:760px;margin:12vh auto;padding:24px}.card{background:white;border:1px solid #dfe4e7;border-radius:16px;padding:28px}h1{margin-top:0;font-size:28px}p{line-height:2;color:#52606b}</style></head><body><main><div class="card"><h1>پایهٔ منابع در حال بازسازی است</h1><p>این نسخه فعلاً هیچ ضابطه، نتیجهٔ جست‌وجو یا پاسخ مهندسی نمایش نمی‌دهد. ابتدا کیفیت و متن واقعی فایل‌های منبع بررسی می‌شود.</p></div></main></body></html>
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مقررات ملی ساختمان — جست‌وجوی مهندسی</title>
+<link rel="stylesheet" href="./styles.css">
+<script src="./app.js" defer></script>
+</head>
+<body>
+<header class="shell">
+  <div>
+    <span class="badge">مقررات ملی ساختمان</span>
+    <h1>پیدا کردن ضابطه، مستقیم و قابل استفاده</h1>
+    <p>سؤال را بنویس؛ نتیجه با شماره مبحث، بند، مقدارهای عددی و ارجاعات مرتبط نمایش داده می‌شود.</p>
+  </div>
+</header>
+<main class="shell">
+  <section class="searchbox card">
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="مثلاً حداقل ارتفاع جان‌پناه چقدر است؟">
+      <select id="chapter"><option value="">همه مباحث</option></select>
+      <button id="go">جست‌وجو</button>
+    </div>
+    <div class="quick">
+      <button data-q="ارتفاع جان پناه">جان‌پناه</button>
+      <button data-q="عرض راه پله">راه‌پله</button>
+      <button data-q="آسانسور ساختمان 8 طبقه">آسانسور</button>
+      <button data-q="بار زنده ساختمان مسکونی">بار زنده</button>
+      <button data-q="مقاومت در برابر حریق">حریق</button>
+      <button data-q="تاسیسات برقی مسیر خروج">برق اضطراری</button>
+      <button data-q="صرفه جویی انرژی پوسته ساختمان">انرژی</button>
+      <button data-q="پارکینگ و دسترسی خودرو">ترافیک</button>
+    </div>
+  </section>
+
+  <section class="systembar">
+    <strong id="status">در حال آماده‌سازی…</strong>
+    <span id="coverage"></span>
+  </section>
+
+  <section id="results" class="results"></section>
+
+  <section class="chapters card">
+    <div class="section-title"><strong>مباحث</strong><span id="chapterCount"></span></div>
+    <div id="chapterGrid" class="chapter-grid"></div>
+  </section>
+</main>
+</body>
+</html>
