@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regulation revision comparison v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "old_record_ids",
+    "new_record_ids",
+    "change_type",
+    "evidence_document_id",
+    "change_summary",
+    "verified_status",
+    "verified_by",
+    "verified_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "old_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "new_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "change_type": {
+      "enum": [
+        "added",
+        "removed",
+        "modified",
+        "renumbered",
+        "split",
+        "merged",
+        "table_changed",
+        "note_changed"
+      ]
+    },
+    "evidence_document_id": {
+      "type": "string"
+    },
+    "change_summary": {
+      "type": "string"
+    },
+    "effective_date_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effective_date_evidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verified_status": {
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    "verified_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verified_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
