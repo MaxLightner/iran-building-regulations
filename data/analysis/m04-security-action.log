@@ -1,75 +1,97 @@
-Traceback (most recent call last):
-  File "/usr/lib/python3.14/urllib/request.py", line 1321, in do_open
-    h.request(req.get_method(), req.selector, req.data, headers,
-    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-              encode_chunked=req.has_header('Transfer-encoding'))
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/http/client.py", line 1367, in request
-    self._send_request(method, url, body, headers, encode_chunked)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/http/client.py", line 1413, in _send_request
-    self.endheaders(body, encode_chunked=encode_chunked)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/http/client.py", line 1362, in endheaders
-    self._send_output(message_body, encode_chunked=encode_chunked)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/http/client.py", line 1122, in _send_output
-    self.send(msg)
-    ~~~~~~~~~^^^^^
-  File "/usr/lib/python3.14/http/client.py", line 1066, in send
-    self.connect()
-    ~~~~~~~~~~~~^^
-  File "/usr/lib/python3.14/http/client.py", line 1508, in connect
-    self.sock = self._context.wrap_socket(self.sock,
-                ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
-                                          server_hostname=server_hostname)
-                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/ssl.py", line 455, in wrap_socket
-    return self.sslsocket_class._create(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        sock=sock,
-        ^^^^^^^^^^
-    ...<5 lines>...
-        session=session
-        ^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/lib/python3.14/ssl.py", line 1076, in _create
-    self.do_handshake()
-    ~~~~~~~~~~~~~~~~~^^
-  File "/usr/lib/python3.14/ssl.py", line 1372, in do_handshake
-    self._sslobj.do_handshake()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'newsmedia.tasnimnews.ir'. (_ssl.c:1081)
+MuPDF error: format error: cannot find object in xref (156 0 R)
 
-During handling of the above exception, another exception occurred:
+MuPDF error: format error: cannot find object in xref (156 0 R)
 
-Traceback (most recent call last):
-  File "/home/runner/work/iran-building-regulations/iran-building-regulations/scripts/extract_m04_security.py", line 134, in <module>
-    if __name__=="__main__": main()
-                             ~~~~^^
-  File "/home/runner/work/iran-building-regulations/iran-building-regulations/scripts/extract_m04_security.py", line 61, in main
-    download()
-    ~~~~~~~~^^
-  File "/home/runner/work/iran-building-regulations/iran-building-regulations/scripts/extract_m04_security.py", line 28, in download
-    with urlopen(req,timeout=45) as res:
-         ~~~~~~~^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
-    return opener.open(url, data, timeout)
-           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/urllib/request.py", line 487, in open
-    response = self._open(req, data)
-  File "/usr/lib/python3.14/urllib/request.py", line 504, in _open
-    result = self._call_chain(self.handle_open, protocol, protocol +
-                              '_open', req)
-  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
-    result = func(*args)
-  File "/usr/lib/python3.14/urllib/request.py", line 1369, in https_open
-    return self.do_open(http.client.HTTPSConnection, req,
-           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        context=self._context)
-                        ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.14/urllib/request.py", line 1324, in do_open
-    raise URLError(err)
-urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'newsmedia.tasnimnews.ir'. (_ssl.c:1081)>
-exit-code=1
+MuPDF error: format error: No common ancestor in structure tree
+
+appendix page 1 49 tesseract_fas_eng 152
+appendix page 2 49 tesseract_fas_eng 1148
+appendix page 3 49 tesseract_fas_eng 1001
+MuPDF error: format error: cannot find object in xref (246 0 R)
+
+MuPDF error: format error: cannot find object in xref (246 0 R)
+
+MuPDF error: format error: cannot find object in xref (216 0 R)
+
+MuPDF error: format error: cannot find object in xref (216 0 R)
+
+MuPDF error: format error: cannot find object in xref (225 0 R)
+
+MuPDF error: format error: cannot find object in xref (225 0 R)
+
+appendix page 4 49 tesseract_fas_eng 873
+MuPDF error: format error: cannot find object in xref (267 0 R)
+
+MuPDF error: format error: cannot find object in xref (267 0 R)
+
+appendix page 5 49 tesseract_fas_eng 1675
+appendix page 6 49 tesseract_fas_eng 188
+MuPDF error: format error: cannot find object in xref (293 0 R)
+
+MuPDF error: format error: cannot find object in xref (293 0 R)
+
+MuPDF error: format error: cannot find object in xref (302 0 R)
+
+MuPDF error: format error: cannot find object in xref (302 0 R)
+
+MuPDF error: format error: cannot find object in xref (335 0 R)
+
+MuPDF error: format error: cannot find object in xref (335 0 R)
+
+MuPDF error: format error: No common ancestor in structure tree
+
+appendix page 7 49 tesseract_fas_eng 1312
+MuPDF error: format error: No common ancestor in structure tree
+
+appendix page 8 49 tesseract_fas_eng 775
+MuPDF error: format error: cannot find object in xref (350 0 R)
+
+MuPDF error: format error: cannot find object in xref (350 0 R)
+
+appendix page 9 49 tesseract_fas_eng 1307
+appendix page 10 49 tesseract_fas_eng 1704
+appendix page 11 49 tesseract_fas_eng 1820
+appendix page 12 49 tesseract_fas_eng 1940
+appendix page 13 49 tesseract_fas_eng 1875
+MuPDF error: format error: cannot find object in xref (359 0 R)
+
+MuPDF error: format error: cannot find object in xref (359 0 R)
+
+appendix page 14 49 tesseract_fas_eng 1745
+appendix page 15 49 tesseract_fas_eng 1538
+appendix page 16 49 tesseract_fas_eng 1813
+appendix page 17 49 tesseract_fas_eng 1764
+appendix page 18 49 tesseract_fas_eng 253
+appendix page 19 49 tesseract_fas_eng 1193
+appendix page 20 49 tesseract_fas_eng 1548
+appendix page 21 49 tesseract_fas_eng 1789
+appendix page 22 49 tesseract_fas_eng 1377
+appendix page 23 49 tesseract_fas_eng 226
+appendix page 24 49 tesseract_fas_eng 1020
+appendix page 25 49 tesseract_fas_eng 1244
+appendix page 26 49 tesseract_fas_eng 1372
+appendix page 27 49 tesseract_fas_eng 510
+appendix page 28 49 tesseract_fas_eng 1008
+appendix page 29 49 tesseract_fas_eng 409
+appendix page 30 49 tesseract_fas_eng 1449
+appendix page 31 49 tesseract_fas_eng 1481
+appendix page 32 49 tesseract_fas_eng 1480
+appendix page 33 49 tesseract_fas_eng 1512
+appendix page 34 49 tesseract_fas_eng 1351
+appendix page 35 49 tesseract_fas_eng 1568
+appendix page 36 49 tesseract_fas_eng 1311
+appendix page 37 49 tesseract_fas_eng 1359
+appendix page 38 49 tesseract_fas_eng 1235
+appendix page 39 49 tesseract_fas_eng 1494
+appendix page 40 49 tesseract_fas_eng 1606
+appendix page 41 49 tesseract_fas_eng 1646
+appendix page 42 49 tesseract_fas_eng 1301
+appendix page 43 49 tesseract_fas_eng 1701
+appendix page 44 49 tesseract_fas_eng 1833
+appendix page 45 49 tesseract_fas_eng 1422
+appendix page 46 49 tesseract_fas_eng 1412
+appendix page 47 49 tesseract_fas_eng 1560
+appendix page 48 49 tesseract_fas_eng 1677
+appendix page 49 49 tesseract_fas_eng 1345
+Appendix extracted, candidate sections 233
+exit-code=0
