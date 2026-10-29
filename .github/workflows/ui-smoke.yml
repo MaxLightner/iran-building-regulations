@@ -1,0 +1,28 @@
+name: Test regulation site controls
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/ui_smoke.cjs"
+      - ".github/workflows/ui-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated DOM test dependency
+        run: npm install --no-save --no-package-lock jsdom@26
+      - name: Check script syntax
+        run: node --check frontend/app.js
+      - name: Exercise search controls in DOM
+        run: node scripts/ui_smoke.cjs
