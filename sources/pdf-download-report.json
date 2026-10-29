@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T12:24:14.469268+00:00",
+  "generated_at": "2026-10-29T12:26:46.261222+00:00",
   "notice": "Not proof of current legal validity or redistribution rights; private archival only.",
   "attempted": 35,
   "saved_new_or_changed": 0,
@@ -9,7 +9,7 @@
       "id": "m1-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-1.pdf",
       "path": "sources/pdfs/m1-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:43.522340+00:00",
+      "checked_at": "2026-10-29T12:26:11.524962+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -18,7 +18,7 @@
       "id": "m2-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-2.pdf",
       "path": "sources/pdfs/m2-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:44.456271+00:00",
+      "checked_at": "2026-10-29T12:26:12.789813+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -27,7 +27,7 @@
       "id": "m4-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2026/08/mabhas4-96.pdf",
       "path": "sources/pdfs/m4-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:48.757969+00:00",
+      "checked_at": "2026-10-29T12:26:13.903244+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -36,7 +36,7 @@
       "id": "m5-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/07/mabhas5-96.pdf",
       "path": "sources/pdfs/m5-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:49.724800+00:00",
+      "checked_at": "2026-10-29T12:26:14.544163+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -45,7 +45,7 @@
       "id": "m7-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/mabhas-7-1401-05.pdf",
       "path": "sources/pdfs/m7-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:50.694416+00:00",
+      "checked_at": "2026-10-29T12:26:15.623726+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -54,7 +54,7 @@
       "id": "m8-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/mabhas8-981.pdf",
       "path": "sources/pdfs/m8-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:51.548620+00:00",
+      "checked_at": "2026-10-29T12:26:16.879850+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -63,7 +63,7 @@
       "id": "m11-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2026/08/mabhas11-2.pdf",
       "path": "sources/pdfs/m11-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:52.207501+00:00",
+      "checked_at": "2026-10-29T12:26:17.522662+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -72,7 +72,7 @@
       "id": "m15-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-15.pdf",
       "path": "sources/pdfs/m15-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:53.227901+00:00",
+      "checked_at": "2026-10-29T12:26:18.678686+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -81,7 +81,7 @@
       "id": "m16-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/1402-08/mabhas-16-1402-08.pdf",
       "path": "sources/pdfs/m16-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:53.870884+00:00",
+      "checked_at": "2026-10-29T12:26:19.758645+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -90,7 +90,7 @@
       "id": "m18-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/mabhas-18-1402.pdf",
       "path": "sources/pdfs/m18-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:54.835033+00:00",
+      "checked_at": "2026-10-29T12:26:20.430237+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -99,7 +99,7 @@
       "id": "m19-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/mabhas19-v6.pdf",
       "path": "sources/pdfs/m19-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:55.487779+00:00",
+      "checked_at": "2026-10-29T12:26:21.540402+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -108,7 +108,7 @@
       "id": "m20-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/mabhas-20-1402.pdf",
       "path": "sources/pdfs/m20-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:56.150509+00:00",
+      "checked_at": "2026-10-29T12:26:22.823800+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -117,7 +117,7 @@
       "id": "m21-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/1402-08/mabhas-21-1402-08.pdf",
       "path": "sources/pdfs/m21-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:57.117881+00:00",
+      "checked_at": "2026-10-29T12:26:24.061101+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -126,7 +126,7 @@
       "id": "m23-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2026/08/mabhas-23-2.pdf",
       "path": "sources/pdfs/m23-pdf.pdf",
-      "checked_at": "2026-10-29T12:23:57.776060+00:00",
+      "checked_at": "2026-10-29T12:26:25.135097+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -135,7 +135,7 @@
       "id": "m5-archive-1392",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-5.pdf",
       "path": "sources/pdfs/m5-archive-1392.pdf",
-      "checked_at": "2026-10-29T12:23:58.865999+00:00",
+      "checked_at": "2026-10-29T12:26:25.794264+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -144,7 +144,7 @@
       "id": "m16-archive-1391",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-16.pdf",
       "path": "sources/pdfs/m16-archive-1391.pdf",
-      "checked_at": "2026-10-29T12:23:59.855348+00:00",
+      "checked_at": "2026-10-29T12:26:26.870478+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -153,7 +153,7 @@
       "id": "m18-archive-1390",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-18.pdf",
       "path": "sources/pdfs/m18-archive-1390.pdf",
-      "checked_at": "2026-10-29T12:24:00.525252+00:00",
+      "checked_at": "2026-10-29T12:26:27.545747+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -162,7 +162,7 @@
       "id": "m19-archive-1389",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-19.pdf",
       "path": "sources/pdfs/m19-archive-1389.pdf",
-      "checked_at": "2026-10-29T12:24:01.171137+00:00",
+      "checked_at": "2026-10-29T12:26:28.854128+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -171,7 +171,7 @@
       "id": "m20-archive-1384",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-20.pdf",
       "path": "sources/pdfs/m20-archive-1384.pdf",
-      "checked_at": "2026-10-29T12:24:01.811774+00:00",
+      "checked_at": "2026-10-29T12:26:30.195393+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -180,7 +180,7 @@
       "id": "m21-archive-1391",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-21.pdf",
       "path": "sources/pdfs/m21-archive-1391.pdf",
-      "checked_at": "2026-10-29T12:24:02.764718+00:00",
+      "checked_at": "2026-10-29T12:26:31.168619+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -189,7 +189,7 @@
       "id": "m19-archive-1399",
       "source_url": "https://inbr.ir/upload/mabhas/1402-08/mabhas19-1402-08.pdf",
       "path": "sources/pdfs/m19-archive-1399.pdf",
-      "checked_at": "2026-10-29T12:24:03.415376+00:00",
+      "checked_at": "2026-10-29T12:26:31.821641+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -198,7 +198,7 @@
       "id": "m12-legacy-catalog-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-12.pdf",
       "path": "sources/pdfs/m12-legacy-catalog-pdf.pdf",
-      "checked_at": "2026-10-29T12:24:04.371907+00:00",
+      "checked_at": "2026-10-29T12:26:33.077319+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -207,7 +207,7 @@
       "id": "m17-legacy-catalog-pdf",
       "source_url": "https://inbr.ir/upload/mabhas/mabhas17-1401-07.pdf",
       "path": "sources/pdfs/m17-legacy-catalog-pdf.pdf",
-      "checked_at": "2026-10-29T12:24:05.332984+00:00",
+      "checked_at": "2026-10-29T12:26:34.373247+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -216,7 +216,7 @@
       "id": "m22-legacy-catalog-pdf",
       "source_url": "https://inbr.ir/wp-content/uploads/2016/08/mabhas-22.pdf",
       "path": "sources/pdfs/m22-legacy-catalog-pdf.pdf",
-      "checked_at": "2026-10-29T12:24:05.972162+00:00",
+      "checked_at": "2026-10-29T12:26:35.020989+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -225,7 +225,7 @@
       "id": "m7-errata-asset",
       "source_url": "https://inbr.ir/wp-content/uploads/2026/05/7527201762627165953_390084042075871.pdf",
       "path": "sources/pdfs/m7-errata-asset.pdf",
-      "checked_at": "2026-10-29T12:24:06.611234+00:00",
+      "checked_at": "2026-10-29T12:26:36.086425+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -234,7 +234,7 @@
       "id": "m11-errata-asset",
       "source_url": "https://inbr.ir/wp-content/uploads/2025/10/اصلاحیه-مبحث-11-تاریخ-08-08-1403.pdf",
       "path": "sources/pdfs/m11-errata-asset.pdf",
-      "checked_at": "2026-10-29T12:24:07.576138+00:00",
+      "checked_at": "2026-10-29T12:26:36.746017+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -243,7 +243,7 @@
       "id": "m19-appendix-1",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست1-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان.pdf",
       "path": "sources/pdfs/m19-appendix-1.pdf",
-      "checked_at": "2026-10-29T12:24:08.542725+00:00",
+      "checked_at": "2026-10-29T12:26:37.398333+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -252,7 +252,7 @@
       "id": "m19-appendix-2",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست2-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان.pdf",
       "path": "sources/pdfs/m19-appendix-2.pdf",
-      "checked_at": "2026-10-29T12:24:09.213482+00:00",
+      "checked_at": "2026-10-29T12:26:38.633562+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -261,7 +261,7 @@
       "id": "m19-appendix-3",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-3-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان-1.pdf",
       "path": "sources/pdfs/m19-appendix-3.pdf",
-      "checked_at": "2026-10-29T12:24:09.877314+00:00",
+      "checked_at": "2026-10-29T12:26:39.716334+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -270,7 +270,7 @@
       "id": "m19-appendix-4",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-4-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان.pdf",
       "path": "sources/pdfs/m19-appendix-4.pdf",
-      "checked_at": "2026-10-29T12:24:10.520669+00:00",
+      "checked_at": "2026-10-29T12:26:40.813916+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -279,7 +279,7 @@
       "id": "m19-appendix-5",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-5-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان-1.pdf",
       "path": "sources/pdfs/m19-appendix-5.pdf",
-      "checked_at": "2026-10-29T12:24:11.172421+00:00",
+      "checked_at": "2026-10-29T12:26:42.087996+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -288,7 +288,7 @@
       "id": "m19-appendix-6",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-6-ویرایش-پنجم-مبحث-نوزدهم-دی-ماه-1404.pdf",
       "path": "sources/pdfs/m19-appendix-6.pdf",
-      "checked_at": "2026-10-29T12:24:11.842369+00:00",
+      "checked_at": "2026-10-29T12:26:43.155130+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -297,7 +297,7 @@
       "id": "m19-appendix-7",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-7-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان.pdf",
       "path": "sources/pdfs/m19-appendix-7.pdf",
-      "checked_at": "2026-10-29T12:24:12.507998+00:00",
+      "checked_at": "2026-10-29T12:26:43.822620+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -306,7 +306,7 @@
       "id": "m19-appendix-8",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-8-ویرایش-پنجم-مبحث-نوزدهم-دی-ماه-1404.pdf",
       "path": "sources/pdfs/m19-appendix-8.pdf",
-      "checked_at": "2026-10-29T12:24:13.137396+00:00",
+      "checked_at": "2026-10-29T12:26:44.469274+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
@@ -315,7 +315,7 @@
       "id": "m19-appendix-9",
       "source_url": "https://inbr.ir/wp-content/uploads/2023/11/پیوست-9-ویرایش-پنجم-مبحث-نوزدهم-مقررات-ملی-ساختمان.pdf",
       "path": "sources/pdfs/m19-appendix-9.pdf",
-      "checked_at": "2026-10-29T12:24:13.819703+00:00",
+      "checked_at": "2026-10-29T12:26:45.129844+00:00",
       "outcome": "failed",
       "http_status": 403,
       "error": "HTTP 403"
