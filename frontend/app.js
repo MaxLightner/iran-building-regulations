@@ -285,7 +285,7 @@ async function renderDraftSearch(){
   if(!state.draft)return setEmpty(target,'فهرست داده‌های PDF بارگذاری نشده است.');
   target.replaceChildren(el('p','در حال جست‌وجو در PDFها…','empty'));
   try{
-    const docs=state.draft.documents.filter(d=>!chapter || d.id===chapter);
+    const docs=state.draft.documents.filter(d=>(!chapter || d.id===chapter) && (!topic || (d.topics && d.topics[topic])));
     const loaded=await Promise.all(docs.map(d=>draftDocument(d)));
     if(token!==state.requestToken)return;
     const result=[];
@@ -297,21 +297,27 @@ async function renderDraftSearch(){
     result.sort((a,b)=>b.matches[0].score-a.matches[0].score);
     if(!result.length)return setEmpty(target,'نتیجه‌ای پیدا نشد. عبارت دیگری را امتحان کنید یا فیلترها را بردارید.');
     target.replaceChildren(el('p',result.reduce((n,g)=>n+g.matches.length,0)+' صفحه مرتبط در '+result.length+' سند','result-count'));
-    for(const group of result){
-      const section=el('section',null,'search-group');
-      section.append(el('h3',group.document.title+' — '+group.matches.length+' صفحه'));
+    for(const [groupNumber,group] of result.entries()){
+      const section=el('details',null,'search-group');
+      const heading=el('summary');
+      heading.textContent=group.document.title+' — '+group.matches.length+' صفحه مرتبط';
+      section.append(heading);
       const list=el('div'), button=el('button','نمایش صفحات بیشتر','secondary');
       button.type='button';
       let shown=0;
       const append=()=>{
-        for(const item of group.matches.slice(shown,shown+8))
+        for(const item of group.matches.slice(shown,shown+5))
           list.append(draftResultCard({page:item.page,document:group.document}));
-        shown+=8;
+        shown+=5;
         button.hidden=shown>=group.matches.length;
       };
-      append();
       section.append(list,button);
       button.addEventListener('click',append);
+      section.addEventListener('toggle',()=>{if(section.open && !shown)append();});
+      if(groupNumber===0){
+        section.open=true;
+        append();
+      }
       target.append(section);
     }
   }catch(err){
