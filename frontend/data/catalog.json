@@ -1,0 +1,242 @@
+[
+  {
+    "number": 1,
+    "id": "m01",
+    "title": "تعاریف",
+    "edition": "1392",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 2,
+    "id": "m02",
+    "title": "نظامات اداری",
+    "edition": "1384",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 3,
+    "id": "m03",
+    "title": "حفاظت ساختمان‌ها در مقابل حریق",
+    "edition": "1395",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 4,
+    "id": "m04",
+    "title": "الزامات عمومی ساختمان",
+    "edition": "1396",
+    "status": "selected_rules",
+    "record_count": 25,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 5,
+    "id": "m05",
+    "title": "مصالح و فرآورده‌های ساختمانی",
+    "edition": "1396",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 6,
+    "id": "m06",
+    "title": "بارهای وارد بر ساختمان",
+    "edition": "1398",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 7,
+    "id": "m07",
+    "title": "ژئوتکنیک و مهندسی پی",
+    "edition": "1400",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 8,
+    "id": "m08",
+    "title": "طرح و اجرای ساختمان‌های با مصالح بنایی",
+    "edition": "1398",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 9,
+    "id": "m09",
+    "title": "طرح و اجرای ساختمان‌های بتن‌آرمه",
+    "edition": "1399",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 10,
+    "id": "m10",
+    "title": "طرح و اجرای ساختمان‌های فولادی",
+    "edition": "1401",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 11,
+    "id": "m11",
+    "title": "طرح و اجرای صنعتی ساختمان‌ها",
+    "edition": "1400",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 12,
+    "id": "m12",
+    "title": "ایمنی و حفاظت کار در حین اجرا",
+    "edition": "1403",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 13,
+    "id": "m13",
+    "title": "طرح و اجرای تأسیسات برقی ساختمان‌ها",
+    "edition": "1395",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 14,
+    "id": "m14",
+    "title": "تأسیسات مکانیکی",
+    "edition": "1396",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 15,
+    "id": "m15",
+    "title": "آسانسورها و پلکان برقی",
+    "edition": "1392",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 16,
+    "id": "m16",
+    "title": "تأسیسات بهداشتی",
+    "edition": "1396",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 17,
+    "id": "m17",
+    "title": "سامانه گاز طبیعی در ساختمان",
+    "edition": "1403",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 18,
+    "id": "m18",
+    "title": "عایق‌بندی و تنظیم صدا",
+    "edition": "1396",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 19,
+    "id": "m19",
+    "title": "مدیریت انرژی در ساختمان",
+    "edition": "1404",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 20,
+    "id": "m20",
+    "title": "علائم و تابلوها",
+    "edition": "1396",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 21,
+    "id": "m21",
+    "title": "پدافند غیرعامل",
+    "edition": "1395",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 22,
+    "id": "m22",
+    "title": "مراقبت و نگهداری از ساختمان‌ها",
+    "edition": "1392",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 23,
+    "id": "m23",
+    "title": "الزامات ترافیکی ساختمان‌ها",
+    "edition": "1401",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  },
+  {
+    "number": 24,
+    "id": "m24",
+    "title": "انطباق شهری ساختمان",
+    "edition": "1404",
+    "status": "pending",
+    "record_count": 0,
+    "source": null,
+    "method": null
+  }
+]
