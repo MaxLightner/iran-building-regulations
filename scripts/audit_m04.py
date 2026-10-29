@@ -10,6 +10,7 @@ COND=re.compile(r"(?:در\s+صورتی\s+که|چنانچه|اگر|به\s+شرط|
 CROSS=re.compile(r"(?:مبحث|استاندارد)\s+[\w۰-۹\-‌]{2,40}")
 TABLE=re.compile(r"(?:جدول|شکل|نمودار|تصویر|نقشه|دیاگرام)")
 LATIN=re.compile(r"[A-Za-z]{2,}")
+NUMERIC=re.compile(r"(?<!\\w)[\\d۰-۹٠-٩]+(?:[/.٫][\\d۰-۹٠-٩]+)?")
 
 def load(path):
     return json.loads((ROOT/path).read_text(encoding="utf-8"))
