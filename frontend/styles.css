@@ -55,3 +55,14 @@ label{display:block;font-weight:600;font-size:14px}.fields label{display:flex;fl
 .knowledge-conditions>strong{font-size:13px}
 .knowledge-conditions ul{margin:7px 0 0;padding-inline-start:22px}
 .knowledge-conditions li{margin:4px 0;color:var(--muted);font-size:13px}
+
+/* Phase 4: project-specific relevance explanations */
+.project-fit{margin:12px 0;padding:11px 14px;border-radius:9px;border:1px solid var(--line);font-size:13px}
+.project-fit strong{display:block;margin-bottom:4px}
+.project-fit ul{margin:5px 0 0;padding-inline-start:20px}
+.project-fit li{margin:3px 0}
+.project-fit-high{background:#edf7f0;border-color:#b9d8c2}
+.project-fit-high strong{color:#245d40}
+.project-fit-medium{background:#f3f7f8;border-color:#cddde1}
+.project-fit-medium strong{color:var(--accent)}
+.project-fit-general{background:#fafafa}
