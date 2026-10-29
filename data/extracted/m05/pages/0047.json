@@ -1,0 +1,11 @@
+{
+  "pdf_page": 47,
+  "source_sha256": "ed7d2c1cdd145e724696ab0d0abf73eee9158b4dcde3218b42f20292e9c76154",
+  "method": "tesseract_fas_eng_166dpi_psm6",
+  "ocr_text": "نك«",
+  "char_count": 3,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}
