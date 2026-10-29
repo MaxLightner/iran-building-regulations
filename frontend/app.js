@@ -459,13 +459,16 @@ async function renderKnowledgeTopics(){
       for(const r of doc.records)for(const id of r.topics)counts.set(id,(counts.get(id)||0)+1);
     }
   }
-  const rows=[...counts].filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
-  $('topics-count').textContent=rows.length+' موضوع';
+  const rows=[...counts].filter(x=>x[1]>0)
+    .map(([id,n])=>[id,n,projectTopicBias(id)])
+    .sort((a,b)=>b[2]-a[2] || b[1]-a[1]);
+  $('topics-count').textContent=rows.length+' موضوع'+(state.project?' · مرتب‌شده برای پروژه':'');
   target.replaceChildren();
-  for(const [id,n] of rows){
+  for(const [id,n,bias] of rows){
     const t=state.ontology.topics[id]; if(!t)continue;
     const btn=el('button',null,'topic-button');btn.type='button';
-    btn.append(el('strong',t.label),el('span',n+' رکورد','count'));
+    const meta=(state.project&&bias>0?'اولویت پروژه · ':'')+n+' رکورد';
+    btn.append(el('strong',t.label),el('span',meta,'count'));
     btn.addEventListener('click',()=>{
       $('topic-filter').value=t.label;state.topicFilter=t.label;
       $('search-panel').scrollIntoView({behavior:'smooth'});renderKnowledgeSearch();
@@ -474,7 +477,7 @@ async function renderKnowledgeTopics(){
   }
   if(!rows.length)setEmpty(target,'برای این مبحث هنوز موضوع ساختاریافته‌ای وجود ندارد.');
 }
-function knowledgeScore(record,query,selectedTopicId){
+function knowledgeScore(record,query,selectedTopicId,projectScore=0){
   const terms=fold(query).split(' ').filter(Boolean);
   const resolved=resolveQueryTopics(query);
   if(selectedTopicId && !record.topics.includes(selectedTopicId))return null;
@@ -489,12 +492,24 @@ function knowledgeScore(record,query,selectedTopicId){
   let score=(direct?35:0)+(related?7:0)+(selectedTopicId?20:0);
   for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(facts.includes(t)?10:0)+(conditions.includes(t)?8:0)+(summary.includes(t)?6:0)+(text.includes(t)?2:0);
   if(record.locator)score+=1;
+  score+=projectScore;
   return score;
 }
-function knowledgeResultCard(record){
+function knowledgeResultCard(record,fit={score:0,level:'general',reasons:[]}){
   const card=el('article',null,'record'), top=el('div',null,'record-top');
   top.append(el('span','دانش ساختاریافته','tag'),el('span',record.locator||('صفحه '+record.source.pdf_page),'muted'));
   card.append(top,el('h3',record.title),el('p',record.summary||'','summary'));
+  if(state.project){
+    const box=el('div',null,'project-fit project-fit-'+fit.level);
+    const labels={high:'مرتبط‌تر با پروژه',medium:'مرتبط با پروژه',general:'ارتباط عمومی / نیازمند بررسی'};
+    box.append(el('strong',labels[fit.level]||labels.general));
+    if(fit.reasons?.length){
+      const ul=el('ul');
+      for(const reason of fit.reasons)ul.append(el('li',reason));
+      box.append(ul);
+    }else box.append(el('span','این نتیجه بر اساس موضوع کلی رتبه‌بندی شده و شرط اختصاصی واضحی از متن استخراج نشده است.','muted'));
+    card.append(box);
+  }
   const topicRow=el('div',null,'knowledge-topics');
   for(const label of record.topic_labels||[])topicRow.append(el('span',label,'knowledge-chip'));
   card.append(topicRow);
@@ -542,12 +557,18 @@ async function renderKnowledgeSearch(){
   target.replaceChildren(el('p','در حال جست‌وجو در دانش مقررات…','empty'));
   try{
     const docs=state.knowledge.documents.filter(d=>!chapter||d.id===chapter);
-    const loaded=await Promise.all(docs.map(knowledgeDocument));
+    const loaded=await Promise.all(docs.map(async d=>({
+      doc:await knowledgeDocument(d),
+      rules:await applicabilityDocument(d.id)
+    })));
     if(token!==state.requestToken)return;
     const groups=[];
-    for(const doc of loaded){
-      const matches=doc.records.map(r=>({r,score:knowledgeScore(r,query,selectedTopicId)}))
-        .filter(x=>x.score!==null).sort((a,b)=>b.score-a.score).slice(0,35);
+    for(const item of loaded){
+      const doc=item.doc;
+      const matches=doc.records.map(r=>{
+        const fit=projectFit(item.rules.get(r.id),r);
+        return {r,fit,score:knowledgeScore(r,query,selectedTopicId,fit.score)};
+      }).filter(x=>x.score!==null).sort((a,b)=>b.score-a.score).slice(0,35);
       if(matches.length)groups.push({doc,matches});
     }
     groups.sort((a,b)=>b.matches[0].score-a.matches[0].score);
@@ -558,7 +579,7 @@ async function renderKnowledgeSearch(){
       const section=el('details',null,'search-group'),heading=el('summary');
       heading.textContent=g.doc.document.title+' — '+g.matches.length+' نتیجه';section.append(heading);
       const list=el('div'),more=el('button','نمایش نتایج بیشتر','secondary');more.type='button';let shown=0;
-      const append=()=>{for(const x of g.matches.slice(shown,shown+5))list.append(knowledgeResultCard(x.r));shown+=5;more.hidden=shown>=g.matches.length;};
+      const append=()=>{for(const x of g.matches.slice(shown,shown+5))list.append(knowledgeResultCard(x.r,x.fit));shown+=5;more.hidden=shown>=g.matches.length;};
       section.append(list,more);more.addEventListener('click',append);
       section.addEventListener('toggle',()=>{if(section.open&&!shown)append();});
       if(groupNo===0){section.open=true;append();}
