@@ -37,6 +37,23 @@ def norm(s:str)->str:
 def refnorm(s):
     return re.sub(r"\s*[-–—]\s*","-",norm(s))
 
+def canonical_ref(chapter,s):
+    r=refnorm(s)
+    parts=r.split("-")
+    if len(parts)<2:return r
+    try: nums=[int(x) for x in parts]
+    except ValueError:return r
+    if nums[0]==chapter:return "-".join(str(x) for x in nums)
+    if nums[-1]==chapter:return "-".join(str(x) for x in reversed(nums))
+    return r
+
+def looks_like_locator(chapter,s):
+    parts=refnorm(s).split("-")
+    if len(parts)<2 or len(parts)>7:return False
+    try: nums=[int(x) for x in parts]
+    except ValueError:return False
+    return nums[0]==chapter or nums[-1]==chapter
+
 def safe_get(url,binary=False):
     r=session.get(url,timeout=TIMEOUT,allow_redirects=True)
     r.raise_for_status()
@@ -117,7 +134,7 @@ def html_records(chapter,url):
             m=REF_RE.search(text)
             if m:
                 flush();order+=1
-                current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":refnorm(m.group("ref")),
+                current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":canonical_ref(chapter,m.group("ref")),
                          "title":norm(REF_RE.sub("",text)).strip(" -–—:؛") or text,"kind":"clause","_parts":[],"source_url":final}
             continue
         if e.name=="table":
@@ -129,7 +146,7 @@ def html_records(chapter,url):
             if not text:continue
             m=TABLE_RE.search(last_heading+" "+text)
             flush();order+=1
-            current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":refnorm(m.group("ref")) if m else None,
+            current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":canonical_ref(chapter,m.group("ref")) if m else None,
                      "title":last_heading or "جدول","kind":"table","_parts":[text],"source_url":final}
             flush();continue
         # Paragraph/list that begins with a clause ref starts a new record.
@@ -137,8 +154,8 @@ def html_records(chapter,url):
         if m:
             flush();order+=1
             body=norm(text[m.end():]).strip(" -–—:؛")
-            current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":refnorm(m.group("ref")),
-                     "title":last_heading or f"بند {refnorm(m.group('ref'))}","kind":"clause","_parts":[body],"source_url":final}
+            current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":canonical_ref(chapter,m.group("ref")),
+                     "title":last_heading or f"بند {canonical_ref(chapter,m.group('ref'))}","kind":"clause","_parts":[body],"source_url":final}
         elif current:
             current["_parts"].append(text)
     flush()
@@ -257,12 +274,15 @@ def pdf_records(chapter,data,source_url):
         for raw in pt.splitlines():
             line=norm(raw)
             if len(line)<2:continue
-            m=REF_RE.match(line)
-            if m:
+            m=REF_RE.search(line)
+            if m and looks_like_locator(chapter,m.group("ref")):
                 flush();order+=1
-                body=norm(line[m.end():]).strip(" -–—:؛")
-                current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":refnorm(m.group("ref")),
-                         "title":last_heading or f"بند {refnorm(m.group('ref'))}","kind":"clause","_parts":[body],
+                before=norm(line[:m.start()]).strip(" -–—:؛")
+                after=norm(line[m.end():]).strip(" -–—:؛")
+                body=after if len(after)>=len(before) else before
+                locator=canonical_ref(chapter,m.group("ref"))
+                current={"id":f"m{chapter:02d}-{order:05d}","chapter":chapter,"locator":locator,
+                         "title":last_heading or f"بند {locator}","kind":"clause","_parts":[body],
                          "page":page_i,"source_url":source_url}
             elif current:
                 current["_parts"].append(line)
@@ -284,10 +304,12 @@ def crossrefs(chapter,text,locator=None):
                 seen.add(key);refs.append({"type":"chapter","chapter":n,"label":f"مبحث {n}"})
     # Explicit local/internal references.
     for m in REF_RE.finditer(text):
-        r=refnorm(m.group("ref"))
+        raw_ref=refnorm(m.group("ref"))
+        first=int(raw_ref.split("-")[0])
+        last=int(raw_ref.split("-")[-1])
+        target_chapter=first if 1<=first<=24 else (last if 1<=last<=24 else chapter)
+        r=canonical_ref(target_chapter,raw_ref)
         if r==locator:continue
-        first=int(r.split("-")[0])
-        target_chapter=first if 1<=first<=24 else chapter
         key=("ref",target_chapter,r)
         if key not in seen:
             seen.add(key);refs.append({"type":"ref","chapter":target_chapter,"ref":r,"label":f"بند {r}"})
@@ -370,6 +392,8 @@ def build():
              "record_count":len(records),"source":chosen,"method":method,"attempts":attempts}
         catalog.append(cat);all_records.extend(records)
         print(f"M{n:02d} {status} records={len(records)} source={chosen}",flush=True)
+        if status!="ready":
+            print("  attempts="+json.dumps(attempts,ensure_ascii=False)[:5000],flush=True)
         time.sleep(.15)
     coverage={"chapters_total":24,"chapters_ready":sum(x["status"]=="ready" for x in catalog),
               "records_total":sum(x["record_count"] for x in catalog),
