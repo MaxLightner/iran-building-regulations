@@ -11,7 +11,7 @@ const rule={mentions:{uses:['مسکونی'],structures:['بتن‌آرمه'],sta
  {field:'floors',operator:'gte',value:5,unit:'طبقه',evidence:'حداقل 5 طبقه',confidence:'candidate'}
 ]};
 const p1={city:'مشهد',use:'مسکونی',structure:'بتن‌آرمه',area:4500,floors:7,basements:2,stage:'طراحی'};
-const p2={city:'تهران',use:'تجاری',structure:'فولادی',area:4500,floors:2,basements:0,stage:'بهره‌برداری'};
+const p2={city:'تهران',use:'تجاری',structure:'بنایی',area:4500,floors:2,basements:0,stage:'بهره‌برداری'};
 const a=projectFit(rule,record,p1), b=projectFit(rule,record,p2);
 assert.ok(a.score>b.score,'matching project must rank higher');
 assert.equal(a.level,'high');
