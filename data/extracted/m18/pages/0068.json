@@ -1,0 +1,11 @@
+{
+  "pdf_page": 68,
+  "source_sha256": "56ad03bf6efc0f6afbc49d645077d4fbd87db7c715e9f0daa43c8d50d4e1dfbb",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "108\n\n5 0 15 2 2 30 35 40 45 50 55 60\n\n‎Ry-R‏ کسرشده از شاخص کاهش صدای بیشتر\n\n‎1:1 000 0\n\n‎1 500 0\n1:250 0\n1.125 0\n\n‎1 6 0\n\n‎1: 32 0\n\n‎1 16 000\n\n‎1۰8 0\n\n‎1.4 0\n\n‎1۰2 0\n\n‎1:1 0\n\n‎1:0\n\n‎1 0\n\n‎4: 125\ni 1:64\n1:32\n\n‎1:16\n\n‎1:8\n\n‎aie\n\n‏شکل پ-۲-۱: نمودار تخمین شاخص کاهش صدای جداکننده مرکب\n\n‎oF",
+  "char_count": 286,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

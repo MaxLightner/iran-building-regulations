@@ -1,0 +1,9 @@
+{
+  "pdf_page": 166,
+  "source_sha256": "6593dd496e226a80bb23097f84c2444b9ac1707e96a5babd6520297287ebf76d",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "بحث هشت\n\nWind tower\nWind load\nSnow load\nService load\nGravity load\nIn-plane load\nLateral load\nOut-of-plane load\nEarthquake load\nLive load\nFactored load\nDead load\nOpening\nLoading\n\nFlange\n\nConcrete\n\nLevelling concrete\nLightweight concrete\nWall strap\n\nLoad bearing block\n\nConcrete masonry unit\n\nCellular concrete unit\n\nHollow concrete unit\nClay block\nCeiling (roof) block",
+  "char_count": 367,
+  "quality_flags": [],
+  "review_status": "unverified_source_transcription"
+}

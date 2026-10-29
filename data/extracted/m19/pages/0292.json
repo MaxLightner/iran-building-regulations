@@ -1,0 +1,11 @@
+{
+  "pdf_page": 292,
+  "source_sha256": "6274d26ac5b6cb68fc22b964455c746dbb1441a8c01c17206040aab93fd2193b",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "جدول پ۶-۱۱ ضرایب انتقال حرارت خطی لا دیوارهای مجاور خاک ‎[W/(M.K)]‏\n\n۳۹\n\n۱۴۰\n\n۱۳۰\n\n۱/۵\n\n۱/۸۵\n\n۴۵\n\n+O\n\n۶۴\n\n۱۶۵\n\n۱۰\n\n۱۳۵\n\n۱/۵\n\n۰/۸۵\n\n۰۸۵\n\n۱۵\n\nضریب انتقال حرارت سطحی دیوار [(۷//«2.1]\n\n۶۵\n۲\n۰۷۹\n\n۱/۵\n\n۱۷\n\n۱۰\n\n۱۳۰\n\n۱/۵\n\n۸۵\n\n۰۴۵\n\n“XO\n\n۹\nتا\n۹۹\n\n۲۵\n\nya\n\n۱۶۵\n\n۳۵\n\n۱/۳۰\n\n۱/۵\n\n۰۷۵\n\n۰۲۵\n\n۱۹\n\n۳/۳۵\n\n۱/۰\n\n۱۶۵\n\n۱۸۴۵\n\n۱/۳۰\n\n۱/۰\n\n“FO\n\n۳۷۶\n\n۱/۳۰\n1\n۱۳۹\n\n۲۴۳۵\n\n۲/۵\n\n۱/۵\n\n۱۶۵\n\n۱/۴۵\n\n۱/۳۵\n\n۰۵۵\n\n۰۳۵\n\n۱۰\nتا\n۱۳۷۹\n\n۷۶۵\n\nVFO\n\n۳/۵\n\nVAs\n\n۱۶۵\n\n۱۴۰\n\nmary\n\n۱/۰\nتا\n۳/۹\n۳/۰\n\n۲۶۵\n\n۲۳/۴۵\n\nvy\n\n۱۳/۰\n\n۱۸۵\n\n۱۳۰\n\n۰۷۵\n\nFO\n\n۳۲۳۰\n۳\n\n۲۵۹\n\nYAO\n\n۲۶۵\n\n۲۳۵\n\n۲/۵\n\n۱۵\n\n۱۷۵\n\n۱/۴۵\n\n۱/۵\n\n“Md\n\n* ۵۵\n\nمبحث نوزدهم\n\nYe\n\n۳۸۰\n\n۲۵۵\n\n۲۳۰\n\n۳۰\n\nya\n\n2\n\n۱/۳۰\n\n+80\n\n۳۰\n\n۳۷.\n\n۳۴۰\n\n۳۰\n\nم2\n\n۳۸\n\nve\n\n۱۷۵\n\n۱۴۰\n\n۱۳۰",
+  "char_count": 643,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

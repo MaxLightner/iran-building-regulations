@@ -1,0 +1,11 @@
+{
+  "pdf_page": 60,
+  "source_sha256": "6593dd496e226a80bb23097f84c2444b9ac1707e96a5babd6520297287ebf76d",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "sie ‏بحث‎\n\nجدول ۴-۲-۸ مقاومت فشاری مشخصه واحد بنایی. ,,7. بر حسب مقاومت فشاری آجر رسی\n\n۵-۲-۸ مدول گسیختگی واحد بنایی\nمدول گسیختگی واحد بنایی با توجه به نوع مصالح بنایی؛ امتداد تنش و نوع ملات مصرفی (بند ۲-۸-\n۲-۶-۲) بر اساس جدول ۶-۲-۸ تخمین زده می‌شود.",
+  "char_count": 250,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

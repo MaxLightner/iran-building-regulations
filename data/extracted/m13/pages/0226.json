@@ -1,0 +1,12 @@
+{
+  "pdf_page": 226,
+  "source_sha256": "a11dc068a2c48b8cd2799dc8eecff14c0ba11024ac350fd8c51b0941fb7f8c40",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مبحث سیزدهم\n\n7\nو\n\nشکل ‎VAY Vig‏ خط هوایی فشار قوی ‎PY)‏ کیلوولت و بالاتر)\n\nرزی",
+  "char_count": 78,
+  "quality_flags": [
+    "short_text_needs_visual_review",
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

@@ -1,0 +1,9 @@
+{
+  "pdf_page": 239,
+  "source_sha256": "ba09a6f718cd906b8b0a75c0ff600eb3924f89c58786ec76b23c76532dfcb873",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مکش القایی\nمکش طبیعی\n\nمواد سوختنی\n\nمواد غیرسوختنی\nموتورخانه\n\nمورد تأیید\n\nمهار\n\nنفوذ هوا به داخل\n\nواحد تقطیر\n\nوزش\n\n‎Alig‏ قطع خودکار گاز\n\n‏هوا\n\n‎Recovered refrigerant\nRecycled refrigerant\nAtmospheric tank\nPressure vessel\n\n‎Supply tank\n\n‎Gravity tank\n\n‎Storage tank\n\n‎Auxiliary tank\nInterlock\n\n‎Burner\n\n‎Flue\n\n‎Draft\n\n‎Induced draft\n\n‎Natural draft\n\n‎Fire compartment\nCombustible materials\nNoncombustible materials\nMachinery room\nApproved\n\n‎Anchor\n\n‎Infiltration\n‎Condensing unit\nConvection\n\n‎Water hammer arrestor\nAutomatic gas shutoff device\nFitting\n\n‎Compression fitting\n\n‎Air\n\n‎yy)",
+  "char_count": 583,
+  "quality_flags": [],
+  "review_status": "unverified_source_transcription"
+}

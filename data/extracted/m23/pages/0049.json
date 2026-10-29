@@ -1,0 +1,11 @@
+{
+  "pdf_page": 49,
+  "source_sha256": "b71f6146929375fe39edb8810f1f3e07022065bb7070553fd0a8cf46a7c23f89",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "مخت تست وزصوم\n\nشکل ۲-۳-۲۳- مشخصات فیزبکی کامیون نوع اول\n\nبا فرض زاویه فرسان ‎TAT‏\n‏بافرض زاوبه دک ‎OF Say‏\n‎else CTR‏ گردش صرکز محور جلوی\n\n۳۱",
+  "char_count": 141,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

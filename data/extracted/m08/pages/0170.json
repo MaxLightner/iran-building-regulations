@@ -1,0 +1,9 @@
+{
+  "pdf_page": 170,
+  "source_sha256": "6593dd496e226a80bb23097f84c2444b9ac1707e96a5babd6520297287ebf76d",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "سنگ‌دانه\n\nسنگ‌دانه درشت\nسنگ‌دانه ریز\n\nسیمان پرتلند سرباره‌ای\n\nسیمان پوزولانی\n\nAggregate\n\nCoarse aggregate\n\nFine aggregate\nDimension stone\n\nSlate dimension stone\nMasonry cement\nPortland slag cement\nPozzolan cement\nFoundation\n\nwelded mesh reinforcement\nDuctility\n\nRadius of gyration\nGravel\n\nEffective thickness\nCoefficient of expansion\nImportance factor\nBehaviour factor\nStrength reduction factor\nEffective length\nDevelopment length\nThermal insulation\nWaterproofing coarse\nMasonry member\nStructural member\n\nThree dimensional member",
+  "char_count": 529,
+  "quality_flags": [],
+  "review_status": "unverified_source_transcription"
+}

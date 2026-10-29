@@ -1,0 +1,29 @@
+{
+  "chapter": 12,
+  "topic": "ایمنی حین اجرا",
+  "generated_at": "2026-10-29T15:47:35.636174+00:00",
+  "source_pdf": "sources/pdfs/reference-m12.pdf",
+  "source_sha256": "3629f22df0b67f3201da644f76a2471cde99b3dc538744179de258caa25e1d5f",
+  "total_pages": 96,
+  "extracted_pages": 96,
+  "nonempty_pages": 94,
+  "empty_pages": [
+    2,
+    12
+  ],
+  "methods": {
+    "embedded_text": 92,
+    "tesseract_fas_eng_166dpi_psm3": 3,
+    "tesseract_fas_eng_166dpi_psm6": 1
+  },
+  "requires_visual_review": [
+    2,
+    12,
+    25,
+    82,
+    83,
+    93
+  ],
+  "status": "full_page_extraction_complete_unverified",
+  "warning": "Text transcription is not an official verified legal clause database."
+}

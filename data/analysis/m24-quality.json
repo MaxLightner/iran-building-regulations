@@ -1,0 +1,38 @@
+{
+  "chapter": 24,
+  "topic": "مبحث بیست‌وچهارم",
+  "generated_at": "2026-10-29T15:49:44.707948+00:00",
+  "source_pdf": "sources/pdfs/reference-m24.pdf",
+  "source_sha256": "fd48d494846eeb80794a1939fc4b9041728296cc19e2ef1b67fd56c3034c86b4",
+  "total_pages": 55,
+  "extracted_pages": 55,
+  "nonempty_pages": 54,
+  "empty_pages": [
+    2
+  ],
+  "methods": {
+    "embedded_text": 50,
+    "tesseract_fas_eng_166dpi_psm3": 2,
+    "tesseract_fas_eng_166dpi_psm6": 3
+  },
+  "requires_visual_review": [
+    2,
+    4,
+    9,
+    10,
+    13,
+    16,
+    17,
+    18,
+    21,
+    23,
+    26,
+    33,
+    40,
+    45,
+    46,
+    49
+  ],
+  "status": "full_page_extraction_complete_unverified",
+  "warning": "Text transcription is not an official verified legal clause database."
+}

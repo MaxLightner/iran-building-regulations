@@ -1,0 +1,11 @@
+{
+  "pdf_page": 65,
+  "source_sha256": "56ad03bf6efc0f6afbc49d645077d4fbd87db7c715e9f0daa43c8d50d4e1dfbb",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "پیوست ۱\n\nپ-۲-۱ روش تخمینی با استفاده از نمودار\nدر مواردی که سرعت محاسبه از دقت آن اهمیت بیشتری دارد. می‌توان مقدار شاخص کاهش\nصدای جداکننده مرکب را با استفاده از نمودارهای شکل پ-۱-۱ تخمین زد. محدودیت این روش\nاین است که از مجموعه ساختارهای یک جدار مرکب در هر مرحله دو ساختار در نظر گرفته شده و\nنتیجه به‌دست آمده با ساختار بعدی مورد بررسی قرار می‌گیرد.\n\noy",
+  "char_count": 353,
+  "quality_flags": [
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

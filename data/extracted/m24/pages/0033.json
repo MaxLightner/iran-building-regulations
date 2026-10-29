@@ -1,0 +1,11 @@
+{
+  "pdf_page": 33,
+  "source_sha256": "fd48d494846eeb80794a1939fc4b9041728296cc19e2ef1b67fd56c3034c86b4",
+  "method": "tesseract_fas_eng_166dpi_psm6",
+  "ocr_text": "‎dude‏ آن نگردد.\n‎YF‏",
+  "char_count": 21,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}

@@ -1,0 +1,9 @@
+{
+  "pdf_page": 111,
+  "source_sha256": "56ad03bf6efc0f6afbc49d645077d4fbd87db7c715e9f0daa43c8d50d4e1dfbb",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "فهرست استانداردهای قابل استفاده\n\n18- ISO 3564:2003, Acoustics- Measurement of sound absorption in a\nreverbration room.\n\n19- ISO 717-1:2013, Acoustics - Rating of sound insulation in buildings\nand of building elements - Part 1: Airborne sound insulation.\n\n20- ISO 717-2:2013, Acoustics - Rating of sound insulation in buildings\nand of building elements - Part 2: Impact sound insulation.\n\n21- ISO 3382-2:2008, Acoustics - Measurement of room acoustic\nparameters - Part 2: Reverberation time in ordinary rooms.\n\n22- ISO 11654:1997, Acoustics — Sound absorbers for use in buildings —\nRating of sound absorption.\n\n23- IEC 60268-16: 2011, Sound system equipment - Part 16: Objective\nrating of speech intelligibility by speech transmission index.\n\naa",
+  "char_count": 744,
+  "quality_flags": [],
+  "review_status": "unverified_source_transcription"
+}

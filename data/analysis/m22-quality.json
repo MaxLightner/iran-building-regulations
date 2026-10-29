@@ -1,0 +1,46 @@
+{
+  "chapter": 22,
+  "topic": "مراقبت و نگهداری",
+  "generated_at": "2026-10-29T15:48:46.241754+00:00",
+  "source_pdf": "sources/pdfs/reference-m22.pdf",
+  "source_sha256": "bc4bdbbfe03892b8ad037587d5e23d1e5105773b395390565b16546fd0b28b19",
+  "total_pages": 92,
+  "extracted_pages": 92,
+  "nonempty_pages": 84,
+  "empty_pages": [
+    6,
+    8,
+    10,
+    22,
+    42,
+    46,
+    58,
+    64
+  ],
+  "methods": {
+    "embedded_text": 21,
+    "tesseract_fas_eng_166dpi_psm3": 71
+  },
+  "requires_visual_review": [
+    4,
+    6,
+    8,
+    10,
+    20,
+    21,
+    22,
+    33,
+    38,
+    42,
+    46,
+    57,
+    58,
+    63,
+    64,
+    72,
+    74,
+    78
+  ],
+  "status": "full_page_extraction_complete_unverified",
+  "warning": "Text transcription is not an official verified legal clause database."
+}

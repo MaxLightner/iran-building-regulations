@@ -1,0 +1,11 @@
+{
+  "pdf_page": 156,
+  "source_sha256": "eb575703d82dfe524ea227c1115c487f0d8c65aebb96442859ff68795fa70cc8",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "بحخش دوم\n\nسامانه گاز طبیعی با فشار\n\n‎SHY‏ ۶۰ پوند بر ‎Gul‏ مربع",
+  "char_count": 63,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}

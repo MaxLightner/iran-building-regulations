@@ -1,0 +1,11 @@
+{
+  "pdf_page": 209,
+  "source_sha256": "6274d26ac5b6cb68fc22b964455c746dbb1441a8c01c17206040aab93fd2193b",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "برنامه زمانی بهره‌برداری ساکنین و عملکرد تجهیزات\n\nyay",
+  "char_count": 53,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}

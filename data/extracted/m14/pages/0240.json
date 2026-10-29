@@ -1,0 +1,9 @@
+{
+  "pdf_page": 240,
+  "source_sha256": "ba09a6f718cd906b8b0a75c0ff600eb3924f89c58786ec76b23c76532dfcb873",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "هوای احتراق\n\nهوای بازگردانی شده\nهوای برگشت\n\nهوای بیرون\n\nهوای تخلیه\n\nهوای دریافتی از بیرون\nهوای رفت\n\nهود\n\nyyy\n\nمبحث چهاردهم\n\nCombustion air\nRecirculated air\nReturn air\nOutdoor air\nExhaust air\nMake up air\nSupply air\nHood",
+  "char_count": 218,
+  "quality_flags": [],
+  "review_status": "unverified_source_transcription"
+}

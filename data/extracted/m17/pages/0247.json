@@ -1,0 +1,12 @@
+{
+  "pdf_page": 247,
+  "source_sha256": "eb575703d82dfe524ea227c1115c487f0d8c65aebb96442859ff68795fa70cc8",
+  "method": "tesseract_fas_eng_166dpi_psm6",
+  "ocr_text": "۵ om\n‏هت‎ 3 ۱\n& ‏ه‎ =e et\n\n1250m+D1+D2\n\n90cm\na ۱ 1\n29\n© e ‏تج‎ eR 1\n\nشکل شماره پ-۱-۵\n۷۳۷",
+  "char_count": 88,
+  "quality_flags": [
+    "short_text_needs_visual_review",
+    "table_or_figure_visual_check"
+  ],
+  "review_status": "unverified_source_transcription"
+}

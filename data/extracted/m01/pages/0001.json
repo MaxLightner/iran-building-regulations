@@ -1,0 +1,11 @@
+{
+  "pdf_page": 1,
+  "source_sha256": "e474fe98f8476430c8e0f0f158e16567f42b9ba890172afd90c8498319b52f2b",
+  "method": "tesseract_fas_eng_166dpi_psm3",
+  "ocr_text": "وزارت راه و شهرسازی\nمعاونت مسکن و ساختمان\n\nمقررات ‎bo‏ ساختمان ایران\n\nدفتر مقررات ‎gle‏ ساختمان\nویرایش ‎Jol‏ 1392",
+  "char_count": 113,
+  "quality_flags": [
+    "short_text_needs_visual_review"
+  ],
+  "review_status": "unverified_source_transcription"
+}
