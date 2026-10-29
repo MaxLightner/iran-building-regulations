@@ -11,7 +11,7 @@ import hashlib, json, re, os, subprocess
 import fitz
 
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE="https://newsmedia.tasnimnews.ir/Tasnim/Uploaded/Document/1404/01/23/140401231106219313256425.pdf"
+SOURCE="https://niazit-ceiling.com/wp-content/uploads/2026/08/iran-building-code-04-security-protection-mandatory-addendum-1403.pdf"
 PDF=ROOT/"sources/pdfs/m04-security-1403.pdf"
 PAGES=ROOT/"data/extracted/m04-security-1403/pages"
 RECORDS=ROOT/"data/records/m04-security-1403.json"
@@ -26,7 +26,7 @@ def download():
             return
     req=Request(SOURCE,headers={"User-Agent":"Mozilla/5.0","Accept":"application/pdf"})
     with urlopen(req,timeout=45) as res:
-        if res.url.split("/")[2].lower()!="newsmedia.tasnimnews.ir":
+        if res.url.split("/")[2].lower()!="niazit-ceiling.com":
             raise ValueError("Unexpected document redirect")
         raw=res.read(20*1024*1024+1)
     if len(raw)>20*1024*1024 or raw[:5]!=b"%PDF-":
@@ -42,7 +42,7 @@ def scan(doc,page_index,source_sha):
     p=doc[page_index]
     raw=p.get_text("text",sort=True)
     method="embedded_pdf_text"
-    if not is_good_text(raw):
+    if True:  # PDF text reads in reverse order; prefer OCR for all appendix pages
         pix=p.get_pixmap(matrix=fitz.Matrix(3,3),alpha=False)
         image=pix.tobytes("png")
         cmd=["tesseract","stdin","stdout","-l","fas+eng","--psm","3"]
@@ -120,7 +120,7 @@ def main():
          "records":structured},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     REPORT.parent.mkdir(parents=True,exist_ok=True)
     REPORT.write_text(json.dumps({
-        "source_url":SOURCE,"source_type":"news_embedded_pdf_not_official_domain",
+        "source_url":SOURCE,"source_type":"third_party_regulation_pdf_not_official_domain",
         "source_sha256":source_sha,"pdf_pages":len(pages),"extracted_pages":len(pages),
         "nonempty_pages":sum(p["chars"]>0 for p in pages),
         "methods":{m:sum(p["method"]==m for p in pages) for m in sorted(set(p["method"] for p in pages))},
