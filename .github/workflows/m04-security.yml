@@ -31,7 +31,7 @@ jobs:
           if [ -s sources/pdfs/m04-security-1403.pdf ]; then
             git add -f sources/pdfs/m04-security-1403.pdf
           fi
-          git add data/analysis/m04-security-action.log
+          git add -f data/analysis/m04-security-action.log
           if [ -f data/analysis/m04-security-quality.json ]; then
             git add data/extracted/m04-security-1403/pages data/records/m04-security-1403.json data/analysis/m04-security-quality.json
           fi
