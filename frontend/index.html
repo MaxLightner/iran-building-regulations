@@ -18,7 +18,7 @@
     <a href="#search-panel">جست‌وجو</a>
     <a href="#catalog">مباحث</a>
   </nav>
-  <span class="phase-label">آزمایشی · موتور دانش</span>
+  <span class="phase-label">آزمایشی · موتور پروژه</span>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="page-title">
@@ -40,7 +40,7 @@
     <div class="wizard-side">
       <p class="eyebrow">۱ / معرفی پروژه</p>
       <h2 id="wizard-title">مشخصات ساختمان</h2>
-      <p>برای آماده‌کردن جست‌وجوی پروژه‌محور. تا زمانی که شروط مقررات تأیید نشده‌اند، این مشخصات نباید باعث حذف قطعی بندها شوند.</p>
+      <p>این مشخصات برای اولویت‌بندی موضوعات و نتایج استفاده می‌شوند. تشخیص‌های نامطمئن هیچ بندی را از جست‌وجو حذف نمی‌کنند.</p>
       <ol class="steps"><li id="step1" aria-current="step">نوع ساختمان و شهر</li><li id="step2">ابعاد و مرحله</li><li id="step3">موضوعات و جست‌وجو</li></ol>
       <p class="helper">اطلاعات این فرم در هیچ سروری ذخیره نمی‌شود.</p>
     </div>
@@ -74,7 +74,7 @@
 
   <section id="results" hidden tabindex="-1" class="project-summary card">
     <div class="section-head"><div><p class="eyebrow">پروژه انتخابی</p><h2>جست‌وجو برای این ساختمان</h2></div><button class="secondary" id="edit-project" type="button">ویرایش مشخصات</button></div>
-    <p id="project-summary"></p><p class="caution">کاربردپذیری ضوابط نسبت به پروژه هنوز پیاده‌سازی و تأیید نشده است؛ نتایج فعلاً بر اساس مشخصات پروژه حذف نمی‌شوند.</p>
+    <p id="project-summary"></p><p class="caution">نتایج بر اساس کاربری، سازه، مساحت، طبقات، زیرزمین و مرحله پروژه رتبه‌بندی می‌شوند. شهر فعلاً فیلترکننده نیست چون این مجموعه مقررات ملی است. هیچ نتیجه‌ای صرفاً به‌علت تشخیص نامطمئن حذف نمی‌شود.</p>
   </section>
 
   <section id="topics-panel" class="panel" aria-labelledby="topics-title">
@@ -93,7 +93,7 @@
       <label for="query">موضوع، عبارت، شماره بند یا کلیدواژه</label>
       <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً راه‌پله، رمپ، حریق"><button type="submit">جست‌وجو</button></div><div class="search-filters"><label>مبحث<select id="chapter-filter"><option value="">همه مباحث موجود</option></select></label><label>موضوع<select id="topic-filter"><option value="">همه موضوعات</option></select></label></div>
     </form>
-    <p class="helper">جست‌وجو ابتدا در رکوردهای ساختاریافته، موضوعات، اعداد و شروط انجام می‌شود. PDF فقط برای بررسی منبع در دسترس است.</p>
+    <p class="helper">جست‌وجو در دانش ساختاریافته انجام می‌شود و اگر پروژه تعریف شده باشد، نتایج مرتبط‌تر با همان پروژه بالاتر می‌آیند. PDF فقط برای بررسی منبع در دسترس است.</p>
     <div id="search-results" aria-live="polite"></div>
   </section>
 
