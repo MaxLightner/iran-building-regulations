@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const state = { catalog: [], approved: [], demo: [], mode: 'draft', project: null, draft: null, cache: new Map(), topicFilter: '', requestToken: 0 };
+const state = { catalog: [], approved: [], demo: [], mode: 'knowledge', project: null, draft: null, cache: new Map(), knowledge: null, ontology: null, knowledgeCache: new Map(), topicFilter: '', requestToken: 0 };
 const el = (tag, value, className) => {
   const node = document.createElement(tag);
   if (value !== undefined && value !== null) node.textContent = String(value);
@@ -65,6 +65,7 @@ function renderRecord(r) {
   return article;
 }
 function renderTopics() {
+  if (state.mode === 'knowledge') return renderKnowledgeTopics();
   if (state.mode === 'draft') return renderDraftTopics();
   const grouped=new Map(), target=$('topics');
   for (const r of modeRecords()) {
@@ -101,6 +102,7 @@ function rankedSearch(query) {
 }
 function renderSearch(event) {
   if(event) event.preventDefault();
+  if(state.mode === 'knowledge') return renderKnowledgeSearch();
   if(state.mode === 'draft') return renderDraftSearch();
   const query=$('query').value.trim(), target=$('search-results');
   if(fold(query).length<2) return setEmpty(target,'حداقل دو نویسه وارد کنید.');
@@ -168,24 +170,28 @@ function initializeForm(options) {
     if($('query').value.trim())renderSearch();else setEmpty($('search-results'),'عبارت یا موضوع جست‌وجو را انتخاب کنید.');
   });
   $('search').addEventListener('submit',renderSearch);
-  $('chapter-filter').addEventListener('change',()=>{if(state.mode==='draft'){renderDraftTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();}});
-  $('topic-filter').addEventListener('change',()=>{state.topicFilter=$('topic-filter').value;if(state.mode==='draft')renderSearch();});
+  $('chapter-filter').addEventListener('change',()=>{if(state.mode==='knowledge'||state.mode==='draft'){renderTopics();if($('query').value.trim() || $('topic-filter').value) renderSearch();}});
+  $('topic-filter').addEventListener('change',()=>{state.topicFilter=$('topic-filter').value;if(state.mode==='knowledge'||state.mode==='draft')renderSearch();});
 }
 async function init(){
   try{
-    const [catalog,approved,demo,options,draft]=await Promise.all([
+    const [catalog,approved,demo,options,draft,knowledge,ontology]=await Promise.all([
       load('catalog'),load('records'),load('demo'),
       fetch(new URL('./options.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('گزینه‌های فرم دریافت نشد');return r.json();}),
-      fetch(new URL('./data/draft/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس متنی PDF دریافت نشد');return r.json();})
+      fetch(new URL('./data/draft/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس متنی PDF دریافت نشد');return r.json();}),
+      fetch(new URL('./data/knowledge/manifest.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('ایندکس دانش دریافت نشد');return r.json();}),
+      fetch(new URL('./data/knowledge/ontology.json',document.baseURI)).then(r=>{if(!r.ok)throw Error('واژگان موضوعی دریافت نشد');return r.json();})
     ]);
     if(catalog.status!=='unverified_catalog_only'||approved.status!=='approved_only'||demo.status!=='demonstration_not_regulations')
       throw Error('ساختار مجموعه داده نامعتبر است');
     if(draft.status !== 'unverified_pdf_transcription') throw Error('ایندکس OCR نامعتبر است');
-    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;state.draft=draft;
-    $('approved-stat').textContent=draft.indexed_pages;
+    if(knowledge.status !== 'unverified_structured_knowledge') throw Error('ایندکس دانش نامعتبر است');
+    state.catalog=catalog.items;state.approved=approved.items;state.demo=demo.items;state.draft=draft;state.knowledge=knowledge;state.ontology=ontology;
+    $('approved-stat').textContent=knowledge.records;
     const selected=$('chapter-filter');
     for(const chapter of draft.documents)selected.append(new Option(chapter.title,chapter.id));
     const allTopics=new Set();for(const chapter of draft.documents)for(const name of Object.keys(chapter.topics))allTopics.add(name);
+    for(const t of Object.values(ontology.topics||{}))allTopics.add(t.label);
     for(const name of [...allTopics].sort((a,b)=>a.localeCompare(b,'fa')))$('topic-filter').append(new Option(name,name));
     initializeForm(options);renderCatalog();renderTopics();
     setEmpty($('search-results'),'یک عبارت برای جست‌وجو وارد کنید.');
@@ -323,6 +329,159 @@ async function renderDraftSearch(){
   }catch(err){
     if(token!==state.requestToken)return;
     setEmpty(target,'خطا در جست‌وجو: '+err.message);
+  }
+}
+
+
+const KNOWLEDGE_STATUS='ساختاریافته از متن PDF؛ اعتبار نسخه‌ها هنوز تأیید رسمی نشده است.';
+function topicIdByLabel(label){
+  if(!state.ontology)return null;
+  for(const [id,t] of Object.entries(state.ontology.topics||{}))if(t.label===label)return id;
+  return null;
+}
+function resolveQueryTopics(query){
+  const q=fold(query), direct=new Set();
+  if(!q||!state.ontology)return {direct,related:new Set()};
+  for(const [id,t] of Object.entries(state.ontology.topics||{})){
+    const terms=[t.label,...(t.aliases||[])].map(fold);
+    if(terms.some(a=>a && (q.includes(a)||a.includes(q))))direct.add(id);
+  }
+  const related=new Set();
+  for(const id of direct)for(const r of state.ontology.topics[id]?.related||[])if(!direct.has(r))related.add(r);
+  return {direct,related};
+}
+async function knowledgeDocument(d){
+  if(state.knowledgeCache.has(d.id))return state.knowledgeCache.get(d.id);
+  const response=await fetch(new URL('./data/knowledge/'+d.id+'.json',document.baseURI));
+  if(!response.ok)throw Error('داده ساختاریافته '+d.title+' دریافت نشد');
+  const result=await response.json();
+  if(result.status!=='unverified_structured_knowledge')throw Error('وضعیت دانش '+d.id+' نامعتبر است');
+  state.knowledgeCache.set(d.id,result);
+  return result;
+}
+async function renderKnowledgeTopics(){
+  const target=$('topics'), chapter=$('chapter-filter').value;
+  $('mode-note').className='caution';
+  $('mode-note').textContent=KNOWLEDGE_STATUS+' موضوعات مرتبط به هم متصل‌اند؛ بازکردن PDF برای جست‌وجوی عادی لازم نیست.';
+  if(!state.knowledge||!state.ontology)return setEmpty(target,'لایه دانش آماده نشده است.');
+  let counts=new Map();
+  if(!chapter){
+    for(const [id,t] of Object.entries(state.ontology.topics||{}))counts.set(id,t.record_count||0);
+  }else{
+    const d=state.knowledge.documents.find(x=>x.id===chapter);
+    if(d){
+      const doc=await knowledgeDocument(d);
+      for(const r of doc.records)for(const id of r.topics)counts.set(id,(counts.get(id)||0)+1);
+    }
+  }
+  const rows=[...counts].filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+  $('topics-count').textContent=rows.length+' موضوع';
+  target.replaceChildren();
+  for(const [id,n] of rows){
+    const t=state.ontology.topics[id]; if(!t)continue;
+    const btn=el('button',null,'topic-button');btn.type='button';
+    btn.append(el('strong',t.label),el('span',n+' رکورد','count'));
+    btn.addEventListener('click',()=>{
+      $('topic-filter').value=t.label;state.topicFilter=t.label;
+      $('search-panel').scrollIntoView({behavior:'smooth'});renderKnowledgeSearch();
+    });
+    target.append(btn);
+  }
+  if(!rows.length)setEmpty(target,'برای این مبحث هنوز موضوع ساختاریافته‌ای وجود ندارد.');
+}
+function knowledgeScore(record,query,selectedTopicId){
+  const terms=fold(query).split(' ').filter(Boolean);
+  const resolved=resolveQueryTopics(query);
+  if(selectedTopicId && !record.topics.includes(selectedTopicId))return null;
+  const title=fold(record.title),summary=fold(record.summary),
+    topics=fold((record.topic_labels||[]).join(' ')),
+    facts=fold((record.facts||[]).map(x=>x.value+' '+x.unit+' '+x.context).join(' ')),
+    conditions=fold((record.conditions||[]).join(' ')), text=record.search_text||fold(record.text);
+  const direct=[...resolved.direct].some(id=>record.topics.includes(id));
+  const related=[...resolved.related].some(id=>record.topics.includes(id));
+  const termHits=terms.filter(t=>title.includes(t)||summary.includes(t)||topics.includes(t)||facts.includes(t)||conditions.includes(t)||text.includes(t));
+  if(terms.length && termHits.length===0 && !direct && !related)return null;
+  let score=(direct?35:0)+(related?7:0)+(selectedTopicId?20:0);
+  for(const t of terms)score+=(title.includes(t)?14:0)+(topics.includes(t)?12:0)+(facts.includes(t)?10:0)+(conditions.includes(t)?8:0)+(summary.includes(t)?6:0)+(text.includes(t)?2:0);
+  if(record.locator)score+=1;
+  return score;
+}
+function knowledgeResultCard(record){
+  const card=el('article',null,'record'), top=el('div',null,'record-top');
+  top.append(el('span','دانش ساختاریافته','tag'),el('span',record.locator||('صفحه '+record.source.pdf_page),'muted'));
+  card.append(top,el('h3',record.title),el('p',record.summary||'','summary'));
+  const topicRow=el('div',null,'knowledge-topics');
+  for(const label of record.topic_labels||[])topicRow.append(el('span',label,'knowledge-chip'));
+  card.append(topicRow);
+  if(record.facts?.length){
+    const factors=el('div',null,'factors');
+    for(const fact of record.facts.slice(0,5)){
+      const box=el('div',null,'factor');
+      box.append(el('strong',fact.value+' '+fact.unit),el('span',fact.context,'muted'));
+      factors.append(box);
+    }
+    card.append(factors);
+  }
+  if(record.conditions?.length){
+    const conditions=el('div',null,'knowledge-conditions');
+    conditions.append(el('strong','شروط و قیود تشخیص‌داده‌شده'));
+    const ul=el('ul');
+    for(const c of record.conditions.slice(0,4))ul.append(el('li',c));
+    conditions.append(ul);card.append(conditions);
+  }
+  if(record.related_topics?.length){
+    const labels=record.related_topics.map(id=>state.ontology?.topics?.[id]?.label).filter(Boolean);
+    if(labels.length)card.append(el('p','موضوعات مرتبط: '+labels.join('، '),'metadata'));
+  }
+  const details=el('details',null,'record-details');
+  details.append(el('summary','متن کامل و منبع'));
+  details.append(el('p',record.text,'full-text'));
+  const meta=el('p',record.document_title+' | صفحه PDF '+record.source.pdf_page+' | '+KNOWLEDGE_STATUS,'metadata');
+  details.append(meta);
+  try{
+    const u=new URL(record.source.pdf_url);
+    if(u.hostname==='raw.githubusercontent.com'){
+      u.hash='page='+record.source.pdf_page;
+      const a=el('a','مشاهده منبع PDF');a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';
+      details.append(a);
+    }
+  }catch(_e){}
+  card.append(details);return card;
+}
+async function renderKnowledgeSearch(){
+  const token=++state.requestToken,target=$('search-results');
+  const query=$('query').value.trim(),chapter=$('chapter-filter').value,topicLabel=$('topic-filter').value;
+  const selectedTopicId=topicIdByLabel(topicLabel);
+  if(fold(query).length<2&&!selectedTopicId)return setEmpty(target,'یک عبارت یا موضوع برای جست‌وجو وارد کنید.');
+  if(!state.knowledge)return setEmpty(target,'لایه دانش بارگذاری نشده است.');
+  target.replaceChildren(el('p','در حال جست‌وجو در دانش مقررات…','empty'));
+  try{
+    const docs=state.knowledge.documents.filter(d=>!chapter||d.id===chapter);
+    const loaded=await Promise.all(docs.map(knowledgeDocument));
+    if(token!==state.requestToken)return;
+    const groups=[];
+    for(const doc of loaded){
+      const matches=doc.records.map(r=>({r,score:knowledgeScore(r,query,selectedTopicId)}))
+        .filter(x=>x.score!==null).sort((a,b)=>b.score-a.score).slice(0,35);
+      if(matches.length)groups.push({doc,matches});
+    }
+    groups.sort((a,b)=>b.matches[0].score-a.matches[0].score);
+    if(!groups.length)return setEmpty(target,'نتیجه ساختاریافته‌ای پیدا نشد. عبارت دیگری را امتحان کنید.');
+    const total=groups.reduce((n,g)=>n+g.matches.length,0);
+    target.replaceChildren(el('p',total+' نتیجه ساختاریافته در '+groups.length+' مبحث','result-count'));
+    for(const [groupNo,g] of groups.entries()){
+      const section=el('details',null,'search-group'),heading=el('summary');
+      heading.textContent=g.doc.document.title+' — '+g.matches.length+' نتیجه';section.append(heading);
+      const list=el('div'),more=el('button','نمایش نتایج بیشتر','secondary');more.type='button';let shown=0;
+      const append=()=>{for(const x of g.matches.slice(shown,shown+5))list.append(knowledgeResultCard(x.r));shown+=5;more.hidden=shown>=g.matches.length;};
+      section.append(list,more);more.addEventListener('click',append);
+      section.addEventListener('toggle',()=>{if(section.open&&!shown)append();});
+      if(groupNo===0){section.open=true;append();}
+      target.append(section);
+    }
+  }catch(err){
+    if(token!==state.requestToken)return;
+    setEmpty(target,'خطا در جست‌وجوی دانش: '+err.message);
   }
 }
 
