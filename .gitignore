@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+private/
+*.pdf
+*.zip
+*.log
+sources/checks/
+sources/cache/
+test-results/
+

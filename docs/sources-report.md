@@ -1,0 +1,71 @@
+# نتیجه بررسی منابع
+
+بررسی مستقیم؛ خطا یا عدم دریافت به معنی نامعتبر بودن سند نیست. فایل‌های دریافت‌شده خارج Git نگهداری شده‌اند.
+
+| شناسه | وضعیت | HTTP | SHA-256 |
+|---|---|---|---|
+| m1-page | failed | 403 | — |
+| m2-page | failed | 403 | — |
+| m3-page | failed | 403 | — |
+| m4-page | failed | 403 | — |
+| m5-page | failed | 403 | — |
+| m6-page | failed | — | — |
+| m7-page | failed | 403 | — |
+| m8-page | failed | 403 | — |
+| m9-page | failed | 403 | — |
+| m10-page | failed | 403 | — |
+| m11-page | failed | 403 | — |
+| m12-page | failed | 403 | — |
+| m13-page | failed | 403 | — |
+| m14-page | failed | — | — |
+| m15-page | failed | 403 | — |
+| m16-page | failed | 403 | — |
+| m17-page | failed | 403 | — |
+| m18-page | failed | 403 | — |
+| m19-page | failed | 403 | — |
+| m20-page | failed | 403 | — |
+| m21-page | failed | 403 | — |
+| m22-page | failed | 403 | — |
+| m23-page | failed | 403 | — |
+| m24-page | failed | 403 | — |
+| m1-pdf | failed | 403 | — |
+| m2-pdf | failed | 403 | — |
+| m4-pdf | failed | 403 | — |
+| m5-pdf | failed | 403 | — |
+| m7-pdf | failed | 403 | — |
+| m8-pdf | failed | 403 | — |
+| m11-pdf | failed | 403 | — |
+| m15-pdf | failed | 403 | — |
+| m16-pdf | failed | 403 | — |
+| m18-pdf | failed | 403 | — |
+| m19-pdf | failed | — | — |
+| m20-pdf | failed | 403 | — |
+| m21-pdf | failed | 403 | — |
+| m23-pdf | failed | — | — |
+| m5-archive-1392 | failed | 403 | — |
+| m16-archive-1391 | failed | 403 | — |
+| m18-archive-1390 | failed | 403 | — |
+| m19-archive-1389 | failed | 403 | — |
+| m20-archive-1384 | failed | 403 | — |
+| m21-archive-1391 | failed | 403 | — |
+| m19-archive-1399 | failed | 403 | — |
+| m12-legacy-catalog-pdf | failed | 403 | — |
+| m17-legacy-catalog-pdf | failed | 403 | — |
+| m22-legacy-catalog-pdf | failed | 403 | — |
+| m7-errata-asset | failed | 403 | — |
+| m11-errata-asset | failed | 403 | — |
+| m4-security-asset | failed | 403 | — |
+| m9-notice-asset | failed | 403 | — |
+| m19-appendix-1 | failed | 403 | — |
+| m19-appendix-2 | failed | 403 | — |
+| m19-appendix-3 | failed | 403 | — |
+| m19-appendix-4 | failed | 403 | — |
+| m19-appendix-5 | failed | 403 | — |
+| m19-appendix-6 | failed | 403 | — |
+| m19-appendix-7 | failed | — | — |
+| m19-appendix-8 | cached_private | 200 | bda99bcbdb1d907871b72f362fad8b295f4af0e8ad810f6492bb9f89045b7b5b |
+| m19-appendix-9 | cached_private | 200 | 12862c5a23ef22d9c7993853cee3d97406b635161786b1d5815717e400447972 |
+| current-catalog | fetched_not_stored | 200 | 682924d154268f405beb5588c96bd2c6a957f2ea3c6df23dce1d35cb75fa061e |
+| legacy-catalog | failed | 200 | — |
+| errata-catalog | failed | 403 | — |
+
