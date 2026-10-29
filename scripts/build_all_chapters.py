@@ -145,15 +145,20 @@ def html_records(chapter,url):
     return dedupe(out),final
 
 def mediafire_pdf(page_url):
-    html,_,_=safe_get(page_url)
-    soup=BeautifulSoup(html,"html.parser")
-    links=[urljoin(page_url,a.get("href")) for a in soup.find_all("a",href=True) if "mediafire.com" in a.get("href","")]
-    for u in links:
+    """Return MediaFire's real file URL from either a MediaFire page or a page linking to it."""
+    targets=[]
+    if "mediafire.com/" in page_url:
+        targets.append(page_url)
+    else:
+        html,_,_=safe_get(page_url)
+        soup=BeautifulSoup(html,"html.parser")
+        targets.extend(urljoin(page_url,a.get("href")) for a in soup.find_all("a",href=True) if "mediafire.com" in a.get("href",""))
+    for u in targets:
         try:
             mh,_,_=safe_get(u); ms=BeautifulSoup(mh,"html.parser")
             a=ms.select_one("a#downloadButton")
             if not a:
-                a=next((x for x in ms.find_all("a",href=True) if "download" in x.get("href","") and "mediafire" in x.get("href","")),None)
+                a=next((x for x in ms.find_all("a",href=True) if x.get("href","").startswith("http") and ("download" in x.get("href","") or "download" in norm(x.get_text(" ",strip=True)))),None)
             if a:return urljoin(u,a.get("href"))
         except Exception:continue
     return None
@@ -171,17 +176,58 @@ def archweb_landing_map():
     return out
 
 def archweb_pdf(landing):
+    """Resolve a downloadable document from an Archweb landing page."""
     html,_,_=safe_get(landing); soup=BeautifulSoup(html,"html.parser")
     candidates=[]
-    for a in soup.find_all("a",href=True):
-        href=urljoin(landing,a["href"])
-        txt=norm(a.get_text(" ",strip=True))
-        if "/download/" in href or "دانلود فایل" in txt:candidates.append(href)
+    # WordPress download plugins may expose the URL in href, data-* or inline JS.
+    for tag in soup.find_all(True):
+        vals=[]
+        for key in ("href","data-url","data-downloadurl","data-download","onclick"):
+            v=tag.get(key)
+            if v: vals.append(str(v))
+        txt=norm(tag.get_text(" ",strip=True))
+        for v in vals:
+            for raw in re.findall(r"https?://[^\"' <>]+|/[^\"' <>]+",v):
+                u=urljoin(landing,raw.replace("\\/","/"))
+                if (".pdf" in u.lower() or "wpdmdl=" in u or "/download/" in u or "download" in txt) and u!=landing:
+                    candidates.append(u)
+    # Raw HTML fallback catches JSON-escaped/plugin URLs.
+    for raw in re.findall(r"https?:\\?/\\?/[^\"' <>]+|/[^\"' <>]*(?:wpdmdl=|download)[^\"' <>]*",html,re.I):
+        candidates.append(urljoin(landing,raw.replace("\\/","/")))
+    seen=set()
     for u in candidates:
+        if u in seen:continue
+        seen.add(u)
         try:
             data,final,ct=safe_get(u,binary=True)
             if data.startswith(b"%PDF-"):return data,final
         except Exception:continue
+    return None,None
+
+def source_years(url):
+    return set(re.findall(r"(?<!\d)(13\d{2}|14\d{2})(?!\d)",norm(url)))
+
+def edition_ok(url,expected):
+    years=source_years(url)
+    return not years or str(expected) in years
+
+def document_from_source(source,expected):
+    """Resolve an explicit source to PDF bytes without persisting the binary."""
+    try:
+        if "mediafire.com/" in source:
+            direct=mediafire_pdf(source)
+            if not direct:return None,None
+            if not edition_ok(direct,expected):return None,None
+            data,final,_=safe_get(direct,binary=True)
+            return (data,final) if data.startswith(b"%PDF-") else (None,None)
+        if "archweb.ir/" in source and not source.lower().endswith(".pdf"):
+            data,final=archweb_pdf(source)
+            if data and edition_ok(final,expected):return data,final
+            return None,None
+        data,final,ct=safe_get(source,binary=True)
+        if data.startswith(b"%PDF-") and edition_ok(final,expected):return data,final
+    except Exception:
+        pass
     return None,None
 
 def pdf_records(chapter,data,source_url):
@@ -280,25 +326,35 @@ def build():
                 if len(recs)>=12:candidates.append((source_score(recs),recs,final,"structured_text"))
             except Exception as e:
                 attempts.append({"type":"text","url":u,"ok":False,"error":type(e).__name__})
-        # Searchable PDF source, never OCR.
+        # Searchable document sources. Binaries are fetched transiently and never stored.
         if not candidates or max(x[0] for x in candidates)<120:
-            pdf_data=pdf_url=None
-            landing=archmap.get(n)
-            if landing:
-                try:pdf_data,pdf_url=archweb_pdf(landing)
-                except Exception:pass
-            if not pdf_data:
+            pdf_candidates=[]
+            for source in c.get("document_sources") or []:
+                data,final=document_from_source(source,c["edition"])
+                attempts.append({"type":"document_source","url":source,"resolved":final,"ok":bool(data)})
+                if data:pdf_candidates.append((data,final))
+            # Generic discovery is fallback only. Reject an explicit edition mismatch.
+            if not pdf_candidates:
+                landing=archmap.get(n)
+                if landing:
+                    try:
+                        data,final=archweb_pdf(landing)
+                        if data and edition_ok(final,c["edition"]):pdf_candidates.append((data,final))
+                    except Exception:pass
+            if not pdf_candidates:
                 try:
                     direct=mediafire_pdf(c["technobetar"])
-                    if direct:
-                        pdf_data,pdf_url,_=safe_get(direct,binary=True)
-                        if not pdf_data.startswith(b"%PDF-"):pdf_data=None
+                    if direct and edition_ok(direct,c["edition"]):
+                        data,final,_=safe_get(direct,binary=True)
+                        if data.startswith(b"%PDF-"):pdf_candidates.append((data,final))
                 except Exception:pass
-            if pdf_data:
+            for pdf_data,pdf_url in pdf_candidates:
                 try:
                     recs,qa=pdf_records(n,pdf_data,pdf_url)
                     attempts.append({"type":"document","url":pdf_url,"records":len(recs),**qa})
-                    if qa.get("accepted") and len(recs)>=12:candidates.append((source_score(recs),recs,pdf_url,"searchable_document"))
+                    if qa.get("accepted") and len(recs)>=12:
+                        candidates.append((source_score(recs),recs,pdf_url,"searchable_document"))
+                        break
                 except Exception as e:
                     attempts.append({"type":"document","url":pdf_url,"ok":False,"error":type(e).__name__})
         if candidates:
