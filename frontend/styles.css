@@ -66,3 +66,12 @@ label{display:block;font-weight:600;font-size:14px}.fields label{display:flex;fl
 .project-fit-medium{background:#f3f7f8;border-color:#cddde1}
 .project-fit-medium strong{color:var(--accent)}
 .project-fit-general{background:#fafafa}
+
+/* Final MVP polish */
+.quick-searches{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+.quick-searches button{background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:7px 11px;font-size:13px}
+.quick-searches button:hover{background:var(--soft);color:var(--accent)}
+.record h3{line-height:1.55}
+.record .summary{line-height:1.8}
+.source-links a{font-weight:700}
+@media(max-width:700px){.quick-searches{gap:6px}.quick-searches button{font-size:12px;padding:6px 9px}}
