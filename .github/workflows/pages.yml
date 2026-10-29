@@ -18,6 +18,8 @@ on:
       - "tests/knowledge-search.test.cjs"
       - "tests/test_applicability.py"
       - "tests/project-fit.test.cjs"
+      - "tests/search-benchmark.test.cjs"
+      - "benchmarks/search-cases.json"
   workflow_dispatch:
 
 permissions:
@@ -46,5 +48,6 @@ jobs:
           node tests/draft-search.test.cjs
           node tests/knowledge-search.test.cjs
           node tests/project-fit.test.cjs
+          node tests/search-benchmark.test.cjs
       - name: Confirm publication is deferred
         run: echo "No upload to GitHub Pages and no deployment until the final phase."
