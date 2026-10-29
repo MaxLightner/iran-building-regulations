@@ -1,0 +1,68 @@
+name: Build all regulation chapters
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "sources/chapters.json"
+      - "scripts/build_all_chapters.py"
+      - "frontend/index.html"
+      - "frontend/app.js"
+      - "frontend/styles.css"
+      - "frontend/m04-preview/**"
+      - ".github/workflows/build-regulations.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: regulations-build-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install parser dependencies
+        run: python3 -m pip install requests beautifulsoup4 pymupdf
+      - name: Build 24-chapter corpus
+        run: python3 -u scripts/build_all_chapters.py
+      - name: Validate generated corpus
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("frontend/data/coverage.json")
+          c=json.loads(p.read_text(encoding="utf-8"))
+          assert c["chapters_total"]==24
+          assert c["chapters_ready"]>=18
+          assert c["records_total"]>=200
+          idx=json.loads(Path("frontend/data/search-index.json").read_text(encoding="utf-8"))
+          assert len(idx)==c["records_total"]
+          print("coverage",c["chapters_ready"],"/24","records",c["records_total"])
+          PY
+          node --check frontend/app.js
+          node --check frontend/m04-preview/app.js
+      - name: Commit generated corpus
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/data
+          if ! git diff --staged --quiet; then
+            git commit -m "Build 24-chapter regulation corpus [skip ci]"
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+      - id: deployment
+        uses: actions/deploy-pages@v4
