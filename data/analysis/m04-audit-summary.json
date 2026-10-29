@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T13:48:54.563177+00:00",
+  "generated_at": "2026-10-29T13:50:17.116850+00:00",
   "documents": [
     {
       "document_id": "m04",
@@ -310,7 +310,7 @@
   "total_pdf_pages": 177,
   "total_candidate_records": 843,
   "flags_per_record": {
-    "numbers_need_page_comparison": 843,
+    "numbers_need_page_comparison": 413,
     "conditional_rule_needs_parsing": 523,
     "possible_ocr_latin_noise": 514,
     "cross_reference_needs_verification": 74,
@@ -319,7 +319,7 @@
     "possible_table_or_figure_reference": 55
   },
   "records_with_condition_cues": 523,
-  "records_with_numeric_candidates": 843,
+  "records_with_numeric_candidates": 413,
   "records_needing_summary": 843,
   "verified_rules": 0,
   "review_complete": false,
