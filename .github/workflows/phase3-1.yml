@@ -45,10 +45,10 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/extracted/m03/pages data/extracted/m05/pages data/extracted/m15/pages
           git add data/analysis/m03-quality.json data/analysis/m05-quality.json data/analysis/m15-quality.json
-          git add frontend/data/draft/
+          git add frontend/data/
           if ! git diff --staged --quiet; then
             git commit -m "Phase 3-1: index every page of chapters 3, 5, 15 [skip ci]"
-            git pull --rebase origin main
+            git -c rebase.autoStash=true pull --rebase origin main
             git push origin HEAD:main
           fi
       - name: Confirm no GitHub Pages deployment
