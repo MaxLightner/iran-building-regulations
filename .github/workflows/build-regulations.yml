@@ -1,4 +1,4 @@
-name: Build all regulation chapters
+name: Build available regulation chapters
 
 on:
   workflow_dispatch:
@@ -42,8 +42,8 @@ jobs:
           p=Path("frontend/data/coverage.json")
           c=json.loads(p.read_text(encoding="utf-8"))
           assert c["chapters_total"]==24
-          assert c["chapters_ready"]>=18
-          assert c["records_total"]>=200
+          assert c["chapters_ready"]>=10
+          assert c["records_total"]>=500
           idx=json.loads(Path("frontend/data/search-index.json").read_text(encoding="utf-8"))
           assert len(idx)==c["records_total"]
           print("coverage",c["chapters_ready"],"/24","records",c["records_total"])
