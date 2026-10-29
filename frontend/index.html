@@ -1,13 +1,109 @@
 <!doctype html>
-<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>موتور مقررات ملی ساختمان ایران</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
-<body><a class="skip" href="#main">رفتن به محتوای اصلی</a>
-<header><a class="brand" href="/">مقررات ساختمان <span>ایران</span></a><nav aria-label="منوی اصلی"><a href="#wizard">مشخصات پروژه</a><a href="#catalog">منابع</a></nav><span class="badge">نسخه آغازین · فاز صفر</span></header>
-<main id="main"><section class="intro"><div><p class="lead">از مشخصات پروژه، تا متن مستند مقررات</p><h1>هر ضابطه،<br>با نشانی منبعش.</h1><p>مسیر دسترسی به مباحث مقررات ملی ساختمان؛ با نگهداری نسخه‌ها، تاریخ‌ها و مرجع اصلی هر سند.</p><a class="button" href="#wizard">معرفی پروژه</a></div><aside class="status"><h2>وضعیت این نسخه</h2><p>این نسخه برای بررسی مسیر کار ساخته شده است. بندهای مقررات هنوز استخراج و تأیید نشده‌اند.</p><dl><dt>پاسخ مقرراتی</dt><dd>هنوز بارگذاری نشده</dd><dt>تطبیق با پروژه</dt><dd>در انتظار داده و بازبینی</dd><dt>جست‌وجو</dt><dd>کلیدواژه‌ای، بدون هوش مصنوعی</dd></dl></aside></section>
-<section class="workspace" id="wizard"><aside class="guide"><h2>پروژه را معرفی کنید</h2><p>این مشخصات در این نسخه ذخیره نمی‌شوند. انتخاب‌ها فعلاً به تشخیص قطعی ضوابط منجر نمی‌شوند.</p><ol><li id="step1" aria-current="step">مشخصات ساختمان</li><li id="step2">ابعاد و مرحله پروژه</li><li id="step3">مشاهده داده‌های موجود</li></ol><p class="small">فهرست شهرها فعلاً محدود است؛ اطلاعات اقلیمی از این انتخاب استنباط نمی‌شود.</p></aside>
-<form id="project"><fieldset id="part1"><legend>مشخصات ساختمان</legend><div class="fields"><label>شهر<select name="city" required></select></label><label>نوع کاربری<select name="use" required></select></label><label>نوع اسکلت<select name="structure" required></select></label></div><button type="button" id="next">ادامه</button></fieldset>
-<fieldset id="part2" hidden><legend>ابعاد و مرحله پروژه</legend><label for="area">زیربنای کل (متر مربع)</label><div class="area"><input id="area" name="area" type="number" min="1" max="1000000" step="0.01" value="500" required><input id="area-range" aria-label="تنظیم تقریبی زیربنا" type="range" min="1" max="1000000" step="1" value="500"></div><p class="small">برای مقدار دقیق، عدد را وارد کنید. محدوده ورودی صرفاً محدودیت این فرم است.</p><div class="fields"><label>طبقات روی زمین<span class="counter"><button type="button" data-target="floors" data-delta="-1" aria-label="کاهش طبقات روی زمین">−</button><input id="floors" name="floors" type="number" min="1" max="200" value="3" required><button type="button" data-target="floors" data-delta="1" aria-label="افزایش طبقات روی زمین">+</button></span></label><label>طبقات زیرزمین<span class="counter"><button type="button" data-target="basements" data-delta="-1" aria-label="کاهش زیرزمین">−</button><input id="basements" name="basements" type="number" min="0" max="20" value="0" required><button type="button" data-target="basements" data-delta="1" aria-label="افزایش زیرزمین">+</button></span></label><label>مرحله پروژه<select name="stage" required></select></label></div><div class="actions"><button type="button" id="back" class="secondary">بازگشت</button><button type="submit">مشاهده داده‌های موجود</button></div></fieldset></form></section>
-<section id="results" hidden tabindex="-1"><h2>موضوع‌های ثبت‌شده</h2><p id="project-summary"></p><button id="edit-project" class="secondary" type="button">ویرایش مشخصات پروژه</button><p class="notice">تطبیق ضوابط با پروژه هنوز آماده نشده است؛ این فهرست توصیه مهندسی محسوب نمی‌شود.</p><div id="topics"></div></section>
-<section class="search"><h2>جست‌وجو در بندهای تأییدشده</h2><form id="search"><label for="query">عبارت یا کلیدواژه</label><div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً عرض پله" required><button>جست‌وجو</button></div></form><div id="search-results" aria-live="polite"></div></section>
-<section id="catalog"><div class="section-heading"><h2>فهرست منابع شناسایی‌شده</h2><span id="catalog-count"></span></div><p>شناسایی منبع به معنی تأیید اعتبار نسخه یا تاریخ اجرای آن نیست.</p><p id="catalog-status" role="status">در حال دریافت فهرست منابع…</p><div id="source-list"></div></section>
-<p id="error" role="alert" hidden></p></main><footer>پروژه مستقل موتور مقررات ملی ساختمان ایران <span>اتصال آینده کمچه از طریق API</span></footer></body></html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="سامانه آزمایشی جست‌وجوی ساختاریافته مقررات ملی ساختمان بر اساس مشخصات پروژه؛ بدون مدل زبانی.">
+  <title>مرجع مقررات ساختمان | نسخه آزمایشی</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">پرش به محتوای اصلی</a>
+<header class="topbar">
+  <a class="brand" href="./">مقررات<span>ساختمان</span></a>
+  <nav aria-label="پیمایش اصلی">
+    <a href="#wizard">مشخصات پروژه</a>
+    <a href="#topics-panel">موضوعات</a>
+    <a href="#search-panel">جست‌وجو</a>
+    <a href="#catalog">مباحث</a>
+  </nav>
+  <span class="phase-label">آزمایشی · فاز ۱</span>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="page-title">
+    <div>
+      <p class="eyebrow">موتور مستقل مقررات ملی ساختمان</p>
+      <h1 id="page-title">از مشخصات ساختمان<br>تا بند موردنیاز</h1>
+      <p class="subhead">پروژه‌ات را معرفی کن؛ موضوعات را ببین و داخل بندهای ساختاریافته جست‌وجو کن. هر پاسخ باید به نسخه و صفحه مشخص ارجاع داشته باشد.</p>
+      <a class="primary-link" href="#wizard">شروع با مشخصات پروژه <span aria-hidden="true">←</span></a>
+    </div>
+    <aside class="hero-aside" aria-label="وضعیت داده‌ها">
+      <p class="eyebrow">وضعیت اطلاعات</p>
+      <div class="stat"><strong id="catalog-stat">—</strong><span>مبحث شناسایی‌شده</span></div>
+      <div class="stat"><strong id="approved-stat">—</strong><span>رکورد تأییدشده قابل جست‌وجو</span></div>
+      <p class="warning-small">۲۴ PDF اولیه موجودند اما نسخه‌ها و محتوای آن‌ها هنوز اعتبارسنجی نشده است. این سایت فعلاً مرجع تصمیم مهندسی نیست.</p>
+    </aside>
+  </section>
 
+  <section class="wizard card" id="wizard" aria-labelledby="wizard-title">
+    <div class="wizard-side">
+      <p class="eyebrow">۱ / معرفی پروژه</p>
+      <h2 id="wizard-title">مشخصات ساختمان</h2>
+      <p>برای آماده‌کردن جست‌وجوی پروژه‌محور. تا زمانی که شروط مقررات تأیید نشده‌اند، این مشخصات نباید باعث حذف قطعی بندها شوند.</p>
+      <ol class="steps"><li id="step1" aria-current="step">نوع ساختمان و شهر</li><li id="step2">ابعاد و مرحله</li><li id="step3">موضوعات و جست‌وجو</li></ol>
+      <p class="helper">اطلاعات این فرم در هیچ سروری ذخیره نمی‌شود.</p>
+    </div>
+    <form id="project" autocomplete="off">
+      <fieldset id="part1">
+        <legend>پروژه را معرفی کنید</legend>
+        <div class="fields">
+          <label>شهر پروژه<select name="city" required></select></label>
+          <label>کاربری ساختمان<select name="use" required></select></label>
+          <label>نوع اسکلت<select name="structure" required></select></label>
+        </div>
+        <div class="actions"><button type="button" id="next">مرحله بعد <span aria-hidden="true">←</span></button></div>
+      </fieldset>
+      <fieldset id="part2" hidden>
+        <legend>ابعاد و مرحله پروژه</legend>
+        <label for="area">زیربنای کل (متر مربع)</label>
+        <div class="area">
+          <input id="area" name="area" type="number" min="1" max="1000000" step="0.01" value="500" required>
+          <input id="area-range" aria-label="تعیین تقریبی زیربنا" type="range" min="1" max="1000000" step="1" value="500">
+        </div>
+        <p class="helper">اسلایدر برای تنظیم سریع است. مقدار دقیق را در کادر عدد وارد کنید؛ این بازه محدودیت رابط است، نه ضابطه قانونی.</p>
+        <div class="fields">
+          <label>طبقات روی زمین<span class="counter"><button type="button" data-target="floors" data-delta="-1" aria-label="کاهش طبقات">−</button><input id="floors" name="floors" type="number" min="1" max="200" value="3" required><button type="button" data-target="floors" data-delta="1" aria-label="افزایش طبقات">+</button></span></label>
+          <label>طبقات زیرزمین<span class="counter"><button type="button" data-target="basements" data-delta="-1" aria-label="کاهش زیرزمین">−</button><input id="basements" name="basements" type="number" min="0" max="20" value="0" required><button type="button" data-target="basements" data-delta="1" aria-label="افزایش زیرزمین">+</button></span></label>
+          <label>مرحله پروژه<select name="stage" required></select></label>
+        </div>
+        <div class="actions"><button class="secondary" type="button" id="back">بازگشت</button><button type="submit">مشاهده موضوعات <span aria-hidden="true">←</span></button></div>
+      </fieldset>
+    </form>
+  </section>
+
+  <section id="results" hidden tabindex="-1" class="project-summary card">
+    <div class="section-head"><div><p class="eyebrow">پروژه انتخابی</p><h2>جست‌وجو برای این ساختمان</h2></div><button class="secondary" id="edit-project" type="button">ویرایش مشخصات</button></div>
+    <p id="project-summary"></p><p class="caution">کاربردپذیری ضوابط نسبت به پروژه هنوز پیاده‌سازی و تأیید نشده است؛ نتایج فعلاً بر اساس مشخصات پروژه حذف نمی‌شوند.</p>
+  </section>
+
+  <section id="topics-panel" class="panel" aria-labelledby="topics-title">
+    <div class="section-head"><div><p class="eyebrow">۲ / مرور موضوعات</p><h2 id="topics-title">موضوعات مقررات</h2></div><span class="count" id="topics-count">—</span></div>
+    <div class="mode-row">
+      <label for="mode">مجموعه داده</label>
+      <select id="mode"><option value="approved">داده‌های تأییدشده</option><option value="demo">نمایش آزمایشی رابط (متن ساختگی)</option></select>
+    </div>
+    <p id="mode-note" class="caution">در حال بارگذاری داده‌ها…</p>
+    <div id="topics" class="topic-list" aria-live="polite"></div>
+  </section>
+
+  <section id="search-panel" class="panel" aria-labelledby="search-title">
+    <div class="section-head"><div><p class="eyebrow">۳ / پیدا کردن بند</p><h2 id="search-title">جست‌وجو در متن و تگ‌ها</h2></div><span class="count">بدون هوش مصنوعی</span></div>
+    <form id="search">
+      <label for="query">موضوع، عبارت، شماره بند یا کلیدواژه</label>
+      <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً راه‌پله، رمپ، حریق" required><button type="submit">جست‌وجو</button></div>
+    </form>
+    <p class="helper">جست‌وجوی فارسی به‌صورت آفلاین در ایندکس ثابت مرورگر انجام می‌شود؛ هیچ پرسشی برای AI ارسال نمی‌شود.</p>
+    <div id="search-results" aria-live="polite"></div>
+  </section>
+
+  <section id="catalog" class="panel" aria-labelledby="catalog-title">
+    <div class="section-head"><div><p class="eyebrow">فهرست منابع</p><h2 id="catalog-title">مباحث شناسایی‌شده</h2></div><span class="count" id="catalog-count">—</span></div>
+    <p>فهرست مباحث و لینک صفحات رسمی، صرفاً جهت پیگیری نسخه و اعتبار؛ این فهرست به معنی تأیید محتوای PDFهای آرشیوشده نیست.</p>
+    <div id="source-list" class="catalog-grid"></div>
+  </section>
+  <p id="error" role="alert" hidden></p>
+</main>
+<footer><span>موتور مستقل مقررات ملی ساختمان · بدون ثبت‌نام و بدون مدل زبانی</span><span>داده‌های تأییدنشده حکم مهندسی محسوب نمی‌شوند.</span></footer>
+</body>
+</html>
