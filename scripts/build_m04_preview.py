@@ -133,7 +133,12 @@ def extract_rule(seg):
     if not ts:return None
     sents=sentences(text)
     normative=[s for s in sents if NORMATIVE.search(s) or NUM.search(s)]
-    statement=(normative[0] if normative else sents[0])[:520]
+    statement=(normative[0] if normative else sents[0])
+    if len(statement)<35:
+        pool=normative if len(normative)>1 else sents
+        if len(pool)>1: statement=clean(statement+"؛ "+pool[1])
+    statement=statement[:520]
+    if len(statement)<=20:return None
     conditions=[s[:360] for s in sents if COND.search(s)][:4]
     exceptions=[s[:360] for s in sents if EXCEPT.search(s)][:3]
     fs=facts(text)
