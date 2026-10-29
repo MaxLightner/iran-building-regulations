@@ -18,14 +18,14 @@
     <a href="#search-panel">جست‌وجو</a>
     <a href="#catalog">مباحث</a>
   </nav>
-  <span class="phase-label">آزمایشی · موتور پروژه</span>
+  <span class="phase-label">نسخه MVP · موتور پروژه</span>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="page-title">
     <div>
       <p class="eyebrow">موتور مستقل مقررات ملی ساختمان</p>
       <h1 id="page-title">از مشخصات ساختمان<br>تا بند موردنیاز</h1>
-      <p class="subhead">پروژه‌ات را معرفی کن؛ موضوعات را ببین و داخل بندهای ساختاریافته جست‌وجو کن. هر پاسخ باید به نسخه و صفحه مشخص ارجاع داشته باشد.</p>
+      <p class="subhead">مشخصات پروژه را وارد کن؛ سیستم موضوعات و بندهای مرتبط‌تر را اولویت‌بندی می‌کند و متن، عدد، شرط و منبع را مستقیم نشان می‌دهد.</p>
       <a class="primary-link" href="#wizard">شروع با مشخصات پروژه <span aria-hidden="true">←</span></a>
     </div>
     <aside class="hero-aside" aria-label="وضعیت داده‌ها">
@@ -79,19 +79,16 @@
 
   <section id="topics-panel" class="panel" aria-labelledby="topics-title">
     <div class="section-head"><div><p class="eyebrow">۲ / مرور موضوعات</p><h2 id="topics-title">موضوعات مقررات</h2></div><span class="count" id="topics-count">—</span></div>
-    <div class="mode-row">
-      <label for="mode">مجموعه داده</label>
-      <select id="mode"><option value="knowledge" selected>دانش ساختاریافته از PDFها</option><option value="draft">متن کامل PDFها (حالت خام)</option><option value="approved">بندهای تأیید نهایی‌شده</option><option value="demo">نمایش ساختگی رابط</option></select>
-    </div>
-    <p id="mode-note" class="caution">در حال بارگذاری داده‌ها…</p>
+    <select id="mode" hidden aria-hidden="true"><option value="knowledge" selected>دانش ساختاریافته</option></select>
+    <p id="mode-note" class="caution">در حال آماده‌سازی موضوعات پروژه…</p>
     <div id="topics" class="topic-list" aria-live="polite"></div>
   </section>
 
   <section id="search-panel" class="panel" aria-labelledby="search-title">
-    <div class="section-head"><div><p class="eyebrow">۳ / پیدا کردن بند</p><h2 id="search-title">جست‌وجو در متن و تگ‌ها</h2></div><span class="count">بدون هوش مصنوعی</span></div>
+    <div class="section-head"><div><p class="eyebrow">۳ / پیدا کردن ضابطه</p><h2 id="search-title">جست‌وجو در مقررات</h2></div><span class="count">۲۴ مبحث</span></div>
     <form id="search">
       <label for="query">موضوع، عبارت، شماره بند یا کلیدواژه</label>
-      <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً راه‌پله، رمپ، حریق"><button type="submit">جست‌وجو</button></div><div class="search-filters"><label>مبحث<select id="chapter-filter"><option value="">همه مباحث موجود</option></select></label><label>موضوع<select id="topic-filter"><option value="">همه موضوعات</option></select></label></div>
+      <div class="search-row"><input id="query" name="q" type="search" minlength="2" maxlength="200" placeholder="مثلاً حداقل عرض راه‌پله، پارکینگ زیرزمین، بار برف"><button type="submit">جست‌وجو</button></div><div class="quick-searches" aria-label="جست‌وجوهای پیشنهادی"><button type="button" data-query="راه پله">راه‌پله</button><button type="button" data-query="پارکینگ">پارکینگ</button><button type="button" data-query="راه خروج حریق">حریق و خروج</button><button type="button" data-query="آسانسور">آسانسور</button><button type="button" data-query="بار برف">بار برف</button><button type="button" data-query="عایق حرارتی">عایق حرارتی</button></div><div class="search-filters"><label>مبحث<select id="chapter-filter"><option value="">همه مباحث موجود</option></select></label><label>موضوع<select id="topic-filter"><option value="">همه موضوعات</option></select></label></div>
     </form>
     <p class="helper">جست‌وجو در دانش ساختاریافته انجام می‌شود و اگر پروژه تعریف شده باشد، نتایج مرتبط‌تر با همان پروژه بالاتر می‌آیند. PDF فقط برای بررسی منبع در دسترس است.</p>
     <div id="search-results" aria-live="polite"></div>
@@ -104,6 +101,6 @@
   </section>
   <p id="error" role="alert" hidden></p>
 </main>
-<footer><span>موتور مستقل مقررات ملی ساختمان · بدون ثبت‌نام و بدون مدل زبانی</span><span>داده‌های تأییدنشده حکم مهندسی محسوب نمی‌شوند.</span></footer>
+<footer><span>موتور مستقل جست‌وجوی مقررات ملی ساختمان</span><span>PDF و صفحه منبع هر نتیجه برای کنترل نهایی حفظ شده است.</span></footer>
 </body>
 </html>
