@@ -475,7 +475,7 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness]=await Promise.all([
+  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness,numbered5]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
@@ -486,7 +486,8 @@ async function init(){
     jsonOr('./data/submitted/m11-1392-direct.json',{records:[]}),
     jsonOr('./data/submitted/m18-1390-direct.json',{records:[]}),
     jsonOr('./data/submitted/m20-1396-direct.json',{records:[]}),
-    jsonOr('./data/completeness-audit.json',null)
+    jsonOr('./data/completeness-audit.json',null),
+    jsonOr('./data/clause-text/m05.json',{records:[]})
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   ADDENDA=Array.isArray(addenda)?addenda:[];
@@ -509,7 +510,14 @@ async function init(){
       meta.source=uploaded.source_name;
     }
   }
-  const backup=Array.isArray(energyBackup?.records)?energyBackup.records.filter(x=>x&&Number(x.chapter)===19&&x.answer):[];
+  // Display the complete, real numbered clauses from the PDF text layer.
+  // Do not use the old arbitrary page fragments for Chapter 5.
+  if(Array.isArray(numbered5?.records)&&numbered5.records.length>90){
+    INDEX=INDEX.filter(x=>Number(x.chapter)!==5).concat(numbered5.records);
+    const c=CATALOG.find(x=>Number(x.number)===5);
+    if(c){c.record_count=numbered5.records.length;c.method='numbered_clause';}
+  }
+    const backup=Array.isArray(energyBackup?.records)?energyBackup.records.filter(x=>x&&Number(x.chapter)===19&&x.answer):[];
   const activeM19=INDEX.filter(x=>Number(x.chapter)===19);
   if(backup.length>activeM19.length){
     INDEX=INDEX.filter(x=>Number(x.chapter)!==19).concat(backup);
