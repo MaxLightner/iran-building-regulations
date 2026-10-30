@@ -1,0 +1,49 @@
+name: Ingest regulations topic 1 from original PDF
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/ingest_m01.py"
+      - ".github/workflows/ingest-m01.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-topic-1
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PDF extraction dependency
+        run: python -m pip install "pymupdf>=1.24,<2"
+      - name: Download exact source PDF
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 --connect-timeout 15 --max-time 90 \
+            --output "$RUNNER_TEMP/mabhas-1-1392.pdf" \
+            "https://dl.archweb.ir/Mabahes-File/Mabhas-1-%28Virayesh-1392%29.pdf"
+          actual="$(sha256sum "$RUNNER_TEMP/mabhas-1-1392.pdf" | cut -d' ' -f1)"
+          test "$actual" = "e474fe98f8476430c8e0f0f158e16567f42b9ba890172afd90c8498319b52f2b"
+      - name: Extract structure and verify coverage
+        run: python scripts/ingest_m01.py --pdf "$RUNNER_TEMP/mabhas-1-1392.pdf" --out data/m01-1392
+      - name: Save structured topic data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/m01-1392/
+          if ! git diff --cached --quiet; then
+            git commit -m "Ingest topic 1: numbered clauses, source spans and search index"
+            git push origin HEAD:main
+          fi
