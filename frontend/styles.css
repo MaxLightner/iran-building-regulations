@@ -27,3 +27,5 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 @media(max-width:410px){.project-grid{grid-template-columns:1fr}}
 
 .dataset-coverage{font-size:13px;color:#576a75;margin:0 0 16px;line-height:1.8}
+
+.addenda-notice{background:#f4f8fc;border:1px solid #d6e3ef;border-radius:12px;padding:14px;margin:10px 0 15px;display:flex;flex-direction:column;gap:9px}.addenda-notice strong{font-size:13px}.addenda-notice a{font-size:13px;color:#245c85;text-decoration:underline}
