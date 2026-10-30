@@ -59,8 +59,17 @@ def safe_get(url,binary=False):
     r=session.get(url,timeout=TIMEOUT,allow_redirects=True)
     r.raise_for_status()
     if binary:return r.content,r.url,r.headers.get("content-type","")
-    r.encoding=r.apparent_encoding or "utf-8"
-    return r.text,r.url,r.headers.get("content-type","")
+    # Most Persian source pages are UTF-8. Charset guessers sometimes mistake
+    # Persian bytes for Thai (TIS-620), destroying the entire clause body.
+    # Decode valid UTF-8 first; use charset metadata only for legacy sources.
+    try:
+        page_text=r.content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        declared=r.encoding
+        if not declared or declared.lower() in ("iso-8859-1","latin-1"):
+            declared=r.apparent_encoding or "utf-8"
+        page_text=r.content.decode(declared,errors="replace")
+    return page_text,r.url,r.headers.get("content-type","")
 
 def find_chapter_number(text):
     t=norm(text)
