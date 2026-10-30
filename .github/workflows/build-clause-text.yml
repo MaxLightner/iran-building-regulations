@@ -1,0 +1,43 @@
+name: Build numbered regulatory clause text
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/build_clause_text.py",".github/workflows/build-clause-text.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: numbered-clauses
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python3 -m pip install -q pymupdf requests
+      - run: python3 scripts/build_clause_text.py
+      - run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("frontend/data/clause-text/m05.json").read_text())
+          assert p["record_count"]==len(p["records"]) and p["record_count"]>90
+          assert all(not r["title"].startswith("صفحه") for r in p["records"])
+          assert all(r["locator"].startswith("5-") for r in p["records"])
+          assert all(r["answer"]==r["text"] for r in p["records"])
+          print("PASS",p["record_count"],"complete clause records")
+          PY
+      - name: Commit full numbered clauses
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/data/clause-text
+          if ! git diff --staged --quiet; then
+            git commit -m "Index complete numbered clauses instead of page fragments"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
