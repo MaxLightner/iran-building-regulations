@@ -162,6 +162,29 @@ def ingest():
 
         target_rows = next((x for x in versions if x["target_edition"]), None)
         target_usable = bool(target_rows and target_rows["text_retrievable"])
+        # Phase 1 explicitly permits an older user's PDF as a temporary
+        # fallback. It NEVER becomes the target edition or a verified rule.
+        fallback = None
+        if n in (6, 11, 18) and not target_usable:
+            older = [v for v in versions
+                     if not v["target_edition"] and v["text_retrievable"]]
+            if older:
+                candidate = sorted(older, key=lambda v: v["edition"], reverse=True)[0]
+                is_sparse = (n == 18 and candidate["record_count"] < 30)
+                fallback = {
+                    "enabled": True,
+                    "edition": candidate["edition"],
+                    "record_count": candidate["record_count"],
+                    "status": ("incomplete_reference_only" if is_sparse
+                               else "provisional_historical_text"),
+                    "not_current_regulation": True,
+                    "not_legally_verified": True,
+                    "warning": ("نسخه قدیمی ناقص است و صرفاً برای مراجعه اولیه نگهداری می‌شود؛ "
+                                "نمی‌توان آن را پوشش کامل یا ضابطه جاری دانست."
+                                if is_sparse else
+                                "متن ویرایش قدیمی به‌صورت موقت قابل مراجعه است؛ "
+                                "برای طراحی و استناد باید نسخه لازم‌الاجرای روز بررسی شود.")
+                }
         risks = []
         if not target_usable:
             risks.append("target_edition_full_text_missing_or_unreadable")
@@ -183,6 +206,8 @@ def ingest():
             "title": entry["title"],
             "target_edition": target,
             "target_text_present": target_usable,
+            "temporary_fallback": fallback,
+            "preferred_text_edition": target if target_usable else (fallback["edition"] if fallback else None),
             "complete_or_officially_verified": False,
             "total_stored_rows": total,
             "versions": versions,
@@ -199,6 +224,8 @@ def ingest():
             "title": entry["title"],
             "target_edition": target,
             "target_text_present": target_usable,
+            "temporary_fallback": fallback,
+            "preferred_text_edition": target if target_usable else (fallback["edition"] if fallback else None),
             "versions": [{
                 "edition": v["edition"],
                 "records": v["record_count"],
@@ -218,6 +245,14 @@ def ingest():
         "fully_verified_chapters": 0,
         "target_editions_with_any_readable_text": sum(x["target_text_present"] for x in overview),
         "target_editions_missing_text": [x["chapter"] for x in overview if not x["target_text_present"]],
+        "chapters_with_temporary_historical_fallback": [
+            x["chapter"] for x in overview if x["temporary_fallback"]
+        ],
+        "chapters_with_only_incomplete_fallback": [
+            x["chapter"] for x in overview
+            if x["temporary_fallback"] and
+            x["temporary_fallback"]["status"] == "incomplete_reference_only"
+        ],
         "chapters": overview,
         "total_stored_rows_including_historical_editions": sum(x["stored_rows"] for x in overview),
     }
