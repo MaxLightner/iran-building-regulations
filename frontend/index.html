@@ -96,7 +96,7 @@ const topics={"1":"تعریف ساختمان|تعریف طبقه|کاربری س
 const favorite=[["عرض راه پله",4],["ارتفاع جان پناه",4],["ابعاد پارکینگ",4],["نورگیری اتاق",4],["ارتفاع سقف",4],["مسیر خروج",3],["ابعاد آسانسور",15],["بار برف",6],["وظایف ناظر",2],["پروانه ساختمان",2],["ایمنی گودبرداری",12],["ظرفیت باربری خاک",7],["لوله کشی گاز",17],["تعریف ساختمان",1]];
 const kinds={architecture:[4,3,15,23,1,18,19,24],structure:[6,7,8,9,10,11],installations:[13,14,15,16,17,19],safety:[3,12,20,21,22,4],administrative:[2,1,22,24],materials:[5,11,12,9,10]};
 const state={catalog:[],docs:new Map(),query:"",picked:null,more:new Map(),expanded:false};
-function norm(s){return String(s||"").normalize("NFKC").replace(/[يى]/g,"ی").replace(/ك/g,"ک").replace(/[ًٌٍَُِّْـ\u200c]/g,"").replace(/[۰-۹]/g,x=>"۰۱۲۳۴۵۶۷۸۹".indexOf(x)).replace(/[٠-٩]/g,x=>"٠١٢٣٤٥٦٧٨٩".indexOf(x)).replace(/[\W_،؛»«]+/g," ").replace(/\s+/g," ").trim().toLowerCase()}
+function norm(s){return String(s||"").normalize("NFKC").replace(/[يى]/g,"ی").replace(/ك/g,"ک").replace(/[ًٌٍَُِّْـ\u200c]/g,"").replace(/[۰-۹]/g,x=>"۰۱۲۳۴۵۶۷۸۹".indexOf(x)).replace(/[٠-٩]/g,x=>"٠١٢٣٤٥٦٧٨٩".indexOf(x)).replace(/[^\u0600-\u06FFa-zA-Z0-9\s]+/g," ").replace(/\s+/g," ").trim().toLowerCase()}
 function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function fa(x){return String(x).replace(/[0-9]/g,n=>"۰۱۲۳۴۵۶۷۸۹"[+n])}
 function priority(){return kinds[$("questionType").value]||[]}
