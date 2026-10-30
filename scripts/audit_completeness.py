@@ -111,8 +111,10 @@ def audit():
             warnings.append("direct_pdf_text_not_clause_index")
 
         ratio = persian_ratio(rows)
-        if rows and ratio < .55:
+        quarantine = bool(rows and ratio < .55)
+        if quarantine:
             warnings.append("text_encoding_corruption_suspected")
+            warnings.append("unreadable_text_quarantined_from_search")
 
         unique_refs = set()
         refs = []
@@ -175,6 +177,8 @@ def audit():
             "source_method": source_kind,
             "source_url_or_filename": doc_source,
             "indexed_records": len(rows),
+            "active_search_records": 0 if quarantine else len(rows),
+            "quarantined_due_to_encoding": quarantine,
             "distinct_clause_locators_unverified": len(unique_refs),
             "duplicated_clause_locators": duplicate_refs,
             "pdf_pages": pdf_pages,
@@ -203,7 +207,9 @@ def audit():
             "chapters": len(results),
             "certified_complete": sum(bool(x["certified_complete"]) for x in results),
             "not_certified": sum(not x["certified_complete"] for x in results),
-            "active_search_records": sum(x["indexed_records"] for x in results),
+            "active_search_records": sum(x["active_search_records"] for x in results),
+            "extracted_records_before_quality_filter": sum(x["indexed_records"] for x in results),
+            "quarantined_records": sum(x["indexed_records"] for x in results if x["quarantined_due_to_encoding"]),
             "encoding_risk": sum("text_encoding_corruption_suspected" in x["warnings"] for x in results),
             "no_verified_locators": sum("no_verified_clause_locators" in x["warnings"] for x in results),
             "visual_preview_chapters": sum(x["figure_page_previews_not_independent_figures"] > 0 for x in results),
