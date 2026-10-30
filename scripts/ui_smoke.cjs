@@ -93,7 +93,8 @@ async function main(){
   doc.querySelector('#resetProject').click();await pause(10);
   assert.equal(structure.value,'');
   assert.equal(chapterButtons().length,24);
-  assert.equal(topicGroups().length,24,'reset restores all topics');
+  select.value='';select.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.equal(topicGroups().length,24,'returning to all chapters restores all topics');
 
   // Cross-references, addenda and page images are still functional.
   doc.querySelector('#chapterGrid .chapter:nth-child(4)').click();await pause(10);
