@@ -97,6 +97,19 @@ async function main(){
   }
   doc.querySelector('#chapterGrid .chapter:nth-child(18)').click();await pause(10);
   assert.ok(doc.querySelector('#sourceProvenance').textContent.includes('نگاشت حروف'),'warn on corrupt embedded font encoding');
+    // A searchable chapter must never masquerade as fully verified.
+  const auditRows=[...doc.querySelectorAll('#completenessRows .audit-item')];
+  assert.equal(auditRows.length,24,'completeness audit must enumerate all 24 chapters');
+  assert.ok(doc.querySelector('#completenessScore').textContent.includes('۰ از ۲۴')||
+    doc.querySelector('#completenessScore').textContent.includes('0 از ۲۴'),
+    'no chapter can be fully certified without source evidence');
+  assert.ok(auditRows[6].textContent.includes('خرابی جدی کدگذاری حروف'),
+    'chapter 7 encoding corruption must be visible');
+  assert.ok(auditRows[13].textContent.includes('تکرار زیاد شناسه بند'),
+    'chapter 14 repeated locator risk must be visible');
+  assert.ok(auditRows[17].textContent.includes('۳')||
+    auditRows[17].textContent.includes('3'),
+    'chapter 18 searchable page gap must be shown');
     assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
