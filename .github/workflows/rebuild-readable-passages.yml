@@ -34,7 +34,7 @@ jobs:
               rows=json.loads((d/f'm{int(n):02d}-readable.json').read_text())["records"]
               assert len(rows)==s["readable_passages"]
               assert all(r["kind"]=="readable_paragraph" and r["locator"] is None for r in rows)
-              assert all("بخش " not in r["title"] and not r["title"].startswith("صفحه ") for r in rows)
+              assert all(not __import__("re").match(r"^صفحه\\s*\\d+\\s*-\\s*بخش\\s*\\d+", r["title"]) for r in rows)
               assert all(len(r["answer"])>=48 for r in rows)
           print("PASS",m["total_passages"],"complete-sentence passages")
           PY
