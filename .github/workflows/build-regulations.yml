@@ -27,14 +27,8 @@ jobs:
         with:
           persist-credentials: true
           fetch-depth: 0
-      - name: Install Persian OCR and parser dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y tesseract-ocr tesseract-ocr-fas tesseract-ocr-eng
-          python3 -m pip install requests beautifulsoup4 pymupdf
-          tesseract --list-langs
-      - name: Build environment
-        run: echo "OMP_THREAD_LIMIT=1" >> "$GITHUB_ENV"
+      - name: Install PDF text parser dependencies
+        run: python3 -m pip install requests beautifulsoup4 pymupdf
       - name: Build 24-chapter corpus
         run: python3 -u scripts/build_all_chapters.py
       - name: Validate generated corpus
