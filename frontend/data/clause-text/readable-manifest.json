@@ -1,0 +1,78 @@
+{
+  "method": "join_overlapping_chunks_and_only_split_at_complete_sentences",
+  "note": "Paragraph-like passages are not independently verified clause boundaries.",
+  "original_regulatory_clause_numbers_never_fabricated": true,
+  "chapters": {
+    "1": {
+      "method": "indexed_pdf",
+      "source_pages": 120,
+      "input_fragments": 231,
+      "readable_passages": 211,
+      "output_file": "m01-readable.json"
+    },
+    "2": {
+      "method": "indexed_pdf",
+      "source_pages": 135,
+      "input_fragments": 267,
+      "readable_passages": 244,
+      "output_file": "m02-readable.json"
+    },
+    "3": {
+      "method": "indexed_pdf",
+      "source_pages": 224,
+      "input_fragments": 452,
+      "readable_passages": 462,
+      "output_file": "m03-readable.json"
+    },
+    "6": {
+      "method": "user_provided_pdf",
+      "source_pages": 149,
+      "input_fragments": 233,
+      "readable_passages": 200,
+      "output_file": "m06-readable.json"
+    },
+    "11": {
+      "method": "user_provided_pdf",
+      "source_pages": 107,
+      "input_fragments": 178,
+      "readable_passages": 160,
+      "output_file": "m11-readable.json"
+    },
+    "12": {
+      "method": "indexed_pdf",
+      "source_pages": 93,
+      "input_fragments": 180,
+      "readable_passages": 149,
+      "output_file": "m12-readable.json"
+    },
+    "18": {
+      "method": "user_provided_pdf",
+      "source_pages": 3,
+      "input_fragments": 5,
+      "readable_passages": 4,
+      "output_file": "m18-readable.json"
+    },
+    "20": {
+      "method": "user_provided_pdf",
+      "source_pages": 81,
+      "input_fragments": 137,
+      "readable_passages": 122,
+      "output_file": "m20-readable.json"
+    },
+    "22": {
+      "method": "indexed_pdf",
+      "source_pages": 84,
+      "input_fragments": 149,
+      "readable_passages": 135,
+      "output_file": "m22-readable.json"
+    },
+    "24": {
+      "method": "indexed_pdf",
+      "source_pages": 51,
+      "input_fragments": 93,
+      "readable_passages": 84,
+      "output_file": "m24-readable.json"
+    }
+  },
+  "total_passages": 1771
+}
