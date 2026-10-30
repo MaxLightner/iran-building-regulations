@@ -83,23 +83,68 @@ footer{text-align:center;padding:22px;font-size:12px;color:#7f90a0;border-top:1p
 .web-body img{max-width:100%;height:auto;border-radius:8px;margin:12px 0}
 .web-body blockquote{border-right:3px solid #bcd6ea;background:#f7fbff;margin:12px 0;padding:10px 15px}
 .web-body h1,.web-body h2,.web-body h3,.web-body h4{line-height:1.8;margin:22px 0 10px}
+
+/* Fast, evidence-first field search and hierarchical book reader */
+.hit-list{display:grid;gap:11px}
+.hit{margin:0;border:1px solid #d7e4ee;border-radius:13px;background:#fff;overflow:hidden;box-shadow:0 3px 14px #15273c08}
+.hit>summary{list-style:none;cursor:pointer;padding:18px 20px;display:block;color:#1a3448}
+.hit>summary::-webkit-details-marker{display:none}
+.hit>summary:hover{background:#f8fbff}
+.hit[open]>summary{background:#f5faff}
+.hit-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
+.hit-topic{font-size:12px;color:#316d9e;background:#eaf5ff;border-radius:7px;padding:5px 9px}
+.hit-heading{font-size:16px;line-height:1.8;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-bottom:7px}
+.hit mark{background:#fff2ad;color:inherit;border-radius:3px;padding:0 1px}
+.hit-snippet{font-weight:normal;line-height:2;font-size:14px;color:#304457;display:block;white-space:normal;overflow-wrap:anywhere}
+.hit-path{font-weight:normal;display:block;color:#8393a0;font-size:12px;line-height:1.7;margin-top:10px}
+.hit-read{display:inline-block;font-size:12px;color:#126eaa;font-weight:700;margin-top:11px}
+.hit[open] .hit-read{display:none}
+.hit>.clause-detail{border-top:1px solid #dce7f0;padding:17px 21px}
+.profile-advanced{border:1px solid #dfe8f0;border-radius:12px;margin-bottom:15px;background:#fff;padding:0 15px}
+.profile-advanced>summary{padding:14px 4px;list-style:none;font-size:13px;color:#51718b}
+.profile-advanced>summary::-webkit-details-marker{display:none}
+.profile-advanced>summary:before{content:"⚙";margin-left:9px}
+.profile-advanced>p{color:#71859a;font-size:12px;margin:5px 6px 13px}
+.profile-advanced .panel{box-shadow:none;margin-bottom:10px;border:0;padding:7px 4px 12px}
+.tree-branch{border:1px solid #dfe9f1;background:#fcfeff;margin:8px 0;border-radius:9px;overflow:hidden}
+.tree-branch>summary{display:flex;align-items:center;gap:10px;padding:13px 15px;font-size:14px;list-style:none;color:#244967}
+.tree-branch>summary::-webkit-details-marker{display:none}
+.tree-branch>summary:after{content:"⌄";color:#849db1;margin-right:auto}
+.tree-branch[open]>summary{background:#edf6ff}
+.tree-branch[open]>summary:after{content:"⌃"}
+.tree-label{line-height:1.8;flex:1}
+.tree-count{font-size:11px;color:#73899a;white-space:nowrap;font-weight:normal}
+.tree-children{margin:7px 14px 14px 0;padding:0 14px 0 4px;border-right:2px solid #d8e6f2}
+.tree-children>.clause,.tree-children>.tree-branch{margin:7px 0}
+.branch-reading{background:#f5f9fd;border-radius:8px;margin:8px 0 11px;padding:1px 10px 8px}
+.branch-reading>summary{font-size:12px;padding:9px;color:#286b9b}
+.branch-reading>.clause-detail{background:#fff;border-radius:7px;padding:12px}
+.browse-note{font-size:13px;color:#607d93;padding:8px 5px 15px;line-height:1.8}
+.prelude{border-top:1px dashed #d6e3ed;margin-top:20px;padding-top:14px}
+.prelude>summary{font-size:13px;color:#688399}
+@media(max-width:700px){
+ .hit>summary{padding:14px}.hit-heading{font-size:15px}
+ .hit-snippet{font-size:14px}.hit>.clause-detail{padding:13px}
+ .tree-children{margin:6px 6px 10px 0;padding-right:9px}
+ .tree-branch>summary{padding:11px 10px}
+}
 </style>
 </head>
 <body>
 <header><div class="wrap"><strong>مقررات ملی ساختمان</strong><small>دسترسی سریع به ضوابط</small></div></header>
 <main class="wrap">
 <section class="intro"><h1>چه ضابطه‌ای را می‌خواهید پیدا کنید؟</h1><p>مشخصات ساختمان و موضوع سؤال را انتخاب کنید، یا مستقیماً جست‌وجو کنید.</p></section>
-<section class="panel"><div class="heading"><h2>مشخصات ساختمان و موضوع سؤال</h2><button id="resetSettings" class="clear">پاک‌کردن انتخاب‌ها</button></div><div class="filters">
+<section class="panel"><h2>جستجوی ضابطه</h2><div class="searchline"><input type="search" id="q" placeholder="ضابطه یا شماره بند؛ مثلاً عرض راه‌پله" aria-label="جستجو در مقررات"><button id="searchButton">جستجو</button></div>
+<div class="topicsline"><h3>موضوعات پرکاربرد</h3><span>بدون نیاز به تایپ، یکی را انتخاب کنید</span></div><div class="chips" id="quickTopics"></div><button class="showtopics" id="allTopicsToggle">نمایش همه موضوعات</button><div id="allTopics" class="topiccatalog" hidden></div></section>
+<details class="profile-advanced"><summary>تنظیم اولویت نتایج بر اساس مشخصات پروژه (اختیاری)</summary><p>این گزینه‌ها ترتیب نتایج را تغییر می‌دهند؛ هیچ مبحثی از جست‌وجو حذف نمی‌شود.</p><section class="panel"><div class="heading"><h2>مشخصات ساختمان و موضوع سؤال</h2><button id="resetSettings" class="clear">پاک‌کردن انتخاب‌ها</button></div><div class="filters">
 <label>نوع ملک<select id="pUse"><option value="">همه کاربری‌ها</option><option value="residential">مسکونی</option><option value="commercial">تجاری</option><option value="office">اداری</option><option value="mixed">مختلط</option><option value="industrial">صنعتی</option></select></label>
 <label>موضوع سؤال<select id="questionType"><option value="">همه موضوعات</option><option value="architecture">معماری و فضاها</option><option value="structure">سازه، بارگذاری و خاک</option><option value="installations">تأسیسات و تجهیزات</option><option value="safety">ایمنی و حریق</option><option value="administrative">مجوز و مسئولیت‌ها</option><option value="materials">مصالح و اجرا</option></select></label>
 <label>مرحله پروژه<select id="pStage"><option value="">همه مراحل</option><option value="design">طراحی</option><option value="permit">پروانه و مجوز</option><option value="construction">اجرا</option><option value="operation">بهره‌برداری</option></select></label>
 <label>سیستم سازه‌ای<select id="pStructure"><option value="">همه سیستم‌ها</option><option value="concrete">بتنی</option><option value="steel">فولادی</option><option value="masonry">بنایی</option></select></label>
 </div></section>
-<section class="panel"><h2>جستجوی ضابطه</h2><div class="searchline"><input type="search" id="q" placeholder="مثلاً عرض پله، ارتفاع جان‌پناه، وظایف ناظر..." aria-label="جستجو در مقررات"><button id="searchButton">جستجو</button></div>
-<div class="topicsline"><h3>موضوعات پرکاربرد</h3><span>بدون نیاز به تایپ، یکی را انتخاب کنید</span></div><div class="chips" id="quickTopics"></div><button class="showtopics" id="allTopicsToggle">نمایش همه موضوعات</button><div id="allTopics" class="topiccatalog" hidden></div></section>
-<div class="resultshead"><div><h2>مباحث و بندهای مرتبط</h2><p id="resultSummary">در حال بارگذاری...</p></div><button id="clearSearch" class="clear" hidden>نمایش همه</button></div>
+</details><div class="resultshead"><div><h2>مباحث و بندهای مرتبط</h2><p id="resultSummary">در حال بارگذاری...</p></div><button id="clearSearch" class="clear" hidden>بازگشت به فهرست مباحث</button></div>
 <div class="chapters" id="chapterList"></div><div id="error" class="error" role="alert" hidden></div>
-</main><footer>برای استناد فنی، متن بند را با صفحهٔ منبع PDF تطبیق دهید.</footer><script>(function(){"use strict";
+</main><footer>برای تصمیم اجرایی و استناد فنی، متن کامل بند و نسخه رسمی مبحث را بررسی کنید.</footer><script>(function(){"use strict";
 const $=id=>document.getElementById(id);
 const topics={"1":"تعریف ساختمان|تعریف طبقه|کاربری ساختمان|تصرف ساختمان|تعریف بنا|ساختمان مسکونی|سطح زیربنا|فضای باز|حیاط|ساختمان بلند|تأسیسات ساختمان|راه خروج|طبقه زیرزمین|پارکینگ|بام|تغییر کاربری|پله|آسانسور|دیوار|پیش‌آمدگی|ارتفاع ساختمان","2":"پروانه ساختمان|مسئولیت مالک|وظایف ناظر|وظایف مجری|سازنده ذیصلاح|طراح ساختمان|نقشه معماری|شناسنامه فنی|دفترچه اطلاعات|پایان کار|گزارش ناظر|دستور توقف|تخلف ساختمانی|آزمایش مصالح|قرارداد اجرای ساختمان|کنترل ساختمان|بیمه|تغییر نقشه|مجوز ساخت|ثبت مشخصات","3":"حفاظت در برابر حریق|مقاومت در برابر آتش|طبقه بندی تصرف|مسیر خروج|راه پله فرار|راهرو خروج|عرض خروج|فاصله پیمایش|دودبند|درب مقاوم حریق|دسترسی آتش نشانی|اعلام حریق|اطفای حریق|اسپرینکلر|فضای امن|پارکینگ|آسانسور|خروج اضطراری|دیوار حریق|تخلیه دود|حریق نما|محدودیت ارتفاع|حفاظت سازه|کپسول آتش نشانی","4":"ارتفاع جان پناه|عرض راه پله|نورگیری اتاق|عرض آشپزخانه|ارتفاع پارکینگ|حداقل مساحت اتاق|ابعاد آشپزخانه|ارتفاع سقف|نور طبیعی|تهویه طبیعی|پنجره|بازشو|ابعاد سرویس بهداشتی|توالت|حمام|راهرو|فضای مسکونی|اتاق خواب|اتاق نشیمن|بالکن|پاسیو|حیاط خلوت|حیاط|رمپ پارکینگ|تعداد پارکینگ|درب ورود|دسترسی معلولان|سطح اشغال|پله|نرده|آسانسور|بام|شیب بام|زیربنا|فضای مشاع|انبار|ایمنی شیشه|درز انقطاع|سقف کاذب|چاهک","5":"مصالح ساختمانی|استاندارد مصالح|آزمایش مصالح|سیمان|بتن|بتن آماده|سنگدانه|شن|ماسه|آهک|گچ|گچ ساختمانی|آجر|آجر سفالی|آجر نسوز|بلوک سیمانی|بلوک سبک|بتن هوادار|ملات|ملات ماسه سیمان|فولاد|میلگرد|ورق فولادی|پروفیل|جوش|پیچ و مهره|سنگ ساختمانی|سنگ نما|کاشی|سرامیک|چینی|شیشه|شیشه ایمنی|شیشه دوجداره|چوب|تخته چوب|ام دی اف|پلاستیک|پلیمر|لوله|قیر|آسفالت|ایزوگام|عایق رطوبتی|عایق حرارتی|پشم سنگ|پشم شیشه|رنگ|پوشش|چسب|در و پنجره|آلومینیوم|سقف|پوشش بام|کفپوش|دیوار پوش|نماسازی|مصالح بنایی|مصالح سبک|حفاظت خوردگی|مقاومت در برابر آتش|مقاومت فشاری|کیفیت مصالح|انبار مصالح|حمل مصالح|سازگاری مصالح|آزمایشگاه|چسب کاشی|موزاییک|سفال","6":"بار زنده|بار مرده|بار باد|بار برف|ترکیب بارها|بار زلزله|بار جانبی|بار ثقلی|بار بام|بار برف بام|بار پارکینگ|بار راه پله|بار کف|بار دیوار|بار تیغه|بار نما|بار آسانسور|بار آب|بار خاک|بار حرارتی|بار ضربه|ضریب اهمیت|ضریب بار|بار جرثقیل|بارگذاری سقف|بارگذاری ساختمان مسکونی","7":"مطالعات ژئوتکنیک|ظرفیت باربری خاک|طراحی پی|آزمایش خاک|گمانه زنی|نشست پی|پایدارسازی گود|نیروی جانبی خاک|تحلیل خاک|سطح آب زیرزمینی|پی سطحی|پی نواری|پی گسترده|پی منفرد|پی عمیق|شمع|نیروی بالابرنده|گودبرداری|دیوار حائل|تراکم خاک|پایدارسازی شیب|مقاومت برشی|تراز پی|عمق پی","8":"دیوار باربر بنایی|کلاف بندی|ارتفاع ساختمان بنایی|دیوار آجری|دیوار بلوکی|ملات|پی بنایی|دیوار غیر باربر|بازشو دیوار|نعل درگاه|اتصال دیوار|مقاومت فشاری|مقاومت جانبی|حداقل ضخامت دیوار|کلاف افقی|کلاف قائم|پایداری دیوار|دستک|شناژ|محدودیت طبقات|سقف ساختمان بنایی","9":"پوشش بتن|میلگرد گذاری|وصله میلگرد|مقاومت بتن|تیر بتنی|ستون بتنی|دال بتنی|پی بتنی|سقف بتنی|دیوار برشی|بتن آرمه|خاموت|آرماتور طولی|فاصله میلگرد|طول مهاری|قلاب میلگرد|بتن ریزی|عمل آوری بتن|برش|خمش|پیچش|اتصال تیر و ستون|نسبت آرماتور|قالب بندی|برش پانچ|دال دو طرفه|کنترل خیز|تیرچه|آرماتور افت و حرارت|درز اجرایی|مقاومت فشاری بتن","10":"اتصال فولادی|جوش و پیچ|بادبند|ستون فولادی|تیر فولادی|مهاربند|اتصال گیردار|اتصال مفصلی|جوشکاری|پیچ پر مقاومت|ورق اتصال|صفحه ستون|تیر به ستون|پایه ستون|مهاربند همگرا|مهاربند واگرا|قاب خمشی|کمانش|مقاومت کششی|برش|طراحی تیر|طراحی ستون|کنترل خیز|تیر مرکب|سازه فلزی|پوشش ضد حریق|خوردگی فولاد|وصله ستون|سخت کننده","11":"ساخت صنعتی|قطعات پیش ساخته|اتصالات صنعتی|سازه پیش ساخته|بتن پیش ساخته|اسکلت سبک|قاب فولادی سبک|سیستم ساختمانی|تولید صنعتی|حمل قطعات|نصب قطعات|کنترل کیفیت|مونتاژ سازه|دیوار پیش ساخته|سقف پیش ساخته|مدولار|پیش ساختگی|سیستم باربر جانبی|عایق بندی","12":"حفاظت کارگاه|ایمنی گودبرداری|داربست|کار در ارتفاع|ایمنی بالابر|ایمنی جرثقیل|حفاظت کارگران|حفاظت عابران|کلاه ایمنی|سقوط اشیا|نردبان|تخریب ساختمان|برق کارگاه|ایمنی آتش سوزی|حفاظ گود|حمل مصالح|انبار مصالح|ایمنی ماشین آلات|پیمانکار|مسئول ایمنی|ایمنی حفاری","13":"ارتینگ|برق اضطراری|تابلو برق|حفاظت الکتریکی|روشنایی ساختمان|روشنایی اضطراری|پریز|کلید برق|مدار روشنایی|انشعاب برق|کابل کشی|سیم کشی|ارتباط زمین|سیستم اتصال زمین|حفاظت در برابر برق گرفتگی|فیوز|کلید مینیاتوری|کلید محافظ جان|جعبه تقسیم|رایزر برق|تأسیسات برقی پارکینگ|تأسیسات برقی حمام|آسانسور|صاعقه گیر|دستگاه مولد برق|ترانسفورماتور|سیستم اعلام حریق","14":"تهویه مطبوع|دودکش|موتورخانه|تهویه پارکینگ|گرمایش|سرمایش|دیگ|پکیج|رادیاتور|فن کویل|هواساز|کانال تهویه|کانال هوا|تهویه آشپزخانه|تهویه سرویس بهداشتی|تخلیه دود|هواگیری|چیلر|برج خنک کننده|دستگاه سرمایش|سیستم گرمایش مرکزی|تهویه طبیعی|هواساز|لوله کشی گرمایش|عایق کاری تأسیسات|مشعل|آب گرم مصرفی|تهویه مکانیکی|دمای آسایش","15":"ابعاد آسانسور|چاه آسانسور|ظرفیت کابین|تعداد آسانسور|سرعت آسانسور|ابعاد کابین|درب آسانسور|چاهک آسانسور|موتورخانه آسانسور|آسانسور بدون موتورخانه|آسانسور آتش نشانی|آسانسور معلولین|پلکان برقی|پله برقی|شیب پله برقی|ایمنی آسانسور|ترمز اضطراری|سیستم تعلیق|بارگذاری آسانسور|برق اضطراری آسانسور|دسترسی آسانسور","16":"لوله کشی آب|فاضلاب|شیب لوله|تهویه فاضلاب|آب سرد|آب گرم|آب آشامیدنی|لوله کشی آشپزخانه|لوله کشی حمام|لوله کشی توالت|سیفون|کفشور|آب باران|ناودان|لوله قائم فاضلاب|شبکه فاضلاب|سپتیک|پمپ آب|مخزن آب|فشار آب|شیرآلات|لوازم بهداشتی|قطر لوله|دبی مصرفی|آب بندی|نشتی آب|تهویه شبکه فاضلاب","17":"لوله کشی گاز|دودکش گاز|انشعاب گاز|متر گاز|شیر گاز|رگولاتور|فشار گاز|لوله فولادی گاز|نصب پکیج|نصب آبگرمکن|تست نشتی|آزمایش فشار|تهویه محل نصب|اتصالات گاز|مکان مجاز نصب|حفاظت لوله|لوله کشی روکار|لوله کشی توکار|دودکش بخاری","18":"عایق صوتی|صدای کوبه ای|صدای هوابرد|کاهش صدا|عایق بندی صوتی|جداره جداکننده|دیوار مشترک|پنجره دوجداره|سقف عایق صوتی|کف شناور|نویز تجهیزات|صدای تأسیسات|جذب صدا|انتقال صدا|شاخص کاهش صدا|زمان واخنش|آکوستیک","19":"عایق حرارتی|پوسته ساختمان|مصرف انرژی|ضریب انتقال حرارت|پنجره|شیشه دوجداره|عایق دیوار|عایق سقف|پل حرارتی|گرمایش و سرمایش|برچسب انرژی|سیستم روشنایی|انرژی تجدیدپذیر|ساختمان کم مصرف|تهویه|هوابندی|جهت گیری ساختمان|آب گرم مصرفی|بازده تجهیزات|ضریب U|انرژی خورشیدی|بام سبز","20":"علائم خروج|تابلوهای ایمنی|علائم کارگاه|تابلو ورودی|تابلو راهنما|علائم خطر|علائم هشدار|علائم ممنوعیت|علائم اجباری|تابلو آسانسور|علامت آتش نشانی|پلاک ساختمان|علائم پارکینگ|علائم ترافیکی|علائم امداد|ابعاد تابلو|رنگ علائم|محل نصب تابلو|علائم مسیر خروج","21":"پدافند غیرعامل|حفاظت ساختمان|الزامات پدافندی|فضای امن|پناهگاه|تاب آوری ساختمان|حفاظت تاسیسات|مقاومت انفجار|محافظت ورودی|ایمنی دسترسی|امنیت شبکه|مکان یابی|محوطه امن|حفاظت مکانیکی|تداوم کاربری","22":"بازرسی دوره ای|نگهداری ساختمان|تعمیرات|بازرسی سازه|نگهداری تأسیسات|نگهداری آسانسور|بازرسی نما|نگهداری بام|بازرسی تجهیزات|تعمیر دیوار|نگهداری پارکینگ|دفترچه نگهداری|مدیریت ساختمان|بازرسی ایمنی|آزمون دوره ای|رسیدگی به خرابی|سرویس تجهیزات","23":"تعداد پارکینگ|دسترسی خودرو|شیب رمپ|تردد خودرو|عرض رمپ|ارتفاع پارکینگ|ابعاد جای پارک|شعاع گردش خودرو|مسیر حرکت|ترافیک ساختمان|ورود و خروج|پارکینگ معلولین|پارکینگ دوچرخه|موتورسیکلت|راه دسترسی|عرض معبر|خیابان|دسترسی آتش نشانی|بارگیری|توقفگاه","24":"انطباق شهری|ضوابط شهرسازی|معابر|خط آسمان|ارتفاع ساختمان|نما|حریم معبر|مبلمان شهری|ارتباط با شهر|پیش آمدگی|دسترسی معبر|ورودی ساختمان|بافت شهری|پیاده رو|نمای شهری|پارکینگ|پوشش گیاهی|حفاظت محیطی|تراکم ساختمانی|حقوق همسایگی"};
 const favorite=[["عرض راه پله",4],["ارتفاع جان پناه",4],["ابعاد پارکینگ",4],["نورگیری اتاق",4],["ارتفاع سقف",4],["مسیر خروج",3],["ابعاد آسانسور",15],["بار برف",6],["وظایف ناظر",2],["پروانه ساختمان",2],["ایمنی گودبرداری",12],["ظرفیت باربری خاک",7],["لوله کشی گاز",17],["تعریف ساختمان",1]];
@@ -111,54 +156,222 @@ function fa(x){return String(x).replace(/[0-9]/g,n=>"۰۱۲۳۴۵۶۷۸۹"[+n])}
 function priority(){const group=kinds[$("questionType").value]||[];const use={residential:[4,3,16,17],commercial:[4,3,23],office:[4,3,19],mixed:[4,3,23],industrial:[5,11,12]}[$("pUse").value]||[];const stage={design:[4,6,3],permit:[2,4],construction:[12,5],operation:[22,19]}[$("pStage").value]||[];const structure={concrete:[9,6,7],steel:[10,6,7],masonry:[8,6,7]}[$("pStructure").value]||[];return [...new Set([...group,...use,...stage,...structure])]}
 function button(label,ch){return '<button class="chip'+(state.picked&&state.picked.label===label&&state.picked.ch===ch?" active":"")+'" data-ch="'+ch+'" data-topic="'+esc(label)+'">'+esc(label)+'</button>'}
 function renderTopics(){
- let fav=favorite.slice().sort((a,b)=>Number(priority().includes(b[1]))-Number(priority().includes(a[1])));
+ let fav=favorite.slice().sort((a,b)=>Number(priority().includes(b[1]))-Number(priority().includes(a[1])));if(!state.expanded)fav=fav.slice(0,8);
  $("quickTopics").innerHTML=fav.map(x=>button(x[0],x[1])).join("");
  if(!state.expanded)return;
  const ids=$("questionType").value?priority():Array.from({length:24},(_,i)=>i+1);
  $("allTopics").innerHTML=ids.map(ch=>{const c=state.catalog.find(x=>x.mabhas===ch);return '<div class="topicgroup"><h4>مبحث '+fa(ch)+' · '+esc(c?c.title:"")+'</h4><div class="chips">'+String(topics[ch]||"").split("|").filter(Boolean).map(t=>button(t,ch)).join("")+'</div></div>'}).join("");
 }
 const topicAliases={"عرض راه پله":["عرض پله","عرض راهپله","عرض پلکان"],"ارتفاع جان پناه":["جانپناه","ارتفاع جانپناه","دستانداز"],"ابعاد پارکینگ":["ابعاد توقفگاه","توقفگاه"],"ارتفاع سقف":["ارتفاع داخلی","ارتفاع فضا"],"نورگیری اتاق":["نورگیری","نور طبیعی"]};
-function searchText(s,q){if(!q)return 1;const c=s.__cachedSearch||(s.__cachedSearch={h:norm(s.title),v:norm(s.text),id:norm(s.number)});const {h,v,id}=c;const all=c.all||(c.all=h+" "+v+" "+id);const aliases=state.picked&&norm(state.picked.label)===q?(topicAliases[state.picked.label]||[]):[];const variants=[q,...aliases.map(norm)];let best=0;for(const term of variants){if(id===term)best=Math.max(best,300);if(h===term)best=Math.max(best,220);if(h.includes(term))best=Math.max(best,125);if(v.includes(term))best=Math.max(best,80);const compact=term.replace(/\s/g,"");if(compact.length>4&&(c.compact||(c.compact=all.replace(/\s/g,""))).includes(compact))best=Math.max(best,64);const words=term.split(" ").filter(t=>t.length>1);if(words.length>1&&words.every(t=>all.includes(t)))best=Math.max(best,40)}return best}
+function searchText(s,q){
+ if(!q)return 1;
+ const c=s.__cachedSearch||(s.__cachedSearch={h:norm(s.title),v:norm(s.text),id:norm(s.number)});
+ const {h,v,id}=c,all=c.all||(c.all=h+" "+v+" "+id);
+ const aliases=state.picked&&norm(state.picked.label)===q?(topicAliases[state.picked.label]||[]):[];
+ const variants=[q,...aliases.map(norm)];let best=0;
+ for(const term of variants){
+  if(!term)continue;
+  if(id===term||id.split(" ").reverse().join(" ")===term)best=Math.max(best,500);
+  if(h===term)best=Math.max(best,260);
+  else if(h.includes(term))best=Math.max(best,185);
+  if(v.includes(term))best=Math.max(best,110);
+  const compact=term.replace(/\s/g,"");
+  if(compact.length>3&&(c.compact||(c.compact=all.replace(/\s/g,""))).includes(compact))best=Math.max(best,90);
+  const words=term.split(" ").filter(t=>t.length>1);
+  if(words.length>1){
+   const positions=words.map(w=>all.indexOf(w));
+   if(positions.every(p=>p>=0)){
+    const spread=Math.max(...positions)-Math.min(...positions);
+    best=Math.max(best,spread<100?65:25);
+   }
+  }
+ }
+ return best;
+}
 function trail(s,doc){let c=s,parts=[],n=0;while(c&&c.parent_id&&n++<12){c=doc.byId.get(c.parent_id);if(c)parts.unshift(c.title)}return parts.join(" › ")}
-function sectionHtml(s,doc,open){
- const fullText=String(s.text||"").replace(/\s+/g," ").trim();
- const preview=fullText.startsWith(s.title)?fullText.slice(s.title.length).trim().slice(0,145):fullText.slice(0,145);
- const prefix='<details class="clause"'+(open?" open":"")+'><summary><span class="clause-code">'+esc(s.number)+'</span><span class="clause-name"><b>'+esc(s.title)+'</b>'+(preview?'<span class="excerpt">'+esc(preview)+'</span>':"")+'</span></summary>';
+function contentHtml(s,doc){
  const pages=[...new Set((s.page_segments||[]).map(p=>p.pdf_page))];
  const src=doc.document.pdf_url||"";
- const links=pages.map(p=>'<a href="'+esc(src+"#page="+p)+'" target="_blank" rel="noopener noreferrer">صفحه '+fa(p)+' PDF</a>').join("");
+ const links=pages.filter(p=>src).map(p=>'<a href="'+esc(src+"#page="+p)+'" target="_blank" rel="noopener noreferrer">صفحه '+fa(p)+' PDF</a>').join("");
  const media=s.body_html?"":(s.assets||[]).filter(a=>a.file).map(a=>'<figure class="figure"><a href="'+esc(a.file)+'" target="_blank" rel="noopener noreferrer"><img src="'+esc(a.file)+'" alt="'+esc(a.caption||"تصویر بند")+'" loading="lazy"></a><figcaption>'+esc(a.caption||"")+'</figcaption></figure>').join("");
- const body=s.body_html?'<div class="web-body">'+s.body_html+'</div>':esc(s.text);
- const online=s.source_url?'<a href="'+esc(s.source_url)+'" target="_blank" rel="noopener noreferrer">مشاهده بند در منبع اصلی</a>':"";
- return prefix+'<div class="clause-detail">'+(trail(s,doc)?'<div class="crumb">'+esc(trail(s,doc))+'</div>':"")+body+media+'<div class="sources">'+online+links+'</div></div></details>';
+ const body=s.body_html?'<div class="web-body">'+s.body_html+'</div>':(s.text?'<p>'+esc(s.text)+'</p>':"");
+ const online=s.source_url?'<a href="'+esc(s.source_url)+'" target="_blank" rel="noopener noreferrer">مشاهده در منبع اصلی</a>':"";
+ return (trail(s,doc)?'<div class="crumb">'+esc(trail(s,doc))+'</div>':"")+body+media+'<div class="sources">'+online+links+'</div>';
+}
+function codeHtml(s){
+ const code=String(s.number||"");
+ return /-S\d+$/.test(code)?"":'<span class="clause-code">'+esc(code)+'</span>';
+}
+function excerptText(s,q){
+ const raw=String(s.text||"").replace(/\s+/g," ").trim();
+ if(!raw)return "";
+ if(!q)return raw.slice(0,145)+(raw.length>145?"…":"");
+ const lower=raw.toLowerCase(),terms=[q,...q.split(" ").filter(w=>w.length>2)];
+ let at=-1;for(const t of terms){at=lower.indexOf(t.toLowerCase());if(at>=0)break}
+ if(at<0)at=0;
+ const start=Math.max(0,at-35),end=Math.min(raw.length,at+150);
+ return (start?"…":"")+raw.slice(start,end)+(end<raw.length?"…":"");
+}
+function sectionHtml(s,doc,open,preview){
+ const label=esc(s.title||"بخش بدون عنوان");
+ const snippet=preview?excerptText(s,norm(state.query)):"";
+ return '<details class="clause" data-ch="'+doc.document.mabhas+'" data-id="'+esc(s.id)+'"'+(open?" open":"")+'><summary>'+codeHtml(s)+'<span class="clause-name"><b>'+label+'</b>'+(snippet?'<span class="excerpt">'+esc(snippet)+'</span>':"")+'</span></summary><div class="clause-detail"'+(open?"":' data-lazy="1"')+'>'+(open?contentHtml(s,doc):"")+'</div></details>';
+}
+function treeIndex(doc){
+ if(doc.children)return;
+ doc.children=new Map();
+ for(const s of doc.sections){
+  const p=s.parent_id&&doc.byId.has(s.parent_id)?s.parent_id:null;
+  if(!doc.children.has(p))doc.children.set(p,[]);
+  doc.children.get(p).push(s);
+ }
+ for(const a of doc.children.values())a.sort((x,y)=>x.order-y.order);
+}
+function treeChildren(doc,id){treeIndex(doc);return doc.children.get(id)||[]}
+function isPrelude(s){
+ const t=norm(s.title);
+ return /^(پیش ?گفتار|مقدمه|فهرست مطالب|فهرست شکل|فهرست جدول|هیات تدوین|هیئت تدوین|اعضای تدوین|ابلاغیه|شورای تدوین|دبیرخانه)/.test(t);
+}
+function isMetaResult(s,doc){
+ if(!s.parent_id&&treeChildren(doc,s.id).length)return true;
+ let cur=s,n=0;
+ while(cur&&n++<12){
+  if(cur.parent_id===null)break;
+  if(isPrelude(cur))return true;
+  cur=doc.byId.get(cur.parent_id);
+ }
+ return false;
+}
+function treeNode(s,doc){
+ const children=treeChildren(doc,s.id);
+ if(!children.length)return sectionHtml(s,doc,false,false);
+ return '<details class="tree-branch" data-ch="'+doc.document.mabhas+'" data-id="'+esc(s.id)+'"><summary>'+codeHtml(s)+'<span class="tree-label">'+esc(s.title||"بخش بدون عنوان")+'</span><span class="tree-count">'+fa(children.length)+' زیر‌بخش</span></summary><div class="tree-children" data-lazy="1"></div></details>';
+}
+function treeLevel(doc,id){
+ return treeChildren(doc,id).map(s=>treeNode(s,doc)).join("");
+}
+function browseContent(doc){
+ treeIndex(doc);
+ const roots=treeChildren(doc,null);
+ const root=roots.length===1&&treeChildren(doc,roots[0].id).length?roots[0]:null;
+ const items=root?treeChildren(doc,root.id):roots;
+ const main=items.filter(s=>!isPrelude(s));
+ const intro=items.filter(s=>isPrelude(s));
+ const first=main.length?main:items;
+ return '<div class="browse-note">فصل‌ها و بخش‌ها به ترتیب کتاب؛ روی هر عنوان بزنید تا زیر‌بخش‌هایش باز شود.</div>'
+   +first.map(s=>treeNode(s,doc)).join("")
+   +(intro.length&&main.length?'<details class="prelude"><summary>پیشگفتار، مقدمه و فهرست‌ها ('+fa(intro.length)+')</summary><div class="tree-children">'+intro.map(s=>treeNode(s,doc)).join("")+'</div></details>':"");
 }
 function infer(q){if(!q)return[];const scores={};for(const [ch,raw] of Object.entries(topics)){for(const t of raw.split("|")){const tt=norm(t);if(tt===q)scores[ch]=(scores[ch]||0)+15;else if(tt.includes(q)&&q.length>2)scores[ch]=(scores[ch]||0)+2;else if(q.includes(tt)&&tt.length>3)scores[ch]=(scores[ch]||0)+4}}return Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).map(Number)}
-function render(){
- const q=norm(state.query),matching=new Map();
- for(const [ch,doc] of state.docs){if(state.picked&&state.picked.ch!==ch)continue;matching.set(ch,doc.sections.map(s=>({s,score:searchText(s,q)})).filter(x=>(String(x.s.title||"").trim()||String(x.s.text||"").trim())&&x.score>0).sort((a,b)=>q?b.score-a.score||a.s.order-b.s.order:a.s.order-b.s.order))}
- let ids=q?state.picked?[state.picked.ch]:[...new Set([...infer(q).slice(0,5),...[...matching].filter(([ch,r])=>r.length).map(([ch])=>ch)])]:[...new Set([...priority(),...state.catalog.map(x=>x.mabhas)])];
- let total=0;
- $("chapterList").innerHTML=ids.length?ids.map((ch,i)=>{
- const c=state.catalog.find(x=>x.mabhas===ch);if(!c)return "";
- const doc=state.docs.get(ch),rows=matching.get(ch)||[];total+=rows.length;
- const limit=state.more.get(ch)||18;
- const content=doc?rows.length?rows.slice(0,limit).map((x,i)=>sectionHtml(x.s,doc,!!q&&i===0)).join("")+(rows.length>limit?'<button class="more" data-more="'+ch+'">نمایش موارد بیشتر ('+fa(rows.length-limit)+')</button>':""):'<div class="notready">بندی مطابق این عبارت پیدا نشد.</div>':'<div class="notready">متن این مبحث هنوز از منبع کامل وارد نشده است؛ نتیجهٔ ناقص یا حدسی نمایش داده نمی‌شود.</div>';
- return '<details class="chapter" data-chapter="'+ch+'"'+(q?' open':"")+'><summary><span class="chapter-id">مبحث '+fa(ch)+'</span><span class="chapter-title">'+esc(c.title)+'</span>'+(rows.length?'<span class="count">'+fa(rows.length)+' بند</span>':"")+'</summary><div class="chapterbody">'+content+'</div></details>';
- }).join(""):'<div class="notready">در داده‌های واردشده نتیجه‌ای برای این عبارت پیدا نشد.</div>';
- $("resultSummary").textContent=q?fa(total)+" بند منطبق با جستجو":"روی مبحث بزنید تا بندهای آن باز شود";
- $("clearSearch").hidden=!q;
+function markQuery(text,q){const words=q.split(" ").filter(w=>w.length>1).slice(0,5);if(!words.length)return esc(text);const re=new RegExp("("+words.join("|")+")","gi");return String(text||"").split(re).map((t,i)=>i%2?"<mark>"+esc(t)+"</mark>":esc(t)).join("")}
+function searchResultHtml(hit){
+ const s=hit.s,doc=hit.doc,c=state.catalog.find(x=>x.mabhas===hit.ch);
+ const path=trail(s,doc);
+ const snippet=excerptText(s,norm(state.query));
+ return '<details class="hit" data-ch="'+hit.ch+'" data-id="'+esc(s.id)+'"><summary>'
+  +'<div class="hit-meta"><span class="hit-topic">مبحث '+fa(hit.ch)+' · '+esc(c?.title||"")+'</span>'+codeHtml(s)+'</div>'
+  +'<strong class="hit-heading">'+markQuery(s.title||"بخش بدون عنوان",norm(state.query))+'</strong>'
+  +(snippet?'<span class="hit-snippet">'+markQuery(snippet,norm(state.query))+'</span>':"")
+  +(path?'<span class="hit-path">'+esc(path)+'</span>':"")
+  +'<span class="hit-read">مشاهده متن کامل و بندهای مرتبط</span></summary><div class="clause-detail" data-lazy="1"></div></details>';
 }
-function search(q,chosen){state.query=q.trim();state.picked=chosen||null;$("q").value=q;state.more.clear();renderTopics();render()}
+function searchRank(s,doc,q,ch){
+ const base=searchText(s,q);
+ if(!base)return 0;
+ const kids=treeChildren(doc,s.id).length,body=String(s.text||"").trim(),id=norm(s.number);
+ let result=base;
+ if(kids && body.length<90)result-=70;
+ if(!body.length)result-=40;
+ if(/-S\d+$/.test(s.number||"")&&body.length<60)result-=10;
+ if(state.picked?.ch===ch)result+=15;
+ return Math.max(1,result);
+}
+function renderSearch(q){
+ let hits=[];
+ for(const [ch,doc] of state.docs){
+  treeIndex(doc);
+  for(const s of doc.sections){
+   if(isMetaResult(s,doc))continue;
+   const score=searchRank(s,doc,q,ch);
+   if(score>0)hits.push({s,doc,ch,score});
+  }
+ }
+ const preferences=priority();
+ hits.sort((a,b)=>b.score-a.score
+   ||(preferences.indexOf(a.ch)<0?99:preferences.indexOf(a.ch))-(preferences.indexOf(b.ch)<0?99:preferences.indexOf(b.ch))
+   ||a.ch-b.ch||a.s.order-b.s.order);
+ state.hits=hits;
+ const limit=state.globalLimit||6;
+ $("chapterList").innerHTML=hits.length?'<div class="hit-list">'+hits.slice(0,limit).map(searchResultHtml).join("")
+  +(hits.length>limit?'<button class="more" data-more-global="1">نمایش '+fa(Math.min(20,hits.length-limit))+' نتیجه بعدی از '+fa(hits.length-limit)+' مورد باقی‌مانده</button>':"")+'</div>'
+  :'<div class="notready">بندی با این عبارت پیدا نشد. عبارت کوتاه‌تر یا شماره بند را امتحان کنید.</div>';
+ $("resultSummary").textContent=fa(hits.length)+' نتیجه در متن مباحث؛ مرتبط‌ترین موارد ابتدا نمایش داده می‌شوند.';
+ $("clearSearch").hidden=false;
+}
+function renderCatalog(){
+ const ids=[...new Set([...priority(),...state.catalog.map(x=>x.mabhas)])];
+ $("chapterList").innerHTML=ids.map(ch=>{
+  const c=state.catalog.find(x=>x.mabhas===ch),doc=state.docs.get(ch);
+  if(!c)return "";
+  const count=doc?doc.sections.length:0;
+  return '<details class="chapter" data-chapter="'+ch+'"><summary><span class="chapter-id">مبحث '+fa(ch)+'</span><span class="chapter-title">'+esc(c.title)+'</span><span class="count">'+fa(count)+' بخش</span></summary>'
+    +'<div class="chapterbody" data-lazy="1"></div></details>';
+ }).join("");
+ $("resultSummary").textContent="برای مطالعه، مبحث را باز کنید؛ فصل‌ها و زیربخش‌ها طبق ساختار کتاب نمایش داده می‌شوند.";
+ $("clearSearch").hidden=true;
+}
+function render(){const q=norm(state.query);if(q)renderSearch(q);else renderCatalog()}
+let queryTimer=null;
+function search(q,chosen){
+ state.query=q.trim();state.picked=chosen||null;state.globalLimit=6;
+ $("q").value=q;renderTopics();render();
+}
 function setup(){
  try{const saved=JSON.parse(localStorage.getItem("regulations-profile-v2")||"null");if(saved)for(const id of ["pUse","questionType","pStage","pStructure"])if(saved[id]&&[...$(id).options].some(x=>x.value===saved[id]))$(id).value=saved[id]}catch(e){}
- for(const id of ["pUse","questionType","pStage","pStructure"])$(id).addEventListener("change",()=>{try{localStorage.setItem("regulations-profile-v2",JSON.stringify(Object.fromEntries(["pUse","questionType","pStage","pStructure"].map(x=>[x,$(x).value]))))}catch(e){}renderTopics();render()});
- $("resetSettings").onclick=()=>{for(const id of ["pUse","questionType","pStage","pStructure"])$(id).value="";try{localStorage.removeItem("regulations-profile-v2")}catch(e){}renderTopics();render()};
- $("searchButton").onclick=()=>search($("q").value,null);
- $("q").oninput=()=>search($("q").value,null);
- $("q").onkeydown=e=>{if(e.key==="Enter")e.preventDefault()};
- $("clearSearch").onclick=()=>search("",null);
+ for(const id of ["pUse","questionType","pStage","pStructure"])$(id).addEventListener("change",()=>{
+  try{localStorage.setItem("regulations-profile-v2",JSON.stringify(Object.fromEntries(["pUse","questionType","pStage","pStructure"].map(x=>[x,$(x).value]))))}catch(e){}
+  renderTopics();render();
+ });
+ $("resetSettings").onclick=()=>{
+  for(const id of ["pUse","questionType","pStage","pStructure"])$(id).value="";
+  try{localStorage.removeItem("regulations-profile-v2")}catch(e){}
+  renderTopics();render();
+ };
+ $("searchButton").onclick=()=>{clearTimeout(queryTimer);search($("q").value,null);$("chapterList").scrollIntoView({behavior:"smooth",block:"start"})};
+ $("q").oninput=()=>{clearTimeout(queryTimer);const q=$("q").value;queryTimer=setTimeout(()=>search(q,null),170)};
+ $("q").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();clearTimeout(queryTimer);search($("q").value,null);$("chapterList").scrollIntoView({behavior:"smooth",block:"start"})}};
+ $("clearSearch").onclick=()=>{clearTimeout(queryTimer);search("",null)};
  $("allTopicsToggle").onclick=()=>{state.expanded=!state.expanded;$("allTopics").hidden=!state.expanded;$("allTopicsToggle").textContent=state.expanded?"بستن موضوعات":"نمایش همه موضوعات";renderTopics()};
- document.addEventListener("click",e=>{const topic=e.target.closest("[data-topic]");if(topic){const ch=+topic.dataset.ch;search(topic.dataset.topic,{label:topic.dataset.topic,ch});$("chapterList").scrollIntoView({behavior:"smooth",block:"start"});return}const more=e.target.closest("[data-more]");if(more){const ch=+more.dataset.more;state.more.set(ch,(state.more.get(ch)||18)+25);render();const d=document.querySelector('.chapter[data-chapter="'+ch+'"]');if(d)d.open=true}});
+ document.addEventListener("click",e=>{
+  const topic=e.target.closest("[data-topic]");
+  if(topic){
+   clearTimeout(queryTimer);search(topic.dataset.topic,{label:topic.dataset.topic,ch:+topic.dataset.ch});
+   $("chapterList").scrollIntoView({behavior:"smooth",block:"start"});return;
+  }
+  const more=e.target.closest("[data-more-global]");
+  if(more){state.globalLimit=(state.globalLimit||6)+20;const y=window.scrollY;render();window.scrollTo(0,y);return}
+  const summary=e.target.closest("summary");if(!summary)return;
+  const details=summary.parentElement,chapter=+(details.dataset.ch||details.dataset.chapter);
+  const doc=state.docs.get(chapter);if(!doc)return;
+  if(details.classList.contains("chapter")){
+   const box=details.querySelector(".chapterbody");
+   if(box?.hasAttribute("data-lazy")){box.innerHTML=browseContent(doc);box.removeAttribute("data-lazy")}
+  }else if(details.classList.contains("tree-branch")){
+   const box=details.querySelector(".tree-children");
+   if(box?.hasAttribute("data-lazy")){
+    const s=doc.byId.get(details.dataset.id);
+    if(s){
+     const own=(s.text||s.body_html)?'<details class="branch-reading" data-ch="'+chapter+'" data-id="'+esc(s.id)+'"><summary>متن این بخش</summary><div class="clause-detail" data-lazy="1"></div></details>':"";
+     box.innerHTML=own+treeLevel(doc,s.id);box.removeAttribute("data-lazy");
+    }
+   }
+  }else if(details.classList.contains("clause")||details.classList.contains("hit")||details.classList.contains("branch-reading")){
+   const box=details.querySelector(".clause-detail");
+   if(box?.hasAttribute("data-lazy")){
+    const s=doc.byId.get(details.dataset.id);if(s){box.innerHTML=contentHtml(s,doc);box.removeAttribute("data-lazy")}
+   }
+  }
+ });
 }
 async function load(){
  setup();renderTopics();
