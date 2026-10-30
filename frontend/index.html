@@ -3,75 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>مقررات ملی ساختمان — جست‌وجوی مهندسی</title>
-<link rel="stylesheet" href="./styles.css?v=20261030-clauses-2">
-<script src="./app.js?v=20261030-clauses-2" defer></script>
+<meta name="robots" content="noindex">
+<title>مقررات ملی ساختمان — بازسازی پایگاه داده</title>
+<style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Tahoma,Arial,sans-serif;background:#f6f8fa;color:#253044}main{max-width:630px;padding:32px;text-align:center}h1{font-size:clamp(23px,4vw,34px);margin:0 0 22px}p{font-size:17px;line-height:2;color:#586273}small{font-size:14px;color:#7d8795}
+</style>
 </head>
-<body>
-<header class="shell">
-  <div>
-    <span class="badge">مقررات ملی ساختمان</span>
-    <h1>پیدا کردن ضابطه، مستقیم و قابل استفاده</h1>
-    <p>سؤال را بنویس؛ نتیجه با شماره مبحث، بند، مقدارهای عددی و ارجاعات مرتبط نمایش داده می‌شود.</p>
-  </div>
-</header>
-<main class="shell">
-  <section class="card project-card" aria-label="مشخصات پروژه">
-    <div class="section-title project-title"><strong>پروژه من</strong><span>مباحث را بر اساس ویژگی‌های ساختمان محدود کن</span></div>
-    <div class="project-grid">
-      <label>کاربری
-        <select id="pUse"><option value="">مشخص نشده</option><option value="residential">مسکونی</option><option value="commercial">تجاری</option><option value="office">اداری</option><option value="mixed">مختلط</option><option value="industrial">صنعتی</option><option value="other">سایر</option></select>
-      </label>
-      <label>سیستم سازه‌ای
-        <select id="pStructure"><option value="">مشخص نشده</option><option value="concrete">بتنی</option><option value="steel">فولادی</option><option value="masonry">بنایی</option><option value="other">سایر / نامشخص</option></select>
-      </label>
-      <label>مرحله پروژه
-        <select id="pStage"><option value="">همه مراحل</option><option value="design">طراحی</option><option value="permit">پروانه و کنترل</option><option value="construction">اجرا</option><option value="operation">بهره‌برداری و نگهداری</option></select>
-      </label>
-      <label>تعداد طبقات
-        <input id="pFloors" type="number" min="1" max="200" step="1" placeholder="مثلاً ۵">
-      </label>
-      <label>آسانسور
-        <select id="pElevator"><option value="">نامشخص</option><option value="yes">دارد / پیش‌بینی شده</option><option value="no">ندارد</option></select>
-      </label>
-      <label>گاز شهری
-        <select id="pGas"><option value="">نامشخص</option><option value="yes">دارد</option><option value="no">ندارد</option></select>
-      </label>
-      <label>شهر
-        <input id="pCity" type="text" placeholder="مثلاً مشهد" autocomplete="address-level2">
-      </label>
-    </div>
-    <div class="project-actions">
-      <label class="checklabel"><input id="projectOnly" type="checkbox" checked> فقط مباحث پیشنهادی این پروژه</label>
-      <button type="button" id="resetProject" class="secondary">پاک‌کردن مشخصات</button>
-    </div>
-    <p class="project-note" id="projectNote">مشخصات پروژه را می‌توانی برای یافتن موضوعات مرتبط وارد کنی.</p>
-  </section>
-  <section class="searchbox card">
-    <div class="searchrow">
-      <input id="q" type="search" placeholder="مثلاً حداقل ارتفاع جان‌پناه چقدر است؟">
-      <select id="chapter"><option value="">همه مباحث</option></select>
-      <button id="go">جست‌وجو</button>
-    </div>
-    <div class="topic-header">
-      <strong>موضوعات قابل جست‌وجو</strong>
-      <input id="topicFilter" type="search" placeholder="فیلتر موضوعات…" aria-label="فیلتر موضوعات" autocomplete="off">
-    </div>
-    <div class="quick topic-groups" id="quick" aria-label="موضوعات قابل جست‌وجو"></div>
-  </section>
-
-  <span id="status" class="sr-only" aria-live="polite"></span>
-  <section id="results" class="results"></section>
-  <section id="visualGallery" class="card visual-gallery" hidden aria-label="تصاویر و دیاگرام‌های مبحث">
-    <div class="section-title"><strong id="visualTitle">تصاویر و دیاگرام‌ها</strong><span id="visualMeta"></span></div>
-    <p class="visual-disclaimer">برای دیدن جزئیات، تصویر هر صفحه را باز کنید.</p>
-    <div id="visualItems" class="visual-grid"></div>
-  </section>
-
-  <section class="chapters card">
-    <div class="section-title"><strong>مباحث</strong></div>
-    <div id="chapterGrid" class="chapter-grid"></div>
-  </section>
-</main>
-</body>
+<body><main><h1>پایگاه مقررات ملی ساختمان در حال بازسازی است</h1><p>داده‌های استخراج‌شده و ایندکس‌های نسخه قبلی حذف شده‌اند. منابع گردآوری‌شده محفوظ هستند و ورود اطلاعات پس از طراحی ساختار جدید از نو انجام خواهد شد.</p><small>در حال حاضر جست‌وجو و نمایش مقررات غیرفعال است.</small></main></body>
 </html>
