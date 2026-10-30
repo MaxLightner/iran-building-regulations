@@ -1,0 +1,43 @@
+name: Recover authentic numbered clauses
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/recover_more_numbered.py",".github/workflows/recover-more-numbered.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: additional-numbered-clauses
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python3 -m pip install -q requests pymupdf
+      - run: python3 scripts/recover_more_numbered.py
+      - run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path("frontend/data/clause-text")
+          ix=json.loads((d/"more-numbered-index.json").read_text())
+          assert len(ix)>150
+          assert all(r["title"]=="بند "+r["locator"] for r in ix)
+          assert all(not r["title"].startswith("صفحه") for r in ix)
+          print("PASS",len(ix),"numbered clauses")
+          PY
+      - name: Commit numbered clauses
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/data/clause-text
+          if ! git diff --staged --quiet; then
+            git commit -m "Recover authentic clause numbers for chapters 2 3 22"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
