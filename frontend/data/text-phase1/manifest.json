@@ -9,12 +9,22 @@
     11,
     18
   ],
+  "chapters_with_temporary_historical_fallback": [
+    6,
+    11,
+    18
+  ],
+  "chapters_with_only_incomplete_fallback": [
+    18
+  ],
   "chapters": [
     {
       "chapter": 1,
       "title": "تعاریف",
       "target_edition": "1392",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1392",
       "versions": [
         {
           "edition": "1392",
@@ -34,6 +44,8 @@
       "title": "نظامات اداری",
       "target_edition": "1384",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1384",
       "versions": [
         {
           "edition": "1384",
@@ -53,6 +65,8 @@
       "title": "حفاظت ساختمان‌ها در مقابل حریق",
       "target_edition": "1395",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1395",
       "versions": [
         {
           "edition": "1395",
@@ -72,6 +86,8 @@
       "title": "الزامات عمومی ساختمان",
       "target_edition": "1396",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1396",
       "versions": [
         {
           "edition": "1396",
@@ -91,6 +107,8 @@
       "title": "مصالح و فرآورده‌های ساختمانی",
       "target_edition": "1396",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1396",
       "versions": [
         {
           "edition": "1396",
@@ -110,6 +128,16 @@
       "title": "بارهای وارد بر ساختمان",
       "target_edition": "1398",
       "target_text_present": false,
+      "temporary_fallback": {
+        "enabled": true,
+        "edition": "1392",
+        "record_count": 233,
+        "status": "provisional_historical_text",
+        "not_current_regulation": true,
+        "not_legally_verified": true,
+        "warning": "متن ویرایش قدیمی به‌صورت موقت قابل مراجعه است؛ برای طراحی و استناد باید نسخه لازم‌الاجرای روز بررسی شود."
+      },
+      "preferred_text_edition": "1392",
       "versions": [
         {
           "edition": "1392",
@@ -130,6 +158,8 @@
       "title": "ژئوتکنیک و مهندسی پی",
       "target_edition": "1400",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1400",
       "versions": [
         {
           "edition": "1400",
@@ -149,6 +179,8 @@
       "title": "طرح و اجرای ساختمان‌های با مصالح بنایی",
       "target_edition": "1398",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1398",
       "versions": [
         {
           "edition": "1398",
@@ -168,6 +200,8 @@
       "title": "طرح و اجرای ساختمان‌های بتن‌آرمه",
       "target_edition": "1399",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1399",
       "versions": [
         {
           "edition": "1399",
@@ -187,6 +221,8 @@
       "title": "طرح و اجرای ساختمان‌های فولادی",
       "target_edition": "1401",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1401",
       "versions": [
         {
           "edition": "1401",
@@ -206,6 +242,16 @@
       "title": "طرح و اجرای صنعتی ساختمان‌ها",
       "target_edition": "1400",
       "target_text_present": false,
+      "temporary_fallback": {
+        "enabled": true,
+        "edition": "1392",
+        "record_count": 178,
+        "status": "provisional_historical_text",
+        "not_current_regulation": true,
+        "not_legally_verified": true,
+        "warning": "متن ویرایش قدیمی به‌صورت موقت قابل مراجعه است؛ برای طراحی و استناد باید نسخه لازم‌الاجرای روز بررسی شود."
+      },
+      "preferred_text_edition": "1392",
       "versions": [
         {
           "edition": "1392",
@@ -226,6 +272,8 @@
       "title": "ایمنی و حفاظت کار در حین اجرا",
       "target_edition": "1403",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1403",
       "versions": [
         {
           "edition": "1403",
@@ -245,6 +293,8 @@
       "title": "طرح و اجرای تأسیسات برقی ساختمان‌ها",
       "target_edition": "1395",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1395",
       "versions": [
         {
           "edition": "1395",
@@ -264,6 +314,8 @@
       "title": "تأسیسات مکانیکی",
       "target_edition": "1396",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1396",
       "versions": [
         {
           "edition": "1396",
@@ -284,6 +336,8 @@
       "title": "آسانسورها و پلکان برقی",
       "target_edition": "1392",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1392",
       "versions": [
         {
           "edition": "1392",
@@ -303,6 +357,8 @@
       "title": "تأسیسات بهداشتی",
       "target_edition": "1396",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1396",
       "versions": [
         {
           "edition": "1396",
@@ -323,6 +379,8 @@
       "title": "سامانه گاز طبیعی در ساختمان",
       "target_edition": "1403",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1403",
       "versions": [
         {
           "edition": "1403",
@@ -342,6 +400,16 @@
       "title": "عایق‌بندی و تنظیم صدا",
       "target_edition": "1396",
       "target_text_present": false,
+      "temporary_fallback": {
+        "enabled": true,
+        "edition": "1390",
+        "record_count": 5,
+        "status": "incomplete_reference_only",
+        "not_current_regulation": true,
+        "not_legally_verified": true,
+        "warning": "نسخه قدیمی ناقص است و صرفاً برای مراجعه اولیه نگهداری می‌شود؛ نمی‌توان آن را پوشش کامل یا ضابطه جاری دانست."
+      },
+      "preferred_text_edition": "1390",
       "versions": [
         {
           "edition": "1390",
@@ -362,6 +430,8 @@
       "title": "مدیریت انرژی در ساختمان",
       "target_edition": "1404",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1404",
       "versions": [
         {
           "edition": "1404",
@@ -381,6 +451,8 @@
       "title": "علائم و تابلوها",
       "target_edition": "1396",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1396",
       "versions": [
         {
           "edition": "1396",
@@ -400,6 +472,8 @@
       "title": "پدافند غیرعامل",
       "target_edition": "1395",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1395",
       "versions": [
         {
           "edition": "1395",
@@ -419,6 +493,8 @@
       "title": "مراقبت و نگهداری از ساختمان‌ها",
       "target_edition": "1392",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1392",
       "versions": [
         {
           "edition": "1392",
@@ -438,6 +514,8 @@
       "title": "الزامات ترافیکی ساختمان‌ها",
       "target_edition": "1401",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1401",
       "versions": [
         {
           "edition": "1401",
@@ -457,6 +535,8 @@
       "title": "انطباق شهری ساختمان",
       "target_edition": "1404",
       "target_text_present": true,
+      "temporary_fallback": null,
+      "preferred_text_edition": "1404",
       "versions": [
         {
           "edition": "1404",
