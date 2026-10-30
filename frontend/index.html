@@ -152,9 +152,10 @@ function setup(){
 async function load(){
  setup();renderTopics();
  try{
- const cat=await fetch("./data/catalog.json").then(r=>{if(!r.ok)throw Error("catalog "+r.status);return r.json()});state.catalog=cat.topics||[];
+ const releaseTag=(typeof location!=="undefined"&&new URLSearchParams(location.search).get("v"))||String(Date.now());
+ const cat=await fetch("./data/catalog.json?v="+encodeURIComponent(releaseTag)).then(r=>{if(!r.ok)throw Error("catalog "+r.status);return r.json()});state.catalog=cat.topics||[];
  const sources=state.catalog.filter(x=>x.dataset&&x.state&&!x.state.includes("blocked"));
- await Promise.all(sources.map(async c=>{try{const r=await fetch("./"+c.dataset+"/sections.json");if(!r.ok)throw Error(r.status);const data=await r.json();if(!Array.isArray(data.sections))throw Error("schema");state.docs.set(c.mabhas,{...data,byId:new Map(data.sections.map(s=>[s.id,s]))})}catch(e){console.warn("source failed",c.mabhas,e)}}));
+ await Promise.all(sources.map(async c=>{try{const r=await fetch("./"+c.dataset+"/sections.json?v="+encodeURIComponent(releaseTag));if(!r.ok)throw Error(r.status);const data=await r.json();if(!Array.isArray(data.sections))throw Error("schema");state.docs.set(c.mabhas,{...data,byId:new Map(data.sections.map(s=>[s.id,s]))})}catch(e){console.warn("source failed",c.mabhas,e)}}));
  renderTopics();render();
  }catch(e){$("error").hidden=false;$("error").textContent="خطا در بارگذاری داده‌ها: "+e.message}
 }

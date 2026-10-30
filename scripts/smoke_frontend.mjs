@@ -25,7 +25,7 @@ const document = {
   querySelector: () => null,
 };
 const fetch = async url => {
-  const file = path.join(root, 'frontend', url.replace(/^\.\//, ''));
+  const file = path.join(root, 'frontend', url.split('?')[0].replace(/^\.\//, ''));
   const actual = file.includes('/frontend/data/') ?
     file.replace('/frontend/data/', '/data/') : file;
   return { ok: fs.existsSync(actual), json: async () => JSON.parse(fs.readFileSync(actual, 'utf8')) };
