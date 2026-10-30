@@ -25,3 +25,5 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 @media(max-width:880px){.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:650px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:410px){.project-grid{grid-template-columns:1fr}}
+
+.dataset-coverage{font-size:13px;color:#576a75;margin:0 0 16px;line-height:1.8}
