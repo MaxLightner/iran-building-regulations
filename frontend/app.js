@@ -376,6 +376,7 @@ const QUALITY_WARNINGS={
   figures_and_tables_not_indexed:'شکل‌ها و جدول‌ها مستقل نمایه نشده‌اند',
   many_pdf_pages_without_indexed_text:'تعداد قابل توجهی صفحه فاقد متن استخراج‌شده است',
   previous_snapshot_restored:'از نسخه پشتیبان استفاده شده است',
+  unreadable_text_quarantined_from_search:'متن خراب از نتایج جست‌وجو کنار گذاشته شده است',
   intermediary_pdf_page_count_differs_from_original:'شمار صفحات متن استخراج‌شده با PDF اصلی متفاوت است؛ شماره صفحات باید دوباره تطبیق داده شود',
   some_readable_pdf_pages_not_indexed:'برخی صفحات متن‌دار PDF اصلی در دیتابیس نمایه نشده‌اند',
   source_pdf_font_mapping_corrupted:'در PDF اصلی نگاشت فونت فارسی خراب است و بازسازی متن بدون OCR ممکن نشده'
@@ -398,7 +399,8 @@ function renderCompleteness(report){
   }
   const complete=report.chapters.filter(x=>x.certified_complete).length;
   score.textContent=complete+' از ۲۴ مبحث کاملاً تأییدشده';
-  status.textContent=Number(report.summary?.active_search_records||0).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ تعداد رکورد نشان‌دهنده اعتبار ضابطه نیست. وضعیت هر مبحث بر اساس ۶ کنترل اجباری و شواهد ثبت‌شده تعیین می‌شود.';
+  status.textContent=Number(report.summary?.active_search_records||0).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ '+
+    Number(report.summary?.quarantined_records||0).toLocaleString('fa-IR')+' رکوردِ دارای خرابی حروف کنار گذاشته شده‌اند. این اعداد نشان‌دهنده کامل‌بودن مقررات نیستند.';
   const intro=el('div','هیچ درصدی به‌عنوان «درصد کامل‌بودن» نمایش نمی‌دهیم؛ تعداد صفحات دارای متن صرفاً یک شاخص فنی است.','audit-explanation');
   holder.append(intro);
   for(const ch of report.chapters){
@@ -446,7 +448,7 @@ function renderCatalog(){
     const b=el('button',null,'chapter'+(count?'':' missing'));
     b.type='button';
     b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',(count?count+' مورد استخراج‌شده'+(c.method==='direct_pdf_text'?' · متن مستقیم PDF، ویرایش '+c.edition:c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
+      el('span',(c.status==='unusable_encoding'?'متن خراب؛ فعلاً غیرقابل جست‌وجو':count?count+' مورد استخراج‌شده'+(c.method==='direct_pdf_text'?' · متن مستقیم PDF، ویرایش '+c.edition:c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
         (ADDENDA.some(a=>Number(a.chapter)===Number(c.number))?' · اصلاحیه/پیوست':'')));
     b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
   }
@@ -536,6 +538,19 @@ async function init(){
     INDEX=INDEX.filter(x=>Number(x.chapter)!==19).concat(backup);
     const meta=CATALOG.find(x=>Number(x.number)===19);
     if(meta){meta.record_count=backup.length;meta.method='structured_text';meta.source=energyBackup.source_url;meta.preserved_previous_snapshot=true;}
+  }
+  // Never expose unreadable mojibake as regulatory text. The audit records the
+  // excluded volume; later correct UTF-8 rebuilds can automatically restore it.
+  const bad=new Set((completeness?.chapters||[])
+    .filter(c=>c.quarantined_due_to_encoding).map(c=>Number(c.chapter)));
+  if(bad.size){
+    INDEX=INDEX.filter(r=>!bad.has(Number(r.chapter)));
+    for(const c of CATALOG){
+      if(!bad.has(Number(c.number)))continue;
+      c.record_count=0;
+      c.status='unusable_encoding';
+      c.method='unusable_encoding';
+    }
   }
   setCurated(curated);
   renderCompleteness(completeness);
