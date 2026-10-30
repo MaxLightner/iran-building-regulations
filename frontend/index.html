@@ -70,7 +70,15 @@
     <span id="coverage"></span>
   </section>
 
-  <p id="datasetCoverage" class="dataset-coverage" aria-live="polite"></p>
+  <section id="completenessCard" class="card completeness-card" aria-label="ممیزی کامل بودن مباحث">
+    <div class="section-title"><strong>ممیزی کامل‌بودن و اعتبار داده‌ها</strong><span id="completenessScore">در حال بررسی…</span></div>
+    <p id="completenessStatus" class="completeness-status">هر مبحث تنها پس از تأیید ویرایش، همه بندها، جدول‌ها، شکل‌ها، اصلاحیه‌ها و مقابله با منبع اصلی «کامل» محسوب می‌شود.</p>
+    <details id="completenessDetails">
+      <summary>وضعیت دقیق ۲۴ مبحث و نواقص هر کدام را ببین</summary>
+      <div id="completenessRows" class="completeness-list"></div>
+    </details>
+  </section>
+    <p id="datasetCoverage" class="dataset-coverage" aria-live="polite"></p>
   <div id="sourceProvenance" class="source-provenance" hidden></div>
   <section id="results" class="results"></section>
   <section id="visualGallery" class="card visual-gallery" hidden aria-label="تصاویر و دیاگرام‌های مبحث">
