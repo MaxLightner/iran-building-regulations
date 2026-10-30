@@ -103,8 +103,10 @@ async function main(){
   assert.ok(doc.querySelector('#completenessScore').textContent.includes('۰ از ۲۴')||
     doc.querySelector('#completenessScore').textContent.includes('0 از ۲۴'),
     'no chapter can be fully certified without source evidence');
-  assert.ok(auditRows[6].textContent.includes('خرابی جدی کدگذاری حروف'),
-    'chapter 7 encoding corruption must be visible');
+  const auditFile=JSON.parse(fs.readFileSync(path.join(root,'data/completeness-audit.json'),'utf8'));
+  const m07Risk=(auditFile.chapters[6].warnings||[]).includes('text_encoding_corruption_suspected');
+  assert.equal(auditRows[6].textContent.includes('خرابی جدی کدگذاری حروف'),m07Risk,
+    'chapter 7 encoding risk must match the actual corpus health');
   assert.ok(auditRows[13].textContent.includes('تکرار زیاد شناسه بند'),
     'chapter 14 repeated locator risk must be visible');
   assert.ok(auditRows[17].textContent.includes('۳')||
