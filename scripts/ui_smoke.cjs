@@ -34,7 +34,31 @@ async function main(){
   assert.ok(doc.querySelectorAll('#results .result').length>=1,'chapter 4 should contain results');
   doc.querySelector('#chapterGrid .chapter:nth-child(2)').click();await pause(10);
   assert.ok(doc.querySelectorAll('#results .empty').length>=1,'unavailable chapter should report missing data');
-  assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
+  // Chapter-aware quick suggestions must replace, not silently reset, the chapter.
+  const chapterSelect=doc.querySelector('#chapter');
+  chapterSelect.value='10';
+  chapterSelect.dispatchEvent(new win.Event('change'));
+  await pause(10);
+  assert.ok(doc.querySelector('[data-q="اتصال فولادی"]'),'steel chapter suggestions should appear');
+  doc.querySelector('[data-q="اتصال فولادی"]').click();await pause(10);
+  assert.equal(chapterSelect.value,'10','suggestions must preserve chapter context');
+  assert.equal(q.value,'اتصال فولادی');
+  // Project-based filtering must affect both chapter choices and search results.
+  const structure=doc.querySelector('#pStructure'),gas=doc.querySelector('#pGas'),stage=doc.querySelector('#pStage');
+  structure.value='steel';structure.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.ok(![...chapterSelect.options].some(o=>o.value==='9'),'concrete structural chapter excluded for steel project');
+  assert.ok([...chapterSelect.options].some(o=>o.value==='10'),'steel structural chapter stays visible');
+  gas.value='no';gas.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.ok(![...chapterSelect.options].some(o=>o.value==='17'),'gas chapter excluded when no gas');
+  stage.value='design';stage.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.ok(![...chapterSelect.options].some(o=>o.value==='12'),'site safety not in design-phase shortlist');
+  doc.querySelector('#projectOnly').checked=false;
+  doc.querySelector('#projectOnly').dispatchEvent(new win.Event('change'));await pause(10);
+  assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'show all must restore all 24 chapters');
+  doc.querySelector('#resetProject').click();await pause(10);
+  assert.equal(structure.value,'','reset clears the profile');
+  assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'reset restores complete catalog');
+    assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
 }
