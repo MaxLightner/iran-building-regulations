@@ -45,7 +45,7 @@
       <label class="checklabel"><input id="projectOnly" type="checkbox" checked> فقط مباحث پیشنهادی این پروژه</label>
       <button type="button" id="resetProject" class="secondary">پاک‌کردن مشخصات</button>
     </div>
-    <p class="project-note" id="projectNote">فیلتر پروژه یک راهنمای اولیه است، نه تشخیص قطعی شمول قانونی. ضوابط شهرداری شهر انتخابی هنوز به دیتابیس متصل نیست.</p>
+    <p class="project-note" id="projectNote">مشخصات پروژه را می‌توانی برای یافتن موضوعات مرتبط وارد کنی.</p>
   </section>
   <section class="searchbox card">
     <div class="searchrow">
@@ -60,10 +60,11 @@
     <div class="quick topic-groups" id="quick" aria-label="موضوعات قابل جست‌وجو"></div>
   </section>
 
+  <span id="status" class="sr-only" aria-live="polite"></span>
   <section id="results" class="results"></section>
   <section id="visualGallery" class="card visual-gallery" hidden aria-label="تصاویر و دیاگرام‌های مبحث">
     <div class="section-title"><strong id="visualTitle">تصاویر و دیاگرام‌ها</strong><span id="visualMeta"></span></div>
-    <p class="visual-disclaimer">۹۶ پیش‌نمایش منتخب از مباحث ۶، ۱۱، ۱۸ و ۲۰؛ تصاویر مربوط به ویرایش ثبت‌شده هستند و برای کنترل جزئیات باید سند اصلی دیده شود.</p>
+    <p class="visual-disclaimer">برای دیدن جزئیات، تصویر هر صفحه را باز کنید.</p>
     <div id="visualItems" class="visual-grid"></div>
   </section>
 
