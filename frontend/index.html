@@ -74,6 +74,15 @@ details{margin-top:15px}summary{cursor:pointer;color:#3e637b;font-weight:700}.pa
 .clause{border:1px solid #e0e8f0;border-radius:10px;overflow:hidden;margin:8px 0}.clause>summary{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:14px;cursor:pointer}.clause[open]>summary{background:#f4f9fd}.clause-code{color:#246fa4;background:#eaf4ff;border-radius:6px;padding:4px 8px;direction:ltr;unicode-bidi:isolate;font-size:13px}.clause-name{display:grid;gap:5px;flex:1;line-height:1.8;font-size:14px}.excerpt{color:#75889b;font-size:13px;line-height:1.8;font-weight:normal}.clause-detail{border-top:1px solid #e0eaf3;padding:17px 18px 21px;line-height:2.2;white-space:pre-wrap;font-size:15px;overflow-wrap:anywhere}.crumb{font-size:13px;color:#67869c;margin-bottom:10px}.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.sources a{font-size:13px;background:#eef7ff;border:1px solid #cfdfed;padding:4px 11px;border-radius:7px}.figure img{display:block;width:100%;max-width:700px;height:auto}.figure{margin:15px 0}.figure figcaption{font-size:13px;color:#668095}.notready{background:#f6f9fc;border-radius:9px;padding:19px;color:#61788e;line-height:1.9;font-size:14px}.more{background:#edf6ff;color:#27699d;padding:11px 14px;border-radius:9px;border:0;width:100%;margin-top:11px}.error{padding:17px;color:#a33b26;background:#fff1ed}
 footer{text-align:center;padding:22px;font-size:12px;color:#7f90a0;border-top:1px solid #e1e8ef;background:#fff}
 @media(max-width:700px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:18px}.chapter>summary{padding:12px}.chapterbody{padding:10px}.intro h1{font-size:20px}header small{display:none}.topicsline span{display:none}}
+
+/* Structured online regulation sections */
+.web-body{white-space:normal;line-height:2.1;overflow-wrap:anywhere}
+.web-body p{margin:0 0 13px}.web-body ul,.web-body ol{padding-right:24px;margin:8px 0 16px}
+.web-body table{border-collapse:collapse;width:100%;max-width:100%;display:block;overflow-x:auto;margin:16px 0;font-size:13px}
+.web-body th,.web-body td{border:1px solid #dce5ec;padding:9px 10px;vertical-align:top;min-width:70px}
+.web-body img{max-width:100%;height:auto;border-radius:8px;margin:12px 0}
+.web-body blockquote{border-right:3px solid #bcd6ea;background:#f7fbff;margin:12px 0;padding:10px 15px}
+.web-body h1,.web-body h2,.web-body h3,.web-body h4{line-height:1.8;margin:22px 0 10px}
 </style>
 </head>
 <body>
@@ -118,8 +127,10 @@ function sectionHtml(s,doc,open){
  const pages=[...new Set((s.page_segments||[]).map(p=>p.pdf_page))];
  const src=doc.document.pdf_url||"";
  const links=pages.map(p=>'<a href="'+esc(src+"#page="+p)+'" target="_blank" rel="noopener noreferrer">صفحه '+fa(p)+' PDF</a>').join("");
- const media=(s.assets||[]).filter(a=>a.file).map(a=>'<figure class="figure"><a href="'+esc(a.file)+'" target="_blank" rel="noopener noreferrer"><img src="'+esc(a.file)+'" alt="'+esc(a.caption||"تصویر بند")+'" loading="lazy"></a><figcaption>'+esc(a.caption||"")+'</figcaption></figure>').join("");
- return prefix+'<div class="clause-detail">'+(trail(s,doc)?'<div class="crumb">'+esc(trail(s,doc))+'</div>':"")+esc(s.text)+media+'<div class="sources">'+links+'</div></div></details>';
+ const media=s.body_html?"":(s.assets||[]).filter(a=>a.file).map(a=>'<figure class="figure"><a href="'+esc(a.file)+'" target="_blank" rel="noopener noreferrer"><img src="'+esc(a.file)+'" alt="'+esc(a.caption||"تصویر بند")+'" loading="lazy"></a><figcaption>'+esc(a.caption||"")+'</figcaption></figure>').join("");
+ const body=s.body_html?'<div class="web-body">'+s.body_html+'</div>':esc(s.text);
+ const online=s.source_url?'<a href="'+esc(s.source_url)+'" target="_blank" rel="noopener noreferrer">مشاهده بند در منبع اصلی</a>':"";
+ return prefix+'<div class="clause-detail">'+(trail(s,doc)?'<div class="crumb">'+esc(trail(s,doc))+'</div>':"")+body+media+'<div class="sources">'+online+links+'</div></div></details>';
 }
 function infer(q){if(!q)return[];const scores={};for(const [ch,raw] of Object.entries(topics)){for(const t of raw.split("|")){const tt=norm(t);if(tt===q)scores[ch]=(scores[ch]||0)+15;else if(tt.includes(q)&&q.length>2)scores[ch]=(scores[ch]||0)+2;else if(q.includes(tt)&&tt.length>3)scores[ch]=(scores[ch]||0)+4}}return Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).map(Number)}
 function render(){
@@ -156,6 +167,21 @@ async function load(){
  const cat=await fetch("./data/catalog.json?v="+encodeURIComponent(releaseTag)).then(r=>{if(!r.ok)throw Error("catalog "+r.status);return r.json()});state.catalog=cat.topics||[];
  const sources=state.catalog.filter(x=>x.dataset&&x.state&&!x.state.includes("blocked"));
  await Promise.all(sources.map(async c=>{try{const r=await fetch("./"+c.dataset+"/sections.json?v="+encodeURIComponent(releaseTag));if(!r.ok)throw Error(r.status);const data=await r.json();if(!Array.isArray(data.sections))throw Error("schema");state.docs.set(c.mabhas,{...data,byId:new Map(data.sections.map(s=>[s.id,s]))})}catch(e){console.warn("source failed",c.mabhas,e)}}));
+ // Each online regulation is stored separately, compressed to keep the site responsive.
+ try{
+  const web=await fetch("./data/web/manifest.json?v="+encodeURIComponent(releaseTag)).then(r=>{if(!r.ok)throw Error(r.status);return r.json()});
+  if(!("DecompressionStream" in window))throw Error("مرورگر از بازکردن داده‌های فشرده پشتیبانی نمی‌کند");
+  await Promise.all((web.topics||[]).map(async c=>{
+   try{
+    const response=await fetch("./data/web/"+c.file+"?v="+encodeURIComponent(releaseTag));
+    if(!response.ok)throw Error(response.status);
+    const body=response.body.pipeThrough(new DecompressionStream("gzip"));
+    const data=JSON.parse(await new Response(body).text());
+    if(!Array.isArray(data.sections))throw Error("schema");
+    state.docs.set(c.mabhas,{...data,byId:new Map(data.sections.map(s=>[s.id,s]))});
+   }catch(e){console.warn("web topic failed",c.mabhas,e)}
+  }));
+ }catch(e){console.warn("web catalog unavailable",e)}
  renderTopics();render();
  }catch(e){$("error").hidden=false;$("error").textContent="خطا در بارگذاری داده‌ها: "+e.message}
 }

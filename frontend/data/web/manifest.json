@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "topics": [
+    {
+      "mabhas": 1,
+      "file": "m01.json.gz",
+      "section_count": 288,
+      "source_url": "https://mihansazan.app/posts/national-building-regulations-definitio"
+    },
+    {
+      "mabhas": 2,
+      "file": "m02.json.gz",
+      "section_count": 200,
+      "source_url": "https://mihansazan.app/posts/national-building-code-iran-administrat"
+    },
+    {
+      "mabhas": 3,
+      "file": "m03.json.gz",
+      "section_count": 733,
+      "source_url": "https://mihansazan.app/posts/nbci-protecting-buildings-against-fire"
+    },
+    {
+      "mabhas": 4,
+      "file": "m04.json.gz",
+      "section_count": 194,
+      "source_url": "https://mihansazan.app/posts/nbci-general-building-requirements"
+    },
+    {
+      "mabhas": 5,
+      "file": "m05.json.gz",
+      "section_count": 550,
+      "source_url": "https://mihansazan.app/posts/nbci-building-materials-products"
+    },
+    {
+      "mabhas": 6,
+      "file": "m06.json.gz",
+      "section_count": 375,
+      "source_url": "https://mihansazan.app/posts/nbci-design-loads-for-buildings"
+    },
+    {
+      "mabhas": 7,
+      "file": "m07.json.gz",
+      "section_count": 214,
+      "source_url": "https://mihansazan.app/posts/nbci-foundations"
+    },
+    {
+      "mabhas": 8,
+      "file": "m08.json.gz",
+      "section_count": 410,
+      "source_url": "https://mihansazan.app/posts/nbci-masonry-buildings"
+    },
+    {
+      "mabhas": 9,
+      "file": "m09.json.gz",
+      "section_count": 1599,
+      "source_url": "https://mihansazan.app/posts/nbci-design-and-construction-of-concret"
+    },
+    {
+      "mabhas": 10,
+      "file": "m10.json.gz",
+      "section_count": 923,
+      "source_url": "https://mihansazan.app/posts/nbci-design-and-construction-of-steel-s"
+    },
+    {
+      "mabhas": 11,
+      "file": "m11.json.gz",
+      "section_count": 437,
+      "source_url": "https://mihansazan.app/posts/nbci-industrialized-construction"
+    },
+    {
+      "mabhas": 12,
+      "file": "m12.json.gz",
+      "section_count": 413,
+      "source_url": "https://mihansazan.app/posts/nbci-safety-and-precautions-in-construc"
+    },
+    {
+      "mabhas": 13,
+      "file": "m13.json.gz",
+      "section_count": 729,
+      "source_url": "https://mihansazan.app/posts/nbci-electrical-installations"
+    },
+    {
+      "mabhas": 14,
+      "file": "m14.json.gz",
+      "section_count": 438,
+      "source_url": "https://mihansazan.app/posts/nbci-mechanical-systems"
+    },
+    {
+      "mabhas": 15,
+      "file": "m15.json.gz",
+      "section_count": 227,
+      "source_url": "https://mihansazan.app/posts/nbci-elevators-and-escalators"
+    },
+    {
+      "mabhas": 16,
+      "file": "m16.json.gz",
+      "section_count": 544,
+      "source_url": "https://mihansazan.app/posts/nbci-plumbing-systems"
+    },
+    {
+      "mabhas": 17,
+      "file": "m17.json.gz",
+      "section_count": 506,
+      "source_url": "https://mihansazan.app/posts/nbci-natural-gas-piping"
+    },
+    {
+      "mabhas": 18,
+      "file": "m18.json.gz",
+      "section_count": 145,
+      "source_url": "https://mihansazan.app/posts/nbci-acoustics-and-sound-control"
+    },
+    {
+      "mabhas": 19,
+      "file": "m19.json.gz",
+      "section_count": 250,
+      "source_url": "https://mihansazan.app/posts/nbci-energy-conservation"
+    },
+    {
+      "mabhas": 20,
+      "file": "m20.json.gz",
+      "section_count": 282,
+      "source_url": "https://mihansazan.app/posts/nbci-signs-and-symbols"
+    },
+    {
+      "mabhas": 21,
+      "file": "m21.json.gz",
+      "section_count": 376,
+      "source_url": "https://mihansazan.app/posts/nbci-passive-defense"
+    },
+    {
+      "mabhas": 22,
+      "file": "m22.json.gz",
+      "section_count": 240,
+      "source_url": "https://mihansazan.app/posts/nbci-care-and-maintenance"
+    },
+    {
+      "mabhas": 23,
+      "file": "m23.json.gz",
+      "section_count": 232,
+      "source_url": "https://mihansazan.app/posts/nbci-traffic-requirements-of-buildings"
+    },
+    {
+      "mabhas": 24,
+      "file": "m24.json.gz",
+      "section_count": 230,
+      "source_url": "https://mihansazan.app/posts/nbci-urban-building-adaptation"
+    }
+  ],
+  "errors": []
+}
