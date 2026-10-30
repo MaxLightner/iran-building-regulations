@@ -336,7 +336,7 @@ async function init(){
   const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
   const pageOnly=Number(COVERAGE.chapters_page_index||0);
   const structured=Number(COVERAGE.chapters_ready||0);
-  $('coverage').textContent=pageOnly
+  $('datasetCoverage').textContent=pageOnly
     ? structured+' مبحث با رکورد ساختاریافته · '+pageOnly+' مبحث فقط گزیده صفحه · '+sourceRecords().length+' رکورد'
     : withData+' مبحث دارای داده · '+sourceRecords().length+' رکورد';
   if(!sourceRecords().length){
