@@ -229,11 +229,21 @@ function render(){
   $('coverage').textContent=rows.length?(rows.length===20?'۲۰ نتیجه اول؛ عبارت را دقیق‌تر کن':rows.length+' نتیجه'):'';
   if(!rows.length){
     const m=ch?chapterMeta(ch):null;
-    area.append(el('div',
-      m&&!sourceRecords().some(r=>Number(r.chapter)===Number(ch))?
-      'متن این مبحث هنوز وارد مجموعه جست‌وجو نشده است. سایر مباحث و نتایج آماده قابل جست‌وجو هستند.':
-      'برای این عبارت هنوز نتیجه قابل استناد در داده‌های موجود نداریم. عبارت دیگری امتحان کن.',
-      'empty'));
+    const notIndexed=m&&!sourceRecords().some(r=>Number(r.chapter)===Number(ch));
+    const empty=el('div',
+      notIndexed?'مبحث انتخابی هنوز متن جست‌وجوی قابل اتکا ندارد. می‌توانی سند منبع را مستقیماً بررسی کنی.':
+      'برای عبارت انتخابی نتیجه‌ای در متن استخراج‌شده نداریم. نبود نتیجه به معنی نبود الزام نیست.',
+      'empty');
+    if(notIndexed){
+      const preferred=(m.attempts||[]).find(a=>a.type==='document_source'&&a.ok&&a.url&&a.url.startsWith('https:'));
+      const source=preferred||(m.attempts||[]).find(a=>a.url&&a.url.startsWith('https:'));
+      if(source){
+        const link=el('a','مشاهده فایل یا صفحه منبع');
+        link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';
+        empty.append(link);
+      }
+    }
+    area.append(empty);
     return;
   }
   rows.forEach((r,i)=>area.append(resultCard(r,i)));
