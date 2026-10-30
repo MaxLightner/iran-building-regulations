@@ -1,0 +1,54 @@
+name: Audit building code completeness
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_completeness.py"
+      - ".github/workflows/audit-completeness.yml"
+      - "sources/verification-evidence.json"
+      - "frontend/data/submitted/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: code-completeness-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate 24-chapter evidence audit, without OCR or network calls
+        run: python3 -u scripts/audit_completeness.py
+      - name: Assert report consistency
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("frontend/data/completeness-audit.json").read_text())
+          assert d["summary"]["chapters"]==24
+          assert d["summary"]["certified_complete"] + d["summary"]["not_certified"]==24
+          assert all(len(c["checks"])==6 for c in d["chapters"])
+          assert all(c["certified_complete"]==all(c["checks"].values()) for c in d["chapters"])
+          assert d["summary"]["encoding_risk"]>=1
+          print("Audit built:",d["summary"])
+          PY
+      - name: Commit audit report
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/data/completeness-audit.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Update evidence-based completeness audit"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
