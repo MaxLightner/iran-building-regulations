@@ -94,6 +94,7 @@ footer{text-align:center;padding:22px;font-size:12px;color:#7f90a0;border-top:1p
 .hit-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
 .hit-topic{font-size:12px;color:#316d9e;background:#eaf5ff;border-radius:7px;padding:5px 9px}
 .hit-heading{font-size:16px;line-height:1.8;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-bottom:7px}
+.related-title{margin:22px 0 10px;font-size:14px;font-weight:700;color:#355b78;border-top:1px solid #e2eaf2;padding-top:14px}
 .hit mark{background:#fff2ad;color:inherit;border-radius:3px;padding:0 1px}
 .hit-snippet{font-weight:normal;line-height:2;font-size:14px;color:#304457;display:block;white-space:normal;overflow-wrap:anywhere}
 .hit-path{font-weight:normal;display:block;color:#8393a0;font-size:12px;line-height:1.7;margin-top:10px}
@@ -163,12 +164,19 @@ function renderTopics(){
  $("allTopics").innerHTML=ids.map(ch=>{const c=state.catalog.find(x=>x.mabhas===ch);return '<div class="topicgroup"><h4>مبحث '+fa(ch)+' · '+esc(c?c.title:"")+'</h4><div class="chips">'+String(topics[ch]||"").split("|").filter(Boolean).map(t=>button(t,ch)).join("")+'</div></div>'}).join("");
 }
 const topicAliases={"عرض راه پله":["عرض پله","عرض راهپله","عرض پلکان"],"ارتفاع جان پناه":["جانپناه","ارتفاع جانپناه","دستانداز"],"ابعاد پارکینگ":["ابعاد توقفگاه","توقفگاه"],"ارتفاع سقف":["ارتفاع داخلی","ارتفاع فضا"],"نورگیری اتاق":["نورگیری","نور طبیعی"]};
+function queryVariants(q){
+ const variants=[q];
+ for(const [label,aliases] of Object.entries(topicAliases)){
+  const normalized=[norm(label),...aliases.map(norm)];
+  if(normalized.includes(q))variants.push(...normalized);
+ }
+ return [...new Set(variants.filter(Boolean))];
+}
 function searchText(s,q){
  if(!q)return 1;
  const c=s.__cachedSearch||(s.__cachedSearch={h:norm(s.title),v:norm(s.text),id:norm(s.number)});
  const {h,v,id}=c,all=c.all||(c.all=h+" "+v+" "+id);
- const aliases=state.picked&&norm(state.picked.label)===q?(topicAliases[state.picked.label]||[]):[];
- const variants=[q,...aliases.map(norm)];let best=0;
+ const variants=queryVariants(q);let best=0;
  for(const term of variants){
   if(!term)continue;
   if(id===term||id.split(" ").reverse().join(" ")===term)best=Math.max(best,500);
@@ -206,7 +214,7 @@ function excerptText(s,q){
  const raw=String(s.text||"").replace(/\s+/g," ").trim();
  if(!raw)return "";
  if(!q)return raw.slice(0,145)+(raw.length>145?"…":"");
- const lower=raw.toLowerCase(),terms=[q,...q.split(" ").filter(w=>w.length>2)];
+ const lower=raw.toLowerCase(),terms=[...queryVariants(q),...q.split(" ").filter(w=>w.length>2)];
  let at=-1;for(const t of terms){at=lower.indexOf(t.toLowerCase());if(at>=0)break}
  if(at<0)at=0;
  const start=Math.max(0,at-35),end=Math.min(raw.length,at+150);
@@ -263,7 +271,7 @@ function browseContent(doc){
    +(intro.length&&main.length?'<details class="prelude"><summary>پیشگفتار، مقدمه و فهرست‌ها ('+fa(intro.length)+')</summary><div class="tree-children">'+intro.map(s=>treeNode(s,doc)).join("")+'</div></details>':"");
 }
 function infer(q){if(!q)return[];const scores={};for(const [ch,raw] of Object.entries(topics)){for(const t of raw.split("|")){const tt=norm(t);if(tt===q)scores[ch]=(scores[ch]||0)+15;else if(tt.includes(q)&&q.length>2)scores[ch]=(scores[ch]||0)+2;else if(q.includes(tt)&&tt.length>3)scores[ch]=(scores[ch]||0)+4}}return Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).map(Number)}
-function markQuery(text,q){const words=q.split(" ").filter(w=>w.length>1).slice(0,5);if(!words.length)return esc(text);const re=new RegExp("("+words.join("|")+")","gi");return String(text||"").split(re).map((t,i)=>i%2?"<mark>"+esc(t)+"</mark>":esc(t)).join("")}
+function markQuery(text,q){const words=[...new Set(queryVariants(q).flatMap(x=>x.split(" ")).filter(w=>w.length>1))].slice(0,8);if(!words.length)return esc(text);const re=new RegExp("("+words.join("|")+")","gi");return String(text||"").split(re).map((t,i)=>i%2?"<mark>"+esc(t)+"</mark>":esc(t)).join("")}
 function searchResultHtml(hit){
  const s=hit.s,doc=hit.doc,c=state.catalog.find(x=>x.mabhas===hit.ch);
  const path=trail(s,doc);
@@ -280,6 +288,7 @@ function searchRank(s,doc,q,ch){
  if(!base)return 0;
  const kids=treeChildren(doc,s.id).length,body=String(s.text||"").trim(),id=norm(s.number);
  let result=base;
+ if(q.length>3){const labels=String(topics[ch]||"").split("|").map(norm);if(labels.includes(q))result+=115;else if(infer(q).slice(0,3).includes(ch))result+=25}
  if(kids && body.length<90)result-=70;
  if(!body.length)result-=40;
  if(/-S\d+$/.test(s.number||"")&&body.length<60)result-=10;
@@ -368,7 +377,7 @@ function setup(){
   }else if(details.classList.contains("clause")||details.classList.contains("hit")||details.classList.contains("branch-reading")){
    const box=details.querySelector(".clause-detail");
    if(box?.hasAttribute("data-lazy")){
-    const s=doc.byId.get(details.dataset.id);if(s){box.innerHTML=contentHtml(s,doc);box.removeAttribute("data-lazy")}
+    const s=doc.byId.get(details.dataset.id);if(s){const related=details.classList.contains("hit")&&treeChildren(doc,s.id).length?'<div class="related-title">زیربندها و استثناهای مرتبط</div>'+treeLevel(doc,s.id):"";box.innerHTML=contentHtml(s,doc)+related;box.removeAttribute("data-lazy")}
    }
   }
  });

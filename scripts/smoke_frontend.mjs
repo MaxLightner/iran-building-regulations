@@ -32,7 +32,7 @@ const fetch = async url => {
 };
 
 vm.runInNewContext(script, {
-  document, fetch, console,
+  document, fetch, console, setTimeout, clearTimeout, window: {scrollY:0,scrollTo(){}},
   localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
 });
 await new Promise(resolve => setTimeout(resolve, 100));
@@ -47,13 +47,18 @@ function clickTopic(label, chapter) {
   } } });
 }
 clickTopic('عرض راه پله', 4);
-assert(elements.chapterList.innerHTML.includes('4-5-1-7-3'), 'Stair width clause not found');
-assert(!elements.chapterList.innerHTML.includes('مبحث ۵'), 'Unrelated chapter not filtered');
+assert(elements.chapterList.innerHTML.includes('hit-list'), 'Focused search layout missing');
+assert(elements.chapterList.innerHTML.includes('مبحث ۴'), 'Expected stair-width regulation not ranked');
+assert(elements.chapterList.innerHTML.includes('data-lazy="1"'), 'Full text must load only on demand');
 
-clickTopic('ارتفاع جان پناه', 4);
-assert(elements.chapterList.innerHTML.includes('4-9-9'), 'Parapet clauses not found');
+// Numeric lookup must locate the exact clause without opening an entire book.
+elements.q.value = '4-5-1-7-3';
+elements.searchButton.onclick();
+assert(elements.chapterList.innerHTML.includes('4-5-1-7-3'), 'Exact clause lookup failed');
 
-elements.q.value = '4-3-2';
-elements.q.oninput();
-assert(elements.chapterList.innerHTML.includes('p0042.webp'), 'Table preview not linked');
-console.log('Frontend smoke test passed: chapter loading, topic queries, source illustration.');
+// No query shows browsable chapters and defers building their nested hierarchy.
+elements.q.value = '';
+elements.searchButton.onclick();
+assert(elements.chapterList.innerHTML.includes('data-chapter="4"'), 'Chapter browsing missing');
+assert(elements.chapterList.innerHTML.includes('class="chapterbody" data-lazy="1"'), 'Hierarchy should load on demand');
+console.log('Frontend smoke test passed: ranked lookup, numeric clause, lazy hierarchy.');
