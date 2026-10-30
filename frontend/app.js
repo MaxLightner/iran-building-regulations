@@ -399,8 +399,12 @@ function renderCompleteness(report){
   }
   const complete=report.chapters.filter(x=>x.certified_complete).length;
   score.textContent=complete+' از ۲۴ مبحث کاملاً تأییدشده';
-  status.textContent=Number(report.summary?.active_search_records||0).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ '+
-    Number(report.summary?.quarantined_records||0).toLocaleString('fa-IR')+' رکوردِ دارای خرابی حروف کنار گذاشته شده‌اند. این اعداد نشان‌دهنده کامل‌بودن مقررات نیستند.';
+  const badRows=report.chapters.filter(ch=>ch.quarantined_due_to_encoding||
+    (ch.warnings||[]).includes('text_encoding_corruption_suspected'));
+  const quarantined=badRows.reduce((total,ch)=>total+Number(ch.indexed_records||0),0);
+  const totalRows=report.chapters.reduce((total,ch)=>total+Number(ch.indexed_records||0),0);
+  status.textContent=(totalRows-quarantined).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ '+
+    quarantined.toLocaleString('fa-IR')+' رکورد دارای خرابی حروف کنار گذاشته شده‌اند. این اعداد نشان‌دهنده کامل‌بودن مقررات نیستند.';
   const intro=el('div','هیچ درصدی به‌عنوان «درصد کامل‌بودن» نمایش نمی‌دهیم؛ تعداد صفحات دارای متن صرفاً یک شاخص فنی است.','audit-explanation');
   holder.append(intro);
   for(const ch of report.chapters){
@@ -542,7 +546,9 @@ async function init(){
   // Never expose unreadable mojibake as regulatory text. The audit records the
   // excluded volume; later correct UTF-8 rebuilds can automatically restore it.
   const bad=new Set((completeness?.chapters||[])
-    .filter(c=>c.quarantined_due_to_encoding).map(c=>Number(c.chapter)));
+    .filter(c=>c.quarantined_due_to_encoding||
+      (c.warnings||[]).includes('text_encoding_corruption_suspected'))
+    .map(c=>Number(c.chapter)));
   if(bad.size){
     INDEX=INDEX.filter(r=>!bad.has(Number(r.chapter)));
     for(const c of CATALOG){
