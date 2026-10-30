@@ -135,7 +135,7 @@ function sectionHtml(s,doc,open){
 function infer(q){if(!q)return[];const scores={};for(const [ch,raw] of Object.entries(topics)){for(const t of raw.split("|")){const tt=norm(t);if(tt===q)scores[ch]=(scores[ch]||0)+15;else if(tt.includes(q)&&q.length>2)scores[ch]=(scores[ch]||0)+2;else if(q.includes(tt)&&tt.length>3)scores[ch]=(scores[ch]||0)+4}}return Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).map(Number)}
 function render(){
  const q=norm(state.query),matching=new Map();
- for(const [ch,doc] of state.docs){if(state.picked&&state.picked.ch!==ch)continue;matching.set(ch,doc.sections.map(s=>({s,score:searchText(s,q)})).filter(x=>String(x.s.text||"").trim()&&x.score>0).sort((a,b)=>q?b.score-a.score||a.s.order-b.s.order:a.s.order-b.s.order))}
+ for(const [ch,doc] of state.docs){if(state.picked&&state.picked.ch!==ch)continue;matching.set(ch,doc.sections.map(s=>({s,score:searchText(s,q)})).filter(x=>(String(x.s.title||"").trim()||String(x.s.text||"").trim())&&x.score>0).sort((a,b)=>q?b.score-a.score||a.s.order-b.s.order:a.s.order-b.s.order))}
  let ids=q?state.picked?[state.picked.ch]:[...new Set([...infer(q).slice(0,5),...[...matching].filter(([ch,r])=>r.length).map(([ch])=>ch)])]:[...new Set([...priority(),...state.catalog.map(x=>x.mabhas)])];
  let total=0;
  $("chapterList").innerHTML=ids.length?ids.map((ch,i)=>{
