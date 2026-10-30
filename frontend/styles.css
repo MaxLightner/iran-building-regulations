@@ -6,3 +6,22 @@ header{padding-top:38px;padding-bottom:20px}header h1{font-size:34px;margin:10px
 .section-title{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:12px}.chapter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.chapter{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafbfb;cursor:pointer}.chapter:hover{background:var(--soft)}.chapter strong{display:block;font-size:13px;line-height:1.6}.chapter span{font-size:10px;color:var(--muted)}.chapter.missing{opacity:.5}.curated{display:inline-block;margin-right:6px;font-size:10px;color:var(--accent)}
 @media(max-width:760px){header h1{font-size:27px}.searchrow{grid-template-columns:1fr}.searchrow button{height:44px}.systembar{display:block}.systembar span{display:block;margin-top:5px}.chapter-grid{grid-template-columns:1fr 1fr}.result{padding:14px}}
 @media(max-width:430px){.chapter-grid{grid-template-columns:1fr}}
+/* Project-aware search controls */
+.project-card{margin-top:6px;border-color:#c8d9d4}
+.project-title{align-items:center;gap:12px;flex-wrap:wrap}
+.project-title strong{font-size:18px;color:#172027}
+.project-title span{font-size:13px}
+.project-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.project-grid label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#45545d}
+.project-grid select,.project-grid input{width:100%;min-width:0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 9px;font:inherit;font-weight:400;color:#172027}
+.project-actions{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.checklabel{display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer}.checklabel input{width:18px;height:18px;accent-color:var(--accent)}
+.secondary{padding:10px 13px;border:1px solid var(--line);border-radius:9px;background:white;cursor:pointer;font:inherit;font-size:13px}
+.project-note{font-size:13px;color:#52606b;line-height:1.8;margin:12px 0 0}
+.unverified{font-size:12px;background:#fff7e4;border:1px solid #efdca6;padding:9px 12px;border-radius:9px;margin:10px 0;color:#6e551d}
+.empty a{display:block;margin-top:12px;color:var(--accent);font-weight:700}
+.quick button{font-size:13px}.badge,.rank,.source,.chapter span,.label,.refs a,.source-link{font-size:12px}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #71bba9;outline-offset:2px}
+@media(max-width:880px){.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:410px){.project-grid{grid-template-columns:1fr}}
