@@ -475,7 +475,7 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness,numbered5,readablePassages]=await Promise.all([
+  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness,numbered5,readablePassages,moreNumbered]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
@@ -488,7 +488,8 @@ async function init(){
     jsonOr('./data/submitted/m20-1396-direct.json',{records:[]}),
     jsonOr('./data/completeness-audit.json',null),
     jsonOr('./data/clause-text/m05.json',{records:[]}),
-    jsonOr('./data/clause-text/readable-index.json',[])
+    jsonOr('./data/clause-text/readable-index.json',[]),
+    jsonOr('./data/clause-text/more-numbered-index.json',[])
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   ADDENDA=Array.isArray(addenda)?addenda:[];
@@ -523,6 +524,17 @@ async function init(){
         c.record_count=repaired.filter(r=>Number(r.chapter)===Number(c.number)).length;
         c.method='readable_paragraph';
       }
+    }
+  }
+    // Restore exact full regulatory clause numbers where the native text contains
+  // unambiguous identifiers. Keep generic sentences for the other chapters.
+  const numberedMore=Array.isArray(moreNumbered)
+    ? moreNumbered.filter(r=>r&&r.locator&&r.kind==='clause'&&r.answer):[];
+  if(numberedMore.length>600){
+    const chapterNumbers=new Set(numberedMore.map(r=>Number(r.chapter)));
+    INDEX=INDEX.filter(r=>!chapterNumbers.has(Number(r.chapter))).concat(numberedMore);
+    for(const c of CATALOG){
+      if(chapterNumbers.has(Number(c.number)))c.method='numbered_clause';
     }
   }
     // Display the complete, real numbered clauses from the PDF text layer.
