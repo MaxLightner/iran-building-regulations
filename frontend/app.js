@@ -222,7 +222,7 @@ function showProvenance(ch){
   const meta=chapterMeta(ch);
   const warning=archived.status==='font_encoding_corrupt_most_pages'
     ? 'این PDF لایه متن دارد، اما نگاشت حروف بیشتر صفحات خراب است؛ فقط '+archived.pages_readable+' صفحه از '+archived.pages_total+' صفحه بدون OCR قابل جست‌وجو شد.'
-    : 'این PDF مستقیماً از لایه متن استخراج شده است؛ هیچ OCR انجام نشده.';
+    : 'این PDF مستقیماً از لایه متن و بدون OCR استخراج شده است.';
   const editionWarning=meta.original_edition&&String(meta.original_edition)!==String(archived.edition)
     ? ' این ویرایش '+archived.edition+' است، ولی نسخه هدف دیتابیس '+meta.original_edition+' بوده؛ از آن به‌عنوان مقررات روز استفاده نکن.'
     : '';
