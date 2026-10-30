@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths:
       - "scripts/ui_smoke.cjs"
+      - "frontend/app.js"
+      - "frontend/index.html"
+      - "frontend/styles.css"
       - ".github/workflows/ui-smoke.yml"
 
 permissions:
