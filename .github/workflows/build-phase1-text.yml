@@ -57,6 +57,17 @@ jobs:
                   total+=version["record_count"]
           assert total==manifest["total_stored_rows_including_historical_editions"]
           assert total>=4500
+          assert manifest["chapters_with_temporary_historical_fallback"] == [6,11,18]
+          assert manifest["chapters_with_only_incomplete_fallback"] == [18]
+          for n in (6,11,18):
+              c=manifest["chapters"][n-1]
+              assert c["temporary_fallback"]["not_current_regulation"] is True
+              assert c["temporary_fallback"]["edition"] != c["target_edition"]
+              assert c["preferred_text_edition"] == c["temporary_fallback"]["edition"]
+              full=json.loads((base/"chapters"/f"m{n:02d}.json").read_text())
+              assert full["temporary_fallback"]==c["temporary_fallback"]
+              assert full["target_text_present"] is False
+
           print("Phase 1 stored rows:",total)
           print("Target editions with readable text:",manifest["target_editions_with_any_readable_text"])
           print("Missing target editions:",manifest["target_editions_missing_text"])
