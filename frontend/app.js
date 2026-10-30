@@ -375,7 +375,10 @@ const QUALITY_WARNINGS={
   visuals_are_page_previews_not_verified_figures:'فقط تصویر صفحه موجود است، نه شکل مستقل و تأییدشده',
   figures_and_tables_not_indexed:'شکل‌ها و جدول‌ها مستقل نمایه نشده‌اند',
   many_pdf_pages_without_indexed_text:'تعداد قابل توجهی صفحه فاقد متن استخراج‌شده است',
-  previous_snapshot_restored:'از نسخه پشتیبان استفاده شده است'
+  previous_snapshot_restored:'از نسخه پشتیبان استفاده شده است',
+  intermediary_pdf_page_count_differs_from_original:'شمار صفحات متن استخراج‌شده با PDF اصلی متفاوت است؛ شماره صفحات باید دوباره تطبیق داده شود',
+  some_readable_pdf_pages_not_indexed:'برخی صفحات متن‌دار PDF اصلی در دیتابیس نمایه نشده‌اند',
+  source_pdf_font_mapping_corrupted:'در PDF اصلی نگاشت فونت فارسی خراب است و بازسازی متن بدون OCR ممکن نشده'
 };
 const QUALITY_CHECKS={
   official_edition:'اعتبار ویرایش و مرجع ابلاغ',
@@ -409,6 +412,8 @@ function renderCompleteness(report){
     desc.append(el('p','رکورد فعال: '+ch.indexed_records+' · شناسه بند استخراج‌شده (بدون تأیید مستقل): '+ch.distinct_clause_locators_unverified));
     if(ch.pdf_pages){
       desc.append(el('p','صفحات PDF دارای متن نمایه‌شده: '+ch.pages_with_indexed_text+' از '+ch.pdf_pages+'؛ این نسبت معادل پوشش تمام بندها نیست.'));
+      if(ch.original_pdf_readable_pages!==null&&ch.original_pdf_readable_pages!==undefined)
+        desc.append(el('p','صفحات دارای متن خوانای فارسی در اصل فایل: '+ch.original_pdf_readable_pages+' از '+ch.pdf_pages+' · صفحات با نگاشت خراب: '+(ch.original_pdf_font_corrupt_pages||0)));
     }else{
       desc.append(el('p','پوشش صفحه‌به‌صفحه نامعلوم است، چون مرجع کامل PDF با متن‌های فعلی مقابله نشده.'));
     }
