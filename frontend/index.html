@@ -99,7 +99,7 @@ const state={catalog:[],docs:new Map(),query:"",picked:null,more:new Map(),expan
 function norm(s){return String(s||"").normalize("NFKC").replace(/[يى]/g,"ی").replace(/ك/g,"ک").replace(/[ًٌٍَُِّْـ\u200c]/g,"").replace(/[۰-۹]/g,x=>"۰۱۲۳۴۵۶۷۸۹".indexOf(x)).replace(/[٠-٩]/g,x=>"٠١٢٣٤٥٦٧٨٩".indexOf(x)).replace(/[^\u0600-\u06FFa-zA-Z0-9\s]+/g," ").replace(/\s+/g," ").trim().toLowerCase()}
 function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function fa(x){return String(x).replace(/[0-9]/g,n=>"۰۱۲۳۴۵۶۷۸۹"[+n])}
-function priority(){return kinds[$("questionType").value]||[]}
+function priority(){const group=kinds[$("questionType").value]||[];const use={residential:[4,3,16,17],commercial:[4,3,23],office:[4,3,19],mixed:[4,3,23],industrial:[5,11,12]}[$("pUse").value]||[];const stage={design:[4,6,3],permit:[2,4],construction:[12,5],operation:[22,19]}[$("pStage").value]||[];const structure={concrete:[9,6,7],steel:[10,6,7],masonry:[8,6,7]}[$("pStructure").value]||[];return [...new Set([...group,...use,...stage,...structure])]}
 function button(label,ch){return '<button class="chip'+(state.picked&&state.picked.label===label&&state.picked.ch===ch?" active":"")+'" data-ch="'+ch+'" data-topic="'+esc(label)+'">'+esc(label)+'</button>'}
 function renderTopics(){
  let fav=favorite.slice().sort((a,b)=>Number(priority().includes(b[1]))-Number(priority().includes(a[1])));
