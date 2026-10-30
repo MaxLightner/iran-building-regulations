@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-30",
+  "scope": "Mabahes 6-10; HTML source availability verification",
+  "method": "HTTP availability and superficial heading/number check, not full clause-level comparison",
+  "sources": [
+    {
+      "mabhas": 6,
+      "url": "https://inbr.ir/مبحث-ششم-مقررات-ملّي-ساختمان/",
+      "status": "access_blocked_http_403",
+      "note": "Official page search results show a numbered outline, but full clause text and edition not verified."
+    },
+    {
+      "mabhas": 7,
+      "url": "https://mihansazan.app/posts/nbci-foundations",
+      "http_status": 200,
+      "html_bytes": 1830935,
+      "status": "candidate_accessible_unverified",
+      "note": "HTML contains numbered clauses; completeness, fidelity, images, edition, and reuse permission unverified."
+    },
+    {
+      "mabhas": 8,
+      "url": "https://mihansazan.app/posts/nbci-masonry-buildings",
+      "http_status": 200,
+      "html_bytes": 3376343,
+      "status": "candidate_accessible_unverified"
+    },
+    {
+      "mabhas": 9,
+      "url": "https://mihansazan.app/posts/nbci-design-and-construction-of-concret",
+      "http_status": 200,
+      "html_bytes": 12917242,
+      "status": "candidate_accessible_unverified"
+    },
+    {
+      "mabhas": 10,
+      "url": "https://mihansazan.app/posts/nbci-design-and-construction-of-steel-s",
+      "http_status": 200,
+      "html_bytes": 7737234,
+      "status": "candidate_accessible_unverified"
+    }
+  ],
+  "release_gate": "Do not publish copied third-party full text without confirming rights, nor claim completion before checking clause hierarchy, figures, tables, formulas, and version against authoritative sources."
+}
