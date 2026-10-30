@@ -3,11 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>مقررات ملی ساختمان — بازسازی پایگاه داده</title>
+<meta name="theme-color" content="#f7f9fc">
+<title>مبحث ۱ | خوانش آزمایشی مقررات ملی ساختمان</title>
 <style>
-:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Tahoma,Arial,sans-serif;background:#f6f8fa;color:#253044}main{max-width:630px;padding:32px;text-align:center}h1{font-size:clamp(23px,4vw,34px);margin:0 0 22px}p{font-size:17px;line-height:2;color:#586273}small{font-size:14px;color:#7d8795}
+:root{font-family:Tahoma,"Segoe UI",Arial,sans-serif;color:#16253b;background:#f7f9fc;font-size:15px}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}a{color:#1764bd;text-decoration:none}a:hover{text-decoration:underline}
+header{background:#fff;border-bottom:1px solid #e0e6ed;padding:20px max(20px,calc((100vw - 1240px)/2))}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand h1{margin:0;font-size:23px;letter-spacing:-.5px}.brand p{margin:6px 0 0;color:#68778a;font-size:14px}
+.status{font-size:13px;font-weight:700;border:1px solid #efca81;color:#875a00;border-radius:20px;padding:8px 12px;background:#fff9ea}
+.shell{max-width:1280px;margin:auto;padding:22px 18px 65px}
+.topline{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.title h2{font-size:22px;margin:0 0 5px}.title p{margin:0;color:#68778a;font-size:14px}
+.searchbar{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #cfd9e7;border-radius:13px;padding:0 15px;min-height:52px;box-shadow:0 3px 12px #19345206;width:min(480px,100%)}
+.searchbar:focus-within{outline:2px solid #c5ddfa;border-color:#5d9ee4}.searchbar span{font-size:20px;color:#6e829b}
+.searchbar input{border:0;outline:0;width:100%;background:transparent;min-width:0;color:#203853;font-size:15px}
+.layout{display:grid;grid-template-columns:minmax(290px,350px) minmax(0,1fr);gap:18px;align-items:start}
+.sidebar,.reader{background:#fff;border:1px solid #e0e6ef;border-radius:16px;min-width:0;box-shadow:0 3px 18px #24374e08}
+.controls{padding:16px;border-bottom:1px solid #e9edf3}.tabs{display:flex;gap:6px;background:#f0f4f9;border-radius:11px;padding:5px}.tabs button{flex:1;border:0;background:transparent;border-radius:8px;color:#52657b;padding:9px 6px;font-size:14px;white-space:nowrap}.tabs button.active{color:#124a8c;background:white;box-shadow:0 1px 5px #1b365422;font-weight:700}
+.count{font-size:13px;margin:13px 2px 0;color:#738298}.results{max-height:72vh;overflow:auto}
+.result{display:block;width:100%;text-align:right;border:0;border-bottom:1px solid #edf1f5;background:#fff;padding:15px 17px;line-height:1.7;color:#213750}
+.result:hover{background:#f5f9ff}.result.active{background:#eaf4ff;border-right:3px solid #3179c8}
+.result .number{direction:ltr;display:inline-block;font-size:12px;color:#2674c4;font-weight:700;background:#edf5ff;border-radius:5px;padding:1px 6px;margin-left:6px}
+.result .label{font-size:14px;font-weight:700}.result .excerpt{display:block;font-size:12.5px;color:#798699;line-height:1.8;margin-top:7px}
+.empty{padding:23px;color:#6d7e92;line-height:2}
+.more{display:block;width:calc(100% - 28px);margin:14px;border:1px solid #cbd8e8;color:#315f96;border-radius:9px;background:#f6faff;padding:11px}
+.reader{min-height:420px;padding:29px 34px}
+.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#8190a4;font-size:13px;margin-bottom:23px}.breadcrumb button{border:0;background:none;color:#4976a7;padding:0;cursor:pointer;font-size:13px}
+.doc-heading{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}.doc-heading h3{font-size:25px;font-weight:750;margin:0;line-height:1.7}.doc-id{direction:ltr;display:inline-block;background:#edf4fc;color:#27609c;padding:5px 10px;font-size:13px;border-radius:8px;font-weight:700}
+.section-body{font-size:16px;line-height:2.35;text-align:justify;margin-top:27px;color:#233247;white-space:pre-wrap;overflow-wrap:anywhere}
+.no-body{padding:18px;background:#f6f9fc;border-radius:11px;color:#65788f;margin-top:24px;line-height:2}
+.source{border-top:1px solid #e9edf3;margin-top:35px;padding-top:18px}.source h4{font-size:14px;margin:0 0 12px}.page-links{display:flex;flex-wrap:wrap;gap:8px}.page-links a{display:inline-flex;align-items:center;border:1px solid #d5e4f5;background:#f7fbff;padding:8px 11px;border-radius:8px;font-size:13px}
+.detail{margin-top:12px;font-size:12px;color:#8591a0;line-height:1.9}
+.audit{margin-top:22px;padding:18px 20px;border:1px solid #ead9ae;background:#fffaf0;border-radius:13px;color:#725a2d;line-height:2;font-size:14px}
+.audit strong{color:#70511a}.audit h4{margin:0 0 7px;font-size:16px}.audit p{margin:0}
+.stats{display:flex;gap:15px;flex-wrap:wrap;margin-top:14px}.stat{background:#fff;border-radius:10px;border:1px solid #eadfbf;padding:10px 14px;min-width:120px}.stat b{display:block;color:#374b62;font-size:20px}.stat small{font-size:12px;color:#7a8490}
+details{margin-top:15px}summary{cursor:pointer;color:#3e637b;font-weight:700}.page-audit{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:6px;max-height:240px;overflow:auto}
+.page-audit a{background:#fff;border:1px solid #e4e6ec;border-radius:7px;text-align:center;font-size:12px;padding:7px;color:#48677a}
+#failure{display:none;color:#9a351d;background:#fff4ee;border:1px solid #f3c1ad;padding:17px;border-radius:12px;line-height:1.9}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.results{max-height:260px}.reader{padding:20px}.doc-heading h3{font-size:21px}.section-body{font-size:15px}.topline{align-items:stretch}.searchbar{width:100%}.shell{padding:16px 12px 45px}header{padding:17px 15px}.brand h1{font-size:19px}}
 </style>
 </head>
-<body><main><h1>پایگاه مقررات ملی ساختمان در حال بازسازی است</h1><p>داده‌های استخراج‌شده و ایندکس‌های نسخه قبلی حذف شده‌اند. منابع گردآوری‌شده محفوظ هستند و ورود اطلاعات پس از طراحی ساختار جدید از نو انجام خواهد شد.</p><small>در حال حاضر جست‌وجو و نمایش مقررات غیرفعال است.</small></main></body>
+<body>
+<header>
+ <div class="brand"><div><h1>مقررات ملی ساختمان</h1><p>نمایش آزمایشی داده‌های استخراج‌شده · مبحث اول</p></div><span class="status">در انتظار تطبیق نهایی با PDF</span></div>
+</header>
+<main class="shell">
+ <div class="topline"><div class="title"><h2>مبحث ۱ — تعاریف</h2><p>ویرایش ۱۳۹۲ · مشاهدهٔ بندهای واقعی و ترتیب اصلی کتاب</p></div>
+ <label class="searchbar"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="جستجوی اصطلاح، موضوع یا شماره بند..." autocomplete="off" aria-label="جستجو در مبحث اول"></label></div>
+ <div id="failure" role="alert"></div>
+ <div class="layout" id="layout" style="display:none">
+  <aside class="sidebar" aria-label="فهرست بندها">
+   <div class="controls"><div class="tabs" role="group" aria-label="دسته‌بندی"><button type="button" data-view="all" class="active">همه</button><button type="button" data-view="1-1">کلیات</button><button type="button" data-view="1-2">تعاریف</button></div><p class="count" id="count"></p></div>
+   <div class="results" id="results"></div>
+  </aside>
+  <article class="reader" id="reader" aria-live="polite"></article>
+ </div>
+ <section class="audit" id="audit"><h4>گزارش انتقال از PDF</h4><p>در حال خواندن گزارش پوشش...</p></section>
+</main>
+<script>
+(function(){
+ "use strict";
+ var state={sections:[],byId:new Map(),coverage:null,query:"",view:"all",shown:40,selected:null};
+ var element=function(id){return document.getElementById(id)};
+ function clean(x){return String(x==null?"":x).normalize("NFKC").replace(/[يى]/g,"ی").replace(/ك/g,"ک").replace(/[ًٌٍَُِّْـ]/g,"").replace(/[\u200c\u200d]/g," ").replace(/\s+/g," ").trim().toLowerCase()}
+ function digits(x){return String(x).replace(/[۰-۹]/g,function(c){return "۰۱۲۳۴۵۶۷۸۹".indexOf(c)}).replace(/[٠-٩]/g,function(c){return "٠١٢٣٤٥٦٧٨٩".indexOf(c)})}
+ function safe(x){return String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
+ function sameGroup(s){return state.view==="all" || s.number===state.view || s.number.indexOf(state.view+"-")===0}
+ function matched(s){if(!sameGroup(s))return false;if(!state.query)return true;var parts=clean(digits(state.query)).split(" ").filter(Boolean);var source=clean(s.number+" "+s.title+" "+s.text);return parts.every(function(p){return source.indexOf(p)!==-1})}
+ function score(s){var q=clean(digits(state.query)), t=clean(s.title), n=clean(s.number);if(!q)return 0;if(n===q)return 100;if(n.indexOf(q)===0)return 60;if(t===q)return 45;if(t.indexOf(q)!==-1)return 30;return 10}
+ function filtered(){var list=state.sections.filter(matched);if(state.query)list.sort(function(a,b){return score(b)-score(a)||a.order-b.order});return list}
+ function short(s){var t=(s.text||"").replace(/\s+/g," ").trim();if(!t)return "سرفصل";var n=clean(digits(state.query));if(n){var i=clean(t).indexOf(n);if(i>70)t="…"+t.slice(Math.max(0,i-22))}return t.slice(0,126)+(t.length>126?"…":"")}
+ function resultItem(s){return '<button class="result'+(s.id===state.selected?" active":"")+'" type="button" data-id="'+safe(s.id)+'"><span class="number">'+safe(s.number)+'</span><span class="label">'+safe(s.title)+'</span><span class="excerpt">'+safe(short(s))+'</span></button>'}
+ function renderResults(){var list=filtered();var limit=state.shown;element("count").textContent=digits(list.length).replace(/[0-9]/g,function(c){return "۰۱۲۳۴۵۶۷۸۹"[+c]})+" مورد"+(state.query?" مرتبط با جستجو":"");element("results").innerHTML=list.length?list.slice(0,limit).map(resultItem).join("")+(list.length>limit?'<button type="button" class="more" id="more">نمایش موارد بیشتر</button>':""):'<div class="empty">موردی با این عبارت در این بخش پیدا نشد.</div>'}
+ function choose(id){var s=state.byId.get(id);if(!s)return;state.selected=id;try{history.replaceState(null,"","#"+encodeURIComponent(id))}catch(e){};renderReader();renderResults()}
+ function breadcrumbs(s){var arr=[],cursor=s,guard=0;while(cursor&&cursor.parent_id&&guard<12){cursor=state.byId.get(cursor.parent_id);if(cursor)arr.push(cursor);guard++}return arr.reverse().map(function(p){return '<button type="button" data-id="'+safe(p.id)+'">'+safe(p.number+" · "+p.title)+'</button><span>›</span>'}).join("")}
+ function renderReader(){var s=state.byId.get(state.selected);if(!s){element("reader").innerHTML='<p class="empty">یک بند انتخاب کنید.</p>';return}var pages=(s.page_segments||[]).map(function(p){return p.pdf_page}).filter(function(p,i,a){return a.indexOf(p)===i});var url=state.doc&&state.doc.pdf_url||"";var links=pages.map(function(p){return '<a href="'+safe(url+"#page="+p)+'" target="_blank" rel="noopener noreferrer">صفحه '+safe(String(p))+' PDF ↗</a>'}).join("");var body=(s.text||"").trim();var assets=s.assets||[];var media=assets.map(function(a){return '<figure><img alt="'+safe(a.caption||a.type||"شکل مربوط به بند")+'" loading="lazy" src="'+safe(a.file)+'"><figcaption>'+safe(a.caption||"")+'</figcaption></figure>'}).join("");element("reader").innerHTML='<nav class="breadcrumb" aria-label="مسیر بند">'+breadcrumbs(s)+'</nav><div class="doc-heading"><h3>'+safe(s.title)+'</h3><span class="doc-id">'+safe(s.number)+'</span></div>'+(body?'<div class="section-body">'+safe(body)+'</div>':'<div class="no-body">این مورد یک سرفصل است؛ متن اصلی در زیربندهای آن قرار دارد.</div>')+media+'<div class="source"><h4>ارجاع به منبع اصلی</h4><div class="page-links">'+links+'</div><div class="detail">این متن به صورت ماشینی استخراج شده و بازبینی تطبیقی تمام واژه‌ها و علائم نگارشی هنوز نهایی نشده است.</div></div>'}
+ function renderAudit(){var c=state.coverage;if(!c)return;var sum=c.pages.reduce(function(v,p){return v+(p.content_lines||0)},0),done=c.pages.reduce(function(v,p){return v+(p.assigned_lines||0)},0),pct=sum?Math.round(done/sum*100):0;var p=(c.pages||[]).map(function(x){return '<a href="'+safe(state.doc.pdf_url+"#page="+x.pdf_page)+'" target="_blank" rel="noopener noreferrer">PDF '+x.pdf_page+' · '+x.assigned_lines+'/'+x.content_lines+' خط</a>'}).join("");element("audit").innerHTML='<h4>گزارش پوشش مبحث اول</h4><p>این عددها پوشش <strong>ساختاری استخراج</strong> را نشان می‌دهند، نه تأیید صحت تک‌تک کلمات. بررسی نهایی در برابر تصویر PDF هنوز انجام نشده است.</p><div class="stats"><div class="stat"><b>'+c.sections_indexed+'</b><small>بند و زیربند</small></div><div class="stat"><b>'+c.definitions_indexed+'</b><small>تعریف</small></div><div class="stat"><b>'+c.unique_content_pages.length+'</b><small>صفحه محتوای یکتا</small></div><div class="stat"><b>'+pct+'٪</b><small>خطوط تخصیص‌یافته</small></div><div class="stat"><b>'+c.assets_linked+'</b><small>تصویر (در این مبحث شناسایی نشده)</small></div></div><details><summary>نمایش وضعیت انتقال تمام صفحات محتوا</summary><p>۱۰ صفحهٔ مقدماتی کنار گذاشته شده و ۵۶ صفحهٔ پایانی فایل تکرار صفحات قبلی هستند. هر لینک صفحهٔ متناظر PDF را باز می‌کند.</p><div class="page-audit">'+p+'</div></details>'}
+ element("search").addEventListener("input",function(e){state.query=e.target.value;state.shown=40;renderResults()});
+ document.querySelectorAll("[data-view]").forEach(function(b){b.addEventListener("click",function(){state.view=b.dataset.view;state.shown=40;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===b)});renderResults()})});
+ element("results").addEventListener("click",function(e){var b=e.target.closest("[data-id]");if(b)choose(b.dataset.id);if(e.target.closest("#more")){state.shown+=40;renderResults()}});
+ element("reader").addEventListener("click",function(e){var b=e.target.closest("[data-id]");if(b)choose(b.dataset.id)});
+ Promise.all([fetch("./data/m01-1392/sections.json").then(function(r){if(!r.ok)throw Error("sections "+r.status);return r.json()}),fetch("./data/m01-1392/coverage.json").then(function(r){if(!r.ok)throw Error("coverage "+r.status);return r.json()})]).then(function(values){
+ var data=values[0];state.doc=data.document;state.sections=data.sections;state.coverage=values[1];state.byId=new Map(state.sections.map(function(s){return [s.id,s]}));var fromHash;try{fromHash=decodeURIComponent(location.hash.slice(1))}catch(e){fromHash=""}
+ state.selected=state.byId.has(fromHash)?fromHash:(state.byId.has("m01-1392-1-2-1")?"m01-1392-1-2-1":state.sections[0].id);
+ element("layout").style.display="grid";renderResults();renderReader();renderAudit()
+ }).catch(function(err){element("failure").style.display="block";element("failure").textContent="بارگذاری داده‌های مبحث اول انجام نشد: "+err.message;element("audit").innerHTML="<h4>گزارش انتقال</h4><p>به دلیل خطای بارگذاری، گزارش در دسترس نیست.</p>"});
+})();
+</script>
+</body>
 </html>
