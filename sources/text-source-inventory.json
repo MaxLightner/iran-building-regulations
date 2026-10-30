@@ -1,0 +1,653 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "purpose": "Phase 1 textual-source inventory; descriptions do not assert full text for non-full sources.",
+  "rights_note": "Do not automatically rehost independently authored educational summaries, paid texts, or site-specific editorial material without permission. Official-version provenance must be checked independently.",
+  "full_clause_html_chapters": [
+    4,
+    7,
+    8,
+    9,
+    10,
+    13,
+    15,
+    17,
+    19,
+    21,
+    23
+  ],
+  "full_clause_html_count": 11,
+  "entries": [
+    {
+      "chapter": 1,
+      "target_edition": "1392",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-1",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/1/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://nassira.ir/",
+          "kind": "partial_table_of_contents",
+          "reparse": "reference_only"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-1-%28Virayesh-1392%29.pdf",
+        "https://archweb.ir/2024/05/12/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-1-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/",
+        "http://www.irancalculator.com/phocadownload/Nezam-Mohandesi-Sakhteman/m1.pdf"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 2,
+      "target_edition": "1384",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-2",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/2/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-2-%28Virayesh-1384%29.pdf",
+        "https://archweb.ir/2024/05/11/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-2-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/",
+        "http://www.irancalculator.com/phocadownload/Nezam-Mohandesi-Sakhteman/m2.pdf"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 3,
+      "target_edition": "1395",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-3",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/3/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 4,
+      "target_edition": "1396",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-general-building-requirements",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1396",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-4",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/4/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 5,
+      "target_edition": "1396",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-5",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/5/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://civil808.com/sites/default/files/mabhas_5-1.pdf",
+          "kind": "embedded_text_pdf_from_word_candidate",
+          "edition_reported": "1396",
+          "reparse": "candidate_only_await_quality_scan"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-5-%28Virayesh-1396%29.pdf",
+        "https://www.mediafire.com/file/r6rw8baxvnxdfrb/mabhas05-1396.pdf/file"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 6,
+      "target_edition": "1398",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-6",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/6/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://nassira.ir/",
+          "kind": "partial_table_of_contents",
+          "reparse": "reference_only"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/6.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-6-%28Virayesh-1398%29.pdf",
+        "https://www.mediafire.com/file/6p5gce4k1fcbrfj/mabhas06-1398.pdf/file"
+      ],
+      "user_uploaded_edition": "1392"
+    },
+    {
+      "chapter": 7,
+      "target_edition": "1400",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-foundations",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1400",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-7",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/7/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 8,
+      "target_edition": "1398",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-masonry-buildings",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1398",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-8",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/8/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 9,
+      "target_edition": "1399",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-design-and-construction-of-concret",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1399",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-9",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/9/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 10,
+      "target_edition": "1401",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-design-and-construction-of-steel-s",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1401",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-10",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/10/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 11,
+      "target_edition": "1400",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-11",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/11/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/11.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-11-%28Virayesh-1400%29.pdf",
+        "https://www.mediafire.com/file/wa3qsx535z5bnwu/mabhas11-1400.pdf/file",
+        "https://archweb.ir/2024/11/14/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-11-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/"
+      ],
+      "user_uploaded_edition": "1392"
+    },
+    {
+      "chapter": 12,
+      "target_edition": "1403",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-12",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/12/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-12-%28Virayesh-1403%29.pdf",
+        "https://archweb.ir/2024/12/16/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-12-%D9%85%D9%82%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 13,
+      "target_edition": "1395",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-electrical-installations",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1395",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-13",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/13/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 14,
+      "target_edition": "1396",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-14",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/14/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/14.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-14-%28Virayesh-1396%29.pdf",
+        "https://www.mediafire.com/file/r0ot8266ac69q62/mabhas14-1396.pdf/file",
+        "https://archweb.ir/2025/07/14/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-14-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 15,
+      "target_edition": "1392",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-elevators-and-escalators",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1392",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-15",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/15/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 16,
+      "target_edition": "1396",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-16",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/16/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/16.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-16-%28Virayesh-1396%29.pdf",
+        "https://www.mediafire.com/file/d6s0e8lye3190hg/mabhas16-1396.pdf/file",
+        "https://archweb.ir/2025/07/18/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%D9%85%D8%A8%D8%AD%D8%AB-16-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D9%85%D9%84%DB%8C-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86/"
+      ],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 17,
+      "target_edition": "1403",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-natural-gas-piping",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1403",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-17",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/17/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 18,
+      "target_edition": "1396",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-18",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/18/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://hornou.com/blog/مقررات-ملی-ساختمان-1396-مبحث-18-عایق-بندی-و-ت/",
+          "kind": "table_of_contents",
+          "reparse": "reference_only"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/18.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-18-%28Virayesh-1396%29.pdf",
+        "https://www.mediafire.com/file/5fg43jsfd1igkz9/mabhas18-1396.pdf/file"
+      ],
+      "user_uploaded_edition": "1390"
+    },
+    {
+      "chapter": 19,
+      "target_edition": "1404",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-energy-conservation",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1404",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-19",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/19/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 20,
+      "target_edition": "1396",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-20",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/20/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://nassira.ir/",
+          "kind": "partial_table_of_contents",
+          "reparse": "reference_only"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://mohammad-karimi.com/wp-content/uploads/2025/05/20.matn_.pdf",
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-20-%28Virayesh-1396%29.pdf",
+        "https://www.mediafire.com/file/say6txtwk408oci/mabhas20-1396.pdf/file"
+      ],
+      "user_uploaded_edition": "1396"
+    },
+    {
+      "chapter": 21,
+      "target_edition": "1395",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-passive-defense",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1395",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-21",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/21/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 22,
+      "target_edition": "1392",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-22",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/22/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 23,
+      "target_edition": "1401",
+      "full_clause_text_sources": [
+        {
+          "url": "https://mihansazan.app/posts/nbci-traffic-requirements-of-buildings",
+          "kind": "full_clause_html_candidate",
+          "stored_in_existing_corpus": true,
+          "edition_reported": "1401",
+          "publication_permission": "unconfirmed",
+          "reparse": "existing_pipeline"
+        }
+      ],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-23",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/23/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        }
+      ],
+      "existing_pdf_sources": [],
+      "user_uploaded_edition": null
+    },
+    {
+      "chapter": 24,
+      "target_edition": "1404",
+      "full_clause_text_sources": [],
+      "other_online_sources": [
+        {
+          "url": "https://technobetar.ir/code/nbri/mabhas-24",
+          "kind": "overview_and_table_of_contents",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://moghararatai.com/mabahes/24/",
+          "kind": "educational_chapter_outline",
+          "reparse": "do_not_use_as_clause_text"
+        },
+        {
+          "url": "https://qsce.ir/uploads/%D9%85%D8%A8%D8%AD%D8%AB%20%D8%A8%DB%8C%D8%B3%D8%AA%20%D9%88%20%DA%86%D9%87%D8%A7%D8%B1%D9%85%20%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA%20%D9%85%D9%84%DB%8C.pdf",
+          "kind": "engineering_organization_document",
+          "edition_reported": "1404",
+          "reparse": "already_in_existing_registry"
+        }
+      ],
+      "existing_pdf_sources": [
+        "https://dl.archweb.ir/Mabahes-File/Mabhas-24-%28Virayesh-1404%29.pdf",
+        "https://qsce.ir/uploads/%D9%85%D8%A8%D8%AD%D8%AB%20%D8%A8%DB%8C%D8%B3%D8%AA%20%D9%88%20%DA%86%D9%87%D8%A7%D8%B1%D9%85%20%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA%20%D9%85%D9%84%DB%8C.pdf"
+      ],
+      "user_uploaded_edition": null
+    }
+  ]
+}
