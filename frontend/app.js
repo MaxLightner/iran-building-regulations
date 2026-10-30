@@ -191,7 +191,10 @@ function renderVisuals(ch){
   }
   gallery.hidden=false;
   $('visualTitle').textContent='تصاویر، نمودارها و جدول‌های مبحث '+Number(ch);
-  $('visualMeta').textContent='ویرایش '+info.edition+' · '+info.pages.length+' پیش‌نمایش منتخب';
+  const chosen=SUBMITTED[String(Number(ch))];
+  const mixed=chosen&&String(chosen.edition)!==String(info.edition);
+  $('visualMeta').textContent='ویرایش تصاویر '+info.edition+' · '+info.pages.length+' پیش‌نمایش منتخب'+
+    (mixed?' · متفاوت با متن PDF ارسالی، قابل تطبیق صفحه‌به‌صفحه نیست':'');
   for(const entry of info.pages){
     const a=el('a',null,'visual-tile');
     a.href=entry.preview;
@@ -261,7 +264,7 @@ function resultCard(r,i){
   }
   appendRefLinks(card,r);
   const visual=VISUALS[String(Number(r.chapter))];
-  const nearest=visual?.pages?.find(p=>Number(p.page)===Number(r.page));
+  const nearest=String(visual?.edition||'')===String(r.edition||chapterMeta(r.chapter).edition)?visual?.pages?.find(p=>Number(p.page)===Number(r.page)):null;
   if(nearest){
     const figure=el('a',null,'inline-visual');
     figure.href=nearest.preview;figure.target='_blank';figure.rel='noopener noreferrer';
