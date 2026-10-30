@@ -53,33 +53,13 @@
       <select id="chapter"><option value="">همه مباحث</option></select>
       <button id="go">جست‌وجو</button>
     </div>
-    <div class="quick" id="quick" aria-label="موضوعات پیشنهادی مرتبط">
-      <button data-q="ارتفاع جان پناه">جان‌پناه</button>
-      <button data-q="عرض راه پله">راه‌پله</button>
-      <button data-q="آسانسور ساختمان 8 طبقه">آسانسور</button>
-      <button data-q="بار زنده ساختمان مسکونی">بار زنده</button>
-      <button data-q="مقاومت در برابر حریق">حریق</button>
-      <button data-q="تاسیسات برقی مسیر خروج">برق اضطراری</button>
-      <button data-q="صرفه جویی انرژی پوسته ساختمان">انرژی</button>
-      <button data-q="پارکینگ و دسترسی خودرو">ترافیک</button>
+    <div class="topic-header">
+      <strong>موضوعات قابل جست‌وجو</strong>
+      <input id="topicFilter" type="search" placeholder="فیلتر موضوعات…" aria-label="فیلتر موضوعات" autocomplete="off">
     </div>
+    <div class="quick topic-groups" id="quick" aria-label="موضوعات قابل جست‌وجو"></div>
   </section>
 
-  <section class="systembar">
-    <strong id="status">در حال آماده‌سازی…</strong>
-    <span id="coverage"></span>
-  </section>
-
-  <section id="completenessCard" class="card completeness-card" aria-label="ممیزی کامل بودن مباحث">
-    <div class="section-title"><strong>ممیزی کامل‌بودن و اعتبار داده‌ها</strong><span id="completenessScore">در حال بررسی…</span></div>
-    <p id="completenessStatus" class="completeness-status">هر مبحث تنها پس از تأیید ویرایش، همه بندها، جدول‌ها، شکل‌ها، اصلاحیه‌ها و مقابله با منبع اصلی «کامل» محسوب می‌شود.</p>
-    <details id="completenessDetails">
-      <summary>وضعیت دقیق ۲۴ مبحث و نواقص هر کدام را ببین</summary>
-      <div id="completenessRows" class="completeness-list"></div>
-    </details>
-  </section>
-    <p id="datasetCoverage" class="dataset-coverage" aria-live="polite"></p>
-  <div id="sourceProvenance" class="source-provenance" hidden></div>
   <section id="results" class="results"></section>
   <section id="visualGallery" class="card visual-gallery" hidden aria-label="تصاویر و دیاگرام‌های مبحث">
     <div class="section-title"><strong id="visualTitle">تصاویر و دیاگرام‌ها</strong><span id="visualMeta"></span></div>
@@ -88,7 +68,7 @@
   </section>
 
   <section class="chapters card">
-    <div class="section-title"><strong>مباحث</strong><span id="chapterCount"></span></div>
+    <div class="section-title"><strong>مباحث</strong></div>
     <div id="chapterGrid" class="chapter-grid"></div>
   </section>
 </main>
