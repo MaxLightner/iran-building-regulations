@@ -1,0 +1,59 @@
+name: Build visual preview index for regulations
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_visuals.py"
+      - ".github/workflows/build-visuals.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regulations-visuals
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install extractor
+        run: python3 -m pip install requests beautifulsoup4 pymupdf
+      - name: Build visual index and previews
+        run: python3 -u scripts/build_visuals.py
+      - name: Verify output
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('frontend')
+          d=json.loads((root/'data/visuals/index.json').read_text())
+          total=0
+          for n,chapter in d['chapters'].items():
+              for p in chapter.get('pages',[]):
+                  file=root/p['preview'].removeprefix('./')
+                  assert file.exists() and file.stat().st_size>2000, file
+                  total+=1
+          assert total>=12
+          print('Visual previews:', total)
+          PY
+      - name: Commit gallery assets to main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/data/visuals
+          if ! git diff --staged --quiet; then
+            git commit -m "Add regulation figure previews [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
