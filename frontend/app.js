@@ -244,8 +244,22 @@ function resultCard(r,i){
     card.append(facts);
   }
   appendRefLinks(card,r);
+  const visual=VISUALS[String(Number(r.chapter))];
+  const nearest=visual?.pages?.find(p=>Number(p.page)===Number(r.page));
+  if(nearest){
+    const figure=el('a',null,'inline-visual');
+    figure.href=nearest.preview;figure.target='_blank';figure.rel='noopener noreferrer';
+    const thumbnail=el('img');
+    thumbnail.src=nearest.preview;
+    thumbnail.loading='lazy';
+    thumbnail.alt='پیش‌نمایش مرتبط با صفحه '+r.page;
+    figure.append(thumbnail,el('span','مشاهده تصویر و ترسیم صفحه PDF '+r.page));
+    card.append(figure);
+  }
   if(r.source_url){
-    const link=el('a','مشاهده منبع متن','source-link');link.href=r.source_url;
+    const link=el('a',r.page?'مشاهده منبع · صفحه PDF '+r.page:'مشاهده منبع متن','source-link');
+    link.href=/\\.pdf(?:[?#]|$)/i.test(r.source_url)&&r.page
+      ? r.source_url.split('#')[0]+'#page='+Number(r.page):r.source_url;
     link.target='_blank';link.rel='noopener noreferrer';card.append(link);
   }
   return card;
