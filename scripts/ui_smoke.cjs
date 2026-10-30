@@ -106,7 +106,24 @@ async function main(){
   assert.ok(cementResult.textContent.includes('کیلوگرم'),'cement clause must retain its unit');
   assert.ok(!/صفحه\\s+\\d+\\s*[-،]\\s*بخش/.test(cementResult.textContent),
     'a PDF page/part cannot masquerade as a regulatory clause');
-  for(const n of [1,2,3,6,11,12,18,20,22,24]){
+  q.value='5-2-6-1-4';go.click();await pause(15);
+  assert.ok(doc.querySelector('#results .result')?.textContent.includes('5-2-6-1-4'),
+    'direct clause number search must return exact native clause');
+  assert.ok(doc.querySelector('#results .result')?.textContent.includes('50'),
+    'the 50kg requirement stays attached to its exact clause');
+  q.value='بند ۵-۲-۶-۱-۴';go.click();await pause(15);
+  assert.ok(doc.querySelector('#results .result')?.textContent.includes('5-2-6-1-4'),
+    'Persian numeral input must resolve to the same clause');
+  const extraNumbered=[[2,'2-1-1-1'],[3,'3-1-3'],[22,'22-2-6']];
+  for(const [n,ref] of extraNumbered){
+    select.value=String(n);select.dispatchEvent(new win.Event('change'));await pause(10);
+    q.value=ref;go.click();await pause(10);
+    const card=doc.querySelector('#results .result');
+    assert.ok(card?.textContent.includes(ref),'native exact reference must work in chapter '+n);
+    assert.ok(!/^صفحه\\s*\\d+/.test(card.querySelector('h2')?.textContent||''),
+      'never display PDF page number as a clause heading');
+  }
+    for(const n of [1,2,3,6,11,12,18,20,22,24]){
     doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();await pause(10);
     const items=[...doc.querySelectorAll('#results .result')];
     assert.ok(items.length>0,'chapter '+n+' must remain readable');
