@@ -6,6 +6,70 @@ const SYNONYMS = {
   'پارکینگ':['توقفگاه','خودرو'], 'بتن':['بتن آرمه'], 'روشنایی':['نور','نورگیری'],
   'آتش':['حریق'], 'برق':['الکتریکی','تاسیسات برقی'], 'آسانسور':['بالابر']
 };
+const QUICK_BY_CHAPTER = {
+  1:['تعریف ساختمان','تعریف طبقه','تعریف تصرف'],
+  2:['وظایف مهندس ناظر','مسئولیت مجری','پروانه ساختمان'],
+  3:['مسیر خروج حریق','عرض خروج اضطراری','مقاومت در برابر آتش'],
+  4:['ارتفاع جان پناه','عرض راه پله','نورگیری اتاق','عرض آشپزخانه','ارتفاع پارکینگ'],
+  5:['مصالح ساختمانی','استاندارد مصالح','آزمایش مصالح'],
+  6:['بار زنده','بار باد','بار برف','ترکیب بارها'],
+  7:['مطالعات ژئوتکنیک','ظرفیت باربری خاک','طراحی پی'],
+  8:['دیوار باربر بنایی','کلاف بندی','ارتفاع ساختمان بنایی'],
+  9:['پوشش بتن','میلگرد گذاری','وصله میلگرد','مقاومت بتن'],
+  10:['اتصال فولادی','جوش و پیچ','بادبند','ستون فولادی'],
+  11:['ساخت صنعتی','قطعات پیش ساخته','اتصالات صنعتی'],
+  12:['حفاظت کارگاه','ایمنی گودبرداری','داربست'],
+  13:['ارتینگ','برق اضطراری','تابلو برق','حفاظت الکتریکی'],
+  14:['تهویه مطبوع','دودکش','موتورخانه','تهویه پارکینگ'],
+  15:['ابعاد آسانسور','چاه آسانسور','ظرفیت کابین'],
+  16:['لوله کشی آب','فاضلاب','شیب لوله','تهویه فاضلاب'],
+  17:['لوله کشی گاز','دودکش گاز','انشعاب گاز'],
+  18:['عایق صوتی','صدای کوبه ای','صدای هوابرد'],
+  19:['عایق حرارتی','پوسته ساختمان','مصرف انرژی'],
+  20:['علائم خروج','تابلوهای ایمنی','علائم کارگاه'],
+  21:['پدافند غیرعامل','حفاظت ساختمان','الزامات پدافندی'],
+  22:['بازرسی دوره ای','نگهداری ساختمان','تعمیرات'],
+  23:['تعداد پارکینگ','دسترسی خودرو','شیب رمپ','تردد خودرو'],
+  24:['انطباق شهری','ضوابط شهرسازی','معابر']
+};
+const QUICK_GENERAL=['ارتفاع جان پناه','عرض راه پله','بار زنده','مقاومت در برابر حریق','پارکینگ و دسترسی خودرو','عایق حرارتی'];
+const PROJECT_INPUTS=['pUse','pStructure','pStage','pFloors','pElevator','pGas','pCity'];
+function projectProfile(){
+  const p={};
+  for(const key of PROJECT_INPUTS)p[key]=($(key).value||'').trim();
+  p.pFloors=p.pFloors?Number(p.pFloors):null;
+  p.active=PROJECT_INPUTS.some(key=>key==='pFloors'?Number.isFinite(p.pFloors)&&p.pFloors>0:!!p[key]);
+  return p;
+}
+function chapterRelevant(n,p=projectProfile()){
+  if(!p.active)return true;
+  n=Number(n);
+  if(p.pStructure==='concrete'&&(n===8||n===10))return false;
+  if(p.pStructure==='steel'&&(n===8||n===9))return false;
+  if(p.pStructure==='masonry'&&(n===9||n===10))return false;
+  if(p.pElevator==='no'&&n===15)return false;
+  if(p.pGas==='no'&&n===17)return false;
+  if(['design','permit'].includes(p.pStage)&&(n===12||n===22))return false;
+  if(p.pStage==='operation'&&n===12)return false;
+  return true;
+}
+function restrictToProject(){return $('projectOnly').checked && projectProfile().active;}
+function renderQuick(){
+  const area=$('quick'),chapter=Number($('chapter').value),suggestions=QUICK_BY_CHAPTER[chapter]||QUICK_GENERAL;
+  area.replaceChildren();
+  for(const q of suggestions){
+    const b=el('button',q);b.type='button';b.dataset.q=q;
+    b.addEventListener('click',()=>{$('q').value=q;render()});
+    area.append(b);
+  }
+}
+function updateProjectNote(){
+  const p=projectProfile(),all=CATALOG.length,kept=CATALOG.filter(c=>chapterRelevant(c.number,p)).length;
+  const note=$('projectNote');
+  note.textContent=p.active
+    ? 'پروفایل فعال: '+kept+' مبحث از '+all+' مبحث در گروه پیشنهادی قرار دارند. '+(p.pCity?'شهر '+p.pCity+' انتخاب شده، اما ضوابط شهرداری هنوز متصل نیست. ':'')+'این غربالگری راهنمای اولیه است و به معنای عدم شمول قانونی سایر مباحث نیست.'
+    : 'برای محدودکردن نتایج مشخصات پروژه را وارد کن. این فیلتر جایگزین کنترل حقوقی و ضوابط شهرداری نیست.';
+}
 const STOP = new Set(['حداقل','حداکثر','چقدر','چیست','است','برای','در','از','به','و','یا','یک','چه','مقدار','ضابطه','ساختمان','های','باید','شود','مقررات']);
 function norm(s) {
   return String(s ?? '').normalize('NFKC')
@@ -28,6 +92,7 @@ function refnorm(s){return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷
 function sourceRecords() { return CURATED.concat(INDEX); }
 function score(r,q,chapter) {
   if(chapter && Number(chapter)!==Number(r.chapter))return -1;
+  if(restrictToProject()&&!chapterRelevant(r.chapter))return -1;
   if(q.startsWith('ref:')){
     const chunks=q.slice(4).split(':');const ref=refnorm(chunks.pop());
     if(chunks.length&&Number(chunks[0])!==Number(r.chapter))return -1;
@@ -67,12 +132,14 @@ function search(q,ch){
     const key=Number(r.chapter)+':'+refnorm(r.locator)+':'+norm(r.answer).slice(0,75);
     if(seen.has(key))continue;
     seen.add(key);out.push(r);
-    if(out.length===5)break;
+    if(out.length===20)break;
   }
   return out;
 }
 function goToRef(ch,ref){
+  if(!chapterRelevant(ch))$('projectOnly').checked=false;
   $('chapter').value=String(ch);
+  renderQuick();
   $('q').value='ref:'+ch+':'+refnorm(ref);
   render();
   $('results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -102,6 +169,9 @@ function resultCard(r,i){
   card.append(top);
   card.append(el('h2',r.title||('بند '+(r.locator||''))));
   const answer=String(r.answer||'').trim();
+  if(r.kind==='page_extract'){
+    card.append(el('div','متن خام استخراج‌شده از صفحه '+(r.page||'؟')+'؛ شماره بند و صحت تطبیق هنوز تأیید نشده است.','unverified'));
+  }
   card.append(el('div',answer||'متن این بخش هنوز آماده نشده است.','answer'));
   if(r.conditions?.length){
     card.append(el('div','شرایط و نکات','label'));
@@ -132,7 +202,7 @@ function render(){
   }
   const rows=search(q,ch);
   $('status').textContent=rows.length?'نتایج جست‌وجو':'نتیجه‌ای پیدا نشد';
-  $('coverage').textContent=rows.length?rows.length+' نتیجه':'';
+  $('coverage').textContent=rows.length?(rows.length===20?'۲۰ نتیجه اول؛ عبارت را دقیق‌تر کن':rows.length+' نتیجه'):'';
   if(!rows.length){
     const m=ch?chapterMeta(ch):null;
     area.append(el('div',
@@ -145,34 +215,49 @@ function render(){
   rows.forEach((r,i)=>area.append(resultCard(r,i)));
 }
 function showChapter(n){
+  if(restrictToProject()&&!chapterRelevant(n))$('projectOnly').checked=false;
   $('chapter').value=String(n);
+  renderQuick();
   const matches=sourceRecords().filter(x=>Number(x.chapter)===Number(n));
   const area=$('results');area.replaceChildren();
   const m=chapterMeta(n);
   $('status').textContent='مبحث '+n+' — '+m.title;
   $('coverage').textContent=matches.length+' مورد موجود';
   if(!matches.length){
-    area.append(el('div','این مبحث در فهرست قرار گرفته اما متن قابل جست‌وجوی آن هنوز آماده نیست.','empty'));
+    const message=el('div','برای این مبحث هنوز متن قابل جست‌وجوی قابل اتکا تهیه نشده است. برای یافتن متن منبع از پیوند زیر استفاده کن؛ این به معنای تأیید نسخه نیست.','empty');
+    const links=(m.attempts||[]).filter(x=>x.url&&/^https:/.test(x.url));
+    const link=links.find(x=>x.type==='document_source')||links[0];
+    if(link){const a=el('a','مشاهده منبع کاندید');a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';message.append(a);}
+    area.append(message);
   }else{
     $('q').value='';
-    matches.filter(x=>x.curated||x.normative).slice(0,5).forEach((r,i)=>area.append(resultCard(r,i)));
+    const prioritised=matches.filter(x=>x.curated||x.normative);
+    (prioritised.length?prioritised:matches).slice(0,10).forEach((r,i)=>area.append(resultCard(r,i)));
   }
   $('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function renderCatalog(){
-  const sel=$('chapter'),grid=$('chapterGrid');
+  const sel=$('chapter'),grid=$('chapterGrid'),previous=sel.value;
   sel.replaceChildren();grid.replaceChildren();
   const all=el('option','همه مباحث');all.value='';sel.append(all);
+  const restricted=restrictToProject();
+  let visible=0;
   for(const c of CATALOG){
-    const o=el('option','مبحث '+c.number+' — '+c.title);o.value=c.number;sel.append(o);
-    const has=sourceRecords().some(r=>Number(r.chapter)===Number(c.number));
-    const b=el('button',null,'chapter'+(has?'':' missing'));
+    const relevant=chapterRelevant(c.number);
+    if(restricted&&!relevant)continue;
+    visible++;
+    const o=el('option','مبحث '+c.number+' — '+c.title+(c.record_count?'':' (بدون داده)'));o.value=c.number;sel.append(o);
+    const count=Number(c.record_count)||0;
+    const b=el('button',null,'chapter'+(count?'':' missing'));
     b.type='button';
     b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',has?'مشاهده '+(c.record_count||sourceRecords().filter(r=>Number(r.chapter)===Number(c.number)).length)+' مورد':'در حال تکمیل'));
+      el('span',count?count+' مورد استخراج‌شده'+(c.method==='page_extract'?' · فقط متن صفحه':''):'فاقد متن جست‌وجو'));
     b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
   }
-  $('chapterCount').textContent=CATALOG.length+' مبحث';
+  if(previous&&[...sel.options].some(x=>x.value===previous))sel.value=previous;
+  else if(previous){sel.value='';$('q').value='';}
+  $('chapterCount').textContent=visible+' از '+CATALOG.length+' مبحث'+(restricted?' · مطابق پروفایل اولیه':'');
+  updateProjectNote();
 }
 async function jsonOr(url,fallback){
   try {
@@ -192,10 +277,22 @@ function setCurated(d){
 function wire(){
   $('go').addEventListener('click',render);
   $('q').addEventListener('keydown',e=>{if(e.key==='Enter')render()});
-  $('chapter').addEventListener('change',render);
-  document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{
-    $('chapter').value='';$('q').value=b.dataset.q;render();
-  }));
+  $('chapter').addEventListener('change',()=>{
+    const n=Number($('chapter').value);
+    if(n)showChapter(n);
+    else{$('q').value='';renderQuick();render();}
+  });
+  for(const key of PROJECT_INPUTS){
+    $(key).addEventListener(key==='pCity'||key==='pFloors'?'change':'change',()=>{
+      renderCatalog();renderQuick();render();
+    });
+  }
+  $('projectOnly').addEventListener('change',()=>{renderCatalog();renderQuick();render()});
+  $('resetProject').addEventListener('click',()=>{
+    for(const key of PROJECT_INPUTS)$(key).value='';
+    $('projectOnly').checked=true;
+    renderCatalog();renderQuick();render();
+  });
 }
 async function init(){
   wire();
@@ -211,6 +308,7 @@ async function init(){
   INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer):[];
   setCurated(curated);
   renderCatalog();
+  renderQuick();
   $('q').value='ارتفاع جان پناه';
   render();
   const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
