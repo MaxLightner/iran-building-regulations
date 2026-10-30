@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [];
+let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [], VISUALS = {};
 const SYNONYMS = {
   'پله':['راه پله','پلکان','راه‌پله'], 'جانپناه':['جان پناه','حفاظ'],
   'پارکینگ':['توقفگاه','خودرو'], 'بتن':['بتن آرمه'], 'روشنایی':['نور','نورگیری'],
@@ -181,6 +181,39 @@ function appendRefLinks(parent, r) {
   }
   parent.append(el('div','ارجاعات ماشینی (نیازمند تطبیق)','label'),holder);
 }
+function renderVisuals(ch){
+  const gallery=$('visualGallery'),list=$('visualItems');
+  const info=VISUALS[String(Number(ch))];
+  list.replaceChildren();
+  if(!info||!Array.isArray(info.pages)||!info.pages.length){
+    gallery.hidden=true;
+    return;
+  }
+  gallery.hidden=false;
+  $('visualTitle').textContent='تصاویر، نمودارها و جدول‌های مبحث '+Number(ch);
+  $('visualMeta').textContent='ویرایش '+info.edition+' · '+info.pages.length+' پیش‌نمایش منتخب';
+  for(const entry of info.pages){
+    const a=el('a',null,'visual-tile');
+    a.href=entry.preview;
+    a.target='_blank';
+    a.rel='noopener noreferrer';
+    a.setAttribute('aria-label','مشاهده پیش‌نمایش صفحه '+entry.page);
+    const img=el('img');
+    img.src=entry.preview;
+    img.alt='پیش‌نمایش صفحه '+entry.page+' مبحث '+ch+'، ویرایش '+info.edition;
+    img.loading='lazy';img.decoding='async';
+    a.append(img,el('strong','صفحه PDF '+entry.page),
+      el('span',(entry.features||[]).join(' · ')||'صفحه دارای عناصر تصویری'));
+    list.append(a);
+  }
+  if(info.source_url){
+    const link=el('a','مشاهده سند اصلی برای بررسی بزرگ‌نمایی','visual-source-link');
+    link.href=info.source_url;link.rel='noopener noreferrer';link.target='_blank';
+    list.after(link);
+    // Remove the previously appended source link from a prior chapter.
+    [...gallery.querySelectorAll('.visual-source-link')].slice(0,-1).forEach(x=>x.remove());
+  }else gallery.querySelectorAll('.visual-source-link').forEach(x=>x.remove());
+}
 function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
@@ -220,6 +253,7 @@ function resultCard(r,i){
 function render(){
   const q=$('q').value.trim(),ch=$('chapter').value,area=$('results');
   area.replaceChildren();
+  renderVisuals(ch);
   if(q.length<2){
     $('status').textContent='عبارت جست‌وجو را بنویس';
     area.append(el('div','برای شروع یکی از موضوع‌های پیشنهادی را انتخاب کن.','empty'));return;
@@ -247,11 +281,13 @@ function render(){
     return;
   }
   rows.forEach((r,i)=>area.append(resultCard(r,i)));
+  if(!ch&&rows.length)renderVisuals(rows[0].r?.chapter||rows[0].chapter);
 }
 function showChapter(n){
   if(restrictToProject()&&!chapterRelevant(n))$('projectOnly').checked=false;
   $('chapter').value=String(n);
   renderQuick();
+  renderVisuals(n);
   const matches=sourceRecords().filter(x=>Number(x.chapter)===Number(n));
   const area=$('results');area.replaceChildren();
   const m=chapterMeta(n);
@@ -344,17 +380,19 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,coverage,index,curated,addenda,energyBackup]=await Promise.all([
+  const [catalog,coverage,index,curated,addenda,energyBackup,visualIndex]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/coverage.json',{}),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
     jsonOr('./data/addenda.json',[]),
-    jsonOr('./data/m19-structured-backup.json',{records:[]})
+    jsonOr('./data/m19-structured-backup.json',{records:[]}),
+    jsonOr('./data/visuals/index.json',{chapters:{}})
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   COVERAGE=coverage||{};
   ADDENDA=Array.isArray(addenda)?addenda:[];
+  VISUALS=visualIndex?.chapters||{};
   INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer):[];
   const backup=Array.isArray(energyBackup?.records)?energyBackup.records.filter(x=>x&&Number(x.chapter)===19&&x.answer):[];
   const activeM19=INDEX.filter(x=>Number(x.chapter)===19);
