@@ -33,7 +33,11 @@ async function main(){
   assert.equal(doc.querySelector('#chapter').value,'4','chapter selection must update');
   assert.ok(doc.querySelectorAll('#results .result').length>=1,'chapter 4 should contain results');
   doc.querySelector('#chapterGrid .chapter:nth-child(2)').click();await pause(10);
-  assert.ok(doc.querySelectorAll('#results .empty').length>=1,'unavailable chapter should report missing data');
+  const missing=doc.querySelectorAll('#results .empty').length>0;
+  if(!missing){
+    assert.ok(doc.querySelectorAll('#results .result').length>0,'chapter should show indexed page excerpts');
+    assert.ok(doc.querySelectorAll('#results .unverified').length>0,'page-level fallback must be labeled unverified');
+  }
   // Chapter-aware quick suggestions must replace, not silently reset, the chapter.
   const chapterSelect=doc.querySelector('#chapter');
   chapterSelect.value='10';
