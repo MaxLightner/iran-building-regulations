@@ -296,8 +296,8 @@ def pdf_records(chapter,data,source_url):
         if current and sum(len(x) for x in current["_parts"])>1800:flush()
     flush()
     records=dedupe(out)
-    if not records:
-        # No trustworthy clause locators found. Preserve page provenance and
+    if len(records)<12:
+        # No sufficient trustworthy clause locators found. Preserve page provenance and
         # explicitly mark excerpts as unverified rather than inventing clauses.
         fallback=[]
         for page_i, pt in enumerate(pages,1):
