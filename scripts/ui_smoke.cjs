@@ -62,6 +62,11 @@ async function main(){
   doc.querySelector('#resetProject').click();await pause(10);
   assert.equal(structure.value,'','reset clears the profile');
   assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'reset restores complete catalog');
+    // Mandatory appendix is available, but never masquerades as a clause.
+  doc.querySelector('#chapterGrid .chapter:nth-child(4)').click();await pause(10);
+  assert.ok(doc.querySelector('.addenda-notice a'),'chapter 4 should expose its mandatory appendix');
+  assert.ok(doc.querySelector('.addenda-notice').textContent.includes('نمایه نشده'),
+    'appendix should be clearly marked as not indexed');
     assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
