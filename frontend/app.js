@@ -67,7 +67,7 @@ function updateProjectNote(){
   const p=projectProfile(),all=CATALOG.length,kept=CATALOG.filter(c=>chapterRelevant(c.number,p)).length;
   const note=$('projectNote');
   note.textContent=p.active
-    ? 'پروفایل فعال: '+kept+' مبحث از '+all+' مبحث در گروه پیشنهادی قرار دارند. '+(p.pCity?'شهر '+p.pCity+' انتخاب شده، اما ضوابط شهرداری هنوز متصل نیست. ':'')+'این غربالگری راهنمای اولیه است و به معنای عدم شمول قانونی سایر مباحث نیست.'
+    ? 'پروفایل فعال: '+kept+' مبحث از '+all+' مبحث در گروه پیشنهادی قرار دارند. '+(p.pCity?'شهر '+p.pCity+' انتخاب شده، اما ضوابط شهرداری هنوز متصل نیست. ':'')+'کاربری و تعداد طبقات فعلاً فقط ثبت می‌شوند و هنوز به محاسبات دقیق شمول بندها متصل نیستند. فهرست پیشنهادی به معنای عدم شمول قانونی سایر مباحث نیست.'
     : 'برای محدودکردن نتایج مشخصات پروژه را وارد کن. این فیلتر جایگزین کنترل حقوقی و ضوابط شهرداری نیست.';
 }
 const STOP = new Set(['حداقل','حداکثر','چقدر','چیست','است','برای','در','از','به','و','یا','یک','چه','مقدار','ضابطه','ساختمان','های','باید','شود','مقررات']);
@@ -158,14 +158,14 @@ function appendRefLinks(parent, r) {
     });
     holder.append(a);
   }
-  parent.append(el('div','ارجاعات مرتبط','label'),holder);
+  parent.append(el('div','ارجاعات ماشینی (نیازمند تطبیق)','label'),holder);
 }
 function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
   const top=el('div',null,'topline');
-  top.append(el('span',r.curated?'پاسخ منتخب':'متن مرتبط مقررات','rank'),
-    el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · '+m.edition:''),'source'));
+  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='page_extract'?'گزیده صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
+    el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش ثبت‌شده '+m.edition:''),'source'));
   card.append(top);
   card.append(el('h2',r.title||('بند '+(r.locator||''))));
   const answer=String(r.answer||'').trim();
@@ -188,7 +188,7 @@ function resultCard(r,i){
   }
   appendRefLinks(card,r);
   if(r.source_url){
-    const link=el('a','مشاهده مرجع','source-link');link.href=r.source_url;
+    const link=el('a','مشاهده منبع متن','source-link');link.href=r.source_url;
     link.target='_blank';link.rel='noopener noreferrer';card.append(link);
   }
   return card;
