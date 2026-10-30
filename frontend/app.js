@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [], VISUALS = {};
+let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [], VISUALS = {}, SUBMITTED = {};
 const SYNONYMS = {
   'پله':['راه پله','پلکان','راه‌پله'], 'جانپناه':['جان پناه','حفاظ'],
   'پارکینگ':['توقفگاه','خودرو'], 'بتن':['بتن آرمه'], 'روشنایی':['نور','نورگیری'],
@@ -214,17 +214,33 @@ function renderVisuals(ch){
     [...gallery.querySelectorAll('.visual-source-link')].slice(0,-1).forEach(x=>x.remove());
   }else gallery.querySelectorAll('.visual-source-link').forEach(x=>x.remove());
 }
+function showProvenance(ch){
+  const box=$('sourceProvenance');
+  const archived=SUBMITTED[String(Number(ch))];
+  box.hidden=!archived;
+  if(!archived)return;
+  const meta=chapterMeta(ch);
+  const warning=archived.status==='font_encoding_corrupt_most_pages'
+    ? 'این PDF لایه متن دارد، اما نگاشت حروف بیشتر صفحات خراب است؛ فقط '+archived.pages_readable+' صفحه از '+archived.pages_total+' صفحه بدون OCR قابل جست‌وجو شد.'
+    : 'این PDF مستقیماً از لایه متن استخراج شده است؛ هیچ OCR انجام نشده.';
+  const editionWarning=meta.original_edition&&String(meta.original_edition)!==String(archived.edition)
+    ? ' این ویرایش '+archived.edition+' است، ولی نسخه هدف دیتابیس '+meta.original_edition+' بوده؛ از آن به‌عنوان مقررات روز استفاده نکن.'
+    : '';
+  box.textContent='منبع: '+archived.source_name+' · ویرایش روی سند '+archived.edition+' · '+warning+editionWarning;
+}
 function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
   const top=el('div',null,'topline');
-  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='ocr_page'?'خوانش ماشینی تصویر؛ تأییدنشده':r.kind==='page_extract'?'متن صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
+  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='direct_pdf_text'?'متن مستقیم PDF · بدون OCR':r.kind==='ocr_page'?'خوانش ماشینی تصویر؛ تأییدنشده':r.kind==='page_extract'?'متن صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
     el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش ثبت‌شده '+m.edition:''),'source'));
   card.append(top);
   card.append(el('h2',r.title||('بند '+(r.locator||''))));
   const answer=String(r.answer||'').trim();
-  if(r.kind==='page_extract'||r.kind==='ocr_page'){
-    const label=r.kind==='ocr_page'
+  if(r.kind==='page_extract'||r.kind==='ocr_page'||r.kind==='direct_pdf_text'){
+    const label=r.kind==='direct_pdf_text'
+      ? 'متن مستقیم PDF ارسالی، صفحه '+(r.page||'؟')+' · ویرایش '+(r.edition||'?')+' · شماره بند با متن اصلی تطبیق داده نشده است.'
+      : r.kind==='ocr_page'
       ? 'خوانش OCR فارسی از تصویر صفحه '+(r.page||'؟')+'؛ متن ممکن است دارای خطا باشد و شماره بند آن تأیید نشده است.'
       : 'متن خام استخراج‌شده از صفحه '+(r.page||'؟')+'؛ شماره بند و صحت تطبیق هنوز تأیید نشده است.';
     card.append(el('div',label,'unverified'));
@@ -268,6 +284,7 @@ function render(){
   const q=$('q').value.trim(),ch=$('chapter').value,area=$('results');
   area.replaceChildren();
   renderVisuals(ch);
+  showProvenance(ch);
   if(q.length<2){
     $('status').textContent='عبارت جست‌وجو را بنویس';
     area.append(el('div','برای شروع یکی از موضوع‌های پیشنهادی را انتخاب کن.','empty'));return;
@@ -302,6 +319,7 @@ function showChapter(n){
   $('chapter').value=String(n);
   renderQuick();
   renderVisuals(n);
+  showProvenance(n);
   const matches=sourceRecords().filter(x=>Number(x.chapter)===Number(n));
   const area=$('results');area.replaceChildren();
   const m=chapterMeta(n);
@@ -346,7 +364,7 @@ function renderCatalog(){
     const b=el('button',null,'chapter'+(count?'':' missing'));
     b.type='button';
     b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',(count?count+' مورد استخراج‌شده'+(c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
+      el('span',(count?count+' مورد استخراج‌شده'+(c.method==='direct_pdf_text'?' · متن مستقیم PDF، ویرایش '+c.edition:c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
         (ADDENDA.some(a=>Number(a.chapter)===Number(c.number))?' · اصلاحیه/پیوست':'')));
     b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
   }
@@ -394,20 +412,41 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,coverage,index,curated,addenda,energyBackup,visualIndex]=await Promise.all([
+  const [catalog,coverage,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/coverage.json',{}),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
     jsonOr('./data/addenda.json',[]),
     jsonOr('./data/m19-structured-backup.json',{records:[]}),
-    jsonOr('./data/visuals/index.json',{chapters:{}})
+    jsonOr('./data/visuals/index.json',{chapters:{}}),
+    jsonOr('./data/submitted/m06-1392-direct.json',{records:[]}),
+    jsonOr('./data/submitted/m11-1392-direct.json',{records:[]}),
+    jsonOr('./data/submitted/m18-1390-direct.json',{records:[]}),
+    jsonOr('./data/submitted/m20-1396-direct.json',{records:[]})
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   COVERAGE=coverage||{};
   ADDENDA=Array.isArray(addenda)?addenda:[];
   VISUALS=visualIndex?.chapters||{};
-  INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer):[];
+  // OCR content is deliberately excluded from the live search, even if legacy
+  // snapshots still contain it. Uploaded searchable-text PDFs are separate editions.
+  INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer&&x.kind!=='ocr_page'):[];
+  for(const uploaded of [submitted6,submitted11,submitted18,submitted20]){
+    if(!uploaded||!Array.isArray(uploaded.records)||!uploaded.records.length)continue;
+    const n=Number(uploaded.chapter);
+    SUBMITTED[String(n)]=uploaded;
+    INDEX=INDEX.filter(x=>Number(x.chapter)!==n).concat(uploaded.records);
+    const meta=CATALOG.find(x=>Number(x.number)===n);
+    if(meta){
+      meta.original_edition=meta.edition;
+      meta.edition=String(uploaded.edition);
+      meta.record_count=uploaded.records.length;
+      meta.method='direct_pdf_text';
+      meta.status='uploaded_text_edition';
+      meta.source=uploaded.source_name;
+    }
+  }
   const backup=Array.isArray(energyBackup?.records)?energyBackup.records.filter(x=>x&&Number(x.chapter)===19&&x.answer):[];
   const activeM19=INDEX.filter(x=>Number(x.chapter)===19);
   if(backup.length>activeM19.length){
@@ -421,12 +460,12 @@ async function init(){
   $('q').value='ارتفاع جان پناه';
   render();
   const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
-  const ocr=Number(COVERAGE.chapters_ocr_index||0);
-  const pageOnly=Number(COVERAGE.chapters_page_index||0)-ocr;
+  const direct=Object.keys(SUBMITTED).length;
+  const pageOnly=Number(COVERAGE.chapters_page_index||0)-Number(COVERAGE.chapters_ocr_index||0);
   const structured=Number(COVERAGE.chapters_ready||0);
-  const total=structured+pageOnly+ocr;
+  const total=structured+pageOnly+direct;
   $('datasetCoverage').textContent=total
-    ? structured+' مبحث استخراج ساختاریافته · '+pageOnly+' مبحث متن صفحه · '+ocr+' مبحث OCR تأییدنشده · '+sourceRecords().length+' رکورد · پوشش بندها هنوز کامل‌سنجی نشده'
+    ? structured+' مبحث ساختاریافته · '+pageOnly+' مبحث متن صفحه · '+direct+' مبحث PDF ارسالی بدون OCR (سه ویرایش قدیمی) · '+sourceRecords().length+' رکورد قابل جست‌وجو · پوشش بندها تأیید نشده'
     : 'داده‌های قابل جست‌وجو هنوز بارگذاری نشده‌اند';
   if(!sourceRecords().length){
     $('status').textContent='داده‌های جست‌وجو در حال تکمیل است';
