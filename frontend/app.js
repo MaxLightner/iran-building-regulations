@@ -344,17 +344,25 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,coverage,index,curated,addenda]=await Promise.all([
+  const [catalog,coverage,index,curated,addenda,energyBackup]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/coverage.json',{}),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
-    jsonOr('./data/addenda.json',[])
+    jsonOr('./data/addenda.json',[]),
+    jsonOr('./data/m19-structured-backup.json',{records:[]})
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   COVERAGE=coverage||{};
   ADDENDA=Array.isArray(addenda)?addenda:[];
   INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer):[];
+  const backup=Array.isArray(energyBackup?.records)?energyBackup.records.filter(x=>x&&Number(x.chapter)===19&&x.answer):[];
+  const activeM19=INDEX.filter(x=>Number(x.chapter)===19);
+  if(backup.length>activeM19.length){
+    INDEX=INDEX.filter(x=>Number(x.chapter)!==19).concat(backup);
+    const meta=CATALOG.find(x=>Number(x.number)===19);
+    if(meta){meta.record_count=backup.length;meta.method='structured_text';meta.source=energyBackup.source_url;meta.preserved_previous_snapshot=true;}
+  }
   setCurated(curated);
   renderCatalog();
   renderQuick();
