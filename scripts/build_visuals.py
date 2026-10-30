@@ -19,7 +19,7 @@ OUTPUT=ROOT/"frontend/data/visuals"
 CHAPTERS=(6,11,18,20)
 MAX_PAGES=24
 MAX_SOURCE_PAGES=400
-NUM_RE=re.compile(r"(?:شکل|جدول|نمودار)\\s*[-:شماره. ]*[\\d۰-۹]{1,4}",re.I)
+NUM_RE=re.compile(r"(?:شکل|جدول|نمودار)\s*[-:شماره. ]*[\d۰-۹]{1,4}",re.I)
 GENERAL_RE=re.compile(r"شکل|نمودار|جدول|دیاگرام|نمونه",re.I)
 
 
@@ -77,7 +77,7 @@ def candidate_pages(doc,page_text):
         # The OCR often reads the keyword even when it cannot read the clause number.
         keyword_score=min(len(NUM_RE.findall(indexed)),4)*4
         general=bool(GENERAL_RE.search(indexed))
-        score=min(images,12)*8+keyword_score+(4 if drawings>25 else 0)+(1 if general else 0)
+        score=min(images,12)*8+keyword_score+(4 if drawings>25 else 0)+(4 if general else 0)
         if score<4:continue
         labels=[]
         if images:labels.append("تصویر")
@@ -114,6 +114,7 @@ def main():
             if len(pdf)>MAX_SOURCE_PAGES:continue
             texts=indexed_page_text(chapter)
             selected=candidate_pages(pdf,texts)
+            print(f"M{chapter:02d}: selected {len(selected)} previews from {len(pdf)} pages",flush=True)
             folder=OUTPUT/f"m{chapter:02d}"
             if folder.exists():shutil.rmtree(folder)
             folder.mkdir(parents=True)
