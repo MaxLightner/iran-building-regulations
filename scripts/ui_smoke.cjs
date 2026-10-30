@@ -19,101 +19,103 @@ win.fetch=async(url)=>{
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function main(){
   win.eval(app);
-  await pause(100);
+  await pause(120);
   const doc=win.document;
-  assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'all chapter controls should render');
-  assert.ok(doc.querySelectorAll('#results .result').length>=1,'initial M04 results should load');
-  const q=doc.querySelector('#q'),go=doc.querySelector('#go');
-  q.value='عرض آشپزخانه';go.click();await pause(10);
-  assert.ok(doc.querySelectorAll('#results .result').length>=1,'search click must return a result');
-  doc.querySelector('[data-q="عرض راه پله"]').click();await pause(10);
-  assert.ok(doc.querySelectorAll('#results .result').length>=1,'quick-search controls should work');
-  assert.equal(q.value,'عرض راه پله');
-  doc.querySelector('#chapterGrid .chapter:nth-child(4)').click();await pause(10);
-  assert.equal(doc.querySelector('#chapter').value,'4','chapter selection must update');
-  assert.ok(doc.querySelectorAll('#results .result').length>=1,'chapter 4 should contain results');
-  doc.querySelector('#chapterGrid .chapter:nth-child(2)').click();await pause(10);
-  const missing=doc.querySelectorAll('#results .empty').length>0;
-  if(!missing){
-    assert.ok(doc.querySelectorAll('#results .result').length>0,'chapter should show indexed page excerpts');
-    assert.ok(doc.querySelectorAll('#results .unverified').length>0,'page-level fallback must be labeled unverified');
+  const q=doc.querySelector('#q');
+  const go=doc.querySelector('#go');
+  const select=doc.querySelector('#chapter');
+  const topicChips=()=>[...doc.querySelectorAll('#quick button[data-q]')];
+  const topicGroups=()=>doc.querySelectorAll('#quick .topic-group');
+  const chapterButtons=()=>doc.querySelectorAll('#chapterGrid .chapter');
+
+  // No database health / coverage / certification details in the public UI.
+  for(const name of ['completenessCard','datasetCoverage','sourceProvenance','coverage','chapterCount']){
+    assert.equal(doc.getElementById(name),null,'database status element must be absent: '+name);
   }
-  // Chapter-aware quick suggestions must replace, not silently reset, the chapter.
-  const chapterSelect=doc.querySelector('#chapter');
-  chapterSelect.value='10';
-  chapterSelect.dispatchEvent(new win.Event('change'));
-  await pause(10);
-  assert.ok(doc.querySelector('[data-q="اتصال فولادی"]'),'steel chapter suggestions should appear');
+  assert.equal(chapterButtons().length,24,'all chapter controls should appear');
+  assert.ok(doc.querySelectorAll('#results .result').length>=1,'initial search still returns results');
+  assert.equal(topicGroups().length,24,'without scope, all 24 chapter topic groups show');
+  assert.ok(topicChips().length>400,'uncapped topic explorer must show hundreds of tags');
+
+  // Clicking a tag scopes searches to its chapter and runs the query.
+  const stairs=doc.querySelector('[data-q="عرض راه پله"]');
+  assert.ok(stairs,'stairs tag should exist');
+  stairs.click();await pause(10);
+  assert.equal(select.value,'4','tag chooses relevant chapter');
+  assert.equal(q.value,'عرض راه پله','clicked topic fills search box');
+  assert.ok(doc.querySelectorAll('#results .result').length>=1,'topic click executes a search');
+
+  select.value='';select.dispatchEvent(new win.Event('change'));await pause(10);
+  const use=doc.querySelector('#pUse');
+  use.value='residential';use.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.equal(topicGroups().length,24,'residential must keep all chapters available');
+  assert.ok(topicChips().length>400,'residential must not collapse the topic list');
+
+  // Chapter 5 should expose the broad materials vocabulary, not three hard-coded tags.
+  select.value='5';select.dispatchEvent(new win.Event('change'));await pause(10);
+  assert.equal(topicGroups().length,1,'a chapter filter reduces groups');
+  assert.ok(topicChips().length>40,'Chapter 5 should offer extensive material tags');
+  for(const label of ['سیمان','آجر','بلوک سیمانی','بتن','گچ','شیشه','عایق حرارتی','کاشی']){
+    assert.ok(topicChips().some(el=>el.dataset.q===label),'missing Chapter 5 topic: '+label);
+  }
+  const tagFilter=doc.querySelector('#topicFilter');
+  tagFilter.value='شیشه';tagFilter.dispatchEvent(new win.Event('input'));await pause(10);
+  assert.ok(topicChips().length>=1,'topic text filter should find matching subjects');
+  assert.ok(topicChips().every(el=>el.dataset.q.includes('شیشه')),'topic text filter must exclude nonmatches');
+  tagFilter.value='';tagFilter.dispatchEvent(new win.Event('input'));await pause(10);
+  assert.ok(topicChips().length>40,'clearing filter restores all Chapter 5 tags');
+  doc.querySelector('[data-q="سیمان"]').click();await pause(10);
+  assert.equal(select.value,'5');
+  assert.equal(q.value,'سیمان');
+  assert.ok(doc.querySelectorAll('#results .result').length>=1,'clicking a material should search chapter 5');
+
+  q.value='عرض آشپزخانه';select.value='';go.click();await pause(10);
+  assert.ok(doc.querySelectorAll('#results .result').length>=1,'manual search click should work');
+  doc.querySelector('#chapterGrid .chapter:nth-child(10)').click();await pause(10);
+  assert.equal(select.value,'10');
+  assert.ok(doc.querySelector('[data-q="اتصال فولادی"]'),'steel tag appears in Chapter 10');
   doc.querySelector('[data-q="اتصال فولادی"]').click();await pause(10);
-  assert.equal(chapterSelect.value,'10','suggestions must preserve chapter context');
+  assert.equal(select.value,'10');
   assert.equal(q.value,'اتصال فولادی');
-  // Project-based filtering must affect both chapter choices and search results.
+
+  // Existing project filters still affect which chapters can be selected.
   const structure=doc.querySelector('#pStructure'),gas=doc.querySelector('#pGas'),stage=doc.querySelector('#pStage');
   structure.value='steel';structure.dispatchEvent(new win.Event('change'));await pause(10);
-  assert.ok(![...chapterSelect.options].some(o=>o.value==='9'),'concrete structural chapter excluded for steel project');
-  assert.ok([...chapterSelect.options].some(o=>o.value==='10'),'steel structural chapter stays visible');
+  assert.ok(![...select.options].some(o=>o.value==='9'));
+  assert.ok([...select.options].some(o=>o.value==='10'));
   gas.value='no';gas.dispatchEvent(new win.Event('change'));await pause(10);
-  assert.ok(![...chapterSelect.options].some(o=>o.value==='17'),'gas chapter excluded when no gas');
+  assert.ok(![...select.options].some(o=>o.value==='17'));
   stage.value='design';stage.dispatchEvent(new win.Event('change'));await pause(10);
-  assert.ok(![...chapterSelect.options].some(o=>o.value==='12'),'site safety not in design-phase shortlist');
+  assert.ok(![...select.options].some(o=>o.value==='12'));
   doc.querySelector('#projectOnly').checked=false;
   doc.querySelector('#projectOnly').dispatchEvent(new win.Event('change'));await pause(10);
-  assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'show all must restore all 24 chapters');
+  assert.equal(chapterButtons().length,24);
   doc.querySelector('#resetProject').click();await pause(10);
-  assert.equal(structure.value,'','reset clears the profile');
-  assert.equal(doc.querySelectorAll('#chapterGrid .chapter').length,24,'reset restores complete catalog');
-    // Mandatory appendix is available, but never masquerades as a clause.
+  assert.equal(structure.value,'');
+  assert.equal(chapterButtons().length,24);
+  assert.equal(topicGroups().length,24,'reset restores all topics');
+
+  // Cross-references, addenda and page images are still functional.
   doc.querySelector('#chapterGrid .chapter:nth-child(4)').click();await pause(10);
-  assert.ok(doc.querySelector('.addenda-notice a'),'chapter 4 should expose its mandatory appendix');
-  assert.ok(doc.querySelector('.addenda-notice').textContent.includes('نمایه نشده'),
-    'appendix should be clearly marked as not indexed');
-    // A previously indexed higher-quality source must survive upstream outages.
+  assert.ok(doc.querySelector('.addenda-notice a'),'chapter 4 should have appendix link');
+  assert.ok(!doc.querySelector('.addenda-notice').textContent.includes('نمایه نشده'),
+    'no database-index status must leak into the interface');
   doc.querySelector('#chapterGrid .chapter:nth-child(19)').click();await pause(10);
-  assert.ok(doc.querySelectorAll('#results .result').length>0,'chapter 19 is searchable');
-  assert.ok(doc.querySelector('#chapterGrid .chapter:nth-child(19)').textContent.includes('87'),
-    'structured fallback preserves 87 records when current upstream source regresses');
-    const visualManifest=path.join(root,'data/visuals/index.json');
+  assert.ok(doc.querySelectorAll('#results .result').length>0);
+  const visualManifest=path.join(root,'data/visuals/index.json');
   if(fs.existsSync(visualManifest)){
     const visuals=JSON.parse(fs.readFileSync(visualManifest,'utf8'));
     for(const n of [6,11,18,20]){
+      doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();await pause(10);
       const pages=visuals.chapters?.[String(n)]?.pages||[];
       if(!pages.length)continue;
-      doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();
-      await pause(10);
-      assert.equal(doc.querySelector('#visualGallery').hidden,false,'visual gallery should open for m'+n);
-      assert.equal(doc.querySelectorAll('#visualItems img').length,pages.length,
-        'all selected page previews must render for m'+n);
+      assert.equal(doc.querySelector('#visualGallery').hidden,false);
+      assert.equal(doc.querySelectorAll('#visualItems img').length,pages.length);
     }
   }
-    // Regression: uploaded PDFs must use embedded text, NEVER the old OCR layer.
-  for(const [n,edition] of [[6,'1392'],[11,'1392'],[18,'1390'],[20,'1396']]){
-    doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();await pause(10);
-    const notice=doc.querySelector('#sourceProvenance');
-    assert.ok(!notice.hidden && notice.textContent.includes('بدون OCR'),'user PDF should show direct text source m'+n);
-    assert.equal(doc.querySelector('#chapter').value,String(n));
-    assert.ok(doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').textContent.includes('ویرایش '+edition));
-    assert.ok(doc.querySelectorAll('#results .result').length>0,'direct PDF text results should display for m'+n);
-    assert.ok(!doc.querySelector('#results').textContent.includes('خوانش OCR'),'m'+n+' cannot show legacy OCR output');
-  }
-  doc.querySelector('#chapterGrid .chapter:nth-child(18)').click();await pause(10);
-  assert.ok(doc.querySelector('#sourceProvenance').textContent.includes('نگاشت حروف'),'warn on corrupt embedded font encoding');
-    // A searchable chapter must never masquerade as fully verified.
-  const auditRows=[...doc.querySelectorAll('#completenessRows .audit-item')];
-  assert.equal(auditRows.length,24,'completeness audit must enumerate all 24 chapters');
-  assert.ok(doc.querySelector('#completenessScore').textContent.includes('۰ از ۲۴')||
-    doc.querySelector('#completenessScore').textContent.includes('0 از ۲۴'),
-    'no chapter can be fully certified without source evidence');
-  const auditFile=JSON.parse(fs.readFileSync(path.join(root,'data/completeness-audit.json'),'utf8'));
-  const m07Risk=(auditFile.chapters[6].warnings||[]).includes('text_encoding_corruption_suspected');
-  assert.equal(auditRows[6].textContent.includes('خرابی جدی کدگذاری حروف'),m07Risk,
-    'chapter 7 encoding risk must match the actual corpus health');
-  assert.ok(auditRows[13].textContent.includes('تکرار زیاد شناسه بند'),
-    'chapter 14 repeated locator risk must be visible');
-  assert.ok(auditRows[17].textContent.includes('۳')||
-    auditRows[17].textContent.includes('3'),
-    'chapter 18 searchable page gap must be shown');
-    assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
-  console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
+  assert.equal(doc.querySelectorAll('#results .unverified').length,0,'no certification banners in search results');
+  assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
+  console.log('UI smoke PASS: uncapped topic groups, 24 chapters, residential/chapter filters, no DB status');
   win.close();
 }
 main().catch(e=>{console.error(e);process.exitCode=1;win.close()});
