@@ -27,6 +27,8 @@ jobs:
         with:
           persist-credentials: true
           fetch-depth: 0
+      - name: Check extraction and audit script syntax
+        run: python3 -m py_compile scripts/build_all_chapters.py scripts/audit_completeness.py
       - name: Install PDF text parser dependencies
         run: python3 -m pip install requests beautifulsoup4 pymupdf
       - name: Build 24-chapter corpus
