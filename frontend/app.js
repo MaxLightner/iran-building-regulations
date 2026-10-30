@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {};
+let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [];
 const SYNONYMS = {
   'پله':['راه پله','پلکان','راه‌پله'], 'جانپناه':['جان پناه','حفاظ'],
   'پارکینگ':['توقفگاه','خودرو'], 'بتن':['بتن آرمه'], 'روشنایی':['نور','نورگیری'],
@@ -246,6 +246,17 @@ function showChapter(n){
   const area=$('results');area.replaceChildren();
   const m=chapterMeta(n);
   $('status').textContent='مبحث '+n+' — '+m.title;
+  const addenda=ADDENDA.filter(x=>Number(x.chapter)===Number(n));
+  if(addenda.length){
+    const aside=el('aside',null,'addenda-notice');
+    aside.append(el('strong','اسناد تکمیلی مرتبط (متن هنوز در جست‌وجو نمایه نشده):'));
+    for(const x of addenda){
+      const link=el('a',x.title+' · مشاهده PDF');
+      link.href=x.source_url;
+      link.target='_blank';link.rel='noopener noreferrer';aside.append(link);
+    }
+    area.append(aside);
+  }
   $('coverage').textContent=matches.length+' مورد موجود';
   if(!matches.length){
     const message=el('div','برای این مبحث هنوز متن قابل جست‌وجوی قابل اتکا تهیه نشده است. برای یافتن متن منبع از پیوند زیر استفاده کن؛ این به معنای تأیید نسخه نیست.','empty');
@@ -275,7 +286,8 @@ function renderCatalog(){
     const b=el('button',null,'chapter'+(count?'':' missing'));
     b.type='button';
     b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',count?count+' مورد استخراج‌شده'+(c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو'));
+      el('span',(count?count+' مورد استخراج‌شده'+(c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
+        (ADDENDA.some(a=>Number(a.chapter)===Number(c.number))?' · اصلاحیه/پیوست':'')));
     b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
   }
   if(previous&&[...sel.options].some(x=>x.value===previous))sel.value=previous;
@@ -322,14 +334,16 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,coverage,index,curated]=await Promise.all([
+  const [catalog,coverage,index,curated,addenda]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/coverage.json',{}),
     jsonOr('./data/search-index.json',[]),
-    jsonOr('./m04-preview/rules.json',{rules:[]})
+    jsonOr('./m04-preview/rules.json',{rules:[]}),
+    jsonOr('./data/addenda.json',[])
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   COVERAGE=coverage||{};
+  ADDENDA=Array.isArray(addenda)?addenda:[];
   INDEX=Array.isArray(index)?index.filter(x=>x&&x.chapter&&x.answer):[];
   setCurated(curated);
   renderCatalog();
