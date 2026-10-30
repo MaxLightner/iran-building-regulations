@@ -316,7 +316,7 @@ function resultCard(r,i){
   const top=el('div',null,'topline');
   top.append(el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش '+m.edition:''),'source'));
   card.append(top);
-  card.append(el('h2',String(r.title||('بند '+(r.locator||''))).replace(/\s*\(شماره بند تأییدنشده\)/g,'')));
+  if(r.kind!=='readable_paragraph')card.append(el('h2',String(r.title||('بند '+(r.locator||''))).replace(/\s*\(شماره بند تأییدنشده\)/g,'')));
   const answer=String(r.answer||'').trim();
   card.append(el('div',answer||'متن این بخش هنوز آماده نشده است.','answer'));
   if(r.conditions?.length){
@@ -345,7 +345,7 @@ function resultCard(r,i){
     figure.append(thumbnail,el('span','مشاهده تصویر و ترسیم صفحه PDF '+r.page));
     card.append(figure);
   }
-  if(r.source_url){
+  if(r.source_url&&/^https?:\/\//i.test(r.source_url)){
     const link=el('a',r.page?'مشاهده منبع · صفحه PDF '+r.page:'مشاهده منبع متن','source-link');
     link.href=/\\.pdf(?:[?#]|$)/i.test(r.source_url)&&r.page
       ? r.source_url.split('#')[0]+'#page='+Number(r.page):r.source_url;
@@ -475,7 +475,7 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness,numbered5]=await Promise.all([
+  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness,numbered5,readablePassages]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
@@ -487,7 +487,8 @@ async function init(){
     jsonOr('./data/submitted/m18-1390-direct.json',{records:[]}),
     jsonOr('./data/submitted/m20-1396-direct.json',{records:[]}),
     jsonOr('./data/completeness-audit.json',null),
-    jsonOr('./data/clause-text/m05.json',{records:[]})
+    jsonOr('./data/clause-text/m05.json',{records:[]}),
+    jsonOr('./data/clause-text/readable-index.json',[])
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
   ADDENDA=Array.isArray(addenda)?addenda:[];
@@ -510,7 +511,21 @@ async function init(){
       meta.source=uploaded.source_name;
     }
   }
-  // Display the complete, real numbered clauses from the PDF text layer.
+  // Reconstituted from overlapping source fragments; no page-part headings,
+  // and only sentence-complete breaks. Original pages remain source metadata.
+  const repaired=Array.isArray(readablePassages)
+    ? readablePassages.filter(r=>r&&r.kind==='readable_paragraph'&&r.answer):[];
+  if(repaired.length>200){
+    const repairedChapters=new Set(repaired.map(r=>Number(r.chapter)));
+    INDEX=INDEX.filter(r=>!repairedChapters.has(Number(r.chapter))).concat(repaired);
+    for(const c of CATALOG){
+      if(repairedChapters.has(Number(c.number))){
+        c.record_count=repaired.filter(r=>Number(r.chapter)===Number(c.number)).length;
+        c.method='readable_paragraph';
+      }
+    }
+  }
+    // Display the complete, real numbered clauses from the PDF text layer.
   // Do not use the old arbitrary page fragments for Chapter 5.
   if(Array.isArray(numbered5?.records)&&numbered5.records.length>90){
     INDEX=INDEX.filter(x=>Number(x.chapter)!==5).concat(numbered5.records);
