@@ -112,7 +112,9 @@ const topicAliases={"عرض راه پله":["عرض پله","عرض راهپله
 function searchText(s,q){if(!q)return 1;const c=s.__cachedSearch||(s.__cachedSearch={h:norm(s.title),v:norm(s.text),id:norm(s.number)});const {h,v,id}=c;const all=c.all||(c.all=h+" "+v+" "+id);const aliases=state.picked&&norm(state.picked.label)===q?(topicAliases[state.picked.label]||[]):[];const variants=[q,...aliases.map(norm)];let best=0;for(const term of variants){if(id===term)best=Math.max(best,300);if(h===term)best=Math.max(best,220);if(h.includes(term))best=Math.max(best,125);if(v.includes(term))best=Math.max(best,80);const compact=term.replace(/\s/g,"");if(compact.length>4&&(c.compact||(c.compact=all.replace(/\s/g,""))).includes(compact))best=Math.max(best,64);const words=term.split(" ").filter(t=>t.length>1);if(words.length>1&&words.every(t=>all.includes(t)))best=Math.max(best,40)}return best}
 function trail(s,doc){let c=s,parts=[],n=0;while(c&&c.parent_id&&n++<12){c=doc.byId.get(c.parent_id);if(c)parts.unshift(c.title)}return parts.join(" › ")}
 function sectionHtml(s,doc,open){
- const prefix='<details class="clause"'+(open?" open":"")+'><summary><span class="clause-code">'+esc(s.number)+'</span><span class="clause-name"><b>'+esc(s.title)+'</b><span class="excerpt">'+esc(String(s.text||"").replace(/\s+/g," ").slice(0,140))+'</span></span></summary>';
+ const fullText=String(s.text||"").replace(/\s+/g," ").trim();
+ const preview=fullText.startsWith(s.title)?fullText.slice(s.title.length).trim().slice(0,145):fullText.slice(0,145);
+ const prefix='<details class="clause"'+(open?" open":"")+'><summary><span class="clause-code">'+esc(s.number)+'</span><span class="clause-name"><b>'+esc(s.title)+'</b>'+(preview?'<span class="excerpt">'+esc(preview)+'</span>':"")+'</span></summary>';
  const pages=[...new Set((s.page_segments||[]).map(p=>p.pdf_page))];
  const src=doc.document.pdf_url||"";
  const links=pages.map(p=>'<a href="'+esc(src+"#page="+p)+'" target="_blank" rel="noopener noreferrer">صفحه '+fa(p)+' PDF</a>').join("");

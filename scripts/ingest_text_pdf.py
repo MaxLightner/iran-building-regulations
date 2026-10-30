@@ -130,7 +130,7 @@ def parse(chapter, path, max_pages=None):
                     code = None
                 else:
                     section = {"id": f"m{chapter:02d}-{edition}-{code}", "number": code,
-                               "source_pdf_code": h.group(1), "title": rest[:180] or code,
+                               "source_pdf_code": h.group(1), "title": rest[:140] or code,
                                "order": len(sections) + 1, "parent_id": None,
                                "parent_inferred": False, "source_page_start": page_number,
                                "source_page_end": page_number, "page_segments": [], "text": "",
@@ -138,7 +138,10 @@ def parse(chapter, path, max_pages=None):
                     sections.append(section)
                     seen_codes[code] = section
                     active = section
-                    # Keep the complete first line; it may contain an obligation.
+                    # Remove the reverse-order printed clause code, while keeping
+                    # the complete original clause sentence following that code.
+                    # The code already lives in `number` and `source_pdf_code`.
+                    line = rest
             if active is None:
                 unassigned.append({"pdf_page": page_number, "line": i + 1, "text": line})
                 audit["unassigned_lines"] += 1
