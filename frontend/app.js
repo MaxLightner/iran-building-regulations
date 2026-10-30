@@ -395,7 +395,7 @@ function renderCompleteness(report){
   }
   const complete=report.chapters.filter(x=>x.certified_complete).length;
   score.textContent=complete+' از ۲۴ مبحث کاملاً تأییدشده';
-  status.textContent='۷٬۱۱۹ رکورد داده به معنی ۷٬۱۱۹ ضابطه تأییدشده نیست. وضعیت هر مبحث بر اساس ۶ کنترل اجباری و شاهد ثبت‌شده تعیین می‌شود.';
+  status.textContent=Number(report.summary?.active_search_records||0).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ تعداد رکورد نشان‌دهنده اعتبار ضابطه نیست. وضعیت هر مبحث بر اساس ۶ کنترل اجباری و شواهد ثبت‌شده تعیین می‌شود.';
   const intro=el('div','هیچ درصدی به‌عنوان «درصد کامل‌بودن» نمایش نمی‌دهیم؛ تعداد صفحات دارای متن صرفاً یک شاخص فنی است.','audit-explanation');
   holder.append(intro);
   for(const ch of report.chapters){
