@@ -1,4 +1,4 @@
-name: Publish source-reset page
+name: Publish regulations preview
 
 on:
   workflow_dispatch:
@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "frontend/**"
+      - "data/m01-1392/**"
       - ".github/workflows/release-pages.yml"
 
 permissions:
@@ -23,6 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Bundle inspected first chapter data
+        run: |
+          mkdir -p frontend/data/m01-1392
+          cp data/m01-1392/sections.json frontend/data/m01-1392/sections.json
+          cp data/m01-1392/coverage.json frontend/data/m01-1392/coverage.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend
