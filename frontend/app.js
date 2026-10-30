@@ -75,21 +75,12 @@ function chapterRelevant(n,p=projectProfile()){
   return true;
 }
 function restrictToProject(){return $('projectOnly').checked && projectProfile().active;}
-function renderQuick(){
-  const area=$('quick'),chapter=Number($('chapter').value),suggestions=QUICK_BY_CHAPTER[chapter]||QUICK_GENERAL;
-  area.replaceChildren();
-  for(const q of suggestions){
-    const b=el('button',q);b.type='button';b.dataset.q=q;
-    b.addEventListener('click',()=>{$('q').value=q;render()});
-    area.append(b);
-  }
-}
+/* topic rendering defined below */
 function updateProjectNote(){
-  const p=projectProfile(),all=CATALOG.length,kept=CATALOG.filter(c=>chapterRelevant(c.number,p)).length;
-  const note=$('projectNote');
-  note.textContent=p.active
-    ? 'پروفایل فعال: '+kept+' مبحث از '+all+' مبحث در گروه پیشنهادی قرار دارند. '+(p.pCity?'شهر '+p.pCity+' انتخاب شده، اما ضوابط شهرداری هنوز متصل نیست. ':'')+'کاربری و تعداد طبقات فعلاً فقط ثبت می‌شوند و هنوز به محاسبات دقیق شمول بندها متصل نیستند. فهرست پیشنهادی به معنای عدم شمول قانونی سایر مباحث نیست.'
-    : 'برای محدودکردن نتایج مشخصات پروژه را وارد کن. این فیلتر جایگزین کنترل حقوقی و ضوابط شهرداری نیست.';
+  const p=projectProfile();
+  $('projectNote').textContent=p.active
+    ? 'موضوعات و نتایج بر اساس مشخصات انتخابی پیشنهاد می‌شوند. برای دیدن همه مباحث، گزینه «فقط مباحث پیشنهادی» را خاموش کن.'
+    : 'مشخصات پروژه را می‌توانی برای مرتب‌کردن موضوعات و انتخاب حوزه جست‌وجو وارد کنی.';
 }
 const STOP = new Set(['حداقل','حداکثر','چقدر','چیست','است','برای','در','از','به','و','یا','یک','چه','مقدار','ضابطه','ساختمان','های','باید','شود','مقررات']);
 function norm(s) {
@@ -179,7 +170,7 @@ function appendRefLinks(parent, r) {
     });
     holder.append(a);
   }
-  parent.append(el('div','ارجاعات ماشینی (نیازمند تطبیق)','label'),holder);
+  parent.append(el('div','ارجاعات مرتبط','label'),holder);
 }
 function renderVisuals(ch){
   const gallery=$('visualGallery'),list=$('visualItems');
@@ -191,10 +182,7 @@ function renderVisuals(ch){
   }
   gallery.hidden=false;
   $('visualTitle').textContent='تصاویر، نمودارها و جدول‌های مبحث '+Number(ch);
-  const chosen=SUBMITTED[String(Number(ch))];
-  const mixed=chosen&&String(chosen.edition)!==String(info.edition);
-  $('visualMeta').textContent='ویرایش تصاویر '+info.edition+' · '+info.pages.length+' پیش‌نمایش منتخب'+
-    (mixed?' · متفاوت با متن PDF ارسالی، قابل تطبیق صفحه‌به‌صفحه نیست':'');
+  $('visualMeta').textContent='ویرایش '+info.edition;
   for(const entry of info.pages){
     const a=el('a',null,'visual-tile');
     a.href=entry.preview;
@@ -235,19 +223,10 @@ function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
   const top=el('div',null,'topline');
-  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='direct_pdf_text'?'متن مستقیم PDF · بدون OCR':r.kind==='ocr_page'?'خوانش ماشینی تصویر؛ تأییدنشده':r.kind==='page_extract'?'متن صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
-    el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش ثبت‌شده '+m.edition:''),'source'));
+  top.append(el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش '+m.edition:''),'source'));
   card.append(top);
-  card.append(el('h2',r.title||('بند '+(r.locator||''))));
+  card.append(el('h2',String(r.title||('بند '+(r.locator||''))).replace(/\s*\(شماره بند تأییدنشده\)/g,'')));
   const answer=String(r.answer||'').trim();
-  if(r.kind==='page_extract'||r.kind==='ocr_page'||r.kind==='direct_pdf_text'){
-    const label=r.kind==='direct_pdf_text'
-      ? 'متن مستقیم PDF ارسالی، صفحه '+(r.page||'؟')+' · ویرایش '+(r.edition||'?')+' · شماره بند با متن اصلی تطبیق داده نشده است.'
-      : r.kind==='ocr_page'
-      ? 'خوانش OCR فارسی از تصویر صفحه '+(r.page||'؟')+'؛ متن ممکن است دارای خطا باشد و شماره بند آن تأیید نشده است.'
-      : 'متن خام استخراج‌شده از صفحه '+(r.page||'؟')+'؛ شماره بند و صحت تطبیق هنوز تأیید نشده است.';
-    card.append(el('div',label,'unverified'));
-  }
   card.append(el('div',answer||'متن این بخش هنوز آماده نشده است.','answer'));
   if(r.conditions?.length){
     card.append(el('div','شرایط و نکات','label'));
@@ -287,20 +266,18 @@ function render(){
   const q=$('q').value.trim(),ch=$('chapter').value,area=$('results');
   area.replaceChildren();
   renderVisuals(ch);
-  showProvenance(ch);
   if(q.length<2){
     $('status').textContent='عبارت جست‌وجو را بنویس';
     area.append(el('div','برای شروع یکی از موضوع‌های پیشنهادی را انتخاب کن.','empty'));return;
   }
   const rows=search(q,ch);
   $('status').textContent=rows.length?'نتایج جست‌وجو':'نتیجه‌ای پیدا نشد';
-  $('coverage').textContent=rows.length?(rows.length===20?'۲۰ نتیجه اول؛ عبارت را دقیق‌تر کن':rows.length+' نتیجه'):'';
   if(!rows.length){
     const m=ch?chapterMeta(ch):null;
     const notIndexed=m&&!sourceRecords().some(r=>Number(r.chapter)===Number(ch));
     const empty=el('div',
-      notIndexed?'مبحث انتخابی هنوز متن جست‌وجوی قابل اتکا ندارد. می‌توانی سند منبع را مستقیماً بررسی کنی.':
-      'برای عبارت انتخابی نتیجه‌ای در متن استخراج‌شده نداریم. نبود نتیجه به معنی نبود الزام نیست.',
+      notIndexed?'برای این مبحث نتیجه‌ای پیدا نشد.':
+      'برای عبارت انتخابی نتیجه‌ای پیدا نشد.',
       'empty');
     if(notIndexed){
       const preferred=(m.attempts||[]).find(a=>a.type==='document_source'&&a.ok&&a.url&&a.url.startsWith('https:'));
@@ -322,7 +299,6 @@ function showChapter(n){
   $('chapter').value=String(n);
   renderQuick();
   renderVisuals(n);
-  showProvenance(n);
   const matches=sourceRecords().filter(x=>Number(x.chapter)===Number(n));
   const area=$('results');area.replaceChildren();
   const m=chapterMeta(n);
@@ -330,7 +306,7 @@ function showChapter(n){
   const addenda=ADDENDA.filter(x=>Number(x.chapter)===Number(n));
   if(addenda.length){
     const aside=el('aside',null,'addenda-notice');
-    aside.append(el('strong','اسناد تکمیلی مرتبط (متن هنوز در جست‌وجو نمایه نشده):'));
+    aside.append(el('strong','اسناد و پیوست‌های مرتبط:'));
     for(const x of addenda){
       const link=el('a',x.title+' · مشاهده PDF');
       link.href=x.source_url;
@@ -338,9 +314,8 @@ function showChapter(n){
     }
     area.append(aside);
   }
-  $('coverage').textContent=matches.length+' مورد موجود';
   if(!matches.length){
-    const message=el('div','برای این مبحث هنوز متن قابل جست‌وجوی قابل اتکا تهیه نشده است. برای یافتن متن منبع از پیوند زیر استفاده کن؛ این به معنای تأیید نسخه نیست.','empty');
+    const message=el('div','برای این مبحث نتیجه‌ای پیدا نشد.','empty');
     const links=(m.attempts||[]).filter(x=>x.url&&/^https:/.test(x.url));
     const link=links.find(x=>x.type==='document_source')||links[0];
     if(link){const a=el('a','مشاهده منبع کاندید');a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';message.append(a);}
@@ -441,24 +416,17 @@ function renderCatalog(){
   const sel=$('chapter'),grid=$('chapterGrid'),previous=sel.value;
   sel.replaceChildren();grid.replaceChildren();
   const all=el('option','همه مباحث');all.value='';sel.append(all);
-  const restricted=restrictToProject();
-  let visible=0;
   for(const c of CATALOG){
-    const relevant=chapterRelevant(c.number);
-    if(restricted&&!relevant)continue;
-    visible++;
-    const o=el('option','مبحث '+c.number+' — '+c.title+(c.record_count?'':' (بدون داده)'));o.value=c.number;sel.append(o);
-    const count=Number(c.record_count)||0;
-    const b=el('button',null,'chapter'+(count?'':' missing'));
-    b.type='button';
-    b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',(c.status==='unusable_encoding'?'متن خراب؛ فعلاً غیرقابل جست‌وجو':count?count+' مورد استخراج‌شده'+(c.method==='direct_pdf_text'?' · متن مستقیم PDF، ویرایش '+c.edition:c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو')+
-        (ADDENDA.some(a=>Number(a.chapter)===Number(c.number))?' · اصلاحیه/پیوست':'')));
-    b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
+    if(restrictToProject()&&!chapterRelevant(c.number))continue;
+    const option=el('option','مبحث '+c.number+' — '+c.title);
+    option.value=c.number;sel.append(option);
+    const btn=el('button',null,'chapter');
+    btn.type='button';
+    btn.append(el('strong','مبحث '+c.number+' — '+c.title));
+    btn.addEventListener('click',()=>showChapter(c.number));grid.append(btn);
   }
   if(previous&&[...sel.options].some(x=>x.value===previous))sel.value=previous;
   else if(previous){sel.value='';$('q').value='';}
-  $('chapterCount').textContent=visible+' از '+CATALOG.length+' مبحث'+(restricted?' · مطابق پروفایل اولیه':'');
   updateProjectNote();
 }
 async function jsonOr(url,fallback){
@@ -478,6 +446,7 @@ function setCurated(d){
 }
 function wire(){
   $('go').addEventListener('click',render);
+  $('topicFilter').addEventListener('input',renderQuick);
   $('q').addEventListener('keydown',e=>{if(e.key==='Enter')render()});
   $('chapter').addEventListener('change',()=>{
     const n=Number($('chapter').value);
@@ -559,22 +528,10 @@ async function init(){
     }
   }
   setCurated(curated);
-  renderCompleteness(completeness);
   renderCatalog();
   renderQuick();
   $('q').value='ارتفاع جان پناه';
   render();
-  const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
-  const direct=Object.keys(SUBMITTED).length;
-  const pageOnly=Number(COVERAGE.chapters_page_index||0)-Number(COVERAGE.chapters_ocr_index||0);
-  const structured=Number(COVERAGE.chapters_ready||0);
-  const total=structured+pageOnly+direct;
-  $('datasetCoverage').textContent=total
-    ? structured+' مبحث ساختاریافته · '+pageOnly+' مبحث متن صفحه · '+direct+' مبحث PDF ارسالی بدون OCR (سه ویرایش قدیمی) · '+sourceRecords().length+' رکورد قابل جست‌وجو · پوشش بندها تأیید نشده'
-    : 'داده‌های قابل جست‌وجو هنوز بارگذاری نشده‌اند';
-  if(!sourceRecords().length){
-    $('status').textContent='داده‌های جست‌وجو در حال تکمیل است';
-  }
 }
 init().catch(e=>{
   console.error(e);
