@@ -205,7 +205,7 @@ function el(tag, text, cls) {
 function chapterMeta(n) {
   return CATALOG.find(c=>Number(c.number)===Number(n))||{number:Number(n),title:'مبحث '+n,edition:'',status:'pending'};
 }
-function refnorm(s){return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/\s+/g,'').replace(/[–—]/g,'-')}
+function refnorm(s){return String(s||'').replace(/[۰-۹٠-٩]/g,d=>d>='٠'&&d<='٩'?'٠١٢٣٤٥٦٧٨٩'.indexOf(d):'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/\s+/g,'').replace(/[–—]/g,'-')}
 function sourceRecords() { return CURATED.concat(INDEX); }
 function score(r,q,chapter) {
   if(chapter && Number(chapter)!==Number(r.chapter))return -1;
@@ -216,6 +216,11 @@ function score(r,q,chapter) {
     const loc=refnorm(r.locator);
     if(loc===ref)return 9000+(r.curated?100:0);
     return loc.startsWith(ref+'-')?7000+(r.curated?100:0):-1;
+  }
+  const requested=q.trim().match(/^(?:بند\s*)?((?:[۰-۹٠-٩0-9]{1,3}\s*[-–—]\s*){2,7}[۰-۹٠-٩0-9]{1,3})$/);
+  if(requested){
+    const ref=refnorm(requested[1]);
+    return r.locator&&refnorm(r.locator)===ref ? 9900 : -1;
   }
   const tt=terms(q);
   if(!tt.length)return -1;
