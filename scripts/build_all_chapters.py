@@ -410,6 +410,11 @@ def build():
     discovered=discover_mihansazan()
     archmap=archweb_landing_map()
     catalog=[];all_records=[]
+    old_catalog={}
+    old_catalog_file=OUT/"catalog.json"
+    if old_catalog_file.exists():
+        try:old_catalog={x["number"]:x for x in json.loads(old_catalog_file.read_text(encoding="utf-8"))}
+        except (ValueError,KeyError,TypeError):old_catalog={}
     for c in registry["chapters"]:
         n=c["number"]; candidates=[];attempts=[]
         urls=list(c.get("text_sources") or [])
@@ -427,21 +432,21 @@ def build():
             for source in c.get("document_sources") or []:
                 data,final=document_from_source(source,c["edition"])
                 attempts.append({"type":"document_source","url":source,"resolved":final,"ok":bool(data)})
-                if data:pdf_candidates.append((data,final))
+                if data:pdf_candidates.append((data,source))
             # Generic discovery is fallback only. Reject an explicit edition mismatch.
             if not pdf_candidates:
                 landing=archmap.get(n)
                 if landing:
                     try:
                         data,final=archweb_pdf(landing)
-                        if data and edition_ok(final,c["edition"]):pdf_candidates.append((data,final))
+                        if data and edition_ok(final,c["edition"]):pdf_candidates.append((data,landing))
                     except Exception:pass
             if not pdf_candidates:
                 try:
                     direct=mediafire_pdf(c["technobetar"])
                     if direct and edition_ok(direct,c["edition"]):
                         data,final,_=safe_get(direct,binary=True)
-                        if data.startswith(b"%PDF-"):pdf_candidates.append((data,final))
+                        if data.startswith(b"%PDF-"):pdf_candidates.append((data,c["technobetar"]))
                 except Exception:pass
             ocr_candidate=None
             for pdf_data,pdf_url in pdf_candidates:
@@ -470,11 +475,34 @@ def build():
             status="ocr_index" if method=="ocr_page" else ("page_index" if method=="page_extract" else "ready")
         else:
             records=[];chosen=None;method=None;status="source_needed"
+        # Keep a previously indexed copy if a network hiccup loses data or
+        # the new extraction offers weaker provenance (e.g. OCR vs HTML).
+        previous_file=OUT/"chapters"/f"m{n:02d}.json"
+        preserved=False
+        if previous_file.exists():
+            try:
+                prev=json.loads(previous_file.read_text(encoding="utf-8"))
+                meta=old_catalog.get(n,{})
+                older=prev.get("records") or []
+                rank={"structured_text":4,"searchable_document":3,
+                      "page_extract":2,"ocr_page":1}
+                prev_rank=rank.get(meta.get("method"),0)
+                now_rank=rank.get(method,0)
+                if (str(prev.get("edition"))==str(c["edition"]) and older and
+                    (not records or prev_rank>now_rank or
+                     (prev_rank==now_rank and len(older)>len(records)*1.5))):
+                    records=older
+                    chosen=meta.get("source") or (older[0].get("source_url") if older else None)
+                    method=meta.get("method")
+                    status=meta.get("status") or prev.get("status") or "ready"
+                    preserved=True
+            except (OSError,ValueError,KeyError,TypeError):pass
         payload={"chapter":n,"title":c["title"],"edition":c["edition"],"status":status,
                  "record_count":len(records),"records":records}
         (OUT/"chapters"/f"m{n:02d}.json").write_text(json.dumps(payload,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
         cat={"number":n,"id":c["id"],"title":c["title"],"edition":c["edition"],"status":status,
-             "record_count":len(records),"source":chosen,"method":method,"attempts":attempts}
+             "record_count":len(records),"source":chosen,"method":method,"attempts":attempts,
+              "preserved_previous_snapshot":preserved}
         catalog.append(cat);all_records.extend(records)
         print(f"M{n:02d} {status} records={len(records)} source={chosen}",flush=True)
         if status!="ready":
