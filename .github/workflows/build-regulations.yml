@@ -47,6 +47,8 @@ jobs:
           PY
           node --check frontend/app.js
           node --check frontend/m04-preview/app.js
+      - name: Recompute strict completeness audit (offline; no OCR)
+        run: python3 scripts/audit_completeness.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
