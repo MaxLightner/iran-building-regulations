@@ -96,7 +96,25 @@ async function main(){
   select.value='';select.dispatchEvent(new win.Event('change'));await pause(10);
   assert.equal(topicGroups().length,24,'returning to all chapters restores all topics');
 
-  // Cross-references, addenda and page images are still functional.
+  // Clause numbering is the native hierarchy from the regulation, not a PDF page segment.
+  select.value='5';select.dispatchEvent(new win.Event('change'));await pause(10);
+  q.value='وزن اسمی هر کیسه سیمان';go.click();await pause(15);
+  const cementResult=[...doc.querySelectorAll('#results .result')]
+    .find(card=>card.textContent.includes('5-2-6-1-4'));
+  assert.ok(cementResult,'actual clause 5-2-6-1-4 must be searchable');
+  assert.ok(cementResult.textContent.includes('50'),'50kg cement clause must retain its number');
+  assert.ok(cementResult.textContent.includes('کیلوگرم'),'cement clause must retain its unit');
+  assert.ok(!/صفحه\\s+\\d+\\s*[-،]\\s*بخش/.test(cementResult.textContent),
+    'a PDF page/part cannot masquerade as a regulatory clause');
+  for(const n of [1,2,3,6,11,12,18,20,22,24]){
+    doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();await pause(10);
+    const items=[...doc.querySelectorAll('#results .result')];
+    assert.ok(items.length>0,'chapter '+n+' must remain readable');
+    assert.ok(items.every(el=>!/^صفحه\\s+\\d+\\s*[-،]\\s*بخش/m.test(el.textContent)),
+      'no arbitrary part title on chapter '+n);
+  }
+
+    // Cross-references, addenda and page images are still functional.
   doc.querySelector('#chapterGrid .chapter:nth-child(4)').click();await pause(10);
   assert.ok(doc.querySelector('.addenda-notice a'),'chapter 4 should have appendix link');
   assert.ok(!doc.querySelector('.addenda-notice').textContent.includes('نمایه نشده'),
