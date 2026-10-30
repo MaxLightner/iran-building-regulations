@@ -129,6 +129,7 @@ def build():
         "original_regulatory_clause_numbers_never_fabricated":True,
         "chapters":manifest,"total_passages":len(all_rows)}
     (OUT/"readable-manifest.json").write_text(json.dumps(manifest_data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    (OUT/"readable-index.json").write_text(json.dumps(all_rows,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
 
 if __name__=="__main__":
     build()
