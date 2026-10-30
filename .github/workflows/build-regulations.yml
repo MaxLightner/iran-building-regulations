@@ -47,6 +47,9 @@ jobs:
           PY
           node --check frontend/app.js
           node --check frontend/m04-preview/app.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Smoke-test live UI behaviour against generated data
         run: |
           npm install --no-save --no-package-lock jsdom@26
