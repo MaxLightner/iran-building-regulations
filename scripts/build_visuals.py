@@ -139,7 +139,7 @@ def main():
                 "pages":rows
             }
             print(f"M{chapter:02d} edition={reg[chapter]['edition']} source_pages={len(pdf)} previews={len(rows)}",flush=True)
-    (OUTPUT/"index.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (OUTPUT/"index.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     if sum(len(c.get("pages",[])) for c in manifest["chapters"].values())<12:
         raise RuntimeError("Fewer than 12 graphic previews generated")
     print("VISUAL GALLERY READY",flush=True)
