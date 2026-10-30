@@ -7,6 +7,8 @@ on:
     paths:
       - "frontend/**"
       - "data/m01-1392/**"
+      - "data/catalog.json"
+      - "data/m02-1384/**"
       - ".github/workflows/release-pages.yml"
 
 permissions:
@@ -24,9 +26,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Bundle inspected first chapter data
+      - name: Bundle inspected regulation data
         run: |
           mkdir -p frontend/data/m01-1392
+          cp data/catalog.json frontend/data/catalog.json
           cp data/m01-1392/sections.json frontend/data/m01-1392/sections.json
           cp data/m01-1392/coverage.json frontend/data/m01-1392/coverage.json
       - uses: actions/upload-pages-artifact@v3
