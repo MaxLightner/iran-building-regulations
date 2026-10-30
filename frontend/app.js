@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let CATALOG = [], INDEX = [], CURATED = [], COVERAGE = {}, ADDENDA = [], VISUALS = {}, SUBMITTED = {};
+let CATALOG = [], INDEX = [], CURATED = [], ADDENDA = [], VISUALS = {}, SUBMITTED = {};
 const SYNONYMS = {
   'پله':['راه پله','پلکان','راه‌پله'], 'جانپناه':['جان پناه','حفاظ'],
   'پارکینگ':['توقفگاه','خودرو'], 'بتن':['بتن آرمه'], 'روشنایی':['نور','نورگیری'],
@@ -32,7 +32,6 @@ const QUICK_BY_CHAPTER = {
   23:['تعداد پارکینگ','دسترسی خودرو','شیب رمپ','تردد خودرو'],
   24:['انطباق شهری','ضوابط شهرسازی','معابر']
 };
-const QUICK_GENERAL=['ارتفاع جان پناه','عرض راه پله','بار زنده','مقاومت در برابر حریق','پارکینگ و دسترسی خودرو','عایق حرارتی'];
 const PROJECT_INPUTS=['pUse','pStructure','pStage','pFloors','pElevator','pGas','pCity'];
 function saveProfile(){
   try {
@@ -311,20 +310,6 @@ function renderVisuals(ch){
     [...gallery.querySelectorAll('.visual-source-link')].slice(0,-1).forEach(x=>x.remove());
   }else gallery.querySelectorAll('.visual-source-link').forEach(x=>x.remove());
 }
-function showProvenance(ch){
-  const box=$('sourceProvenance');
-  const archived=SUBMITTED[String(Number(ch))];
-  box.hidden=!archived;
-  if(!archived)return;
-  const meta=chapterMeta(ch);
-  const warning=archived.status==='font_encoding_corrupt_most_pages'
-    ? 'بدون OCR: این PDF لایه متن دارد، اما نگاشت حروف بیشتر صفحات خراب است؛ فقط '+archived.pages_readable+' صفحه از '+archived.pages_total+' صفحه بدون OCR قابل جست‌وجو شد.'
-    : 'این PDF مستقیماً از لایه متن و بدون OCR استخراج شده است.';
-  const editionWarning=meta.original_edition&&String(meta.original_edition)!==String(archived.edition)
-    ? ' این ویرایش '+archived.edition+' است، ولی نسخه هدف دیتابیس '+meta.original_edition+' بوده؛ از آن به‌عنوان مقررات روز استفاده نکن.'
-    : '';
-  box.textContent='منبع: '+archived.source_name+' · ویرایش روی سند '+archived.edition+' · '+warning+editionWarning;
-}
 function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
@@ -433,91 +418,6 @@ function showChapter(n){
   }
   $('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
-const QUALITY_METHODS={
-  structured_text:'استخراج بند از منبع متنی',
-  structured_text_backup:'نسخه پشتیبان متن بندها',
-  searchable_document:'استخراج از PDF',
-  page_extract:'متن صفحه بدون تطبیق بندها',
-  direct_pdf_text:'متن مستقیم PDF ارسالی؛ بدون OCR',
-  unknown:'فاقد داده قابل اتکا'
-};
-const QUALITY_WARNINGS={
-  legacy_ocr_excluded:'داده OCR قبلی کنار گذاشته شده',
-  uploaded_edition_differs_from_target:'ویرایش فایل ارسالی با ویرایش هدف متفاوت است',
-  many_pages_unreadable_without_ocr:'بخش زیادی از متن PDF قابل استخراج نیست',
-  no_non_ocr_searchable_text:'متن قابل جست‌وجوی بدون OCR موجود نیست',
-  page_chunks_not_clause_index:'رکوردها متن صفحه‌اند، نه بندهای تطبیق‌شده',
-  direct_pdf_text_not_clause_index:'متن PDF به بندهای معتبر تفکیک نشده',
-  text_encoding_corruption_suspected:'احتمال خرابی جدی کدگذاری حروف',
-  high_duplicate_locator_rate:'تکرار زیاد شناسه بند',
-  no_verified_clause_locators:'شماره بند مستقل تأیید نشده',
-  short_or_toc_like_excerpts_need_review:'احتمال درج فهرست مطالب به جای متن بند',
-  known_amendments_not_indexed:'اصلاحیه یا پیوست شناخته‌شده نمایه نشده',
-  visuals_are_page_previews_not_verified_figures:'فقط تصویر صفحه موجود است، نه شکل مستقل و تأییدشده',
-  figures_and_tables_not_indexed:'شکل‌ها و جدول‌ها مستقل نمایه نشده‌اند',
-  many_pdf_pages_without_indexed_text:'تعداد قابل توجهی صفحه فاقد متن استخراج‌شده است',
-  previous_snapshot_restored:'از نسخه پشتیبان استفاده شده است',
-  unreadable_text_quarantined_from_search:'متن خراب از نتایج جست‌وجو کنار گذاشته شده است',
-  intermediary_pdf_page_count_differs_from_original:'شمار صفحات متن استخراج‌شده با PDF اصلی متفاوت است؛ شماره صفحات باید دوباره تطبیق داده شود',
-  some_readable_pdf_pages_not_indexed:'برخی صفحات متن‌دار PDF اصلی در دیتابیس نمایه نشده‌اند',
-  source_pdf_font_mapping_corrupted:'در PDF اصلی نگاشت فونت فارسی خراب است و بازسازی متن بدون OCR ممکن نشده'
-};
-const QUALITY_CHECKS={
-  official_edition:'اعتبار ویرایش و مرجع ابلاغ',
-  all_chapters_and_clauses:'تطبیق تمامی فصل‌ها و بندها',
-  tables_formulas_and_values:'تطبیق جداول، فرمول‌ها و اعداد',
-  figures_and_drawings:'تطبیق تمام شکل‌ها و نقشه‌ها',
-  amendments_and_appendices:'اعمال تمام اصلاحیه‌ها و پیوست‌ها',
-  source_to_index_spot_checks:'مقابله متن پایگاه با سند اصلی'
-};
-function renderCompleteness(report){
-  const score=$('completenessScore'),status=$('completenessStatus'),holder=$('completenessRows');
-  holder.replaceChildren();
-  if(!report||!Array.isArray(report.chapters)||report.chapters.length!==24){
-    score.textContent='اطلاعات ممیزی در دسترس نیست';
-    status.textContent='بدون گزارش مستند، ادعای کامل بودن هیچ مبحثی مجاز نیست.';
-    return;
-  }
-  const complete=report.chapters.filter(x=>x.certified_complete).length;
-  score.textContent=complete+' از ۲۴ مبحث کاملاً تأییدشده';
-  const badRows=report.chapters.filter(ch=>ch.quarantined_due_to_encoding||
-    (ch.warnings||[]).includes('text_encoding_corruption_suspected'));
-  const quarantined=badRows.reduce((total,ch)=>total+Number(ch.indexed_records||0),0);
-  const totalRows=report.chapters.reduce((total,ch)=>total+Number(ch.indexed_records||0),0);
-  status.textContent=(totalRows-quarantined).toLocaleString('fa-IR')+' رکورد قابل جست‌وجو داریم؛ '+
-    quarantined.toLocaleString('fa-IR')+' رکورد دارای خرابی حروف کنار گذاشته شده‌اند. این اعداد نشان‌دهنده کامل‌بودن مقررات نیستند.';
-  const intro=el('div','هیچ درصدی به‌عنوان «درصد کامل‌بودن» نمایش نمی‌دهیم؛ تعداد صفحات دارای متن صرفاً یک شاخص فنی است.','audit-explanation');
-  holder.append(intro);
-  for(const ch of report.chapters){
-    const item=el('details',null,'audit-item');
-    const headline=el('summary',null,'audit-headline');
-    headline.append(el('strong','مبحث '+ch.chapter+' — '+ch.title),
-      el('span',ch.certified_complete?'تأییدشده':'تأییدنشده'));
-    item.append(headline);
-    const desc=el('div',null,'audit-body');
-    desc.append(el('p','نسخه هدف: '+ch.target_edition+' · نسخه داده: '+ch.indexed_edition+' · روش: '+(QUALITY_METHODS[ch.source_method]||ch.source_method)));
-    desc.append(el('p','رکورد فعال: '+ch.indexed_records+' · شناسه بند استخراج‌شده (بدون تأیید مستقل): '+ch.distinct_clause_locators_unverified));
-    if(ch.pdf_pages){
-      desc.append(el('p','صفحات PDF دارای متن نمایه‌شده: '+ch.pages_with_indexed_text+' از '+ch.pdf_pages+'؛ این نسبت معادل پوشش تمام بندها نیست.'));
-      if(ch.original_pdf_readable_pages!==null&&ch.original_pdf_readable_pages!==undefined)
-        desc.append(el('p','صفحات دارای متن خوانای فارسی در اصل فایل: '+ch.original_pdf_readable_pages+' از '+ch.pdf_pages+' · صفحات با نگاشت خراب: '+(ch.original_pdf_font_corrupt_pages||0)));
-    }else{
-      desc.append(el('p','پوشش صفحه‌به‌صفحه نامعلوم است، چون مرجع کامل PDF با متن‌های فعلی مقابله نشده.'));
-    }
-    if(ch.known_addenda)desc.append(el('p','اسناد تکمیلی شناسایی‌شده: '+ch.known_addenda+' · هنوز نمایه‌نشده: '+ch.unindexed_addenda));
-    if(ch.figure_page_previews_not_independent_figures)desc.append(el('p','پیش‌نمایش صفحه تصویری: '+ch.figure_page_previews_not_independent_figures+' (شکل‌های مستقل هنوز کنترل نشده‌اند).'));
-    const reasons=el('ul',null,'audit-warnings');
-    for(const id of ch.warnings||[])reasons.append(el('li',QUALITY_WARNINGS[id]||id));
-    desc.append(reasons);
-    const checks=el('div',null,'audit-checklist');
-    checks.append(el('strong','شش شرط تأیید کامل:'));
-    for(const [key,label] of Object.entries(QUALITY_CHECKS)){
-      checks.append(el('div',(ch.checks?.[key]?'تأیید شده: ':'در انتظار تأیید: ')+label));
-    }
-    desc.append(checks);
-    item.append(desc);holder.append(item);
-  }
-}
 function renderCatalog(){
   const sel=$('chapter'),grid=$('chapterGrid'),previous=sel.value;
   sel.replaceChildren();grid.replaceChildren();
@@ -575,9 +475,8 @@ async function init(){
   restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
-  const [catalog,coverage,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness]=await Promise.all([
+  const [catalog,index,curated,addenda,energyBackup,visualIndex,submitted6,submitted11,submitted18,submitted20,completeness]=await Promise.all([
     jsonOr('./data/catalog.json',[]),
-    jsonOr('./data/coverage.json',{}),
     jsonOr('./data/search-index.json',[]),
     jsonOr('./m04-preview/rules.json',{rules:[]}),
     jsonOr('./data/addenda.json',[]),
@@ -590,7 +489,6 @@ async function init(){
     jsonOr('./data/completeness-audit.json',null)
   ]);
   CATALOG=Array.isArray(catalog)?catalog:[];
-  COVERAGE=coverage||{};
   ADDENDA=Array.isArray(addenda)?addenda:[];
   VISUALS=visualIndex?.chapters||{};
   // OCR content is deliberately excluded from the live search, even if legacy
