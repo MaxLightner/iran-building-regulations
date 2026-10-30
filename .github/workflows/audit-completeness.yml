@@ -37,7 +37,9 @@ jobs:
           assert d["summary"]["certified_complete"] + d["summary"]["not_certified"]==24
           assert all(len(c["checks"])==6 for c in d["chapters"])
           assert all(c["certified_complete"]==all(c["checks"].values()) for c in d["chapters"])
-          assert d["summary"]["encoding_risk"]>=1
+          assert d["summary"]["encoding_risk"]==sum(
+              "text_encoding_corruption_suspected" in c["warnings"] for c in d["chapters"]
+          )
           print("Audit built:",d["summary"])
           PY
       - name: Commit audit report
