@@ -297,6 +297,34 @@ def pdf_records(chapter,data,source_url):
     flush()
     records=dedupe(out)
     if not records:
+        # No trustworthy clause locators found. Preserve page provenance and
+        # explicitly mark excerpts as unverified rather than inventing clauses.
+        fallback=[]
+        for page_i, pt in enumerate(pages,1):
+            readable=norm(pt)
+            if len(readable)<180:continue
+            # Capture a bounded sample from each page. It supports discovery,
+            # not a claim that the full clause or the whole book was indexed.
+            # A page sample must never inherit a fabricated clause locator.
+            excerpt=readable[:720]
+            fallback.append({
+                "id":f"m{chapter:02d}-page-{page_i:04d}",
+                "chapter":chapter,
+                "locator":None,
+                "title":f"متن استخراجی صفحه {page_i} (بدون شماره بند تأییدشده)",
+                "kind":"page_extract",
+                "page":page_i,
+                "source_url":source_url,
+                "text":excerpt,
+                "answer":excerpt,
+                "normative":False,
+                "numbers":[],
+                "cross_refs":[]
+            })
+        if len(fallback)>=5:
+            return fallback,{"pages":len(pages),"chars":total,
+                             "persian_ratio":round(ratio,3),"accepted":True,
+                             "unverified_page_extract":True}
         samples=[]
         for page_i,pt in enumerate(pages,1):
             for raw in pt.splitlines():
@@ -390,14 +418,14 @@ def build():
                     recs,qa=pdf_records(n,pdf_data,pdf_url)
                     attempts.append({"type":"document","url":pdf_url,"records":len(recs),**qa})
                     if qa.get("accepted") and len(recs)>=12:
-                        candidates.append((source_score(recs),recs,pdf_url,"searchable_document"))
+                        candidates.append((source_score(recs),recs,pdf_url,"page_extract" if qa.get("unverified_page_extract") else "searchable_document"))
                         break
                 except Exception as e:
                     attempts.append({"type":"document","url":pdf_url,"ok":False,"error":type(e).__name__})
         if candidates:
             candidates.sort(key=lambda x:x[0],reverse=True)
             _,records,chosen,method=candidates[0]
-            status="ready"
+            status="page_index" if method=="page_extract" else "ready"
         else:
             records=[];chosen=None;method=None;status="source_needed"
         payload={"chapter":n,"title":c["title"],"edition":c["edition"],"status":status,
@@ -411,6 +439,8 @@ def build():
             print("  attempts="+json.dumps(attempts,ensure_ascii=False)[:5000],flush=True)
         time.sleep(.15)
     coverage={"chapters_total":24,"chapters_ready":sum(x["status"]=="ready" for x in catalog),
+               "chapters_page_index":sum(x["status"]=="page_index" for x in catalog),
+               "chapters_searchable":sum(x["status"] in ("ready","page_index") for x in catalog),
               "records_total":sum(x["record_count"] for x in catalog),
               "chapters":catalog}
     index=[]
