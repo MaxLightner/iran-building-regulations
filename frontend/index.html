@@ -16,13 +16,44 @@
   </div>
 </header>
 <main class="shell">
+  <section class="card project-card" aria-label="مشخصات پروژه">
+    <div class="section-title project-title"><strong>پروژه من</strong><span>مباحث را بر اساس ویژگی‌های ساختمان محدود کن</span></div>
+    <div class="project-grid">
+      <label>کاربری
+        <select id="pUse"><option value="">مشخص نشده</option><option value="residential">مسکونی</option><option value="commercial">تجاری</option><option value="office">اداری</option><option value="mixed">مختلط</option><option value="industrial">صنعتی</option><option value="other">سایر</option></select>
+      </label>
+      <label>سیستم سازه‌ای
+        <select id="pStructure"><option value="">مشخص نشده</option><option value="concrete">بتنی</option><option value="steel">فولادی</option><option value="masonry">بنایی</option><option value="other">سایر / نامشخص</option></select>
+      </label>
+      <label>مرحله پروژه
+        <select id="pStage"><option value="">همه مراحل</option><option value="design">طراحی</option><option value="permit">پروانه و کنترل</option><option value="construction">اجرا</option><option value="operation">بهره‌برداری و نگهداری</option></select>
+      </label>
+      <label>تعداد طبقات
+        <input id="pFloors" type="number" min="1" max="200" step="1" placeholder="مثلاً ۵">
+      </label>
+      <label>آسانسور
+        <select id="pElevator"><option value="">نامشخص</option><option value="yes">دارد / پیش‌بینی شده</option><option value="no">ندارد</option></select>
+      </label>
+      <label>گاز شهری
+        <select id="pGas"><option value="">نامشخص</option><option value="yes">دارد</option><option value="no">ندارد</option></select>
+      </label>
+      <label>شهر
+        <input id="pCity" type="text" placeholder="مثلاً مشهد" autocomplete="address-level2">
+      </label>
+    </div>
+    <div class="project-actions">
+      <label class="checklabel"><input id="projectOnly" type="checkbox" checked> فقط مباحث پیشنهادی این پروژه</label>
+      <button type="button" id="resetProject" class="secondary">پاک‌کردن مشخصات</button>
+    </div>
+    <p class="project-note" id="projectNote">فیلتر پروژه یک راهنمای اولیه است، نه تشخیص قطعی شمول قانونی. ضوابط شهرداری شهر انتخابی هنوز به دیتابیس متصل نیست.</p>
+  </section>
   <section class="searchbox card">
     <div class="searchrow">
       <input id="q" type="search" placeholder="مثلاً حداقل ارتفاع جان‌پناه چقدر است؟">
       <select id="chapter"><option value="">همه مباحث</option></select>
       <button id="go">جست‌وجو</button>
     </div>
-    <div class="quick">
+    <div class="quick" id="quick" aria-label="موضوعات پیشنهادی مرتبط">
       <button data-q="ارتفاع جان پناه">جان‌پناه</button>
       <button data-q="عرض راه پله">راه‌پله</button>
       <button data-q="آسانسور ساختمان 8 طبقه">آسانسور</button>
