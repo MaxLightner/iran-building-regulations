@@ -85,6 +85,18 @@ async function main(){
         'all selected page previews must render for m'+n);
     }
   }
+    // Regression: uploaded PDFs must use embedded text, NEVER the old OCR layer.
+  for(const [n,edition] of [[6,'1392'],[11,'1392'],[18,'1390'],[20,'1396']]){
+    doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();await pause(10);
+    const notice=doc.querySelector('#sourceProvenance');
+    assert.ok(!notice.hidden && notice.textContent.includes('بدون OCR'),'user PDF should show direct text source m'+n);
+    assert.equal(doc.querySelector('#chapter').value,String(n));
+    assert.ok(doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').textContent.includes('ویرایش '+edition));
+    assert.ok(doc.querySelectorAll('#results .result').length>0,'direct PDF text results should display for m'+n);
+    assert.ok(!doc.querySelector('#results').textContent.includes('خوانش OCR'),'m'+n+' cannot show legacy OCR output');
+  }
+  doc.querySelector('#chapterGrid .chapter:nth-child(18)').click();await pause(10);
+  assert.ok(doc.querySelector('#sourceProvenance').textContent.includes('نگاشت حروف'),'warn on corrupt embedded font encoding');
     assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
