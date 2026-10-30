@@ -1,0 +1,45 @@
+{
+  "note": "Attached PDFs inspected directly; original PDF bytes are not hosted. Older editions are not merged into currently selected rules. Visual assets are generated separately from the indexed edition.",
+  "documents": [
+    {
+      "chapter": 6,
+      "filename": "mabhas-6.pdf",
+      "edition_on_cover": "1392",
+      "edition_in_active_db": "1398",
+      "pages": 168,
+      "sha256": "2f08aa1c12cc03d5352f6b125239a065cd8d7da17adaf43b2137557e58108d69",
+      "has_graphics": true,
+      "status": "historical_reference_not_substituted"
+    },
+    {
+      "chapter": 11,
+      "filename": "mabhas-11.pdf",
+      "edition_on_cover": "1392",
+      "edition_in_active_db": "1400",
+      "pages": 114,
+      "sha256": "81363f3b201cb7d754d108c45012c7ac5edac60c9892d237a982224a5bdebdb2",
+      "has_graphics": true,
+      "status": "historical_reference_not_substituted"
+    },
+    {
+      "chapter": 18,
+      "filename": "mabhas-18.pdf",
+      "edition_on_cover": "1390",
+      "edition_in_active_db": "1396",
+      "pages": 96,
+      "sha256": "a4b155dc31345aa0629b2c967ddd06df8dc85ed5a72bbb9a65bb3e5ce6284dc8",
+      "has_graphics": true,
+      "status": "historical_reference_not_substituted"
+    },
+    {
+      "chapter": 20,
+      "filename": "mabhas-20-1402.pdf",
+      "edition_on_cover": "1396",
+      "edition_in_active_db": "1396",
+      "pages": 88,
+      "sha256": "abc9a94dd61e28442ab11cd34874defb73b45416899a4d9472624e0dc3d192f1",
+      "has_graphics": true,
+      "status": "same_edition_uploaded_copy"
+    }
+  ]
+}
