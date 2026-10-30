@@ -21,14 +21,20 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
           fetch-depth: 0
-      - name: Install parser dependencies
-        run: python3 -m pip install requests beautifulsoup4 pymupdf
+      - name: Install Persian OCR and parser dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-fas tesseract-ocr-eng
+          python3 -m pip install requests beautifulsoup4 pymupdf
+          tesseract --list-langs
+      - name: Build environment
+        run: echo "OMP_THREAD_LIMIT=1" >> "$GITHUB_ENV"
       - name: Build 24-chapter corpus
         run: python3 -u scripts/build_all_chapters.py
       - name: Validate generated corpus
