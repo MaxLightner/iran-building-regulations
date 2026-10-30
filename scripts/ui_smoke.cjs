@@ -72,6 +72,19 @@ async function main(){
   assert.ok(doc.querySelectorAll('#results .result').length>0,'chapter 19 is searchable');
   assert.ok(doc.querySelector('#chapterGrid .chapter:nth-child(19)').textContent.includes('87'),
     'structured fallback preserves 87 records when current upstream source regresses');
+    const visualManifest=path.join(root,'data/visuals/index.json');
+  if(fs.existsSync(visualManifest)){
+    const visuals=JSON.parse(fs.readFileSync(visualManifest,'utf8'));
+    for(const n of [6,11,18,20]){
+      const pages=visuals.chapters?.[String(n)]?.pages||[];
+      if(!pages.length)continue;
+      doc.querySelector('#chapterGrid .chapter:nth-child('+n+')').click();
+      await pause(10);
+      assert.equal(doc.querySelector('#visualGallery').hidden,false,'visual gallery should open for m'+n);
+      assert.equal(doc.querySelectorAll('#visualItems img').length,pages.length,
+        'all selected page previews must render for m'+n);
+    }
+  }
     assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
