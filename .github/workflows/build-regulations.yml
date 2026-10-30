@@ -7,10 +7,6 @@ on:
     paths:
       - "sources/chapters.json"
       - "scripts/build_all_chapters.py"
-      - "frontend/index.html"
-      - "frontend/app.js"
-      - "frontend/styles.css"
-      - "frontend/m04-preview/**"
       - ".github/workflows/build-regulations.yml"
 
 permissions:
