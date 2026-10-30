@@ -1,0 +1,18 @@
+name: Inspect authentic clause numbers in remaining chapters
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/inspect_clause_coverage.py"
+      - ".github/workflows/inspect-clause-coverage.yml"
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install -q requests pymupdf
+      - run: python3 scripts/inspect_clause_coverage.py
