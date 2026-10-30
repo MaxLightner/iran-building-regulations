@@ -116,7 +116,7 @@ function buildTopicIndex(){
     if(!bucket)return;
     const text=String(label||'').replace(/\s*\(شماره بند تأییدنشده\)/g,'').trim();
     const key=norm(text);
-    if(!key||key.length<3||key.length>75||!/[آ-ی]/.test(text))return;
+    if(!key||key.length<2||key.length>75||!/[آ-ی]/.test(text))return;
     if(/^(بند|صفحه)\s*\d/i.test(text)||/^(کلیات|تعاریف|الزامات|مقدمه|مبحث|فصل|پیوست|نتیجه گیری)$/.test(text))return;
     if(!bucket.has(key)||bucket.get(key).priority<priority)bucket.set(key,{label:text,priority,n:Number(n)});
   }
