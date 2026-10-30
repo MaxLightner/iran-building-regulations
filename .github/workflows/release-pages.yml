@@ -9,6 +9,10 @@ on:
       - "data/m01-1392/**"
       - "data/catalog.json"
       - "data/m02-1384/**"
+      - "data/m04-1396/**"
+      - "data/m05-1396/**"
+      - "scripts/validate_release.py"
+      - "scripts/smoke_frontend.mjs"
       - ".github/workflows/release-pages.yml"
 
 permissions:
@@ -28,10 +32,13 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Bundle inspected regulation data
         run: |
-          mkdir -p frontend/data/m01-1392
+          python3 scripts/validate_release.py
+          node scripts/smoke_frontend.mjs
+          mkdir -p frontend/data
           cp data/catalog.json frontend/data/catalog.json
-          cp data/m01-1392/sections.json frontend/data/m01-1392/sections.json
-          cp data/m01-1392/coverage.json frontend/data/m01-1392/coverage.json
+          for book in m01-1392 m04-1396 m05-1396; do
+            cp -r "data/$book" "frontend/data/$book"
+          done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend

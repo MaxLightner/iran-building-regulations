@@ -47,13 +47,19 @@
       "mabhas": 4,
       "title": "الزامات عمومی ساختمان",
       "catalog_edition": "1396",
-      "state": "not_started"
+      "state": "imported_structural_review_pending",
+      "dataset": "data/m04-1396",
+      "sections": 666,
+      "graphics_page_previews_linked": 4
     },
     {
       "mabhas": 5,
       "title": "مصالح و فرآورده‌های ساختمانی",
       "catalog_edition": "1396",
-      "state": "not_started"
+      "state": "imported_structural_review_pending",
+      "dataset": "data/m05-1396",
+      "sections": 890,
+      "graphics_page_previews_linked": 3
     },
     {
       "mabhas": 6,
