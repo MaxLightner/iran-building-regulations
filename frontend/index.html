@@ -130,7 +130,7 @@ function render(){
  const doc=state.docs.get(ch),rows=matching.get(ch)||[];total+=rows.length;
  const limit=state.more.get(ch)||18;
  const content=doc?rows.length?rows.slice(0,limit).map((x,i)=>sectionHtml(x.s,doc,!!q&&i===0)).join("")+(rows.length>limit?'<button class="more" data-more="'+ch+'">نمایش موارد بیشتر ('+fa(rows.length-limit)+')</button>':""):'<div class="notready">بندی مطابق این عبارت پیدا نشد.</div>':'<div class="notready">متن این مبحث هنوز از منبع کامل وارد نشده است؛ نتیجهٔ ناقص یا حدسی نمایش داده نمی‌شود.</div>';
- return '<details class="chapter" data-chapter="'+ch+'"'+(q||doc&&i===0?' open':"")+'><summary><span class="chapter-id">مبحث '+fa(ch)+'</span><span class="chapter-title">'+esc(c.title)+'</span>'+(rows.length?'<span class="count">'+fa(rows.length)+' بند</span>':"")+'</summary><div class="chapterbody">'+content+'</div></details>';
+ return '<details class="chapter" data-chapter="'+ch+'"'+(q?' open':"")+'><summary><span class="chapter-id">مبحث '+fa(ch)+'</span><span class="chapter-title">'+esc(c.title)+'</span>'+(rows.length?'<span class="count">'+fa(rows.length)+' بند</span>':"")+'</summary><div class="chapterbody">'+content+'</div></details>';
  }).join(""):'<div class="notready">در داده‌های واردشده نتیجه‌ای برای این عبارت پیدا نشد.</div>';
  $("resultSummary").textContent=q?fa(total)+" بند منطبق با جستجو":"روی مبحث بزنید تا بندهای آن باز شود";
  $("clearSearch").hidden=!q;
