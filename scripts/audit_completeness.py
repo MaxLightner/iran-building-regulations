@@ -66,6 +66,10 @@ def audit():
     by_n = {int(x["number"]): x for x in catalog}
     target = {int(x["number"]): x for x in registry}
     archive19 = load(DATA / "m19-structured-backup.json", {}).get("records", [])
+    user_pdfs = {
+        int(x["chapter"]): x for x in
+        load(REG / "submitted-document-audit.json", {}).get("documents", [])
+    }
     results = []
 
     for n in range(1, 25):
@@ -140,7 +144,16 @@ def audit():
             warnings.append("figures_and_tables_not_indexed")
 
         page_set = {int(r["page"]) for r in rows if isinstance(r.get("page"), int) and r["page"] > 0}
-        pdf_pages = imported.get("pages_total") if imported else page_count_from_attempts(by_n.get(n, {}))
+        user_pdf = user_pdfs.get(n, {}) if imported else {}
+        pdf_pages = (user_pdf.get("original_pdf_pages") or user_pdf.get("pages") or
+                     imported.get("pages_total")) if imported else page_count_from_attempts(by_n.get(n, {}))
+        if imported and user_pdf:
+            if int(imported.get("pages_total") or 0) != int(pdf_pages):
+                warnings.append("intermediary_pdf_page_count_differs_from_original")
+            if int(user_pdf.get("original_pages_with_persian_text") or 0) > len(page_set):
+                warnings.append("some_readable_pdf_pages_not_indexed")
+            if int(user_pdf.get("original_pages_with_broken_font_mapping") or 0):
+                warnings.append("source_pdf_font_mapping_corrupted")
         page_ratio = round(len(page_set) / pdf_pages, 3) if pdf_pages else None
         if pdf_pages and len(page_set) < pdf_pages * .8:
             warnings.append("many_pdf_pages_without_indexed_text")
@@ -165,6 +178,8 @@ def audit():
             "distinct_clause_locators_unverified": len(unique_refs),
             "duplicated_clause_locators": duplicate_refs,
             "pdf_pages": pdf_pages,
+            "original_pdf_readable_pages": user_pdf.get("original_pages_with_persian_text") if imported else None,
+            "original_pdf_font_corrupt_pages": user_pdf.get("original_pages_with_broken_font_mapping") if imported else None,
             "pages_with_indexed_text": len(page_set) if pdf_pages else None,
             "page_presence_ratio_not_completeness": page_ratio,
             "persian_letter_ratio_sample": ratio,
