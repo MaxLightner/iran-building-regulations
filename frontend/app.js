@@ -185,13 +185,16 @@ function resultCard(r,i){
   const m=chapterMeta(r.chapter);
   const card=el('article',null,'result'+(i===0?' primary':''));
   const top=el('div',null,'topline');
-  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='page_extract'?'گزیده صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
+  top.append(el('span',r.curated?'پاسخ منتخب':r.kind==='ocr_page'?'خوانش ماشینی تصویر؛ تأییدنشده':r.kind==='page_extract'?'متن صفحه؛ بدون بند تأییدشده':'متن استخراجی؛ نیازمند تطبیق','rank'),
     el('span','مبحث '+r.chapter+(r.locator?' · بند '+r.locator:'')+(m.edition?' · ویرایش ثبت‌شده '+m.edition:''),'source'));
   card.append(top);
   card.append(el('h2',r.title||('بند '+(r.locator||''))));
   const answer=String(r.answer||'').trim();
-  if(r.kind==='page_extract'){
-    card.append(el('div','متن خام استخراج‌شده از صفحه '+(r.page||'؟')+'؛ شماره بند و صحت تطبیق هنوز تأیید نشده است.','unverified'));
+  if(r.kind==='page_extract'||r.kind==='ocr_page'){
+    const label=r.kind==='ocr_page'
+      ? 'خوانش OCR فارسی از تصویر صفحه '+(r.page||'؟')+'؛ متن ممکن است دارای خطا باشد و شماره بند آن تأیید نشده است.'
+      : 'متن خام استخراج‌شده از صفحه '+(r.page||'؟')+'؛ شماره بند و صحت تطبیق هنوز تأیید نشده است.';
+    card.append(el('div',label,'unverified'));
   }
   card.append(el('div',answer||'متن این بخش هنوز آماده نشده است.','answer'));
   if(r.conditions?.length){
@@ -227,7 +230,7 @@ function render(){
   if(!rows.length){
     const m=ch?chapterMeta(ch):null;
     area.append(el('div',
-      m&&m.status!=='ready'&&m.status!=='selected_rules'?
+      m&&!sourceRecords().some(r=>Number(r.chapter)===Number(ch))?
       'متن این مبحث هنوز وارد مجموعه جست‌وجو نشده است. سایر مباحث و نتایج آماده قابل جست‌وجو هستند.':
       'برای این عبارت هنوز نتیجه قابل استناد در داده‌های موجود نداریم. عبارت دیگری امتحان کن.',
       'empty'));
@@ -272,7 +275,7 @@ function renderCatalog(){
     const b=el('button',null,'chapter'+(count?'':' missing'));
     b.type='button';
     b.append(el('strong','مبحث '+c.number+' — '+c.title),
-      el('span',count?count+' مورد استخراج‌شده'+(c.method==='page_extract'?' · فقط متن صفحه':''):'فاقد متن جست‌وجو'));
+      el('span',count?count+' مورد استخراج‌شده'+(c.method==='ocr_page'?' · OCR تأییدنشده':c.method==='page_extract'?' · متن صفحه':''):'فاقد متن جست‌وجو'));
     b.addEventListener('click',()=>showChapter(c.number));grid.append(b);
   }
   if(previous&&[...sel.options].some(x=>x.value===previous))sel.value=previous;
@@ -334,11 +337,13 @@ async function init(){
   $('q').value='ارتفاع جان پناه';
   render();
   const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
-  const pageOnly=Number(COVERAGE.chapters_page_index||0);
+  const ocr=Number(COVERAGE.chapters_ocr_index||0);
+  const pageOnly=Number(COVERAGE.chapters_page_index||0)-ocr;
   const structured=Number(COVERAGE.chapters_ready||0);
-  $('datasetCoverage').textContent=pageOnly
-    ? structured+' مبحث با رکورد ساختاریافته · '+pageOnly+' مبحث فقط گزیده صفحه · '+sourceRecords().length+' رکورد'
-    : withData+' مبحث دارای داده · '+sourceRecords().length+' رکورد';
+  const total=structured+pageOnly+ocr;
+  $('datasetCoverage').textContent=total
+    ? structured+' مبحث استخراج ساختاریافته · '+pageOnly+' مبحث متن صفحه · '+ocr+' مبحث OCR تأییدنشده · '+sourceRecords().length+' رکورد · پوشش بندها هنوز کامل‌سنجی نشده'
+    : 'داده‌های قابل جست‌وجو هنوز بارگذاری نشده‌اند';
   if(!sourceRecords().length){
     $('status').textContent='داده‌های جست‌وجو در حال تکمیل است';
   }
