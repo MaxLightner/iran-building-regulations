@@ -49,3 +49,22 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 .inline-visual:hover{background:var(--soft)}
 
 .source-provenance[hidden]{display:none}.source-provenance{margin:12px 0;padding:12px 14px;background:#fff8e8;border:1px solid #f0dfb7;color:#5c4b24;border-radius:12px;font-size:13px;line-height:1.9}
+
+/* Evidence-gated completeness audit; neutral status is intentional. */
+.completeness-card{margin:12px 0 18px}
+.completeness-card .section-title{gap:10px;flex-wrap:wrap}
+.completeness-card .section-title strong{font-size:17px}
+#completenessScore{font-size:14px;font-weight:700;color:#24333d}
+.completeness-status,.audit-explanation{font-size:13px;line-height:1.85;color:#445560}
+.completeness-card>details>summary{cursor:pointer;padding:10px 0;font-size:14px;font-weight:700}
+.completeness-list{display:grid;gap:7px;margin-top:12px}
+.audit-item{border:1px solid var(--line);border-radius:10px;background:#fafbfc;overflow:hidden}
+.audit-headline{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;cursor:pointer;padding:12px;font-size:13px}
+.audit-headline strong{font-size:13px}
+.audit-headline span{color:#6d4d20;font-weight:700}
+.audit-body{border-top:1px solid var(--line);padding:12px;font-size:13px;color:#34444e;line-height:1.85}
+.audit-body p{margin:3px 0}
+.audit-warnings{padding-right:24px;margin:10px 0}
+.audit-checklist{border-top:1px solid var(--line);padding-top:12px;margin-top:9px}
+.audit-checklist strong{font-size:13px}
+.audit-checklist div{font-size:13px;margin-top:3px;color:#526373}
