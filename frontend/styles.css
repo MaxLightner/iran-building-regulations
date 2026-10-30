@@ -29,3 +29,17 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 .dataset-coverage{font-size:13px;color:#576a75;margin:0 0 16px;line-height:1.8}
 
 .addenda-notice{background:#f4f8fc;border:1px solid #d6e3ef;border-radius:12px;padding:14px;margin:10px 0 15px;display:flex;flex-direction:column;gap:9px}.addenda-notice strong{font-size:13px}.addenda-notice a{font-size:13px;color:#245c85;text-decoration:underline}
+
+/* Visual navigation: selected previews from the indexed PDF edition */
+.visual-gallery[hidden]{display:none}
+.visual-gallery .section-title strong{font-size:17px;color:#172027}
+.visual-disclaimer{font-size:13px;color:#64717b;line-height:1.9;margin:8px 0 15px}
+.visual-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.visual-tile{display:flex;flex-direction:column;align-items:stretch;gap:6px;border:1px solid var(--line);border-radius:10px;background:#fafbfb;padding:8px;text-align:center;color:#172027;cursor:pointer;text-decoration:none;min-width:0}
+.visual-tile:hover{border-color:#8db8ab;background:#f2f8f6}
+.visual-tile img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:5px;display:block}
+.visual-tile strong{font-size:13px}
+.visual-tile span{font-size:12px;color:var(--muted)}
+.visual-source-link{font-size:13px;font-weight:700;color:var(--accent);display:inline-block;margin-top:10px}
+@media(max-width:800px){.visual-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:540px){.visual-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
