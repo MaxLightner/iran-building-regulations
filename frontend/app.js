@@ -34,6 +34,27 @@ const QUICK_BY_CHAPTER = {
 };
 const QUICK_GENERAL=['ارتفاع جان پناه','عرض راه پله','بار زنده','مقاومت در برابر حریق','پارکینگ و دسترسی خودرو','عایق حرارتی'];
 const PROJECT_INPUTS=['pUse','pStructure','pStage','pFloors','pElevator','pGas','pCity'];
+function saveProfile(){
+  try {
+    const record={};
+    for(const id of PROJECT_INPUTS)record[id]=$(id).value;
+    record.projectOnly=$('projectOnly').checked;
+    localStorage.setItem('building-regulations-profile-v1',JSON.stringify(record));
+  } catch(e){console.warn('Profile persistence unavailable:',e)}
+}
+function restoreProfile(){
+  try {
+    const data=JSON.parse(localStorage.getItem('building-regulations-profile-v1')||'null');
+    if(!data||typeof data!=='object')return;
+    for(const id of PROJECT_INPUTS){
+      if(typeof data[id]!=='string')continue;
+      const input=$(id);
+      if(input.tagName==='SELECT' && ![...input.options].some(o=>o.value===data[id]))continue;
+      input.value=data[id];
+    }
+    if(typeof data.projectOnly==='boolean')$('projectOnly').checked=data.projectOnly;
+  } catch(e){console.warn('Profile restore unavailable:',e)}
+}
 function projectProfile(){
   const p={};
   for(const key of PROJECT_INPUTS)p[key]=($(key).value||'').trim();
@@ -284,17 +305,18 @@ function wire(){
   });
   for(const key of PROJECT_INPUTS){
     $(key).addEventListener(key==='pCity'||key==='pFloors'?'change':'change',()=>{
-      renderCatalog();renderQuick();render();
+      saveProfile();renderCatalog();renderQuick();render();
     });
   }
-  $('projectOnly').addEventListener('change',()=>{renderCatalog();renderQuick();render()});
+  $('projectOnly').addEventListener('change',()=>{saveProfile();renderCatalog();renderQuick();render()});
   $('resetProject').addEventListener('click',()=>{
     for(const key of PROJECT_INPUTS)$(key).value='';
     $('projectOnly').checked=true;
-    renderCatalog();renderQuick();render();
+    saveProfile();renderCatalog();renderQuick();render();
   });
 }
 async function init(){
+  restoreProfile();
   wire();
   $('status').textContent='در حال بارگذاری نتایج…';
   const [catalog,coverage,index,curated]=await Promise.all([
@@ -312,7 +334,11 @@ async function init(){
   $('q').value='ارتفاع جان پناه';
   render();
   const withData=new Set(sourceRecords().map(r=>Number(r.chapter))).size;
-  $('coverage').textContent=withData+' مبحث دارای داده · '+sourceRecords().length+' مورد';
+  const pageOnly=Number(COVERAGE.chapters_page_index||0);
+  const structured=Number(COVERAGE.chapters_ready||0);
+  $('coverage').textContent=pageOnly
+    ? structured+' مبحث با رکورد ساختاریافته · '+pageOnly+' مبحث فقط گزیده صفحه · '+sourceRecords().length+' رکورد'
+    : withData+' مبحث دارای داده · '+sourceRecords().length+' رکورد';
   if(!sourceRecords().length){
     $('status').textContent='داده‌های جست‌وجو در حال تکمیل است';
   }
