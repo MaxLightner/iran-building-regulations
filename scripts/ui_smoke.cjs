@@ -67,6 +67,11 @@ async function main(){
   assert.ok(doc.querySelector('.addenda-notice a'),'chapter 4 should expose its mandatory appendix');
   assert.ok(doc.querySelector('.addenda-notice').textContent.includes('نمایه نشده'),
     'appendix should be clearly marked as not indexed');
+    // A previously indexed higher-quality source must survive upstream outages.
+  doc.querySelector('#chapterGrid .chapter:nth-child(19)').click();await pause(10);
+  assert.ok(doc.querySelectorAll('#results .result').length>0,'chapter 19 is searchable');
+  assert.ok(doc.querySelector('#chapterGrid .chapter:nth-child(19)').textContent.includes('87'),
+    'structured fallback preserves 87 records when current upstream source regresses');
     assert.equal(errors.length,0,'no JS errors: '+errors.join(', '));
   console.log('UI smoke PASS: 24 chapters, search, quick-search, curated answers and missing-state');
   win.close();
