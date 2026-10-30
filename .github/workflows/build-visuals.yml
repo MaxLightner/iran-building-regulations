@@ -52,7 +52,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add frontend/data/visuals
           if ! git diff --staged --quiet; then
-            git commit -m "Add regulation figure previews [skip ci]"
+            git commit -m "Update regulation figure previews"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
