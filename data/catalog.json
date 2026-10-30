@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "purpose": "Cross-topic dataset registry; no rows are published until imported without known omissions",
+  "topics": [
+    {
+      "mabhas": 1,
+      "title": "تعاریف",
+      "catalog_edition": "1392",
+      "state": "imported_structural_review_pending",
+      "dataset": "data/m01-1392",
+      "sections": 332,
+      "unique_content_pdf_pages": 56
+    },
+    {
+      "mabhas": 2,
+      "title": "نظامات اداری",
+      "catalog_edition": "1384",
+      "state": "source_incomplete_blocked",
+      "source_issues": [
+        {
+          "edition": "1384",
+          "pdf_pages": 178,
+          "blank_pdf_pages": [
+            105,
+            140
+          ],
+          "note": "36-page continuous blank interval; image inspection confirms blank page 105"
+        },
+        {
+          "edition": "1388",
+          "pdf_pages": 213,
+          "blank_pdf_pages": [
+            127,
+            164
+          ],
+          "note": "38-page low-content interval; not ingested"
+        }
+      ]
+    },
+    {
+      "mabhas": 3,
+      "title": "حفاظت ساختمان‌ها در مقابل حریق",
+      "catalog_edition": "1395",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 4,
+      "title": "الزامات عمومی ساختمان",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 5,
+      "title": "مصالح و فرآورده‌های ساختمانی",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 6,
+      "title": "بارهای وارد بر ساختمان",
+      "catalog_edition": "1398",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 7,
+      "title": "ژئوتکنیک و مهندسی پی",
+      "catalog_edition": "1400",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 8,
+      "title": "طرح و اجرای ساختمان‌های با مصالح بنایی",
+      "catalog_edition": "1398",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 9,
+      "title": "طرح و اجرای ساختمان‌های بتن‌آرمه",
+      "catalog_edition": "1399",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 10,
+      "title": "طرح و اجرای ساختمان‌های فولادی",
+      "catalog_edition": "1401",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 11,
+      "title": "طرح و اجرای صنعتی ساختمان‌ها",
+      "catalog_edition": "1400",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 12,
+      "title": "ایمنی و حفاظت کار در حین اجرا",
+      "catalog_edition": "1403",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 13,
+      "title": "طرح و اجرای تأسیسات برقی ساختمان‌ها",
+      "catalog_edition": "1395",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 14,
+      "title": "تأسیسات مکانیکی",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 15,
+      "title": "آسانسورها و پلکان برقی",
+      "catalog_edition": "1392",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 16,
+      "title": "تأسیسات بهداشتی",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 17,
+      "title": "سامانه گاز طبیعی در ساختمان",
+      "catalog_edition": "1403",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 18,
+      "title": "عایق‌بندی و تنظیم صدا",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 19,
+      "title": "مدیریت انرژی در ساختمان",
+      "catalog_edition": "1404",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 20,
+      "title": "علائم و تابلوها",
+      "catalog_edition": "1396",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 21,
+      "title": "پدافند غیرعامل",
+      "catalog_edition": "1395",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 22,
+      "title": "مراقبت و نگهداری از ساختمان‌ها",
+      "catalog_edition": "1392",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 23,
+      "title": "الزامات ترافیکی ساختمان‌ها",
+      "catalog_edition": "1401",
+      "state": "not_started"
+    },
+    {
+      "mabhas": 24,
+      "title": "انطباق شهری ساختمان",
+      "catalog_edition": "1404",
+      "state": "not_started"
+    }
+  ]
+}
