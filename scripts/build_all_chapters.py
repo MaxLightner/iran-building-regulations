@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, sys, tempfile, time, unicodedata
+import json, re, sys, tempfile, time, unicodedata, subprocess, shutil
 from pathlib import Path
 from urllib.parse import urljoin, quote
 import requests
@@ -248,6 +248,55 @@ def document_from_source(source,expected):
         pass
     return None,None
 
+def page_chunks(chapter,page_i,text,source_url,kind="page_extract"):
+    """Keep all extracted page text in bounded chunks; never fabricate clause locators."""
+    text=norm(text)
+    if len(text)<90:return []
+    out=[];start=0;size=1050;overlap=90
+    while start<len(text):
+        end=min(len(text),start+size)
+        if end<len(text):
+            word_end=text.rfind(" ",max(start,end-100),end)
+            if word_end>start+500:end=word_end
+        chunk=text[start:end].strip()
+        if len(chunk)>=70:
+            part=len(out)+1
+            out.append({"id":f"m{chapter:02d}-page-{page_i:04d}-{part:03d}",
+                "chapter":chapter,"locator":None,
+                "title":f"صفحه {page_i} - بخش {part} (شماره بند تأییدنشده)",
+                "kind":kind,"page":page_i,"source_url":source_url,
+                "text":chunk,"answer":chunk,"normative":False,"numbers":[],"cross_refs":[]})
+        if end>=len(text):break
+        start=max(start+1,end-overlap)
+    return out
+
+
+def ocr_pdf_records(chapter,data,source_url):
+    """Last-resort OCR for image-only pages. Results are NOT legal clauses."""
+    if not shutil.which("tesseract"):
+        return [],{"error":"tesseract_unavailable","accepted":False}
+    with fitz.open(stream=data,filetype="pdf") as doc:
+        pages=len(doc);rows=[];accepted_pages=0
+        for idx,page in enumerate(doc):
+            try:
+                pix=page.get_pixmap(matrix=fitz.Matrix(1.7,1.7),alpha=False)
+                p=subprocess.run(["tesseract","stdin","stdout","-l","fas+eng","--psm","3"],
+                    input=pix.tobytes("png"),stdout=subprocess.PIPE,
+                    stderr=subprocess.DEVNULL,timeout=55,check=False)
+                if p.returncode:continue
+                raw=norm(p.stdout.decode("utf-8","replace"))
+                fa=sum("\u0600"<=c<="\u06ff" for c in raw)
+                letters=sum(c.isalpha() for c in raw)
+                if len(raw)<120 or fa/max(letters,1)<0.38:continue
+                accepted_pages+=1
+                rows.extend(page_chunks(chapter,idx+1,raw,source_url,"ocr_page"))
+            except (subprocess.TimeoutExpired,ValueError,RuntimeError):continue
+            if (idx+1)%25==0:
+                print(f"M{chapter:02d} OCR {idx+1}/{pages} accepted={accepted_pages} records={len(rows)}",flush=True)
+    qa={"pages":pages,"ocr_pages":accepted_pages,"accepted":accepted_pages>=5 and len(rows)>=12,"unverified_ocr":True}
+    return (rows if qa["accepted"] else []),qa
+
+
 def pdf_records(chapter,data,source_url):
     with tempfile.NamedTemporaryFile(suffix=".pdf") as tf:
         tf.write(data);tf.flush()
@@ -300,27 +349,8 @@ def pdf_records(chapter,data,source_url):
         # No sufficient trustworthy clause locators found. Preserve page provenance and
         # explicitly mark excerpts as unverified rather than inventing clauses.
         fallback=[]
-        for page_i, pt in enumerate(pages,1):
-            readable=norm(pt)
-            if len(readable)<180:continue
-            # Capture a bounded sample from each page. It supports discovery,
-            # not a claim that the full clause or the whole book was indexed.
-            # A page sample must never inherit a fabricated clause locator.
-            excerpt=readable[:720]
-            fallback.append({
-                "id":f"m{chapter:02d}-page-{page_i:04d}",
-                "chapter":chapter,
-                "locator":None,
-                "title":f"متن استخراجی صفحه {page_i} (بدون شماره بند تأییدشده)",
-                "kind":"page_extract",
-                "page":page_i,
-                "source_url":source_url,
-                "text":excerpt,
-                "answer":excerpt,
-                "normative":False,
-                "numbers":[],
-                "cross_refs":[]
-            })
+        for page_i,pt in enumerate(pages,1):
+            fallback.extend(page_chunks(chapter,page_i,pt,source_url,"page_extract"))
         if len(fallback)>=5:
             return fallback,{"pages":len(pages),"chars":total,
                              "persian_ratio":round(ratio,3),"accepted":True,
@@ -413,6 +443,7 @@ def build():
                         data,final,_=safe_get(direct,binary=True)
                         if data.startswith(b"%PDF-"):pdf_candidates.append((data,final))
                 except Exception:pass
+            ocr_candidate=None
             for pdf_data,pdf_url in pdf_candidates:
                 try:
                     recs,qa=pdf_records(n,pdf_data,pdf_url)
@@ -420,12 +451,23 @@ def build():
                     if qa.get("accepted") and len(recs)>=12:
                         candidates.append((source_score(recs),recs,pdf_url,"page_extract" if qa.get("unverified_page_extract") else "searchable_document"))
                         break
+                    if n in (6,11,18,20) and ocr_candidate is None and not qa.get("accepted"):
+                        ocr_candidate=(pdf_data,pdf_url)
                 except Exception as e:
                     attempts.append({"type":"document","url":pdf_url,"ok":False,"error":type(e).__name__})
+            if not candidates and ocr_candidate is not None:
+                try:
+                    pdf_data,pdf_url=ocr_candidate
+                    recs,qa=ocr_pdf_records(n,pdf_data,pdf_url)
+                    attempts.append({"type":"ocr_document","url":pdf_url,"records":len(recs),**qa})
+                    if qa.get("accepted"):
+                        candidates.append((source_score(recs),recs,pdf_url,"ocr_page"))
+                except Exception as e:
+                    attempts.append({"type":"ocr_document","ok":False,"error":type(e).__name__,"message":str(e)[:180]})
         if candidates:
             candidates.sort(key=lambda x:x[0],reverse=True)
             _,records,chosen,method=candidates[0]
-            status="page_index" if method=="page_extract" else "ready"
+            status="ocr_index" if method=="ocr_page" else ("page_index" if method=="page_extract" else "ready")
         else:
             records=[];chosen=None;method=None;status="source_needed"
         payload={"chapter":n,"title":c["title"],"edition":c["edition"],"status":status,
@@ -439,8 +481,9 @@ def build():
             print("  attempts="+json.dumps(attempts,ensure_ascii=False)[:5000],flush=True)
         time.sleep(.15)
     coverage={"chapters_total":24,"chapters_ready":sum(x["status"]=="ready" for x in catalog),
-               "chapters_page_index":sum(x["status"]=="page_index" for x in catalog),
-               "chapters_searchable":sum(x["status"] in ("ready","page_index") for x in catalog),
+               "chapters_page_index":sum(x["status"] in ("page_index","ocr_index") for x in catalog),
+               "chapters_ocr_index":sum(x["status"]=="ocr_index" for x in catalog),
+               "chapters_searchable":sum(x["status"] in ("ready","page_index","ocr_index") for x in catalog),
               "records_total":sum(x["record_count"] for x in catalog),
               "chapters":catalog}
     index=[]
