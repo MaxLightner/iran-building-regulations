@@ -166,7 +166,14 @@ def parse(chapter, path, max_pages=None):
         # A printed chapter/section heading is navigation, never an answer.
         if len(text_lines) == 1:
             heading = HEADING.match(text_lines[0])
-            if heading and search_normalize(heading.group(2)) == search_normalize(section["title"]):
+            heading_text = heading.group(2) if heading else text_lines[0]
+            # A one-line numbered paragraph can itself be a binding rule.
+            # Classify only short, non-normative labels as heading-only;
+            # never silently erase a one-line obligation or numerical limit.
+            appears_heading = (len(heading_text) < 85
+                               and not re.search(r"(باید|نباید|الزام|مجاز|نمی|میs*شود|است\b|باشد|گردد|شوند|حداقل|حداکثر|متر|سانتی)", heading_text)
+                               and not re.search(r"[0-9۰-۹]", heading_text))
+            if appears_heading and search_normalize(heading_text) == search_normalize(section["title"]):
                 section["text"] = ""
             else:
                 section["text"] = "\n".join(text_lines).strip()
