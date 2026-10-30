@@ -9,7 +9,15 @@
       "pages": 168,
       "sha256": "2f08aa1c12cc03d5352f6b125239a065cd8d7da17adaf43b2137557e58108d69",
       "has_graphics": true,
-      "status": "historical_reference_not_substituted"
+      "status": "historical_reference_not_substituted",
+      "direct_pdf_text_inspection": "PyMuPDF embedded text with Unicode NFKC normalization; no OCR",
+      "original_pdf_pages": 168,
+      "original_pages_with_persian_text": 152,
+      "original_pages_with_broken_font_mapping": 0,
+      "original_pages_with_very_short_text": 16,
+      "intermediary_extracted_pages_total": 164,
+      "indexed_pages_with_usable_text": 149,
+      "page_mapping_caution": "Intermediary parser omitted pages; PDF page labels may not map 1:1 to original file"
     },
     {
       "chapter": 11,
@@ -19,7 +27,15 @@
       "pages": 114,
       "sha256": "81363f3b201cb7d754d108c45012c7ac5edac60c9892d237a982224a5bdebdb2",
       "has_graphics": true,
-      "status": "historical_reference_not_substituted"
+      "status": "historical_reference_not_substituted",
+      "direct_pdf_text_inspection": "PyMuPDF embedded text with Unicode NFKC normalization; no OCR",
+      "original_pdf_pages": 114,
+      "original_pages_with_persian_text": 108,
+      "original_pages_with_broken_font_mapping": 0,
+      "original_pages_with_very_short_text": 6,
+      "intermediary_extracted_pages_total": 113,
+      "indexed_pages_with_usable_text": 107,
+      "page_mapping_caution": "Intermediary parser omitted pages; PDF page labels may not map 1:1 to original file"
     },
     {
       "chapter": 18,
@@ -29,7 +45,15 @@
       "pages": 96,
       "sha256": "a4b155dc31345aa0629b2c967ddd06df8dc85ed5a72bbb9a65bb3e5ce6284dc8",
       "has_graphics": true,
-      "status": "historical_reference_not_substituted"
+      "status": "historical_reference_not_substituted",
+      "direct_pdf_text_inspection": "PyMuPDF embedded text with Unicode NFKC normalization; no OCR",
+      "original_pdf_pages": 96,
+      "original_pages_with_persian_text": 3,
+      "original_pages_with_broken_font_mapping": 88,
+      "original_pages_with_very_short_text": 5,
+      "intermediary_extracted_pages_total": 96,
+      "indexed_pages_with_usable_text": 3,
+      "page_mapping_caution": ""
     },
     {
       "chapter": 20,
@@ -39,7 +63,16 @@
       "pages": 88,
       "sha256": "abc9a94dd61e28442ab11cd34874defb73b45416899a4d9472624e0dc3d192f1",
       "has_graphics": true,
-      "status": "same_edition_uploaded_copy"
+      "status": "same_edition_uploaded_copy",
+      "direct_pdf_text_inspection": "PyMuPDF embedded text with Unicode NFKC normalization; no OCR",
+      "original_pdf_pages": 88,
+      "original_pages_with_persian_text": 81,
+      "original_pages_with_broken_font_mapping": 0,
+      "original_pages_with_very_short_text": 7,
+      "intermediary_extracted_pages_total": 88,
+      "indexed_pages_with_usable_text": 81,
+      "page_mapping_caution": ""
     }
-  ]
+  ],
+  "audit_note": "Readability check on original four user-uploaded PDFs, no OCR. Embedded text needs clause-by-clause verification; page counts alone do not certify completeness."
 }
