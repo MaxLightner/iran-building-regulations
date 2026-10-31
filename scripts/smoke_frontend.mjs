@@ -10,8 +10,9 @@ const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert(script, 'Inline frontend code missing');
 
 const ids = ['pUse', 'questionType', 'pStage', 'pStructure', 'quickTopics',
-  'allTopics', 'allTopicsToggle', 'q', 'searchButton', 'resetSettings',
-  'clearSearch', 'chapterList', 'resultSummary', 'error'];
+  'allTopicsToggle', 'tagSummary', 'activeFacets', 'resetFacets',
+  'facetChapter', 'facetSection', 'facetSub', 'facetKind',
+  'q', 'searchButton', 'resetSettings', 'clearSearch', 'chapterList', 'resultSummary', 'error'];
 const elements = Object.fromEntries(ids.map(id => [id, {
   value: '', innerHTML: '', textContent: '', hidden: false,
   options: [{ value: '' }], listeners: {},
@@ -38,18 +39,23 @@ vm.runInNewContext(script, {
 await new Promise(resolve => setTimeout(resolve, 100));
 assert(elements.chapterList.innerHTML.includes('مبحث ۴'), 'Chapter 4 absent');
 assert(elements.chapterList.innerHTML.includes('مبحث ۵'), 'Chapter 5 absent');
-assert(elements.quickTopics.innerHTML.includes('عرض راه پله'), 'Quick topic absent');
+assert(elements.facetChapter.innerHTML.includes('مبحث'), 'Chapter facets missing');
 
-function clickTopic(label, chapter) {
-  clickListener({ target: { closest(selector) {
-    if (selector === '[data-topic]') return { dataset: { topic: label, ch: String(chapter) } };
-    return null;
-  } } });
-}
-clickTopic('عرض راه پله', 4);
+elements.q.value = 'عرض راه پله';
+elements.searchButton.onclick();
 assert(elements.chapterList.innerHTML.includes('hit-list'), 'Focused search layout missing');
 assert(elements.chapterList.innerHTML.includes('مبحث ۴'), 'Expected stair-width regulation not ranked');
 assert(elements.chapterList.innerHTML.includes('data-lazy="1"'), 'Full text must load only on demand');
+assert(elements.quickTopics.innerHTML.includes('پله'), 'Visible results must determine tags');
+elements.facetChapter.value = '4';
+elements.facetChapter.listeners.change();
+assert(elements.chapterList.innerHTML.includes('مبحث ۴'), 'Chapter facet must preserve matching results');
+assert(!elements.chapterList.innerHTML.includes('hit-topic">مبحث ۳'), 'Chapter facet must remove other chapters');
+elements.facetKind.value = 'measure';
+elements.facetKind.listeners.change();
+assert(elements.resultSummary.textContent.includes('بند مطابق'), 'Content type facet must refresh result count');
+elements.resetFacets.onclick();
+assert(elements.facetChapter.value === '', 'Reset facets must clear selection');
 
 // Numeric lookup must locate the exact clause without opening an entire book.
 elements.q.value = '4-5-1-7-3';
@@ -61,4 +67,4 @@ elements.q.value = '';
 elements.searchButton.onclick();
 assert(elements.chapterList.innerHTML.includes('data-chapter="4"'), 'Chapter browsing missing');
 assert(elements.chapterList.innerHTML.includes('class="chapterbody" data-lazy="1"'), 'Hierarchy should load on demand');
-console.log('Frontend smoke test passed: ranked lookup, numeric clause, lazy hierarchy.');
+console.log('Frontend smoke test passed: scoped facets, dynamic tags, ranked lookup, numeric clause, lazy hierarchy.');
